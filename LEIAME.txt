@@ -10,6 +10,15 @@ sudo systemctl start bluetooth.service
 Barrier mouse invisível
 It's caused by wayland, you need change to XORG.
 sudo nano /etc/gdm3/custom.conf
-Uncomment this: #WaylandEnable=false
+Uncomment this:
+#WaylandEnable=false
 sudo systemctl restart gdm3
+
+Steam e aplicativos 32bits
+sudo nano /etc/pacman.conf
+Uncomment this:
+#[multilib]
+#Include = /etc/pacman.d/mirrorlist
+sudo pacman -Syu
+reboot now
 -------------------------------------------------------
