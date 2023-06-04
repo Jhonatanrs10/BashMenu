@@ -9,7 +9,7 @@ installMinecraftServerVersion(){
 	yesorno "MINECRAFT SERVER FORGE 1.18.2" "setLink https://maven.minecraftforge.net/net/minecraftforge/forge/1.18.2-40.2.0/forge-1.18.2-40.2.0-installer.jar"
 
 	echo -e "[INFO] - CRIANDO DIRETORIOS... - [INFO]"
-	criaDiretorio "diretorioServer" "$HOME/.Jhonatanrs/MinecraftServer-$nomeMSV"
+	criaDiretorio "diretorioServer" "$dBashMenu/MinecraftServer-$nomeMSV"
 
 	echo -e "[INFO] - BAIXANDO ARQUIVOS... - [INFO]"
 	criaPastaBaixaExtrai "$diretorioServer/" "$varLink" "server.jar"

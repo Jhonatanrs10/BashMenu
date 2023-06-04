@@ -9,16 +9,15 @@ dependencias(){
     echo "INSTALAR DEPENDENCIAS? TECLE s PARA ACEITAR"
     read resp
     if [ "$resp" = "s" ]; then
-    criaDiretorio "dBashMenu" "$HOME/.Jhonatanrs"
-    criarArq "#!/usr/bin/env sh
+        mkdir -p $dBashMenu/Bins
+        criarArq "#!/usr/bin/env sh
 cd $PWD
-bash BashMenu.sh" "$dBashMenu/BashMenu.sh"
-    removeAtalhoBin "BashMenu"
-    criaAtalhoBin "$dBashMenu/BashMenu.sh" "BashMenu"
-    packIcons
-    installApt "$packagesapt"	
-    installApt "$packagespacman"    
-	fi
+bash BashMenu.sh" "$dBashMenu/Bins/BashMenu.sh"
+        removeAtalhoBin "BashMenu"
+        criaAtalhoBin "$dBashMenu/Bins/BashMenu.sh" "BashMenu"
+        packIcons
+        installPacotes "$packagesapt $packagespacman"
+    fi
 }
 
 

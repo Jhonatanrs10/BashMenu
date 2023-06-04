@@ -4,7 +4,7 @@ arqDiscord="https://github.com/ChaoticWeg/discord.sh/archive/refs/heads/master.z
 #https://github.com/ChaoticWeg/discord.sh
 installNgrok(){
     echo -e "[INFO] - DEPENDENCIAS - [INFO]"
-    criaDiretorio "diretorioNgrok" "$HOME/.Jhonatanrs/Ngrok"
+    criaDiretorio "diretorioNgrok" "$dBashMenu/Ngrok"
     baixaArq "diretorioNome" "$arqNgrok" "$diretorioNgrok/ngrok.tgz"
     baixaArq "diretorioNome" "$arqDiscord" "$diretorioNgrok/bot.zip"
     echo -e "[INFO] - INSTALANDO NGROK - [INFO]"

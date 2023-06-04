@@ -2,6 +2,8 @@
 source ./scripts/dependencias.sh
 dependencias
 
+menu12345 "[1] ASSISTIR PELO MPV" "assistirMpv"
+
 menu12345 "
 [1] INSTALAR MINECRAFT TLAUNCHER
 [2] INSTALAR MINECRAFT SERVER
@@ -29,13 +31,17 @@ menu12345 "
 menu12345 "
 [1] INSTALAR BONGOCAT
 [2] INSTALAR POKEXGAMES
+[3] INSTALAR FIREFOX
+[4] REMOVER FIREFOX
 " "bongo
-" "installPokexgames"
+" "installPokexgames
+" "installFirefox
+" "uninstallFirefox"
 
 menu12345 "
 [1] CRIAR PASTA COMPARTILHADA (SHARE)
 [2] CRIA ATALHO BIN PARA COMANDOS DE TERMINAL
-[3] REMOVE ATALHO BIN JRS
+[3] REMOVER ATALHO BIN JRS
 " "criaPastaShareUser
 " "criaAtalhoTerminalBin
 " "removeAtalhoBinJrs"

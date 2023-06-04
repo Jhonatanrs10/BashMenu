@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 criaPastaShareUser(){
-	installApt "samba"
+	installPacotes "samba"
         criaSeuUsuarioSamba
         criaDiretorioShare "$HOME/Share" "Share"
 }

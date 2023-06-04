@@ -8,7 +8,7 @@ posInstall(){
         echo "PACOTES:
 samba gparted neofetch blueman mpv vlc git wget openjdk-8-jdk openjdk-11-jdk openjdk-17-jdk htop qbittorrent"
         read pacotes
-        installApt "$pacotes"
+        installPacotes "$pacotes"
         baixaDebs "Chrome" "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
         baixaDebs "vscode" "https://go.microsoft.com/fwlink/?LinkID=760868"
         baixaDebs "Discord" "https://discord.com/api/download?platform=linux&format=deb"

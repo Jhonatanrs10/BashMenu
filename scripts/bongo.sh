@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 bongocat="https://github.com/kuroni/bongocat-osu/archive/refs/heads/master.zip"
 bongo(){
-    installApt "g++ libxdo libxdo-dev libsdl2-dev libsfml-dev sdl2 sfml x11 xrandr make"
+    installPacotes "g++ libxdo libxdo-dev libsdl2-dev libsfml-dev sdl2 sfml x11 xrandr make"
     echo -e "[INFO] - INSTALANDO BONGOCAT - [INFO]"
-	criaDiretorio "diretorioBongo" "$HOME/.Jhonatanrs"
+	criaDiretorio "diretorioBongo" "$dBashMenu"
     criaPastaBaixaExtrai "$diretorioBongo" "$bongocat" "bongo.zip"
     mv $diretorioBongo/bongocat-* $diretorioBongo/bongocat
     cd $diretorioBongo/bongocat

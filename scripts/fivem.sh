@@ -7,7 +7,7 @@ handEditor="https://github.com/FRANkiller13/FiveM-Handling-Editor/archive/refs/h
 streetRace="https://github.com/bepo13/FiveM-StreetRaces/archive/refs/heads/master.zip"
 installFivem(){
 	echo -e "[INFO] - INSTALANDO FIVEM SERVER - [INFO]"
-	criaDiretorio "diretorioServer" "$HOME/.Jhonatanrs/Fivem"
+	criaDiretorio "diretorioServer" "$dBashMenu/Fivem"
 	criaPastaBaixaExtrai "$diretorioServer" "$verFivem" "fx.tar.xz"
 	
 	criaPastaBaixaExtrai "$diretorioServer" "$cfxData" "data.zip"
@@ -50,9 +50,9 @@ end)' "$diretorioServer/server-data/resources//[gamemodes]/basic-gamemode/basic_
     }
 </style>" "$diretorioServer/server-data/resources/[test]/example-loadscreen/index.html"
 
-	convert $HOME/.Jhonatanrs/Icons/logojr.svg -resize 800x800 $diretorioServer/server-data/resources/[test]/example-loadscreen/loadscreen.jpg
-    convert $HOME/.Jhonatanrs/Icons/logojr.svg -resize 96x96 $diretorioServer/server-data/myLogo.png
-	convert $HOME/.Jhonatanrs/Icons/logojr.svg -resize 96x96 $diretorioServer/myLogo.png
+	convert $dBashMenu/Icons/logojr.svg -resize 800x800 $diretorioServer/server-data/resources/[test]/example-loadscreen/loadscreen.jpg
+    convert $dBashMenu/Icons/logojr.svg -resize 96x96 $diretorioServer/server-data/myLogo.png
+	convert $dBashMenu/Icons/logojr.svg -resize 96x96 $diretorioServer/myLogo.png
 
     addNoArq '# Only change the IP if youre using a server with multiple network interfaces, otherwise change the port only.
 endpoint_add_tcp 0.0.0.0:30120

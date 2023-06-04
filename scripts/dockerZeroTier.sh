@@ -17,7 +17,7 @@ dockerZeroTier(){
     sudo docker exec zerotier-one zerotier-cli status
     echo "USE O COMNADO PARA ENTRAR EM UMA REDE: 
 sudo docker exec zerotier-one zerotier-cli join NETWORK-ID"
-    criaDiretorioInstall "$HOME/.Jhonatanrs/DockerZeroTier"
+    criaDiretorioInstall "$dBashMenu/DockerZeroTier"
     criarArq "#!/usr/bin/env sh
 echo '
 COMANDOS:

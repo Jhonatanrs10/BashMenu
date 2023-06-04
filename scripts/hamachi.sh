@@ -2,7 +2,7 @@
 hamachi="https://vpn.net/installers/logmein-hamachi_2.1.0.203-1_amd64.deb"
 hamachi(){
 	echo -e "[INFO] - CRIANDO DIRETORIOS... - [INFO]"
-	criaDiretorio "diretorioApp" "$HOME/.Jhonatanrs/Hamachi"
+	criaDiretorio "diretorioApp" "$dBashMenu/Hamachi"
 	echo -e "[INFO] - BAIXANDO ARQUIVOS... - [INFO]"
 	baixaArq "diretorio" "$hamachi" "$diretorioApp"
 	echo -e "[INFO] - INSTALANDO HAMACHI - [INFO]"

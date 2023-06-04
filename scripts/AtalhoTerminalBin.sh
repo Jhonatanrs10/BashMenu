@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 criaAtalhoTerminalBin(){
-    criaDiretorioInstall "$HOME/.Jhonatanrs/Bins"   
+    criaDiretorioInstall "$dBashMenu/Bins"   
     echo "DIGITE OU COLE O COMANDO DE TERMINAL:"
     read comandoTerminal
     echo "DIGITE OU COLE O NOME DO ATALHO/ARQUIVO BIN:"
