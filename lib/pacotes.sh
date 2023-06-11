@@ -20,7 +20,6 @@ installPacotes(){
 	if [ "$resp" = "error" ]; then
 		clear
 		echo "[ERRO] Nenhum gerenciador encontrado!"
-		sleep 1
 	fi
 }
 

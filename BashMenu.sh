@@ -2,7 +2,9 @@
 source ./scripts/dependencias.sh
 dependencias
 
-menu12345 "[1] ASSISTIR PELO MPV" "assistirMpv"
+menu12345 "
+[1] ASSISTIR PELO MPV
+" "assistirMpv"
 
 menu12345 "
 [1] INSTALAR MINECRAFT TLAUNCHER
@@ -49,10 +51,8 @@ menu12345 "
 menu12345 "
 [1] REPARAR APT
 [2] INSTALAR POSINSTALL (APT)
-[3] INSTALAR I3WM (APT)
-[4] CONFIGURAR I3WM
+[3] CONFIGURAR I3WM 
 " "repararApt
 " "posInstall
-" "i3wmInstallDebBase
 " "i3wmConfig"
 
