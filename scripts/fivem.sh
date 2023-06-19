@@ -7,6 +7,8 @@ installFivem(){
     handEditor="https://github.com/FRANkiller13/FiveM-Handling-Editor/archive/refs/heads/master.zip"
     streetRace="https://github.com/bepo13/FiveM-StreetRaces/archive/refs/heads/master.zip"
 
+    uninstallPastaAtalhoBinMesmoNome "Fivem"
+
 	echo -e "[INFO] - INSTALANDO FIVEM SERVER - [INFO]"
 	criaDiretorio "diretorioServer" "$dBashMenu/Fivem"
 	criaPastaBaixaExtrai "$diretorioServer" "$verFivem" "fx.tar.xz"

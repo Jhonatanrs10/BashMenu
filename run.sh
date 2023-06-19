@@ -41,9 +41,11 @@ menu12345 "
 [1] INSTALAR BONGOCAT
 [2] INSTALAR POKEXGAMES
 [3] INSTALAR FIREFOX
+[4] INSTALAR FIVEM
 " "bongo
 " "installPokexgames
-" "installFirefox"
+" "installFirefox
+" "installFivem"
 
 menu12345 "
 [1] CRIAR PASTA COMPARTILHADA (SHARE)

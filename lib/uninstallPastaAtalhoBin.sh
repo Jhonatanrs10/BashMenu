@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 uninstallPastaAtalhoBin(){
     uninstallApplica="n"
-    echo "Uninstall [s/n]"
+    echo "Uninstall $1 [s/n]"
     read uninstallApplica
     if [ $uninstallApplica = "s" ]; then
         if [ $2 = '' ]; then
