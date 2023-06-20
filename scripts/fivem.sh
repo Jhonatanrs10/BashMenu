@@ -6,11 +6,12 @@ installFivem(){
     pvpMode="https://github.com/fcarvalho-bruno/enablepvp/archive/refs/heads/master.zip"
     handEditor="https://github.com/FRANkiller13/FiveM-Handling-Editor/archive/refs/heads/master.zip"
     streetRace="https://github.com/bepo13/FiveM-StreetRaces/archive/refs/heads/master.zip"
-
-    uninstallPastaAtalhoBinMesmoNome "Fivem"
+    echo "FIVEM NAME FOLDER"
+    read fivemNome
+    uninstallPastaAtalhoBinMesmoNome "$fivemNome"
 
 	echo -e "[INFO] - INSTALANDO FIVEM SERVER - [INFO]"
-	criaDiretorio "diretorioServer" "$dBashMenu/Fivem"
+	criaDiretorio "diretorioServer" "$dBashMenu/$fivemNome"
 	criaPastaBaixaExtrai "$diretorioServer" "$verFivem" "fx.tar.xz"
 	
 	criaPastaBaixaExtrai "$diretorioServer" "$cfxData" "data.zip"
@@ -140,5 +141,5 @@ set steam_webApiKey
 # License key for your server (https://keymaster.fivem.net)
 sv_licenseKey '"$lk"'' "$diretorioServer/server-data/server.cfg"
 
-criaAtalhoBin "$diretorioServer/fivemexec.sh" "Fivem"
+criaAtalhoBin "$diretorioServer/fivemexec.sh" "$fivemNome"
 }   
