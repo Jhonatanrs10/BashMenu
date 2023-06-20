@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 uninstallPastaAtalhoBin(){
     uninstallApplica="n"
-    echo "Uninstall $1 [s/n]"
+    echo "Uninstall $3 [s/n]"
     read uninstallApplica
     if [ $uninstallApplica = "s" ]; then
         if [ $2 = '' ]; then
@@ -16,10 +16,5 @@ uninstallPastaAtalhoBin(){
     echo "..."
 }
 
-uninstallPastaAtalhoBinMesmoNome(){
-    uninstallPastaAtalhoBin "$dBashMenu/$1" "$1.desktop" "$1" 
-}
-
 #remove .desktop, atalho no bin e pasta
 #uninstallPastaAtalhoBin "$HOME/.Jhonatanrs/pasta" "nomedoarquivo.desktop" "atalho na pasta /usr/bin/"
-#uninstallPastaAtalhoBinMesmoNome "Nome igual em Pasta, Atalho e Bin"

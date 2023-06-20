@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-just_apt_update(){
+justAptUpdate(){
 	echo -e "[INFO] - ATUALIZANDO O REPOSITORIO - [INFO]"
 	sudo apt update -y
 }

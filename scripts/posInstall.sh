@@ -2,8 +2,8 @@
 posInstallDeb(){
         yesorno "Deseja testar conexao?" "teste_internet"        
         travas_apt
-        just_apt_update
-        add_archi386
+        justAptUpdate
+        addArchi386
         yesorno "Instalar o Flatpak?" "supFlatpak"
         echo "PACOTES:
 samba gparted neofetch blueman mpv vlc git wget openjdk-8-jdk openjdk-11-jdk openjdk-17-jdk htop qbittorrent"

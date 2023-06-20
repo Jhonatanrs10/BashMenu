@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-apt_update(){
+aptUpdate(){
 	echo -e "[INFO] - ATUALIZANDO REPOSITORIO E FAZENDO ATUALIZACAO DO SISTEMA - [INFO]"
 	sudo apt update && sudo apt dist-upgrade -y
 	sudo pacman -Syyuu
