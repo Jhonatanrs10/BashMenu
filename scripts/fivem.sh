@@ -6,6 +6,8 @@ installFivem(){
     pvpMode="https://github.com/fcarvalho-bruno/enablepvp/archive/refs/heads/master.zip"
     handEditor="https://github.com/FRANkiller13/FiveM-Handling-Editor/archive/refs/heads/master.zip"
     streetRace="https://github.com/bepo13/FiveM-StreetRaces/archive/refs/heads/master.zip"
+    modCars="https://drive.google.com/u/0/uc?id=1AWgqtDaNATQdr-2oLHhWNixdYa1C1Gv5&export=download"
+
     echo "FIVEM NAME FOLDER"
     read fivemNome
     uninstallPastaAtalhoBinMesmoNome "$fivemNome"
@@ -23,6 +25,7 @@ installFivem(){
 	criaPastaBaixaExtrai "$diretorioResource/" "$handEditor" "handEditor.zip"
 	criaPastaBaixaExtrai "$diretorioResource/" "$pvpMode" "pvpMode.zip"
 	criaPastaBaixaExtrai "$diretorioResource/" "$streetRace" "streetRace.zip"
+    criaPastaBaixaExtrai "$diretorioResource/teste" "$modCars" "modCars.zip"
 
     mv $diretorioResource/FiveM-StreetRaces-master/StreetRaces $diretorioResource/StreetRaces
     rm -r $diretorioResource/FiveM-StreetRaces-master
