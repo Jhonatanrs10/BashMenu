@@ -492,7 +492,7 @@ load {
 memory {
         format = "[RAM/%used]"
         threshold_degraded = "1G"
-        format_degraded = "MEMORY < %available"
+        format_degraded = "[RAM/%used]"
 	separator = false
 	separator_block_width = 1
 	align = "center"
