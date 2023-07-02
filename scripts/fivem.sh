@@ -50,20 +50,16 @@ end)' "$diretorioServer/server-data/resources//[gamemodes]/basic-gamemode/basic_
 	criarArq "<style type=text/css>
     body {
         background-color: white;
-        background-image: url(loadscreen.jpg);
+        background-image: url(loadscreen2.jpg);
         background-size: 30%;
         background-repeat: no-repeat;
         background-position: center;
     }
 </style>" "$diretorioServer/server-data/resources/[test]/example-loadscreen/index.html"
 
-	convert $dBashMenu/Icons/logojr.svg -resize 800x800 $diretorioServer/server-data/resources/[test]/example-loadscreen/loadscreen.jpg
+	convert $dBashMenu/Icons/logojr.svg -resize 800x800 $diretorioServer/server-data/resources/[test]/example-loadscreen/loadscreen2.jpg
     convert $dBashMenu/Icons/logojr.svg -resize 96x96 $diretorioServer/server-data/myLogo.png
 	convert $dBashMenu/Icons/logojr.svg -resize 96x96 $diretorioServer/myLogo.png
-
-    cp $dBashMenu/Icons/logojr.svg $diretorioServer/server-data/resources/[test]/example-loadscreen/loadscreen.jpg
-    cp $dBashMenu/Icons/logojr.svg $diretorioServer/server-data/myLogo.png
-	cp $dBashMenu/Icons/logojr.svg $diretorioServer/myLogo.png
 
     addNoArq '# Only change the IP if youre using a server with multiple network interfaces, otherwise change the port only.
 endpoint_add_tcp 0.0.0.0:30120
