@@ -6,7 +6,7 @@ assistirMpv(){
         clear
         while [ "$resp" != "" ];
         do
-                echo "ESCOLHA UMA DAS OPCOES:  [1]twitch, [2]link, [3]config1080p60, [4]config720p30"
+                echo "ESCOLHA UMA DAS OPCOES:  [1]twitch, [2]link, [3]config1080p60, [4]config720p30, [5]config480p30"
                 read resp
                 if [ "$resp" = "1" ]; then
                         clear
@@ -22,6 +22,8 @@ assistirMpv(){
                         criarArq "ytdl-format=bestvideo[height<=?1080][fps<=?60][vcodec!=?vp9]+bestaudio/best" "$HOME/.config/mpv/mpv.conf" 
                 elif [ "$resp" = "4" ]; then
                         criarArq "ytdl-format=bestvideo[height<=?720][fps<=?30][vcodec!=?vp9]+bestaudio/best" "$HOME/.config/mpv/mpv.conf" 
+                elif [ "$resp" = "5" ]; then
+                        criarArq "ytdl-format=bestvideo[height<=?480][fps<=?30][vcodec!=?vp9]+bestaudio/best" "$HOME/.config/mpv/mpv.conf" 
                 else
                         echo "NENHUMA OPCAO FOI ESCOLHIDA."
                 fi
