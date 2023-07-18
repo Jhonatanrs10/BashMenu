@@ -13,6 +13,8 @@ assistirMpv(){
                         echo "DIGITE O NOME DO CANAL DA TWITCH:"
                         read canalTwitch
                         echo "https://www.twitch.tv/popout/$canalTwitch/chat?popout="
+                        echo "PRESS ENTER"
+                        read canalTwitchChat
                         mpv "https://www.twitch.tv/$canalTwitch"
                 elif [ "$resp" = "2" ]; then
                         clear
