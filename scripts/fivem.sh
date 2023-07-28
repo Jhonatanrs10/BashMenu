@@ -49,11 +49,12 @@ end)' "$diretorioServer/server-data/resources//[gamemodes]/basic-gamemode/basic_
 
 	criarArq "<style type=text/css>
     body {
-        background-color: white;
+         background-color: white;
         background-image: url(loadscreen2.jpg);
         background-size: 30%;
         background-repeat: no-repeat;
-        background-position: center;
+        background-position-x: center;
+        background-position-y: -25%;
     }
 </style>" "$diretorioServer/server-data/resources/[test]/example-loadscreen/index.html"
 
