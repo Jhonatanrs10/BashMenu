@@ -36,16 +36,18 @@ posInstall(){
                         i3wmConfig
                 elif [ "$resp" = "2" ]; then
                         echo "[ARCH] Bluetooth"
-                        sudo systemctl enable bluetooth.service
-                        sudo systemctl start bluetooth.service --now
+                        #sudo systemctl enable bluetooth.service
+                        #sudo systemctl start bluetooth.service --now
+                        enableSystemctl "bluetooth"
                         echo "INSTALAR blueberry"
                         installPacotes "blueberry"
                 elif [ "$resp" = "3" ]; then
                         echo "[ARCH] Network"
                         echo "INSTALAR NETWORKMANAGER"
                         installPacotes "networkmanager nm-connection-editor network-manager-applet"
-                        sudo systemctl enable NetworkManager.service
-                        sudo systemctl start NetworkManager.service --now
+                        #sudo systemctl enable NetworkManager.service
+                        #sudo systemctl start NetworkManager.service --now
+                        enableSystemctl "NetworkManager"
                         echo "REMOVER IWD (wifi terminal archinstall)"
                         removePacotes "iwd"
                 elif [ "$resp" = "4" ]; then
