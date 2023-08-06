@@ -71,9 +71,6 @@ end)' "$diretorioServer/server-data/resources//[gamemodes]/basic-gamemode/basic_
 endpoint_add_tcp 0.0.0.0:30120
 endpoint_add_udp 0.0.0.0:30120
 
-exec permissions.cfg
-start [jhonatanrs]
-start example-loadscreen
 
 # These resources will start by default.
 ensure mapmanager
@@ -83,6 +80,11 @@ ensure sessionmanager
 ensure basic-gamemode
 ensure hardcap
 ensure rconlog
+
+# minhas configs
+exec resources/[jhonatanrs]/vMenu/config/permissions.cfg
+start [jhonatanrs]
+start example-loadscreen
 
 # This allows players to use scripthook-based plugins such as the legacy Lambda Menu.
 # Set this to 1 to allow scripthook. Do note that this does _not_ guarantee players wont be able to use external plugins.
