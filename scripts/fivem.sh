@@ -6,7 +6,9 @@ installFivem(){
     pvpMode="https://github.com/fcarvalho-bruno/enablepvp/archive/refs/heads/master.zip"
     handEditor="https://github.com/FRANkiller13/FiveM-Handling-Editor/archive/refs/heads/master.zip"
     streetRace="https://github.com/bepo13/FiveM-StreetRaces/archive/refs/heads/master.zip"
-    modCars="https://drive.google.com/u/0/uc?id=1AWgqtDaNATQdr-2oLHhWNixdYa1C1Gv5&export=download"
+    modCars="https://github.com/25danijelmesec03/FiveM-Car-Pack-1/archive/refs/heads/main.zip"
+    fixHoles="https://github.com/Bob74/bob74_ipl/archive/refs/heads/master.zip"
+    carCmd="https://forum.cfx.re/uploads/default/original/3X/3/9/394edb23c58fc64e23411306a40e63788a3a587b.zip"
 
     echo "FIVEM NAME FOLDER"
     read fivemNome
@@ -25,7 +27,10 @@ installFivem(){
 	criaPastaBaixaExtrai "$diretorioResource/" "$handEditor" "handEditor.zip"
 	criaPastaBaixaExtrai "$diretorioResource/" "$pvpMode" "pvpMode.zip"
 	criaPastaBaixaExtrai "$diretorioResource/" "$streetRace" "streetRace.zip"
-    criaPastaBaixaExtrai "$diretorioResource/teste" "$modCars" "modCars.zip"
+    #criaPastaBaixaExtrai "$diretorioResource/" "$modCars" "modCars.zip"
+    criaPastaBaixaExtrai "$diretorioResource/" "$fixHoles" "fixHoles.zip"
+    criaPastaBaixaExtrai "$diretorioResource/" "$carCmd" "carCmd.zip"
+
 
     mv $diretorioResource/FiveM-StreetRaces-master/StreetRaces $diretorioResource/StreetRaces
     rm -r $diretorioResource/FiveM-StreetRaces-master
