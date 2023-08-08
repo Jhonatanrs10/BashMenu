@@ -32,7 +32,7 @@ posInstall(){
 [7]Configurar Touchpad"
                 read resp
                 if [ "$resp" = "1" ]; then
-                        installPacotes "dmenu i3lock feh lxrandr light pcmanfm"
+                        installPacotes "dmenu i3lock i3status feh lxrandr light pcmanfm"
                         i3wmConfig
                 elif [ "$resp" = "2" ]; then
                         echo "[ARCH] Bluetooth"
@@ -469,6 +469,7 @@ ethernet _first_ {
 
 battery all {
         format = "[%status/%percentage]"
+        format_down = ""
 	status_chr = "CHR"
         status_bat = "BAT"
         status_unk = "?"       
@@ -515,6 +516,7 @@ tztime local {
         sudo chmod +s /usr/bin/light
         mv $HOME/.config/i3/i3status-jrsbkp.conf $HOME/.config/i3/i3status.conf
         mv $HOME/.config/i3/config-jrsbkp.conf $HOME/.config/i3/config
+        criarArq 'light' "$HOME/.config/i3/brightness"
         i3 restart
 }
 
