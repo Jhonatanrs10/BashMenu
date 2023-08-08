@@ -54,7 +54,7 @@ end)' "$diretorioServer/server-data/resources//[gamemodes]/basic-gamemode/basic_
 
 	criarArq "<style type=text/css>
     body {
-         background-color: white;
+        background-color: white;
         background-image: url(loadscreen2.jpg);
         background-size: 30%;
         background-repeat: no-repeat;
