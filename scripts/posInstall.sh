@@ -181,6 +181,7 @@ tiling_drag modifier titlebar
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
+for_window [title="i3-sensible-terminal"] floating enable
 #bindsym $mod+Return exec lxterminal
 
 # kill focused window
