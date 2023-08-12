@@ -42,10 +42,12 @@ menu12345 "
 [2] INSTALAR POKEXGAMES
 [3] INSTALAR FIREFOX
 [4] INSTALAR FIVEM
+[5] INSTALAR UNTURNED SERVER
 " "bongo
 " "installPokexgames
 " "installFirefox
-" "installFivem"
+" "installFivem
+" "installUnturnedServer"
 
 menu12345 "
 [1] CRIAR PASTA COMPARTILHADA (SHARE)

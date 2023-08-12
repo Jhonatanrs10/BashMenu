@@ -5,7 +5,7 @@ menu12345(){
     do 
         clear
         echo -e "$1"
-        echo -e "PRESS ENTER PARA SAIR OU IR PARA OUTRA PARTE DO MENU. PRESS [exit] PARA FECHAR"
+        echo -e "PRESS ENTER PARA SAIR OU IR PARA OUTRA PARTE DO MENU. PRESS [exit] PARA FECHAR TUDO"
         read resp
         if [ "$resp" = 1 ]; then
             clear
