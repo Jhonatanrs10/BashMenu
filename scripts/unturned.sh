@@ -61,7 +61,7 @@ bash $diretorioInstall/steamcmd.sh +login anonymous +app_update 1110390 +quit
 cd $HOME/Steam/steamapps/common/U3DS
 bash ServerHelper.sh +LanServer/JardimRecreio" "$diretorioInstall/run.sh"
 
-    criaAtalho "$installName" "Description" "bash run.sh" "$diretorioInstall" "false" "$installName" "$dBashMenu/Icons/default.svg"
+    #criaAtalho "$installName" "Description" "bash run.sh" "$diretorioInstall" "false" "$installName" "$dBashMenu/Icons/default.svg"
     criaAtalhoBin "$diretorioInstall/run.sh" "$installName"
 
 }   

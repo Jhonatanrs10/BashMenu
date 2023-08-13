@@ -9,7 +9,7 @@ SCRIPTMODELO(){
     #criaPastaBaixaExtrai "$diretorioInstall" "Link" "mod.jar"
 
 
-    criaAtalho "$installName" "Description" "bash run.sh" "$diretorioServer" "false" "$installName" "$dBashMenu/Icons/default.svg"
-    criaAtalhoBin "$diretorioServer/run.sh" "$installName"
+    criaAtalho "$installName" "Description" "bash run.sh" "$diretorioInstall" "false" "$installName" "$dBashMenu/Icons/default.svg"
+    criaAtalhoBin "$diretorioInstall/run.sh" "$installName"
 
 }   
