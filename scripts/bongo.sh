@@ -15,14 +15,7 @@ bongo(){
     criarArq "#!/usr/bin/env sh
 cd $diretorioBongo
 ./bongo" "$diretorioBongo/bongo.sh"
-    criarArq '//COMO CONFIGURAR
-//no diretorio src voce deve encontrar um arquivo data.cpp
-//so editar igual ao windows
-//apos configuracao executar um make no diretorio e pegar o novo executavel na pasta bin
-//vale tentar criar um config.json no mesmo local do executavel
-//########################################################
-//configuracao padrao
-{
+    criarArq '{
  "mode": 1,
     "resolution": {
         "letterboxing": false,
@@ -43,8 +36,8 @@ cd $diretorioBongo
         "toggleSmoke": false,
         "paw": [198, 235, 254],
         "pawEdge": [2, 77, 164],
-        "key1": [83, 68],
-        "key2": [87, 65],
+        "key1": [87, 65],
+        "key2": [83, 68],
         "smoke": [59],
         "wave": [220]
     },
