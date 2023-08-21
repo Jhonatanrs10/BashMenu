@@ -5,9 +5,10 @@ resp="vazio"
 while [ "$resp" != "exit" ];
 do
 menu12345 "
-[1] ASSISTIR PELO MPV
+[1] GIT CONFIG
+[2] ASSISTIR PELO MPV
+" "gitconfig
 " "assistirMpv
-" "return
 " "return
 " "return
 " "return"
