@@ -6,9 +6,8 @@ while [ "$resp" != "exit" ];
 do
 menu12345 "
 [1] ASSISTIR PELO MPV
-[2] CRIA ARQUIVO PADRAO SAMBA
 " "assistirMpv
-" "criaSmbDefault
+" "return
 " "return
 " "return
 " "return"
@@ -41,7 +40,7 @@ menu12345 "
 [1] INSTALAR BONGOCAT
 [2] INSTALAR POKEXGAMES
 [3] INSTALAR FIREFOX
-[4] INSTALAR FIVEM
+[4] INSTALAR FIVEM SERVER
 [5] INSTALAR UNTURNED SERVER
 " "bongo
 " "installPokexgames
@@ -50,13 +49,31 @@ menu12345 "
 " "installUnturnedServer"
 
 menu12345 "
+[1] INSTALAR FIVEM SERVER
+[2] INSTALAR UNTURNED SERVER
+" "installFivem
+" "installUnturnedServer
+" "return
+" "return
+" "return"
+
+menu12345 "
 [1] CRIAR PASTA COMPARTILHADA (SHARE)
-[2] CRIA ATALHO BIN PARA COMANDOS DE TERMINAL
-[3] REPARAR APT
-[4] INSTALAR POSINSTALL
+[2] CRIA NOVO USUARIO SAMBA
 " "criaPastaShareUser
+" "criaSeuUsuarioSamba
+" "return
+" "return
+" "return"
+
+menu12345 "
+[1] CRIA ATALHO BIN PARA COMANDOS DE TERMINAL
+[2] REPARAR APT
+[3] INSTALAR POSINSTALL
 " "AtalhoTerminalBin
 " "repararApt
 " "posInstall
+" "return
 " "return"
+
 done

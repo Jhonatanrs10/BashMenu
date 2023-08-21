@@ -1,11 +1,12 @@
 #!/usr/bin/env sh
 criaSeuUsuarioSamba(){
-	echo "CRIANDO SEU USUARIO NO SAMBA..."
+   #pra ter usuario no samba tem que ter usuario no sistema
+	echo "[CRIANDO SEU USUARIO NO SAMBA]"
 	echo "USUARIO $USER DIGITE SUA SENHA:"
    sudo smbpasswd -a $USER
 }
 criaDiretorioShare(){
-   criaSmbDefault
+   #criaSmbDefault
    echo "CRIANDO PASTA SE NAO EXISTIR..."
    mkdir $1
    echo "CONFIGURANDO PASTA NO SAMBA..."
