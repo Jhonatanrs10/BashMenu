@@ -57,13 +57,22 @@ menu12345 "
 " "return
 " "return
 " "return"
+menu12345 "
+[1] SETUP ANDROID EXPO
+[2] CRIAR PROJETO ANDROID EXPO
+" "setupAndroidExpo
+" "criarProjetoExpo
+" "return
+" "return
+" "return"
 
 menu12345 "
-[1] CRIAR PASTA COMPARTILHADA (SHARE)
-[2] CRIA NOVO USUARIO SAMBA
-" "criaPastaShareUser
+[1] CRIA NOVO USUARIO SAMBA
+[2] CRIAR PASTA COMPARTILHADA (SHARE)
+[3] CRIAR PASTA COMPARTILHADA (GUEST)
 " "criaSeuUsuarioSamba
-" "return
+" "criaPastaShareUser
+" "criaPastaShareGuest
 " "return
 " "return"
 
