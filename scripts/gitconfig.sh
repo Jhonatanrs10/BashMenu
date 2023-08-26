@@ -21,3 +21,16 @@ gitconfig(){
     git branch -m $branch
 
 }
+
+gitAutoPush(){
+    clear
+    git status
+    echo "COMMIT:"
+    read textCommit
+    yesorno "ADD" "git add ."
+    git status
+    yesorno "COMMIT" "git commit -m "$textCommit""
+    git status
+    yesorno "PUSH" "git push"
+    
+}

@@ -6,10 +6,11 @@ while [ "$resp" != "exit" ];
 do
 menu12345 "
 [1] GIT CONFIG
-[2] ASSISTIR PELO MPV
+[2] GIT PUSH
+[3] ASSISTIR PELO MPV
 " "gitconfig
+" "gitAutoPush
 " "assistirMpv
-" "return
 " "return
 " "return"
 
