@@ -41,13 +41,11 @@ menu12345 "
 [1] INSTALAR BONGOCAT
 [2] INSTALAR POKEXGAMES
 [3] INSTALAR FIREFOX
-[4] INSTALAR FIVEM SERVER
-[5] INSTALAR UNTURNED SERVER
 " "bongo
 " "installPokexgames
 " "installFirefox
-" "installFivem
-" "installUnturnedServer"
+" "return
+" "return"
 
 menu12345 "
 [1] INSTALAR FIVEM SERVER
