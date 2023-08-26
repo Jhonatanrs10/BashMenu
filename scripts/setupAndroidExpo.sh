@@ -3,7 +3,7 @@
 setupAndroidExpo(){
     installPacotes "nodejs npm"
     yesorno "INSTALAR EXPO-CLI" "sudo npm install expo-cli --global"
-    criaDiretorioInstall "$HOME/AndroidCode"
+    criaDiretorioInstall "$HOME/AndroidExpo"
     echo "INICIAR UM PROJETO
 expo init NOME-PROJETO
 ENTRAR NA PASTA DO PROJETO
@@ -13,9 +13,10 @@ expo start "
 }
 
 criarProjetoExpo(){
-     echo "NOME DO PROJETO:"
-     read pName
-     expo init $pName
-     cd $pName
-     yesorno "EXPO START" "expo start"
+    cd $HOME/AndroidExpo 
+    echo "NOME DO PROJETO:"
+    read pName
+    expo init $pName
+    cd $pName
+    yesorno "EXPO START" "expo start"
 }
