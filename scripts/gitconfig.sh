@@ -29,7 +29,7 @@ gitAutoPush(){
     read textCommit
     yesorno "ADD" "git add ."
     git status
-    yesorno "COMMIT" "git commit -m "$textCommit""
+    yesorno "COMMIT ($textCommit)" "git commit -m "$textCommit""
     git status
     yesorno "PUSH" "git push"
     
