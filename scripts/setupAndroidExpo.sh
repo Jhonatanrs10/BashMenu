@@ -1,8 +1,9 @@
 #!/usr/bin/env sh
 
 setupAndroidExpo(){
-    installPacotes "nodejs npm"
-    yesorno "INSTALAR EXPO-CLI" "sudo npm install expo-cli --global"
+    installPacotes "nodejs npm yarn"
+    yesorno "INSTALAR EXPO-CLI (NPM)" "sudo npm install expo-cli --global"
+
     criaDiretorioInstall "$HOME/AndroidExpo"
     echo "INICIAR UM PROJETO
 expo init NOME-PROJETO
