@@ -69,10 +69,11 @@ menu12345 "
 [1] CRIA NOVO USUARIO SAMBA
 [2] CRIAR PASTA COMPARTILHADA (SHARE)
 [3] CRIAR PASTA COMPARTILHADA (GUEST)
+[4] CRIAR PASTA COMPARTILHADA (TESTE)
 " "criaSeuUsuarioSamba
 " "criaPastaShareUser
 " "criaPastaShareGuest
-" "return
+" "criaPastaShareUser2
 " "return"
 
 menu12345 "

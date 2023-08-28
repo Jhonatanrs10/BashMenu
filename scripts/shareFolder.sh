@@ -5,8 +5,14 @@ criaPastaShareUser(){
         criaDiretorioShare "$HOME/Share" "Share" "no"
 }
 
+criaPastaShareUser2(){
+	installPacotes "samba"
+        enableSystemctl "smb"
+        criaDiretorioShare "$HOME/Share" "TesteShare" "yes"
+}
+
 criaPastaShareGuest(){
 	installPacotes "samba"
         enableSystemctl "smb"
-        criaDiretorioShare "/srv/samba/guest" "Guest" "yes"
+        criaDiretorioShare "/samba/guest" "Guest" "yes"
 }

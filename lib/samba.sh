@@ -13,6 +13,8 @@ criaDiretorioShare(){
    #criaSmbDefault
    echo "CRIANDO PASTA SE NAO EXISTIR..."
    sudo mkdir -p $1
+   sudo $USER
+   #sudo chown $USER: $1
    sudo chmod 777 $1
    echo "CONFIGURANDO PASTA NO SAMBA..."
    echo "[$2]
