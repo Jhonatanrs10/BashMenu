@@ -38,7 +38,7 @@ cd $diretorioBongo
         "pawEdge": [2, 77, 164],
         "key1": [87, 65],
         "key2": [83, 68],
-        "smoke": [107, 109],
+        "smoke": [19, 45],
         "wave": [220]
     },
     "taiko": {
