@@ -51,9 +51,10 @@ menu12345 "
 menu12345 "
 [1] INSTALAR FIVEM SERVER
 [2] INSTALAR UNTURNED SERVER
+[3] INSTALAR SAMP SERVER
 " "installFivem
 " "installUnturnedServer
-" "return
+" "sampServer
 " "return
 " "return"
 menu12345 "

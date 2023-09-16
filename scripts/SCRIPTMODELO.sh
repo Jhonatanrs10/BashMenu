@@ -7,7 +7,8 @@ SCRIPTMODELO(){
 
 
     #criaPastaBaixaExtrai "$diretorioInstall" "Link" "mod.jar"
-
+    #entra em pasta * pega arquivos * e move uma pasta atras .  
+    #mv */* .
 
     criaAtalho "$installName" "Description" "bash run.sh" "$diretorioInstall" "false" "$installName" "$dBashMenu/Icons/default.svg"
     criaAtalhoBin "$diretorioInstall/run.sh" "$installName"
