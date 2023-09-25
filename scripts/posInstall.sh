@@ -31,7 +31,7 @@ posInstall(){
 [7]Configurar Touchpad"
                 read resp
                 if [ "$resp" = "1" ]; then
-                        installPacotes "dmenu rofi i3lock i3status feh lxrandr light pcmanfm terminology"
+                        installPacotes "dmenu rofi i3lock i3status feh lxrandr light pcmanfm falkon terminology"
                         i3wmConfig
                 elif [ "$resp" = "2" ]; then
                         echo "[ARCH] Bluetooth"
@@ -142,11 +142,11 @@ set $wallpaper '"$HOME"'/.config/i3/Wallpaper.png
 #set $appMenu dmenu_run
 set $appMenu rofi -combi-modi window#drun#ssh#combi -font $textFont -show combi -show-icons
 set $appTerminal terminology
-set $appF1 firefox
+set $appF1 falkon
 set $appF2 pcmanfm
 set $appF3 lxrandr
-set $appF4 pcmanfm
-set $appF5 pcmanfm
+set $appF4 lxrandr
+set $appF5 xfce4-power-manager
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -302,7 +302,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m '"'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.'"' -B '"'Yes, exit i3'"' '"'i3-msg exit'"'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m '"'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.'"' -B '"'Yes, exit i3'"' '"'i3-msg exit'"'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -337,20 +337,24 @@ bindsym $mod+r mode "resize"
 #############CORES#############
 
 #COM FOCO
-set $corcomfoco #005577
-set $textocomfoco #ffffff
+set $corcomfoco "#005577"
+set $textocomfoco "#ffffff"
 
 #SEM FOCO
-set $corsemfoco #f5f5f5
-set $textosemfoco #000000
+set $corsemfoco "#bfbfbf"
+set $textosemfoco "#000000"
 
 #BLACK AND WHITE
-set $black #000000
-set $white $ffffff
+set $black "#000000"
+set $white "#ffffff"
+
+#i3BARs
+set $corbar "#000000"
+set $cortexto "#ffffff" #alguns itens a cor esta no i3status
 
 #INDICADOR V e H
-set $indcomfoco #009c66
-set $indsemfoco #a6ffa4
+set $indcomfoco "#009c66"
+set $indsemfoco "#a6ffa4"
 
 ############TAMANHOS###########
 
@@ -384,14 +388,14 @@ bar {
 
 	colors {
 		#i3bar
-		background #000000
-	        statusline #ffffff
-	        separator #ffffff
+		background $corbar
+	        statusline $cortexto
+	        separator $cortexto
 
 		#<colorclass> 	   /border/bground/text0
-	        focused_workspace  $corcomfoco $corcomfoco $textocomfoco
-	        active_workspace   $black $black $white
-	        inactive_workspace $black $black $white
+	        focused_workspace  $corcomfoco $corcomfoco $cortexto
+	        active_workspace   $corbar $corbar $cortexto
+	        inactive_workspace $corbar $corbar $cortexto
 	        #urgent_workspace   #2f343a #900000 #ffffff
        	 	#binding_mode       #2f343a #900000 #ffffff
     	}
@@ -407,7 +411,25 @@ client.unfocused        $corsemfoco $corsemfoco $textosemfoco $corsemfoco $corse
 
 #WALLPAPER
 exec --no-startup-id feh --bg-scale $wallpaper
-bindsym $mod+l exec i3lock -i $wallpaper
+
+set $Locker i3lock -c 000000 && sleep 1
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+l exec --no-startup-id $Locker, mode "default"
+bindsym $mod+Shift+e mode "$mode_system"
 
 #TECLADO CONFIG
 #setxkbmap -query
@@ -437,9 +459,9 @@ general {
 }
 
 order += "cpu_usage"
-order += "cpu_temperature 0"
 order += "memory"
 order += "disk /"
+order += "ethernet ztwdjcf77e"
 order += "wireless wlan0"
 order += "ethernet eth0"
 order += "volume master"
@@ -476,21 +498,31 @@ volume master {
 }
 
 wireless wlan0 {
-    format_up = "[W/%ip]"
+        format_up = "[W/%ip]"
 	format_down = ""
 	separator = false
 	separator_block_width = 1
 	align = "center"
-    min_width = 1
+        min_width = 1
 }
 
 ethernet eth0 {
-    format_up = "[E/%ip]"
-    format_down = ""
+        format_up = "[E/%ip]"
+        format_down = ""
 	separator = false
 	separator_block_width = 1
 	align = "center"
-    min_width = 1
+        min_width = 1
+}
+
+ethernet ztwdjcf77e {
+        format_up = "[Z/%ip]"
+        format_down = ""
+	separator = false
+	separator_block_width = 1
+	align = "center"
+        min_width = 1
+        #diretorio com as redes /proc/sys/net/ipv4/conf/
 }
 
 battery all {
