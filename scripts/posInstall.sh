@@ -31,7 +31,7 @@ posInstall(){
 [7]Configurar Touchpad"
                 read resp
                 if [ "$resp" = "1" ]; then
-                        installPacotes "dmenu rofi i3lock i3status feh lxrandr light pcmanfm falkon terminology"
+                        installPacotes "dmenu rofi i3lock i3status feh nitrogen lxrandr light pcmanfm falkon scrot terminology"
                         i3wmConfig
                 elif [ "$resp" = "2" ]; then
                         echo "[ARCH] Bluetooth"
@@ -145,7 +145,7 @@ set $appTerminal terminology
 set $appF1 falkon
 set $appF2 pcmanfm
 set $appF3 lxrandr
-set $appF4 lxrandr
+set $appF4 nitrogen
 set $appF5 xfce4-power-manager
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -187,6 +187,9 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
+#screenshot
+bindsym Print exec scrot $HOME/`date +%Y-%m-%d_%H:%M:%S`.png
+
 # apps
 bindsym $mod+F1 exec $appF1
 bindsym $mod+F2 exec $appF2
@@ -197,7 +200,7 @@ bindsym $mod+F5 exec $appF5
 # start a terminal
 #set $appTerminal i3-sensible-terminal
 bindsym $mod+Return exec $appTerminal
-for_window [class=$appTerminal] floating enable
+#for_window [class=$appTerminal] floating enable
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -211,10 +214,10 @@ bindsym $mod+d exec --no-startup-id $appMenu
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+m focus down
-bindsym $mod+i focus up
-bindsym $mod+k focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -223,10 +226,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+m move down
-bindsym $mod+Shift+i move up
-bindsym $mod+Shift+k move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -235,7 +238,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -402,7 +405,7 @@ bar {
 
 }
 # class                 borda  background texto    indicator child_border
-client.focused          $corcomfoco $corcomfoco $textocomfoco $corcomfoco $corcomfoco
+client.focused          $corcomfoco $corcomfoco $textocomfoco $corsemfoco $corcomfoco
 client.focused_inactive $corsemfoco $corsemfoco $textosemfoco $corsemfoco $corsemfoco
 client.unfocused        $corsemfoco $corsemfoco $textosemfoco $corsemfoco $corsemfoco
 #client.urgent           #2f343a #900000 #ffffff #900000 #900000
@@ -410,9 +413,34 @@ client.unfocused        $corsemfoco $corsemfoco $textosemfoco $corsemfoco $corse
 #client.background       #ffffff
 
 #WALLPAPER
-exec --no-startup-id feh --bg-scale $wallpaper
-
+#exec --no-startup-id feh --bg-scale $wallpaper
+exec --no-startup-id nitrogen --restore
 set $Locker i3lock -c 000000 && sleep 1
+
+#MODOS
+set $mode_programs (1)Browser, (2)Files, (3)Display, (4)Wallpaper, (5)Empty
+mode "$mode_programs" {
+    bindsym 1 exec $appF1, mode "default"
+    bindsym 2 exec $appF2, mode "default"
+    bindsym 3 exec $appF3, mode "default"
+    bindsym 4 exec $appF4, mode "default"
+    bindsym 5 exec $appF5, mode "default"
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_sound Sound (Up), (Down), (M) - Light (Left), (Right)
+mode "$mode_sound" {
+    bindsym Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+    bindsym Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+    bindsym m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+    bindsym Right exec --no-startup-id light -A 5 && echo `light` > /home/jhonatanrs/.config/i3/brightness &&  $refresh_i3status
+    bindsym Left exec --no-startup-id light -U 5 && echo `light` > /home/jhonatanrs/.config/i3/brightness  &&  $refresh_i3status
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -428,8 +456,9 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+l exec --no-startup-id $Locker, mode "default"
 bindsym $mod+Shift+e mode "$mode_system"
+bindsym $mod+m mode "$mode_sound"
+bindsym $mod+p mode "$mode_programs"
 
 #TECLADO CONFIG
 #setxkbmap -query
@@ -462,8 +491,8 @@ order += "cpu_usage"
 order += "memory"
 order += "disk /"
 order += "ethernet ztwdjcf77e"
-order += "wireless wlan0"
-order += "ethernet eth0"
+order += "wireless _first_"
+order += "ethernet _first_"
 order += "volume master"
 order += "read_file BRIGHTNESS"
 order += "battery all"
@@ -497,7 +526,7 @@ volume master {
         min_width = 1
 }
 
-wireless wlan0 {
+wireless _first_ {
         format_up = "[W/%ip]"
 	format_down = ""
 	separator = false
@@ -506,7 +535,7 @@ wireless wlan0 {
         min_width = 1
 }
 
-ethernet eth0 {
+ethernet _first_ {
         format_up = "[E/%ip]"
         format_down = ""
 	separator = false
