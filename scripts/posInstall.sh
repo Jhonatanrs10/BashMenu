@@ -31,7 +31,7 @@ posInstall(){
 [7]Configurar Touchpad"
                 read resp
                 if [ "$resp" = "1" ]; then
-                        installPacotes "dmenu rofi i3lock i3status feh nitrogen lxrandr light pcmanfm falkon scrot terminology"
+                        installPacotes "dmenu rofi i3lock i3status feh nitrogen lxrandr htop light pcmanfm falkon scrot terminology"
                         i3wmConfig
                 elif [ "$resp" = "2" ]; then
                         echo "[ARCH] Bluetooth"
@@ -146,7 +146,7 @@ set $appF1 falkon
 set $appF2 pcmanfm
 set $appF3 lxrandr
 set $appF4 nitrogen
-set $appF5 xfce4-power-manager
+set $appF5 terminology -e htop
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -418,7 +418,7 @@ exec --no-startup-id nitrogen --restore
 set $Locker i3lock -c 000000 && sleep 1
 
 #MODOS
-set $mode_programs (1)Browser, (2)Files, (3)Display, (4)Wallpaper, (5)Empty
+set $mode_programs (1)Browser, (2)Files, (3)Display, (4)Wallpaper, (5)Tasks
 mode "$mode_programs" {
     bindsym 1 exec $appF1, mode "default"
     bindsym 2 exec $appF2, mode "default"
@@ -556,6 +556,7 @@ ethernet ztwdjcf77e {
 
 battery all {
         format = "[%status/%percentage]"
+        format_percentage = "%.00f%s"
         format_down = ""
 	status_chr = "CHR"
         status_bat = "BAT"
