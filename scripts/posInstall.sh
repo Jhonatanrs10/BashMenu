@@ -31,7 +31,7 @@ posInstall(){
 [7]Configurar Touchpad"
                 read resp
                 if [ "$resp" = "1" ]; then
-                        installPacotes "dmenu rofi i3lock i3status feh nitrogen lxrandr htop light pcmanfm falkon scrot terminology"
+                        installPacotes "dmenu rofi i3lock i3status feh nitrogen htop light pcmanfm falkon scrot terminology lxrandr lxappearance lxqt-powermanagement"
                         i3wmConfig
                 elif [ "$resp" = "2" ]; then
                         echo "[ARCH] Bluetooth"
@@ -157,11 +157,11 @@ set $wallpaper '"$HOME"'/.config/i3/Wallpaper.png
 #set $appMenu rofi -combi-modi window#drun#ssh#combi -font $textFont -show combi -theme Arc -show-icons 
 set $appMenu rofi -combi-modi drun#ssh#combi#run -show combi -window-title Rofi -scroll-method 1 -show-icons -combi-display-format "{text} ({mode})" -config '"$HOME"'/.config/i3/rofi.rasi 
 set $appTerminal terminology
-set $appF1 falkon
-set $appF2 pcmanfm
+set $appF1 pcmanfm
+set $appF2 nitrogen
 set $appF3 lxrandr
-set $appF4 nitrogen
-set $appF5 terminology -e htop
+set $appF4 lxappearance
+set $appF5 lxqt-config-powermanagement
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -433,7 +433,7 @@ exec --no-startup-id nitrogen --restore
 set $Locker i3lock -c 000000 && sleep 1
 
 #MODOS
-set $mode_programs (1)Browser, (2)Files, (3)Display, (4)Wallpaper, (5)Tasks
+set $mode_programs (1)Files, (2)Wallpapers, (3)Display, (4)Appearance, (5)PowerManager
 mode "$mode_programs" {
     bindsym 1 exec $appF1, mode "default"
     bindsym 2 exec $appF2, mode "default"
