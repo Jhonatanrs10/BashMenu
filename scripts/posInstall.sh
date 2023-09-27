@@ -155,7 +155,7 @@ set $textFont DejaVu Sans Mono 8
 set $wallpaper '"$HOME"'/.config/i3/Wallpaper.png
 #set $appMenu dmenu_run
 #set $appMenu rofi -combi-modi window#drun#ssh#combi -font $textFont -show combi -theme Arc -show-icons 
-set $appMenu rofi -combi-modi drun#ssh#combi#run -show combi -window-title Rofi -scroll-method 1 -show-icons -combi-display-format "{text} ({mode})" -config '"$HOME"'/.config/i3/rofi.rasi 
+set $appMenu rofi -combi-modi drun#ssh#combi -show combi -window-title Rofi -scroll-method 1 -show-icons -combi-display-format "{text} ({mode})" -config '"$HOME"'/.config/i3/rofi.rasi 
 set $appTerminal terminology
 set $appF1 pcmanfm
 set $appF2 nitrogen
@@ -722,7 +722,7 @@ element.alternate.active {
 }
 scrollbar {
     background-color: @white;
-    handle-color: @corcomfoco;
+    handle-color: @corsemfoco;
     width:        4px ;
     border:       0;
     handle-width: 5px;
