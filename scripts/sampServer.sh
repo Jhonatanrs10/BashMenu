@@ -31,7 +31,7 @@ weapon_rate 40
 stream_distance 300.0
 stream_rate 1000" "$diretorioInstall/server.cfg"
 
-    criaAtalho "$installName" "Server SAMP em Segundo Plano" "./samp03svr" "$diretorioInstall" "false" "$installName" "$dBashMenu/Icons/default.svg"
+    criaAtalho "$installName" "Server SAMP em Segundo Plano" "./samp03svr" "$diretorioInstall" "true" "$installName" "$dBashMenu/Icons/default.svg"
     criaAtalhoBin "$diretorioInstall/run.sh" "$installName"
 
 }   

@@ -31,7 +31,6 @@ posInstall(){
 [7]Configurar Touchpad"
                 read resp
                 if [ "$resp" = "1" ]; then
-                        installPacotes "dmenu rofi i3lock i3status feh nitrogen htop light pcmanfm falkon scrot terminology lxrandr lxappearance lxqt-powermanagement"
                         i3wmConfig
                 elif [ "$resp" = "2" ]; then
                         echo "[ARCH] Bluetooth"
@@ -127,6 +126,7 @@ EOF
 #Yay e Paru para gerenciar AUR
 
 i3wmConfig(){
+        installPacotes "dmenu rofi i3lock i3status feh nitrogen htop light pcmanfm falkon scrot terminology lxrandr lxappearance xfce4-power-manager speedcrunch"
         cp $HOME/.config/i3/config $HOME/.config/i3/config-bkp
 
         echo "Cor do Tema: [ex:005577]"
@@ -161,7 +161,11 @@ set $appF1 pcmanfm
 set $appF2 nitrogen
 set $appF3 lxrandr
 set $appF4 lxappearance
-set $appF5 lxqt-config-powermanagement
+set $appF5 xfce4-power-manager
+set $appF6 speedcrunch
+set $appF7 speedcrunch
+set $appF8 speedcrunch
+bindsym $mod+x exec pcmanfm
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -204,13 +208,6 @@ tiling_drag modifier titlebar
 
 #screenshot
 bindsym Print exec scrot $HOME/`date +%Y-%m-%d_%H:%M:%S`.png
-
-# apps
-bindsym $mod+F1 exec $appF1
-bindsym $mod+F2 exec $appF2
-bindsym $mod+F3 exec $appF3
-bindsym $mod+F4 exec $appF4
-bindsym $mod+F5 exec $appF5
 
 # start a terminal
 #set $appTerminal i3-sensible-terminal
@@ -433,13 +430,16 @@ exec --no-startup-id nitrogen --restore
 set $Locker i3lock -c 000000 && sleep 1
 
 #MODOS
-set $mode_programs (1)Files, (2)Wallpapers, (3)Display, (4)Appearance, (5)PowerManager
+set $mode_programs (1)Files, (2)Wallpapers, (3)Display, (4)Appearance, (5)PowerManager (6)Calculator
 mode "$mode_programs" {
     bindsym 1 exec $appF1, mode "default"
     bindsym 2 exec $appF2, mode "default"
     bindsym 3 exec $appF3, mode "default"
     bindsym 4 exec $appF4, mode "default"
     bindsym 5 exec $appF5, mode "default"
+    bindsym 6 exec $appF6, mode "default"
+    bindsym 7 exec $appF7, mode "default"
+    bindsym 8 exec $appF8, mode "default"
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
