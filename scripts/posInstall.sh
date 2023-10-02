@@ -161,7 +161,7 @@ set $appF1 pcmanfm
 set $appF2 nitrogen
 set $appF3 lxrandr
 set $appF4 lxappearance
-set $appF5 xfce4-power-manager
+set $appF5 xfce4-power-manager-settings
 set $appF6 speedcrunch
 set $appF7 speedcrunch
 set $appF8 speedcrunch
