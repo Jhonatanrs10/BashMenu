@@ -16,6 +16,23 @@ Terminal=$5" > jrs-$6.desktop
 		sudo mv jrs-$6.desktop /usr/share/applications
     fi
 }
+
+criaAtalhoMenu(){
+    echo "DIGITE O NOME DO ATALHO (tudo junto sem caracteres)"
+    read atalhoName
+    echo "DIGITE A DESCRICAO"
+    read atalhoDescricao
+    echo "DIGITE O DIRETORIO DO ARQUIVO"
+    read atalhoDiretorio
+    echo "DIGITE O COMANDO"
+    read atalhoComando
+    echo "DIGITE O DIRETORIO DO ICONE"
+    read atalhoIcone
+    echo "TERMINAL true OU false"
+    read atalhoTerminalTrueOuFalse
+    criaAtalho "$atalhoName" "$atalhoDescricao" "$atalhoComando" "$atalhoDiretorio" "$atalhoTerminalTrueOuFalse" "$atalhoName" "$atalhoIcone"
+}
+
 #remove quebra de linha (arquivos SVG)
 #https://miniwebtool.com/br/remove-line-breaks/
 # cria um atalho .desktop

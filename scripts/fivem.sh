@@ -50,7 +50,7 @@ Citizen.CreateThread(function()
     SetVehicleDensityMultiplierThisFrame(0.0)
     SetPedDensityMultiplierThisFrame(0.0)
   end
-end)' "$diretorioServer/server-data/resources//[gamemodes]/basic-gamemode/basic_client.lua"
+end)' "$diretorioServer/server-data/resources/[gamemodes]/basic-gamemode/basic_client.lua"
 
 	criarArq "<style type=text/css>
     body {

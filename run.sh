@@ -81,10 +81,11 @@ menu12345 "
 [1] CRIA ATALHO BIN PARA COMANDOS DE TERMINAL
 [2] REPARAR APT
 [3] INSTALAR POSINSTALL
+[4] CRIA ATALHO DESKTOP
 " "AtalhoTerminalBin
 " "repararApt
 " "posInstall
-" "return
+" "criaAtalhoMenu
 " "return"
 
 done
