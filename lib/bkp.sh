@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 bkpTar(){
-	DATA=$(date "+%d-%m-%Y")
-    ARQUIVO_BACKUP="bkp-$DATA.tar.gz"
+    ARQUIVO_BACKUP="bkp-$DATANOW.tar.gz"
     if [ -d "$2/$ARQUIVO_BACKUP" ]; then
 		echo "$2/$ARQUIVO_BACKUP"
 	    echo -e "DIRETORIO JA EXISTE"
@@ -17,8 +16,7 @@ bkpTar(){
 bkpCopy(){
 	echo -e "[INFO] - INSTALANDO DEPENDENCIAS - [INFO]"
 	sudo apt install progress
-	DATA=$(date "+%d-%m-%Y")
-    ARQUIVO_BACKUP="bkp-$DATA"
+    ARQUIVO_BACKUP="bkp-$DATANOW"
     if [ -d "$2/$ARQUIVO_BACKUP" ]; then
 		echo "$2/$ARQUIVO_BACKUP"
 	    echo -e "DIRETORIO JA EXISTE"

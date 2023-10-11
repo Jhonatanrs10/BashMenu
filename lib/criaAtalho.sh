@@ -17,7 +17,7 @@ Terminal=$5" > jrs-$6.desktop
     fi
 }
 
-criaAtalhoMenu(){
+criaAtalhoDesktop(){
     echo "DIGITE O NOME DO ATALHO (tudo junto sem caracteres)"
     read atalhoName
     echo "DIGITE A DESCRICAO"

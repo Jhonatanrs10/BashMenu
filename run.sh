@@ -67,14 +67,12 @@ menu12345 "
 " "return"
 
 menu12345 "
-[1] CRIA NOVO USUARIO SAMBA
-[2] CRIAR PASTA COMPARTILHADA (SHARE)
-[3] CRIAR PASTA COMPARTILHADA (GUEST)
-[4] CRIAR PASTA COMPARTILHADA (TESTE)
-" "criaSeuUsuarioSamba
+[1] CRIAR PASTA COMPARTILHADA (SHARE)
+[2] CRIAR PASTA COMPARTILHADA (GUEST)
 " "criaPastaShareUser
 " "criaPastaShareGuest
-" "criaPastaShareUser2
+" "return
+" "return
 " "return"
 
 menu12345 "
@@ -85,7 +83,7 @@ menu12345 "
 " "AtalhoTerminalBin
 " "repararApt
 " "posInstall
-" "criaAtalhoMenu
+" "criaAtalhoDesktop
 " "return"
 
 done

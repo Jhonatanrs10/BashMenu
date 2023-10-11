@@ -3,10 +3,8 @@ criaSeuUsuarioSamba(){
    #pra ter usuario no samba tem que ter usuario no sistema
    echo "CRIAR USUARIO ($USER) NO SAMBA [s]/[n]"
    read resp
-   if [ $resp = "s" ]; then
+   if [ "$resp" = "s" ]; then
       sudo smbpasswd -a $USER
-   else
-      echo "Nada a fazer."
    fi 
 }
 criaDiretorioShare(){
@@ -38,15 +36,22 @@ criaDiretorioShare(){
 #criaDiretorioShare "diretorio/pasta" "nomePasta" "guest ok"
 
 criaSmbDefault(){
-   sudo 
-   echo '[global]
+
+   echo "CRIAR SMB.CONF [s]/[n]"
+   read resp
+   if [ "$resp" = "s" ]; then
+   
+   sudo mv /etc/samba/smb.conf /etc/samba/smb-bkp$DATANOW.conf
+   criarArq "[global]
    workgroup = WORKGROUP
    netbios name = Samba
    server string = Samba Server
    server role = standalone server
-   map to guest = Bad User
-   log file = /usr/local/samba/var/log.%m
-   max log size = 50
+   security = user
+   map to guest = bad user
+   guest account = nobody
+   log file = /var/log/samba/%m
+   log level = 1
    dns proxy = no
 
 [printers]
@@ -55,25 +60,7 @@ criaSmbDefault(){
    browsable = no
    guest ok = no
    writable = no
-   printable = yes
-;[public]
-;   path = /usr/somewhere/else/public
-;   public = yes
-;   only guest = yes
-;   writable = yes
-;   printable = no
-
-# The following two entries demonstrate how to share a directory so that two
-# users can place files there that will be owned by the specific users. In this
-# setup, the directory should be writable by both users and should have the
-# sticky bit set on it to prevent abuse. Obviously this could be extended to
-# as many users as required.
-;[myshare]
-;   comment = Marys and Freds stuff
-;   path = /usr/somewhere/shared
-;   valid users = mary fred
-;   public = no
-;   writable = yes
-;   printable = no
-;   create mask = 0765' | sudo tee /etc/samba/default-smb-bkp.conf
+   printable = yes" "$HOME/criarArq-smb.conf"
+   sudo mv $HOME/criarArq-smb.conf /etc/samba/smb.conf
+   fi 
 }

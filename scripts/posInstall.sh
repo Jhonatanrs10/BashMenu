@@ -28,7 +28,8 @@ posInstall(){
 [4]Configurar Funcionalidades
 [5]Configurar NVIDIA [ARCH]
 [6]Configuracoes Manuais
-[7]Configurar Touchpad"
+[7]Configurar Touchpad
+[8]Fix Bluetooth & Network"
                 read resp
                 if [ "$resp" = "1" ]; then
                         i3wmConfig
@@ -46,8 +47,8 @@ posInstall(){
                         #sudo systemctl enable NetworkManager.service
                         #sudo systemctl start NetworkManager.service --now
                         enableSystemctl "NetworkManager"
-                        echo "REMOVER IWD (wifi terminal archinstall)"
-                        removePacotes "iwd"
+                        #echo "REMOVER IWD (wifi terminal archinstall)"
+                        #removePacotes "iwd"
                 elif [ "$resp" = "4" ]; then
                         clear
                         echo "##################################"
@@ -100,6 +101,16 @@ sudo systemctl restart gdm3
                         read enterprasair
                 elif [ "$resp" = "7" ]; then
                         i3touchpad
+
+                elif [ "$resp" = "8" ]; then
+                        echo "[1]Fix Bluetooth & Network Interference [2]Remove Fix"
+                        read esco
+                        if [ "$esco" = "1" ]; then
+                                sudo tee /etc/modprobe.d/iwlwifi-opt.conf <<< "options iwlwifi bt_coex_active=N"
+                        elif [ "$esco" = "2" ]; then
+                                sudo rm /etc/modprobe.d/iwlwifi-opt.conf
+                        fi
+
                 else
                         echo "OPCAO NAO ENCONTRADA!"
                         sleep 1
@@ -126,7 +137,7 @@ EOF
 #Yay e Paru para gerenciar AUR
 
 i3wmConfig(){
-        installPacotes "dmenu rofi i3lock i3status feh nitrogen htop light pcmanfm falkon scrot terminology lxrandr lxappearance xfce4-power-manager speedcrunch"
+        installPacotes "dmenu rofi i3lock i3status feh nitrogen htop light pcmanfm falkon xfce4-screenshooter terminology lxrandr lxappearance xfce4-power-manager speedcrunch system-config-printer"
         cp $HOME/.config/i3/config $HOME/.config/i3/config-bkp
 
         echo "Cor do Tema: [ex:005577]"
@@ -156,7 +167,7 @@ set $appF3 lxrandr
 set $appF4 lxappearance
 set $appF5 xfce4-power-manager-settings
 set $appF6 speedcrunch
-set $appF7 speedcrunch
+set $appF7 system-config-printer
 set $appF8 speedcrunch
 set $refresh_i3status killall -SIGUSR1 i3status
 set $Locker i3lock -c 000000 && sleep 1
@@ -197,7 +208,7 @@ bindsym $mod+Return exec $appTerminal
 bindsym $mod+Shift+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 #print
-bindsym Print exec scrot $HOME/`date +%Y-%m-%d_%H:%M:%S`.png
+bindsym Print exec xfce4-screenshooter
 #edit window
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -302,7 +313,7 @@ client.urgent           #2f343a #900000 #ffffff #900000 #900000
 client.placeholder      #000000 #0c0c0c #ffffffff #000000 #0c0c0c
 client.background       #ffffff
 ###MODOS###
-set $mode_programs (1)Files, (2)Wallpapers, (3)Display, (4)Appearance, (5)PowerManager (6)Calculator
+set $mode_programs (1)Files, (2)Wallpapers, (3)Display, (4)Appearance, (5)PowerManager (6)Calculator (7)Printer
 mode "$mode_programs" {
     bindsym 1 exec $appF1, mode "default"
     bindsym 2 exec $appF2, mode "default"
