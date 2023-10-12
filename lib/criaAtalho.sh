@@ -3,7 +3,7 @@ criaAtalho(){
 	varCriaAtalho="n"
     echo "Criar Atalho? ($6) [s/n]"
     read varCriaAtalho
-    if [ $varCriaAtalho = "s" ]; then
+    if [ "$varCriaAtalho" = "s" ]; then
         echo -e "[Desktop Entry]
 Version=1.0
 Type=Application

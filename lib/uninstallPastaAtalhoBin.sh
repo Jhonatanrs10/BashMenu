@@ -3,7 +3,7 @@ uninstallPastaAtalhoBin(){
     uninstallApplica="n"
     echo "Uninstall $3 [s/n]"
     read uninstallApplica
-    if [ $uninstallApplica = "s" ]; then
+    if [ "$uninstallApplica" = "s" ]; then
         if [ $2 = '' ]; then
             echo "NAO COLOQUE UM VALOR VAZIO RISCO DE QUEBRAR O SISTEMA"
         else

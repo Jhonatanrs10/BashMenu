@@ -3,7 +3,7 @@ criaAtalhoBin(){
     varCriaAtalhoBin="n"
     echo "Criar AtalhoBin? ($2) [s/n]"
     read varCriaAtalhoBin
-    if [ $varCriaAtalhoBin = "s" ]; then
+    if [ "$varCriaAtalhoBin" = "s" ]; then
         chmod +x $1
         chmod 777 $1
 	    sudo ln -s $1 /usr/bin/jrs-$2  
@@ -14,7 +14,7 @@ criaAtalhoDiretorio(){
     varcriaAtalhoDiretorio="n"
     echo "Criar AtalhoDiretorio? ($2) [s/n]"
     read varcriaAtalhoDiretorio
-    if [ $varcriaAtalhoDiretorio = "s" ]; then
+    if [ "$varcriaAtalhoDiretorio" = "s" ]; then
         echo "Diretorio:"
         read dp
         echo "Diretorio/atalho:"

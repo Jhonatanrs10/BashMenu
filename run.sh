@@ -52,10 +52,11 @@ menu12345 "
 [1] INSTALAR FIVEM SERVER
 [2] INSTALAR UNTURNED SERVER
 [3] INSTALAR SAMP SERVER
+[4] INSTALAR TERRARIA SERVER
 " "installFivem
 " "installUnturnedServer
 " "sampServer
-" "return
+" "terrariaServer
 " "return"
 menu12345 "
 [1] SETUP ANDROID EXPO
