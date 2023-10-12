@@ -137,7 +137,7 @@ EOF
 #Yay e Paru para gerenciar AUR
 
 i3wmConfig(){
-        installPacotes "dmenu rofi i3lock i3status feh nitrogen htop light pcmanfm falkon xfce4-screenshooter terminology lxrandr lxappearance xfce4-power-manager speedcrunch system-config-printer"
+        installPacotes "dmenu rofi i3lock i3status feh nitrogen htop light pcmanfm chromium-browser chromium xfce4-screenshooter terminology lxrandr lxappearance xfce4-power-manager speedcrunch system-config-printer bluez bluez-tools blueman"
         cp $HOME/.config/i3/config $HOME/.config/i3/config-bkp
 
         echo "Cor do Tema: [ex:005577]"
@@ -152,7 +152,6 @@ i3wmConfig(){
                 corBase=005577
                 echo "Necessario 6 digitos, Default $corBase"    
         fi
-        sleep 3
         criarArq '######Jhonatanrs I3-WM config######
 ###VARs###
 set $mod Mod4
@@ -199,6 +198,7 @@ font pango:$textFont
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id nitrogen --restore
 #exec --no-startup-id feh --bg-scale $wallpaper
@@ -235,6 +235,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
+bindsym $mod+Shift+w sticky toggle
 #brightness and audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
@@ -278,7 +279,6 @@ gaps outer 0px
 smart_gaps off
 workspace_layout default
 for_window [class=$appTerminal] floating desable
-for_window [class=$appF5] floating desable
 ###I3BARS###
 bar {
 	status_command i3status --config ~/.config/i3/i3status.conf
