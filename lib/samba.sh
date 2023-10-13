@@ -7,6 +7,10 @@ criaSeuUsuarioSamba(){
       sudo smbpasswd -a $USER
    fi 
 }
+criaDiretorioSamba(){
+   mkdir -p $HOME/Samba
+   sudo chmod 777 $HOME/Samba
+}
 criaDiretorioShare(){
    #criaSmbDefault
    echo "CRIANDO PASTA SE NAO EXISTIR..."

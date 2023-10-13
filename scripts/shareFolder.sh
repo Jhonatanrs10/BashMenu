@@ -5,7 +5,9 @@ criaPastaShareUser(){
         enableSystemctl "nmb"
         criaSeuUsuarioSamba
         criaSmbDefault
+        criaDiretorioSamba
         criaDiretorioShare "$HOME/Samba/User" "User" "no"
+        
 }
 
 criaPastaShareGuest(){
@@ -14,6 +16,7 @@ criaPastaShareGuest(){
         enableSystemctl "nmb"
         criaSeuUsuarioSamba
         criaSmbDefault
+        criaDiretorioSamba
         criaDiretorioShare "/home/samba" "Guest" "yes"
         ln -s /home/samba $HOME/Samba/Guest
 }
