@@ -23,7 +23,11 @@ gitconfig(){
 }
 
 gitAutoPush(){
-    clear
+    cd $HOME/*/GitHub
+    echo "[GITs]"
+    ls
+    read selection
+    cd $selection
     git status
     echo "COMMIT:"
     read textCommit
@@ -32,5 +36,6 @@ gitAutoPush(){
     yesorno "COMMIT ($textCommit)" "git commit -m "$textCommit""
     git status
     yesorno "PUSH" "git push"
-    
+    git status
+    sleep 5
 }
