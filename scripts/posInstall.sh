@@ -137,9 +137,9 @@ EOF
 #Yay e Paru para gerenciar AUR
 
 i3wmConfig(){
-        installPacotes "dmenu rofi i3lock i3status feh nitrogen htop light pcmanfm chromium-browser chromium xfce4-screenshooter terminology lxrandr lxappearance xfce4-power-manager speedcrunch system-config-printer bluez bluez-tools blueman"
+        installPacotes "dmenu rofi i3lock i3status feh nitrogen htop light volumeicon pcmanfm chromium-browser chromium xfce4-screenshooter terminology lxrandr lxappearance xfce4-power-manager speedcrunch system-config-printer bluez bluez-tools blueman"
         cp $HOME/.config/i3/config $HOME/.config/i3/config-bkp
-
+        light -N 0.06
         echo "Cor do Tema: [ex:005577]"
         read corBase
 
@@ -199,6 +199,7 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
+exec --no-startup-id volumeicon
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id nitrogen --restore
 #exec --no-startup-id feh --bg-scale $wallpaper
@@ -397,7 +398,7 @@ order += "disk /"
 order += "ethernet ztwdjcf77e"
 order += "wireless _first_"
 order += "ethernet _first_"
-order += "volume master"
+order += "volume master OFF"
 order += "read_file BRIGHTNESS"
 order += "battery all"
 order += "tztime local"
