@@ -81,10 +81,11 @@ menu12345 "
 [2] REPARAR APT
 [3] INSTALAR POSINSTALL
 [4] CRIA ATALHO DESKTOP
+[5] CRIA ATALHO PASTA/ARQUIVO
 " "AtalhoTerminalBin
 " "repararApt
 " "posInstall
 " "criaAtalhoDesktop
-" "return"
+" "criaArqRunDiretorioInstall"
 
 done

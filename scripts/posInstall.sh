@@ -273,8 +273,8 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 title_align center
 hide_edge_borders none
-default_border normal $tamanhodasbordas
-default_floating_border normal $tamanhodasbordas
+default_border pixel $tamanhodasbordas
+default_floating_border pixel $tamanhodasbordas
 gaps inner $espacoentrejanelas
 gaps outer 0px
 smart_gaps off
@@ -307,7 +307,7 @@ bar {
     }
 }
 #class                  borda       background  texto         indicator   child_border
-client.focused          $corcomfoco $corcomfoco $textocomfoco $corsemfoco $corcomfoco
+client.focused          $corcomfoco $corcomfoco $textocomfoco $corcomfoco $corcomfoco
 client.focused_inactive $corsemfoco $corsemfoco $textosemfoco $corsemfoco $corsemfoco
 client.unfocused        $corsemfoco $corsemfoco $textosemfoco $corsemfoco $corsemfoco
 client.urgent           #2f343a #900000 #ffffff #900000 #900000
@@ -392,16 +392,17 @@ general {
 	color_degraded = "#FFFF00"
 }
 
-order += "cpu_usage"
-order += "memory"
-order += "disk /"
-order += "ethernet ztwdjcf77e"
-order += "wireless _first_"
-order += "ethernet _first_"
-order += "volume master OFF"
-order += "read_file BRIGHTNESS"
-order += "battery all"
-order += "tztime local"
+//order += "cpu_usage"
+//order += "memory"
+//order += "disk /"
+//order += "ethernet ztwdjcf77e"
+//order += "wireless _first_"
+//order += "ethernet _first_"
+//order += "volume master"
+//order += "read_file BRIGHTNESS"
+//order += "battery all"
+//order += "tztime local"
+order += "tztime local1"
 
 read_file BRIGHTNESS {
 	format = "[☼/%content]"
@@ -493,6 +494,14 @@ memory {
 	separator_block_width = 1
 	align = "center"
         min_width = 1
+}
+
+tztime local1 {
+        format = "%a.%d %b %H:%M"
+        align = "right"
+        min_width = 1
+        separator = false
+        separator_block_width = 1
 }
 
 tztime local {
