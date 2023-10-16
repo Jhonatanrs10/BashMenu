@@ -29,6 +29,7 @@ gitAutoPush(){
     read selection
     cd $selection
     git status
+    yesorno "PULL" "git pull"
     echo "COMMIT:"
     read textCommit
     yesorno "ADD" "git add ."
