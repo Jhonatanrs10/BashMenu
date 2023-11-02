@@ -59,10 +59,9 @@ menu12345 "
 " "terrariaServer
 " "return"
 menu12345 "
-[1] SETUP ANDROID EXPO
-[2] CRIAR PROJETO ANDROID EXPO
-" "setupAndroidExpo
-" "criarProjetoExpo
+[1] INSTALAR NODEJS LTS
+" "nodejslts
+" "return
 " "return
 " "return
 " "return"

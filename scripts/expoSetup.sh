@@ -1,30 +1,14 @@
 #!/usr/bin/env sh
 
-setupAndroidExpo(){
-    installPacotes "nodejs npm yarn"
-    menu12345 "
-[1] INSTALAR EXPO-CLI YARN
-[2] INSTALAR EXPO-CLI NPM
-" "yarn add expo-cli --global
-" "npm install expo-cli --global"
+nodejslts(){
 
-    yesorno "The New Expo CLI" "npm i -g expo-cli"
-    yesorno "UPGRADE EXPO-CLI" "expo upgrade"
+    installName="NodeJS"
+    criaDiretorioInstall "$dBashMenu/$installName"
 
-    criaDiretorioInstall "$HOME/AndroidExpo"
-    echo "INICIAR UM PROJETO
-expo init NOME-PROJETO
-ENTRAR NA PASTA DO PROJETO
-cd NOME-PROJETO
-INICIAR O PROJETO
-expo start"
-}
+    criaPastaBaixaExtrai "$diretorioInstall" "https://nodejs.org/dist/v20.9.0/node-v20.9.0-linux-x64.tar.xz" "node.tar.xz"
 
-criarProjetoExpo(){
-    cd $HOME/AndroidExpo 
-    echo "NOME DO PROJETO:"
-    read pName
-    expo init $pName
-    cd $pName
-    yesorno "EXPO START" "expo start"
+    sudo cp -r $diretorioInstall/* /usr/
+    export PATH=/usr/node*/bin:$PATH
+    
+    rm -r $diretorioInstall
 }
