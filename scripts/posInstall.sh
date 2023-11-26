@@ -110,7 +110,9 @@ sudo systemctl restart gdm3
                         elif [ "$esco" = "2" ]; then
                                 sudo rm /etc/modprobe.d/iwlwifi-opt.conf
                         fi
-
+                elif [ "$resp" = "9" ]; then
+                        echo "[MANJARO] Apps most used (Flatpak)"
+                        installPacotes "org.chromium.Chromium com.visualstudio.code-oss com.bitwarden.desktop com.obsproject.Studio com.valvesoftware.Steam com.google.AndroidStudio com.heroicgameslauncher.hgl com.discordapp.Discord"
                 else
                         echo "OPCAO NAO ENCONTRADA!"
                         sleep 1

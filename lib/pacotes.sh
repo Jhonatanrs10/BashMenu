@@ -5,7 +5,7 @@ installPacotes(){
 	clear
 	echo "[INSTALAR PACOTES] 
 Pacotes: $1	
-Usar: [1]apt, [2]pacman [3]pamac"
+Usar: [1]apt, [2]pacman [3]pamac [4]flatpak"
 	read resp
 	PROGRAMAS_PARA_INSTALAR=($1)
 	for nome_do_programa in ${PROGRAMAS_PARA_INSTALAR[@]}; 
@@ -17,6 +17,8 @@ Usar: [1]apt, [2]pacman [3]pamac"
 			sudo pacman -S "$nome_do_programa" --noconfirm
 		elif [ "$resp" = 3 ]; then
 			sudo pamac install "$nome_do_programa" --no-confirm
+		elif [ "$resp" = 4 ]; then
+			flatpak install "$nome_do_programa"
 		fi
 	done 
 }
@@ -27,7 +29,7 @@ removePacotes(){
 	clear
 	echo "[REMOVER PACOTES] 
 Pacotes: $1	
-Usar: [1]apt, [2]pacman [3]pamac"
+Usar: [1]apt, [2]pacman [3]pamac [4]flatpak"
 	read resp
 	PROGRAMAS_PARA_INSTALAR=($1)
 	for nome_do_programa in ${PROGRAMAS_PARA_INSTALAR[@]}; 
@@ -41,6 +43,8 @@ Usar: [1]apt, [2]pacman [3]pamac"
 			sudo pacman -R "$nome_do_programa" --noconfirm
 		elif [ "$resp" = 3 ]; then
 			sudo pamac remove "$nome_do_programa" --no-confirm
+		elif [ "$resp" = 4 ]; then
+			flatpak uninstall "$nome_do_programa"
 		fi
 	done 
 }
