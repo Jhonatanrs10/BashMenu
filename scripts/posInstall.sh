@@ -112,7 +112,7 @@ sudo systemctl restart gdm3
                         fi
                 elif [ "$resp" = "9" ]; then
                         echo "[MANJARO] Apps most used (Flatpak)"
-                        installPacotes "org.chromium.Chromium com.visualstudio.code-oss com.bitwarden.desktop com.obsproject.Studio com.valvesoftware.Steam com.google.AndroidStudio com.heroicgameslauncher.hgl com.discordapp.Discord"
+                        installPacotes "org.chromium.Chromium com.visualstudio.code-oss com.bitwarden.desktop com.obsproject.Studio com.valvesoftware.Steam com.google.AndroidStudio com.heroicgameslauncher.hgl com.discordapp.Discord org.gimp.GIMP org.inkscape.Inkscape org.shotcut.Shotcut org.nickvision.tubeconverter io.github.jeffshee.Hidamari"
                 else
                         echo "OPCAO NAO ENCONTRADA!"
                         sleep 1
