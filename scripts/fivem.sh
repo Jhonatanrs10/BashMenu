@@ -23,7 +23,7 @@ installFivem(){
 	
 	criaDiretorio "diretorioResource" "$diretorioServer/server-data/resources/[jhonatanrs]"
 
-	criaPastaBaixaExtrai "$diretorioResource/vMenu" "$modMenu" "modmenu.zip"
+	criaPastaBaixaExtrai "$diretorioServer/server-data/resources/vMenu" "$modMenu" "modmenu.zip"
 	criaPastaBaixaExtrai "$diretorioResource/" "$handEditor" "handEditor.zip"
 	criaPastaBaixaExtrai "$diretorioResource/" "$pvpMode" "pvpMode.zip"
 	criaPastaBaixaExtrai "$diretorioResource/" "$streetRace" "streetRace.zip"
@@ -82,7 +82,8 @@ ensure hardcap
 ensure rconlog
 
 # minhas configs
-exec resources/[jhonatanrs]/vMenu/config/permissions.cfg
+exec resources/vMenu/config/permissions.cfg
+start vMenu
 start [jhonatanrs]
 start example-loadscreen
 

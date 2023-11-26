@@ -10,6 +10,7 @@ installMinecraftServerVersion(){
 	yesorno "MINECRAFT SERVER FORGE 1.16.5" "setLink https://maven.minecraftforge.net/net/minecraftforge/forge/1.16.5-36.2.34/forge-1.16.5-36.2.34-installer.jar"
 	yesorno "MINECRAFT SERVER FORGE 1.18.2" "setLink https://maven.minecraftforge.net/net/minecraftforge/forge/1.18.2-40.2.0/forge-1.18.2-40.2.0-installer.jar"
 	
+	yesorno "MINECRAFT SERVER LATEST RELEASE" "setLink https://piston-data.mojang.com/v1/objects/5b868151bd02b41319f54c8d4061b8cae84e665c/server.jar"
 
 	echo -e "[INFO] - CRIANDO DIRETORIOS... - [INFO]"
 	criaDiretorio "diretorioServer" "$dBashMenu/MinecraftServer-$nomeMSV"
@@ -17,15 +18,14 @@ installMinecraftServerVersion(){
 	echo -e "[INFO] - BAIXANDO ARQUIVOS... - [INFO]"
 	criaPastaBaixaExtrai "$diretorioServer/" "$varLink" "server.jar"
 
+	cd $diretorioServer
 	addNoArq "eula=true" "eula.txt"
-
 	addNoArq "online-mode=false
 motd=\u00A71$nomeMSV  \u00A77By Jhonatanrs
 server-port=25565
 enable-command-block=true" "server.properties"
 
 	echo -e "[INFO] - INSTALANDO - [INFO]"
-	cd $diretorioServer
 	java -jar server.jar --installServer
 	stop
 
