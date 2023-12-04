@@ -288,6 +288,8 @@ bar {
 	position top
 	mode dock
 	tray_output primary
+	#CONFIGURAR TELA PARA TRAY_OUTPUT	
+	#xrandr --output HDMI-0 --primary
 	tray_padding 0
 	workspace_buttons yes
 	workspace_min_width 1
@@ -394,16 +396,16 @@ general {
 	color_degraded = "#FFFF00"
 }
 
-//order += "cpu_usage"
-//order += "memory"
-//order += "disk /"
-//order += "ethernet ztwdjcf77e"
-//order += "wireless _first_"
-//order += "ethernet _first_"
-//order += "volume master"
-//order += "read_file BRIGHTNESS"
-//order += "battery all"
-//order += "tztime local"
+#order += "cpu_usage"
+#order += "memory"
+#order += "disk /"
+#order += "ethernet ztwdjcf77e"
+#order += "wireless _first_"
+#order += "ethernet _first_"
+#order += "volume master"
+#order += "read_file BRIGHTNESS"
+#order += "battery all"
+#order += "tztime local"
 order += "tztime local1"
 
 read_file BRIGHTNESS {
