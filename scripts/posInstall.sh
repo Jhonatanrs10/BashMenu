@@ -139,10 +139,10 @@ EOF
 #Yay e Paru para gerenciar AUR
 
 i3wmConfig(){
-        installPacotes "dmenu rofi i3lock i3status feh nitrogen htop light volumeicon pcmanfm chromium-browser chromium xfce4-screenshooter terminology lxrandr lxappearance xfce4-power-manager speedcrunch system-config-printer bluez bluez-tools blueman"
+        installPacotes "dmenu rofi i3lock i3status feh nitrogen htop light volumeicon pcmanfm xfce4-screenshooter terminology lxrandr lxappearance xfce4-power-manager speedcrunch system-config-printer bluez bluez-tools blueman network-manager-applet pavucontrol"
         cp $HOME/.config/i3/config $HOME/.config/i3/config-bkp
         light -N 0.06
-        echo "Cor do Tema: [ex:005577]"
+        echo "Cor do Tema: Ex[DMENU:005577] ,[GNOME:4a86cf]"
         read corBase
 
         if [ "$corBase" = "" ]; then
@@ -169,7 +169,7 @@ set $appF4 lxappearance
 set $appF5 xfce4-power-manager-settings
 set $appF6 speedcrunch
 set $appF7 system-config-printer
-set $appF8 speedcrunch
+set $appF8 pavucontrol
 set $refresh_i3status killall -SIGUSR1 i3status
 set $Locker i3lock -c 000000 && sleep 1
 set $ws1 "1"
@@ -201,7 +201,7 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
-exec --no-startup-id volumeicon
+#exec --no-startup-id volumeicon
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id nitrogen --restore
 #exec --no-startup-id feh --bg-scale $wallpaper
@@ -287,9 +287,8 @@ bar {
 	status_command i3status --config ~/.config/i3/i3status.conf
 	position top
 	mode dock
-	tray_output primary
-	#CONFIGURAR TELA PARA TRAY_OUTPUT	
-	#xrandr --output HDMI-0 --primary
+	#tray_output primary
+        #tray_output HDMI-0
 	tray_padding 0
 	workspace_buttons yes
 	workspace_min_width 1
@@ -318,7 +317,7 @@ client.urgent           #2f343a #900000 #ffffff #900000 #900000
 client.placeholder      #000000 #0c0c0c #ffffffff #000000 #0c0c0c
 client.background       #ffffff
 ###MODOS###
-set $mode_programs (1)Files, (2)Wallpapers, (3)Display, (4)Appearance, (5)PowerManager (6)Calculator (7)Printer
+set $mode_programs (1)Files, (2)Wallpapers, (3)Display, (4)Appearance, (5)PowerManager (6)Calculator (7)Printer (8)Sound
 mode "$mode_programs" {
     bindsym 1 exec $appF1, mode "default"
     bindsym 2 exec $appF2, mode "default"
@@ -396,17 +395,17 @@ general {
 	color_degraded = "#FFFF00"
 }
 
-#order += "cpu_usage"
-#order += "memory"
-#order += "disk /"
-#order += "ethernet ztwdjcf77e"
-#order += "wireless _first_"
-#order += "ethernet _first_"
-#order += "volume master"
+order += "cpu_usage"
+order += "memory"
+order += "disk /"
+order += "ethernet ztwdjcf77e"
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "volume master"
 #order += "read_file BRIGHTNESS"
-#order += "battery all"
-#order += "tztime local"
-order += "tztime local1"
+order += "battery all"
+order += "tztime local"
+#order += "tztime local1"
 
 read_file BRIGHTNESS {
 	format = "[☼/%content]"
