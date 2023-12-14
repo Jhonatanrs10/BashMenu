@@ -139,7 +139,7 @@ EOF
 #Yay e Paru para gerenciar AUR
 
 i3wmConfig(){
-        installPacotes "dmenu rofi i3lock i3status feh nitrogen htop light volumeicon pcmanfm xfce4-screenshooter terminology lxrandr lxappearance xfce4-power-manager speedcrunch system-config-printer bluez bluez-tools blueman network-manager-applet pavucontrol"
+        installPacotes "dmenu rofi i3lock i3status feh nitrogen htop light volumeicon pcmanfm scrot terminology lxrandr lxappearance xfce4-power-manager speedcrunch system-config-printer bluez bluez-tools blueman network-manager-applet pavucontrol"
         cp $HOME/.config/i3/config $HOME/.config/i3/config-bkp
         light -N 0.06
         echo "Cor do Tema: Ex[DMENU:005577] ,[GNOME:4a86cf]"
@@ -211,7 +211,8 @@ bindsym $mod+Return exec $appTerminal
 bindsym $mod+Shift+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 #print
-bindsym Print exec xfce4-screenshooter
+bindsym --release Print exec scrot Screenshot_%Y-%m-%d_%H-%M-%S.png
+bindsym --release $mod+Print exec scrot -s Cutshot_%Y-%m-%d_%H-%M-%S.png
 #edit window
 bindsym $mod+h focus left
 bindsym $mod+j focus down
