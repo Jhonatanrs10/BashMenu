@@ -32,7 +32,7 @@ ServerIp=${ServerIp:6}
 if [ -z "$ServerIp" ];then
     echo "VAZIO"
 else
-    bash '$PWD'/discord/discord.sh --webhook-url="$WEBHOOK" --username "JardimRecreio" --title "IP DO SERVIDOR" --description "$ServerIp" --avatar "https://i.imgur.com/duCpdU4.png"
+    bash '$PWD'/discord/discord.sh --webhook-url="$WEBHOOK" --username "JardimRecreio" --title "IP DO SERVIDOR" --description "$ServerIp"
 fi' "$diretorioNgrok/discord.sh"
 	criaAtalhoBin "$diretorioNgrok/start.sh" "Ngrok"
 }
