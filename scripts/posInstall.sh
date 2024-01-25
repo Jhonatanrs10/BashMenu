@@ -25,7 +25,7 @@ posInstall(){
 [1]Configurar I3WM
 [2]Configurar Pos-Install [ARCH]
 [3]Configurar NVIDIA [ARCH]
-[4]Configurar Teclado PT-BT
+[4]Configurar Teclado PT-BR
 [5]Configurar Touchpad
 [6]Configurar Funcionalidades
 [7]Configuracoes Manuais
@@ -36,9 +36,10 @@ posInstall(){
                         i3wmConfig
                 elif [ "$resp" = "2" ]; then
                         echo "[ARCH] Pos-Install"
-                        installPacotes "i3 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings pulseaudio samba xarchiver papirus-icon-theme breeze-gtk xcursor-comix ntfs-3g dosfstools os-prober chromium nano git neofetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 net-tools bluez bluez-tools bluez-utils noto-fonts-emoji man-db font-manager"
+                        installPacotes "i3 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings pulseaudio pulseaudio-bluetooth samba xarchiver papirus-icon-theme breeze-gtk xcursor-comix ntfs-3g dosfstools os-prober chromium nano git neofetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 net-tools bluez bluez-tools bluez-utils man-db font-manager gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji"
                         enableSystemctl "lightdm"
                         enableSystemctl "bluetooth"
+                        enableSystemctl "NetworkManager"
                 elif [ "$resp" = "8" ]; then
                         echo "[ARCH] Network"
                         echo "INSTALAR NETWORKMANAGER"
@@ -53,10 +54,14 @@ posInstall(){
                         echo "##################################"
                         echo "Funcionalidades"
                         echo "##################################"
-                        echo "[ARCH] Aplicativos"
-                        installPacotes "nano git neofetch"
-                        installPacotes "gimp inkscape qbittorrent"
-                        installPacotes "retroarch retroarch-assets-xmb retroarch-assets-ozone libretro-snes9x"
+                        echo "[ARCH] Aplicativos Default"
+                        installPacotes "nano git neofetch net-tools"
+                        echo "[ARCH] Aplicativos de Imagem"
+                        installPacotes "gimp inkscape"
+                        echo "[ARCH] Aplicativo de Torrent"
+                        installPacotes "qbittorrent"
+                        echo "[ARCH] Retroarch"
+                        installPacotes "retroarch retroarch-assets-xmb retroarch-assets-ozone libretro-snes9x libretro-mgba libretro-beetle-psx"
                         echo "[ARCH] FireWall"
                         installPacotes "gufw"
                         echo "[ARCH] Plugins Multimedia"
@@ -69,12 +74,10 @@ posInstall(){
                         installPacotes "ntfs-3g dosfstools"
                         echo "[ARCH] Default MTP device"
                         installPacotes "mtpfs"
-                        echo "[ARCH] Gnome MTP device"
+                        echo "[ARCH] MTP device"
                         installPacotes "gvfs gvfs-mtp gvfs-smb"
-                        echo "[ARCH] Manipular Discos"
+                        echo "[ARCH] Manipular Discos Terminal"
                         installPacotes "udisks2"
-                        echo "[ARCH] IFCONFIG"
-                        installPacotes "net-tools"
                 elif [ "$resp" = "3" ]; then
                         echo "[ARCH] NVIDIA"
                         #https://github.com/lutris/docs/blob/master/InstallingDrivers.md#arch--manjaro--other-arch-linux-derivatives
@@ -112,8 +115,8 @@ sudo systemctl restart gdm3
                         fi
                 elif [ "$resp" = "4" ]; then
                         echo "[ARCH] Keyboard BR"
-                        setxkbmap -layout br
-                        echo "setxkbmap -layout br" >> ~/.profile
+                        setxkbmap -model abnt2 -layout br
+                        echo "setxkbmap -model abnt2 -layout br" >> ~/.profile
                 else
                         echo "OPCAO NAO ENCONTRADA!"
                         sleep 1
@@ -143,6 +146,7 @@ i3wmConfig(){
         #MAIN COLOR 005577, bfbfbf
         installPacotes "dmenu rofi i3lock i3status feh nitrogen htop cmatrix acpilight volumeicon pcmanfm scrot xsel terminology lxrandr lxappearance xfce4-taskmanager xfce4-power-manager galculator system-config-printer blueman network-manager-applet pavucontrol"
         cp $HOME/.config/i3/config $HOME/.config/i3/config-bkp
+        echo "[COLORS] Black:#000000, Gray:#808080, White:#FFFFFF"
         forLength "[COLOR] Bar" "7" "#000000"
         jrsbar=$txtForLength
         jrswindowtextosemfoco=$jrsbar
@@ -155,7 +159,7 @@ i3wmConfig(){
         criarArq '######Jhonatanrs I3-WM config######
 ###VARs###
 set $mod Mod4
-set $textFont DejaVu Sans Mono 8
+set $textFont FreeMono 8
 set $wallpaper $HOME/.config/i3/Wallpaper.png
 #set $appMenu dmenu_run
 set $appMenu rofi -combi-modi drun#ssh#combi -show combi -window-title Rofi -scroll-method 1 -show-icons -combi-display-format "{text} ({mode})" -config $HOME/.config/i3/rofi.rasi 
@@ -380,9 +384,10 @@ mode "$mode_resize" {
 }
 bindsym $mod+r mode "$mode_resize"
 ' "$HOME/.config/i3/config-jrsbkp.conf"
-#
-#
-#
+
+cd /proc/sys/net/ipv4/conf/
+zerotierAdapter=$(echo zt*)
+
 criarArq '# i3status configuration file.
 # see "man i3status" for documentation.
 
@@ -401,7 +406,7 @@ general {
 order += "cpu_usage"
 order += "memory"
 order += "disk /"
-order += "ethernet ztwdjcf77e"
+order += "ethernet '$zerotierAdapter'"
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "volume master"
@@ -457,7 +462,7 @@ ethernet _first_ {
         min_width = 1
 }
 
-ethernet ztwdjcf77e {
+ethernet '$zerotierAdapter' {
         format_up = "[Z/%ip]"
         format_down = ""
 	separator = false
@@ -503,15 +508,15 @@ memory {
         min_width = 1
 }
 
-tztime local1 {
-        format = "%a.%d %b %H:%M"
+tztime local {
+        format = "[%a.%d %b %H:%M]"
         align = "right"
         min_width = 1
         separator = false
         separator_block_width = 1
 }
 
-tztime local {
+tztime local1 {
         format = "[%d-%m-%Y %H:%M:%S]"
         align = "right"
         min_width = 1

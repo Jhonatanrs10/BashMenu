@@ -8,10 +8,11 @@ menu12345 "
 [1] GIT CONFIG
 [2] GIT PUSH
 [3] ASSISTIR PELO MPV
+[4] INSTALAR POSINSTALL
 " "gitconfig
 " "gitAutoPush
 " "assistirMpv
-" "return
+" "posInstall
 " "return"
 
 menu12345 "
@@ -60,8 +61,9 @@ menu12345 "
 " "return"
 menu12345 "
 [1] INSTALAR NODEJS LTS
+[2] INSTALAR VIRTUAL GAMEPADS
 " "nodejslts
-" "return
+" "virtualGamepads
 " "return
 " "return
 " "return"
