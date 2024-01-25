@@ -36,7 +36,7 @@ posInstall(){
                         i3wmConfig
                 elif [ "$resp" = "2" ]; then
                         echo "[ARCH] Pos-Install"
-                        installPacotes "i3 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings pulseaudio pulseaudio-bluetooth samba xarchiver papirus-icon-theme breeze-gtk xcursor-comix ntfs-3g dosfstools os-prober chromium nano git neofetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 net-tools bluez bluez-tools bluez-utils man-db font-manager gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji"
+                        installPacotes "i3 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings pulseaudio pulseaudio-bluetooth samba xarchiver papirus-icon-theme breeze-gtk xcursor-comix ntfs-3g dosfstools os-prober chromium nano git neofetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils man-db font-manager gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji"
                         enableSystemctl "lightdm"
                         enableSystemctl "bluetooth"
                         enableSystemctl "NetworkManager"
@@ -157,7 +157,6 @@ i3wmConfig(){
         jrswindowcomfoco=$txtForLength
         jrswindowsemfoco="#7d7d7d"
         criarArq '######Jhonatanrs I3-WM config######
-###VARs###
 set $mod Mod4
 set $textFont FreeMono 8
 set $wallpaper $HOME/.config/i3/Wallpaper.png
@@ -201,6 +200,7 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id nitrogen --restore
 #exec --no-startup-id feh --bg-scale $wallpaper
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 ###Binds###
 bindsym $mod+d exec --no-startup-id $appMenu
