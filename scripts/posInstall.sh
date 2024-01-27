@@ -36,7 +36,7 @@ posInstall(){
                         i3wmConfig
                 elif [ "$resp" = "2" ]; then
                         echo "[ARCH] Pos-Install"
-                        installPacotes "i3 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings pulseaudio pulseaudio-bluetooth samba xarchiver papirus-icon-theme breeze-gtk xcursor-comix ntfs-3g dosfstools os-prober chromium nano git neofetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils man-db font-manager gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji"
+                        installPacotes "i3 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings pulseaudio pulseaudio-bluetooth samba xarchiver papirus-icon-theme breeze-gtk xcursor-comix ntfs-3g dosfstools os-prober gparted chromium nano git neofetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils man-db font-manager gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji"
                         enableSystemctl "lightdm"
                         enableSystemctl "bluetooth"
                         enableSystemctl "NetworkManager"
@@ -146,7 +146,7 @@ EOF
 
 i3wmConfig(){
         #MAIN COLOR 005577, bfbfbf
-        installPacotes "dmenu rofi i3lock i3status feh nitrogen htop cmatrix acpilight volumeicon pcmanfm scrot xsel terminology lxrandr lxappearance xfce4-taskmanager xfce4-power-manager galculator system-config-printer blueman network-manager-applet pavucontrol"
+        installPacotes "dmenu rofi i3lock i3status feh imagemagick nitrogen htop cmatrix acpilight volumeicon pcmanfm scrot xsel terminology lxrandr lxappearance xfce4-taskmanager xfce4-power-manager galculator system-config-printer blueman network-manager-applet pavucontrol"
         cp $HOME/.config/i3/config $HOME/.config/i3/config-bkp
         echo "[COLORS] Black:#000000, Gray:#808080, White:#FFFFFF"
         forLength "[COLOR] Bar" "7" "#000000"
@@ -161,7 +161,7 @@ i3wmConfig(){
         criarArq '######Jhonatanrs I3-WM config######
 set $mod Mod4
 set $textFont FreeMono 8
-set $wallpaper $HOME/.config/i3/Wallpaper.png
+set $wallpaper $HOME/.config/i3/wallpaper.png
 #set $appMenu dmenu_run
 set $appMenu rofi -combi-modi drun#ssh#combi -show combi -window-title Rofi -scroll-method 1 -show-icons -combi-display-format "{text} ({mode})" -config $HOME/.config/i3/rofi.rasi 
 set $appTerminal terminology
@@ -300,24 +300,24 @@ bar {
 	mode dock
 	#tray_output primary
         #tray_output HDMI-0
-	tray_padding 0
+	tray_padding 2
 	workspace_buttons yes
-	workspace_min_width 1
+	workspace_min_width 25
 	separator_symbol ":"
 	strip_workspace_numbers yes
 	strip_workspace_name no
 	binding_mode_indicator yes
-	padding 0px
+	padding 0 0 5 0
 	colors {
 	    #i3bar
 	    background '$jrsbar'
 	    statusline '$jrsbartexto'
 	    separator '$jrsbartexto'
-	    focused_workspace  '$jrswindowcomfoco' '$jrswindowcomfoco' '$jrsbartexto'
+	    focused_workspace  '$jrswindowcomfoco' '$jrsbar' '$jrsbartexto'
 	    active_workspace   '$jrsbar' '$jrsbar' '$jrsbartexto'
 	    inactive_workspace '$jrsbar' '$jrsbar' '$jrsbartexto'
-	    urgent_workspace   #2f343a #900000 #ffffff
-       	    binding_mode       #2f343a #900000 #ffffff
+	    urgent_workspace   '$jrsbar' #900000 '$jrsbartexto'
+       	    binding_mode       '$jrsbar' '$jrsbar' '$jrsbartexto'
     }
 }
 #class                  borda       background  texto         indicator   child_border
@@ -338,6 +338,7 @@ mode "$mode_programs" {
     bindsym 5 exec $appF5, mode "default"
     bindsym 6 exec $appF6, mode "default"
     bindsym 7 exec $appF7, mode "default"
+    #bindsym 7 exec convert -blur 0x25 ~/.config/i3/wallpaper.* ~/.config/i3/wallpaperLock.png , mode "default" 
     bindsym 8 exec $appF8, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"

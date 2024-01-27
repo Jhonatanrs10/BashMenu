@@ -8,7 +8,12 @@ virtualGamepads(){
     criaPastaBaixaExtrai "$diretorioInstall" "https://codeload.github.com/jehervy/node-virtual-gamepads/zip/refs/heads/master" "nvg.zip"
     mv */* .
     npm install
-    criaAtalho "Virtual Gamepads" "Virtual Gamepads Linux" "sudo node main.js" "$diretorioInstall" "true" "$installName" "$diretorioInstall/public/images/SNES_controller.svg"
+    sudo npm install -g qrcode-terminal
+    echo '#!/usr/bin/env sh
+	cd '"$diretorioInstall"'
+    sudo echo http://$(ip route get 1 | sed -n '"'"'s/.*src \([0-9.]\+\).*/\1/p'"'"'):80 | qrcode-terminal
+    sudo node main.js' > $diretorioInstall/run.sh
+    criaAtalho "Virtual Gamepads" "Virtual Gamepads Linux" "bash run.sh" "$diretorioInstall" "true" "$installName" "$diretorioInstall/public/images/SNES_controller.svg"
     #criaAtalhoBin "$diretorioInstall/run.sh" "$installName"
 
 }   
