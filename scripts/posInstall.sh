@@ -146,7 +146,7 @@ EOF
 
 i3wmConfig(){
         #MAIN COLOR 005577, bfbfbf
-        installPacotes "dmenu rofi i3lock i3status feh imagemagick nitrogen htop cmatrix acpilight volumeicon pcmanfm scrot xsel terminology lxrandr lxappearance xfce4-taskmanager xfce4-power-manager galculator system-config-printer blueman network-manager-applet pavucontrol"
+	installPacotes "dmenu rofi i3lock i3status feh imagemagick nitrogen htop cmatrix acpilight volumeicon pcmanfm scrot xsel terminology lxrandr lxappearance xfce4-taskmanager xfce4-power-manager galculator system-config-printer blueman network-manager-applet pavucontrol"
         cp $HOME/.config/i3/config $HOME/.config/i3/config-bkp
         echo "[COLORS] Black:#000000, Gray:#808080, White:#FFFFFF"
         forLength "[COLOR] Bar" "7" "#000000"
@@ -161,7 +161,6 @@ i3wmConfig(){
         criarArq '######Jhonatanrs I3-WM config######
 set $mod Mod4
 set $textFont FreeMono 8
-set $wallpaper $HOME/.config/i3/wallpaper.png
 #set $appMenu dmenu_run
 set $appMenu rofi -combi-modi drun#ssh#combi -show combi -window-title Rofi -scroll-method 1 -show-icons -combi-display-format "{text} ({mode})" -config $HOME/.config/i3/rofi.rasi 
 set $appTerminal terminology
@@ -176,7 +175,7 @@ set $appF6 lxappearance
 set $appF7 nitrogen
 set $appF8 system-config-printer
 set $refresh_i3status killall -SIGUSR1 i3status
-set $Locker i3lock -c 000000 && sleep 1
+set $Locker i3lock -c 000000 -i $HOME/.config/i3/wallpaperI3Lock.png && sleep 1
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -201,7 +200,7 @@ exec --no-startup-id blueman-applet
 #exec --no-startup-id volumeicon
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id nitrogen --restore
-#exec --no-startup-id feh --bg-scale $wallpaper
+#exec --no-startup-id feh --bg-scale $HOME/.config/i3/wallpaperI3.png
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 ###Binds###
@@ -329,7 +328,7 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
 client.background       #ffffff
 
 ###MODOS###
-set $mode_programs (1)Sound, (2)Calculator, (3)Tasks, (4)PowerManager, (5)Display (6)Appearance (7)Wallpaper (8)Printer
+set $mode_programs [1/Sound][2/Calc][3/Tasks][4/Energy][5/Display][6/Looks][7/I3Paper][8/Printer]
 mode "$mode_programs" {
     bindsym 1 exec $appF1, mode "default"
     bindsym 2 exec $appF2, mode "default"
@@ -337,42 +336,42 @@ mode "$mode_programs" {
     bindsym 4 exec $appF4, mode "default"
     bindsym 5 exec $appF5, mode "default"
     bindsym 6 exec $appF6, mode "default"
-    bindsym 7 exec $appF7, mode "default"
-    #bindsym 7 exec convert -blur 0x25 ~/.config/i3/wallpaper.* ~/.config/i3/wallpaperLock.png , mode "default" 
+    #bindsym 7 exec $appF7, mode "default"
+    bindsym 7 exec $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') $HOME/.config/i3/wallpaperI3Lock.png, mode "default"
     bindsym 8 exec $appF8, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+p mode "$mode_programs"
 
-set $mode_sound Sound (Up), (Down), (M) - Light (Left), (Right)
+set $mode_sound [1/SoundUp][2/SoundDown][3/SoundMute][4/LightUp][5/LightDown]
 mode "$mode_sound" {
-    bindsym Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-    bindsym Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-    bindsym m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-    #bindsym Right exec --no-startup-id light -A 5 && echo `light` > $HOME/.config/i3/brightness &&  $refresh_i3status
-    #bindsym Left exec --no-startup-id light -U 5 && echo `light` > $HOME/.config/i3/brightness  &&  $refresh_i3status
-    bindsym Right exec --no-startup-id xbacklight -dec 5 &&  $refresh_i3status
-    bindsym Left exec --no-startup-id xbacklight -inc 5 &&  $refresh_i3status
+    bindsym 1 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+    bindsym 2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+    bindsym 3 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+    bindsym 4 exec --no-startup-id xbacklight -dec 5 &&  $refresh_i3status
+    bindsym 5 exec --no-startup-id xbacklight -inc 5 &&  $refresh_i3status
+    #bindsym 4 exec --no-startup-id light -A 5 && echo `light` > $HOME/.config/i3/brightness &&  $refresh_i3status
+    #bindsym 5 exec --no-startup-id light -U 5 && echo `light` > $HOME/.config/i3/brightness  &&  $refresh_i3status
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+m mode "$mode_sound"
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $mode_system [1/Lock][2/Logout][3/Suspend][4/Hibernate][5/Reboot][6/Shutdown]
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+    bindsym 1 exec --no-startup-id $Locker, mode "default"
+    bindsym 2 exec --no-startup-id i3-msg exit, mode "default"
+    bindsym 3 exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym 4 exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym 5 exec --no-startup-id systemctl reboot, mode "default"
+    bindsym 6 exec --no-startup-id systemctl poweroff -i, mode "default"  
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+Shift+e mode "$mode_system"
 
-set $mode_resize Resize
+set $mode_resize [Resize]
 mode "$mode_resize" {
         bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt

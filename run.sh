@@ -8,11 +8,11 @@ menu12345 "
 [1] GIT CONFIG
 [2] GIT PUSH
 [3] ASSISTIR PELO MPV
-[4] INSTALAR POSINSTALL
+[4] I3WM CONFIG
 " "gitconfig
 " "gitAutoPush
 " "assistirMpv
-" "posInstall
+" "i3wmConfig
 " "return"
 
 menu12345 "
