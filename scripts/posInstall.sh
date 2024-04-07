@@ -103,6 +103,9 @@ Remover comentarios em: /etc/gdm3/custom.conf
 #WaylandEnable=false
 Apos editar, executar:
 sudo systemctl restart gdm3
+---------------------
+[THEME]
+Caso de erro com thema no i3 é so apagar as pastas gtk-* em .config na HOME
 "
                         read enterprasair
                 elif [ "$resp" = "5" ]; then
