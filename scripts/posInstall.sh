@@ -85,7 +85,7 @@ posInstall(){
                         #https://github.com/lutris/docs/blob/master/InstallingDrivers.md#arch--manjaro--other-arch-linux-derivatives
                         #causa crash no gdm o pacote: nvidia-dkms
                         #https://codigocristo.github.io/driver_nvidia.html
-                        installPacotes "nvidia nvidia-settings nvidia-utils lib32-nvidia-utils cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"   
+                        installPacotes "nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"   
                 elif [ "$resp" = "7" ]; then
                         echo "---------------------
 Configuracoes Manuais
@@ -149,6 +149,18 @@ EndSection
 
 EOF
 }
+
+lightdmConfig(){
+sudo mkdir -p /usr/share/backgrounds
+sudo chmod 777 /usr/share/backgrounds
+sudo tee /etc/lightdm/lightdm-gtk-greeter.conf <<< '[greeter]
+theme-name = Breeze-Dark
+icon-theme-name = Papirus-Dark
+indicators = ~session;~spacer;~clock;~spacer;~power
+background = /usr/share/backgrounds/main.png
+font-name = FreeMono 10'
+}
+
 #Pacotes da loja GNOME
 #sudo pacman -S gnome-software-packagekit-plugin
 #Pacotes da loja KDE
@@ -169,6 +181,11 @@ i3wmConfig(){
         forLength "[COLOR] Window" "7" "#005577"
         jrswindowcomfoco=$txtForLength
         jrswindowsemfoco="#7d7d7d"
+        echo -e "\n(Re)Configurar myDefault Dark Lightdm digite yes"
+        read myL
+        if [ "$myL" = "yes" ]; then
+                lightdmConfig
+        fi
         criarArq '######Jhonatanrs I3-WM config######
 set $mod Mod4
 set $textFont FreeMono 8
@@ -347,8 +364,8 @@ mode "$mode_programs" {
     bindsym 4 exec $appF4, mode "default"
     bindsym 5 exec $appF5, mode "default"
     bindsym 6 exec $appF6, mode "default"
-    #bindsym 7 exec $appF7, mode "default"
-    bindsym 7 exec $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') $HOME/.config/i3/wallpaperI3Lock.png, mode "default"
+    bindsym 7 exec $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') /usr/share/backgrounds/main.png, mode "default"
+    #bindsym 7 exec $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') $HOME/.config/i3/wallpaperI3Lock.png, mode "default"
     bindsym 8 exec $appF8, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -371,7 +388,8 @@ bindsym $mod+m mode "$mode_sound"
 
 set $mode_system [1/Lock][2/Logout][3/Suspend][4/Hibernate][5/Reboot][6/Shutdown]
 mode "$mode_system" {
-    bindsym 1 exec --no-startup-id $Locker, mode "default"
+    bindsym 1 exec --no-startup-id dm-tool lock, mode "default"
+    #bindsym 1 exec --no-startup-id $Locker, mode "default"
     bindsym 2 exec --no-startup-id i3-msg exit, mode "default"
     bindsym 3 exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym 4 exec --no-startup-id $Locker && systemctl hibernate, mode "default"
