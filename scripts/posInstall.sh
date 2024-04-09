@@ -203,7 +203,7 @@ set $appF6 lxappearance
 set $appF7 nitrogen
 set $appF8 system-config-printer
 set $refresh_i3status killall -SIGUSR1 i3status
-set $Locker i3lock -c 000000 -i $HOME/.config/i3/wallpaperI3Lock.png && sleep 1
+set $Locker i3lock -c 000000 -i /usr/share/backgrounds/main.png && sleep 1
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -386,15 +386,15 @@ mode "$mode_sound" {
 }
 bindsym $mod+m mode "$mode_sound"
 
-set $mode_system [1/Lock][2/Logout][3/Suspend][4/Hibernate][5/Reboot][6/Shutdown]
+set $mode_system [1/Lock][2/Logout][3/Suspend][4/Switch][5/Hibernate][6/Reboot][7/Shutdown]
 mode "$mode_system" {
-    bindsym 1 exec --no-startup-id dm-tool lock, mode "default"
-    #bindsym 1 exec --no-startup-id $Locker, mode "default"
+    bindsym 1 exec --no-startup-id $Locker, mode "default"
     bindsym 2 exec --no-startup-id i3-msg exit, mode "default"
     bindsym 3 exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym 4 exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym 5 exec --no-startup-id systemctl reboot, mode "default"
-    bindsym 6 exec --no-startup-id systemctl poweroff -i, mode "default"  
+    bindsym 4 exec --no-startup-id dm-tool lock, mode "default"
+    bindsym 5 exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym 6 exec --no-startup-id systemctl reboot, mode "default"
+    bindsym 7 exec --no-startup-id systemctl poweroff -i, mode "default"  
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
