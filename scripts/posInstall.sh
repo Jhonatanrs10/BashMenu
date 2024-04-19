@@ -30,13 +30,14 @@ posInstall(){
 [6]Configurar Funcionalidades
 [7]Configuracoes Manuais
 [8]Configurar Network
-[9]Fix Bluetooth & Network Interf."
+[9]Fix Bluetooth & Network Interf.
+[10]Network Time Synchronization"
                 read resp
                 if [ "$resp" = "1" ]; then
                         i3wmConfig
                 elif [ "$resp" = "2" ]; then
                         echo "[ARCH] Pos-Install"
-                        installPacotes "i3 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings pulseaudio pulseaudio-bluetooth samba xarchiver papirus-icon-theme breeze-gtk xcursor-comix ntfs-3g dosfstools os-prober gparted chromium nano git neofetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils man-db font-manager gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji"
+                        installPacotes "i3 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings pulseaudio pulseaudio-bluetooth samba xarchiver papirus-icon-theme breeze-gtk xcursor-comix ntfs-3g dosfstools os-prober gparted chromium nano git neofetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db font-manager gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji"
                         enableSystemctl "lightdm"
                         enableSystemctl "bluetooth"
                         enableSystemctl "NetworkManager"
@@ -80,6 +81,8 @@ posInstall(){
                         installPacotes "gvfs gvfs-mtp gvfs-smb"
                         echo "[ARCH] Manipular Discos Terminal"
                         installPacotes "udisks2"
+                        echo "[ARCH] Obs Studio e Plugins"
+                        installPacotes "app/com.obsproject.Studio/x86_64/stable runtime/com.obsproject.Studio.Plugin.MoveTransition/x86_64/stable"
                 elif [ "$resp" = "3" ]; then
                         echo "[ARCH] NVIDIA"
                         #https://github.com/lutris/docs/blob/master/InstallingDrivers.md#arch--manjaro--other-arch-linux-derivatives
@@ -130,6 +133,9 @@ Driver "evdev"
 Option "XkbLayout" "br"
 Option "XkbVariant" "abnt2"
 EndSection'
+                elif [ "$resp" = "10" ]; then
+                        sudo timedatectl set-ntp true
+                        sudo hwclock --systohc
                 else
                         echo "OPCAO NAO ENCONTRADA!"
                         sleep 1
@@ -230,6 +236,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id nitrogen --restore
 #exec --no-startup-id feh --bg-scale $HOME/.config/i3/wallpaperI3.png
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id xset -b
 
 ###Binds###
 bindsym $mod+d exec --no-startup-id $appMenu
