@@ -1,4 +1,7 @@
 #!/usr/bin/env sh
+myBase="pulseaudio pulseaudio-bluetooth samba xarchiver papirus-icon-theme breeze-gtk xcursor-comix ntfs-3g dosfstools os-prober nano vim git neofetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji cmatrix htop"
+myI3wm="i3 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings font-manager dmenu rofi i3lock i3status feh imagemagick nitrogen acpilight volumeicon pcmanfm scrot xsel terminology lxrandr lxappearance xfce4-taskmanager xfce4-power-manager xfce4-appfinder galculator system-config-printer blueman pavucontrol network-manager-applet wireless_tools xreader mpv"
+
 posInstallDeb(){
         yesorno "Deseja testar conexao?" "teste_internet"
         travas_apt
@@ -37,7 +40,7 @@ posInstall(){
                         i3wmConfig
                 elif [ "$resp" = "2" ]; then
                         echo "[ARCH] Pos-Install"
-                        installPacotes "i3 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings pulseaudio pulseaudio-bluetooth samba xarchiver papirus-icon-theme breeze-gtk xcursor-comix ntfs-3g dosfstools os-prober gparted chromium nano git neofetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db font-manager gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji"
+                        installPacotes "i3 $myBase"
                         enableSystemctl "lightdm"
                         enableSystemctl "bluetooth"
                         enableSystemctl "NetworkManager"
@@ -175,7 +178,7 @@ font-name = FreeMono 10'
 
 i3wmConfig(){
         #MAIN COLOR 005577, bfbfbf
-	installPacotes "dmenu rofi i3lock i3status feh imagemagick nitrogen htop cmatrix acpilight volumeicon pcmanfm scrot xsel terminology lxrandr lxappearance xfce4-taskmanager xfce4-power-manager galculator system-config-printer blueman network-manager-applet pavucontrol"
+	installPacotes "$myI3wm"
         cp $HOME/.config/i3/config $HOME/.config/i3/config-bkp
         echo "[COLORS] Black:#000000, Gray:#808080, White:#FFFFFF"
         forLength "[COLOR] Bar" "7" "#000000"
@@ -196,6 +199,7 @@ i3wmConfig(){
 set $mod Mod4
 set $textFont FreeMono 8
 #set $appMenu dmenu_run
+#set $appMenu xfce4-appfinder
 set $appMenu rofi -combi-modi drun#ssh#combi -show combi -window-title Rofi -scroll-method 1 -show-icons -combi-display-format "{text} ({mode})" -config $HOME/.config/i3/rofi.rasi 
 set $appTerminal terminology
 set $appFiles pcmanfm
@@ -324,8 +328,9 @@ gaps inner $espacoentrejanelas
 gaps outer 0px
 smart_gaps off
 workspace_layout default
-for_window [class=$appTerminal] floating desable
+for_window [class=$appTerminal] floating enable
 for_window [title=$appF2] floating enable
+#for_window [instance=$appMenu] floating enable resize set 600 300
 
 ###I3BARS###
 bar {
