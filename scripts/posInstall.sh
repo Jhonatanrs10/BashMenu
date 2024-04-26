@@ -2,24 +2,6 @@
 myBase="pulseaudio pulseaudio-bluetooth samba xarchiver papirus-icon-theme breeze-gtk xcursor-comix ntfs-3g dosfstools os-prober nano vim git neofetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji cmatrix htop"
 myI3wm="i3 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings font-manager dmenu rofi i3lock i3status feh imagemagick nitrogen acpilight volumeicon thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman scrot xsel terminology lxrandr lxappearance xfce4-taskmanager xfce4-power-manager xfce4-appfinder galculator system-config-printer blueman pavucontrol network-manager-applet wireless_tools xreader mpv"
 
-posInstallDeb(){
-        yesorno "Deseja testar conexao?" "teste_internet"
-        travas_apt
-        justAptUpdate
-        addArchi386
-        yesorno "Instalar o Flatpak?" "supFlatpak"
-        echo "PACOTES:
-samba gparted neofetch blueman mpv vlc git wget openjdk-8-jdk openjdk-11-jdk openjdk-17-jdk htop qbittorrent"
-        read pacotes
-        installPacotes "$pacotes"
-        baixaDebs "Chrome" "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-        baixaDebs "vscode" "https://go.microsoft.com/fwlink/?LinkID=760868"
-        baixaDebs "Discord" "https://discord.com/api/download?platform=linux&format=deb"
-        baixaDebs "Steam" "https://cdn.akamai.steamstatic.com/client/installer/steam.deb"
-        yesorno "Deseja instalar os .deb?" "installDebs $diretorioBaixaDebs"
-        yesorno "Deseja apagar a pasta dos .deb?" "rm -r $diretorioBaixaDebs"
-}
-
 posInstall(){
         while [ "$resp" != "" ];
         do
