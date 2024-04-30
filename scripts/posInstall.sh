@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 myBase="pulseaudio pulseaudio-bluetooth samba xarchiver papirus-icon-theme breeze-gtk xcursor-comix ntfs-3g dosfstools os-prober nano vim git neofetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji cmatrix htop"
 myI3wm="i3 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings font-manager dmenu rofi i3lock i3status feh imagemagick nitrogen acpilight volumeicon thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman scrot xsel terminology lxrandr lxappearance xfce4-taskmanager xfce4-power-manager xfce4-appfinder galculator system-config-printer blueman pavucontrol network-manager-applet wireless_tools xreader mpv"
+myXfce="xfce4 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings font-manager xfce4-screenshooter xfce4-pulseaudio-plugin blueman pavucontrol thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman network-manager-applet xreader mpv galculator system-config-printer"
 
 posInstall(){
         while [ "$resp" != "" ];
@@ -220,9 +221,10 @@ exec --no-startup-id blueman-applet
 #exec --no-startup-id volumeicon
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id nitrogen --restore
-#exec --no-startup-id feh --bg-scale $HOME/.config/i3/wallpaperI3.png
+#exec --no-startup-id feh --bg-scale ~/.config/i3/wallpaperI3.png
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id xset -b
+exec --no-startup-id picom --config ~/.config/i3/picom.conf
 
 ###Binds###
 bindsym $mod+d exec --no-startup-id $appMenu
@@ -431,6 +433,7 @@ general {
 order += "cpu_usage"
 order += "memory"
 order += "disk /"
+#order += "disk /home"
 order += "ethernet '$zerotierAdapter'"
 order += "wireless _first_"
 order += "ethernet _first_"
@@ -513,6 +516,14 @@ battery all {
 
 disk "/" {
         format = "[SSD/%used]"
+	separator = false
+	separator_block_width = 1
+	align = "center"
+        min_width = 1
+}
+
+disk "/home" {
+        format = "[HDD/%used]"
 	separator = false
 	separator_block_width = 1
 	align = "center"
@@ -702,6 +713,13 @@ textbox-prompt-colon {
 }
 
 ' "$HOME/.config/i3/rofi.rasi"
+
+criarArq 'shadow = false;
+fading = false;
+opacity-rule = [
+        "90:class_g = '"'terminology'"'"
+];
+' "$HOME/.config/i3/picom.conf"
 
 criarArq '#!/bin/sh
 getcol=$(rm /tmp/getcol.png
