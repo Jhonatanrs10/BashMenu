@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 myBase="pulseaudio pulseaudio-bluetooth samba xarchiver papirus-icon-theme breeze-gtk xcursor-comix ntfs-3g dosfstools os-prober nano vim git neofetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji cmatrix htop"
-myI3wm="i3 picom lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings font-manager dmenu rofi i3lock i3status feh imagemagick nitrogen acpilight volumeicon thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman scrot xsel terminology lxrandr lxappearance xfce4-taskmanager xfce4-power-manager xfce4-appfinder galculator system-config-printer blueman pavucontrol network-manager-applet wireless_tools xreader mpv"
+myI3wm="i3 picom lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings font-manager dmenu rofi i3lock i3status feh imagemagick nitrogen acpilight volumeicon thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman scrot xsel terminology lxrandr lxappearance xfce4-taskmanager xfce4-power-manager xfce4-appfinder galculator system-config-printer blueman pavucontrol network-manager-applet wireless_tools xreader mpv gparted chromium code qbittorrent"
 myXfce="xfce4 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings font-manager xfce4-screenshooter xfce4-pulseaudio-plugin blueman pavucontrol thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman network-manager-applet xreader mpv galculator system-config-printer"
 myGnome="gnome gdm"
 
@@ -50,6 +50,8 @@ posInstall(){
                         installPacotes "$javaPackages"
                         echo "[ARCH] Aplicativo de Torrent"
                         installPacotes "qbittorrent"
+                        echo "[ARCH] VirtManager (Criar Maquina Virtual) Recomendado reiniciar"
+                        installPacotes "qemu libvirt ebtables dnsmasq bridge-utils openbsd-netcat virt-manager"
                         echo "[ARCH] Retroarch"
                         installPacotes "retroarch retroarch-assets-xmb retroarch-assets-ozone libretro-snes9x libretro-mgba libretro-beetle-psx"
                         echo "[ARCH] FireWall"
@@ -163,6 +165,11 @@ font-name = FreeMono 10'
 i3wmConfig(){
         #MAIN COLOR 005577, bfbfbf
 	installPacotes "$myI3wm"
+        echo -e "\n(Re)Configurar myDefault Dark Lightdm digite yes"
+        read myL
+        if [ "$myL" = "yes" ]; then
+                lightdmConfig
+        fi
         cp $HOME/.config/i3/config $HOME/.config/i3/config-bkp
         echo "[COLORS] Black:#000000, Gray:#808080, White:#FFFFFF"
         forLength "[COLOR] Bar" "7" "#000000"
@@ -174,11 +181,6 @@ i3wmConfig(){
         forLength "[COLOR] Window" "7" "#005577"
         jrswindowcomfoco=$txtForLength
         jrswindowsemfoco="#7d7d7d"
-        echo -e "\n(Re)Configurar myDefault Dark Lightdm digite yes"
-        read myL
-        if [ "$myL" = "yes" ]; then
-                lightdmConfig
-        fi
         criarArq '######Jhonatanrs I3-WM config######
 set $mod Mod4
 set $textFont FreeMono 8
@@ -717,12 +719,12 @@ textbox-prompt-colon {
 
 criarArq 'shadow = false;
 fading = true;
-fade-in-step = 0.05;
-fade-out-step = 0.05;
-fade-delta = 5;
+fade-in-step = 0.1;
+fade-out-step = 1;
+fade-delta = 10;
 inactive-opacity = 1 ;
-frame-opacity = 0.7;
-menu-opacity = 0.5;
+frame-opacity = 0.9;
+menu-opacity = 0.9;
 inactive-opacity-override = false;
 vsync = true;
 opacity-rule = [
