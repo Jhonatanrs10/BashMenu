@@ -3,6 +3,7 @@ myBase="pulseaudio pulseaudio-bluetooth samba xarchiver papirus-icon-theme breez
 myI3wm="i3 picom lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings font-manager dmenu rofi i3lock i3status feh imagemagick nitrogen acpilight volumeicon pcmanfm scrot xsel terminology lxrandr lxappearance xfce4-taskmanager xfce4-power-manager xfce4-appfinder galculator system-config-printer blueman pavucontrol network-manager-applet wireless_tools xreader mpv gparted chromium code qbittorrent"
 myXfce="xfce4 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings font-manager xfce4-screenshooter xfce4-pulseaudio-plugin blueman pavucontrol thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman network-manager-applet xreader mpv galculator system-config-printer"
 myGnome="gnome gdm"
+myNvidia="nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"
 
 posInstall(){
         while [ "$resp" != "" ];
@@ -77,7 +78,7 @@ posInstall(){
                         #https://github.com/lutris/docs/blob/master/InstallingDrivers.md#arch--manjaro--other-arch-linux-derivatives
                         #causa crash no gdm o pacote: nvidia-dkms
                         #https://codigocristo.github.io/driver_nvidia.html
-                        installPacotes "nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"   
+                        installPacotes "$myNvidia"   
                 elif [ "$resp" = "7" ]; then
                         echo "---------------------
 Configuracoes Manuais
