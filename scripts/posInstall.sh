@@ -71,6 +71,8 @@ posInstall(){
                         installPacotes "gvfs gvfs-mtp gvfs-smb"
                         echo "[ARCH] Manipular Discos Terminal"
                         installPacotes "udisks2"
+                        echo "[ARCH] Mangohud e Gamemode"
+                        installPacotes "mangohud lib32-mangohud gamemode lib32-gamemode"
                         echo "[ARCH] Obs Studio e Plugins"
                         installPacotes "app/com.obsproject.Studio/x86_64/stable runtime/com.obsproject.Studio.Plugin.MoveTransition/x86_64/stable"
                 elif [ "$resp" = "3" ]; then
@@ -99,6 +101,10 @@ sudo systemctl restart gdm3
 ---------------------
 [THEME]
 Caso de erro com thema no i3 é so apagar as pastas gtk-* em .config na HOME
+---------------------
+[NVIDIA]
+configurar no Xorg com
+sudo nvidia-xconfig
 "
                         read enterprasair
                 elif [ "$resp" = "5" ]; then
@@ -229,15 +235,14 @@ exec --no-startup-id nitrogen --restore
 #exec --no-startup-id feh --bg-scale ~/.config/i3/wallpaperI3.png
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id xset -b
-exec --no-startup-id picom --config ~/.config/i3/picom.conf
 
 ###Binds###
 bindsym $mod+d exec --no-startup-id $appMenu
-bindsym $mod+Return exec $appTerminal
-bindsym $mod+Shift+Return exec i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id $appTerminal
+bindsym $mod+Shift+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Shift+q kill
-bindsym $mod+x exec $appFiles
-bindsym $mod+c exec $appBrowser
+bindsym $mod+x exec --no-startup-id $appFiles
+bindsym $mod+c exec --no-startup-id $appBrowser
 
 ###Print###
 bindsym --release Print exec mkdir -p ~/PrtSc | scrot ~/PrtSc/creenshot_%Y-%m-%d_%H-%M-%S.png
@@ -253,6 +258,7 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+bindsym $mod+Shift+g move absolute position center
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
@@ -270,7 +276,6 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+Shift+w sticky toggle
-bindsym $mod+g move absolute position center
 
 ###Brightness and Sound###
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
@@ -320,6 +325,7 @@ smart_gaps off
 workspace_layout default
 for_window [class=$appTerminal] floating enable
 for_window [title=$appF2] floating enable
+for_window [instance=nvidia-settings] floating enable
 #for_window [instance=$appMenu] floating enable resize set 600 300
 
 ###I3BARS###
@@ -358,17 +364,18 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
 client.background       #ffffff
 
 ###MODOS###
-set $mode_programs [1/Sound][2/Calc][3/Tasks][4/Energy][5/Display][6/Looks][7/I3Paper][8/Printer]
+set $mode_programs [1/Sound][2/Calc][3/Tasks][4/Energy][5/Display][6/Looks][7/I3Paper][8/Printer][9/Picom]
 mode "$mode_programs" {
-    bindsym 1 exec $appF1, mode "default"
-    bindsym 2 exec $appF2, mode "default"
-    bindsym 3 exec $appF3, mode "default"
-    bindsym 4 exec $appF4, mode "default"
-    bindsym 5 exec $appF5, mode "default"
-    bindsym 6 exec $appF6, mode "default"
-    bindsym 7 exec $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') /usr/share/backgrounds/main.png, mode "default"
-    #bindsym 7 exec $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') $HOME/.config/i3/wallpaperI3Lock.png, mode "default"
-    bindsym 8 exec $appF8, mode "default"
+    bindsym 1 exec --no-startup-id $appF1, mode "default"
+    bindsym 2 exec --no-startup-id $appF2, mode "default"
+    bindsym 3 exec --no-startup-id $appF3, mode "default"
+    bindsym 4 exec --no-startup-id $appF4, mode "default"
+    bindsym 5 exec --no-startup-id $appF5, mode "default"
+    bindsym 6 exec --no-startup-id $appF6, mode "default"
+    bindsym 7 exec --no-startup-id $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') /usr/share/backgrounds/main.png, mode "default"
+    #bindsym 7 exec --no-startup-id $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') $HOME/.config/i3/wallpaperI3Lock.png, mode "default"
+    bindsym 8 exec --no-startup-id $appF8, mode "default"
+    bindsym 9 exec --no-startup-id picom --config ~/.config/i3/picom.conf, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -721,7 +728,7 @@ textbox-prompt-colon {
 ' "$HOME/.config/i3/rofi.rasi"
 
 criarArq 'shadow = false;
-fading = true;
+fading = false;
 fade-in-step = 0.1;
 fade-out-step = 1;
 fade-delta = 10;
@@ -729,7 +736,9 @@ inactive-opacity = 1 ;
 frame-opacity = 0.9;
 menu-opacity = 0.9;
 inactive-opacity-override = false;
-vsync = true;
+vsync = false;
+unredir-if-possible = false;
+backend = "xrender";
 opacity-rule = [
         "90:class_g = '"'terminology'"'"
 ];
