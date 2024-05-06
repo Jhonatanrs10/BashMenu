@@ -71,9 +71,10 @@ menu12345 "
 menu12345 "
 [1] CRIAR PASTA COMPARTILHADA (SHARE)
 [2] CRIAR PASTA COMPARTILHADA (GUEST)
+[3] CRIA ATALHO RETROARCH GAME
 " "criaPastaShareUser
 " "criaPastaShareGuest
-" "return
+" "criaAtalhoDesktopRetroarchArch
 " "return
 " "return"
 

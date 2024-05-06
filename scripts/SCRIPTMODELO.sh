@@ -14,7 +14,7 @@ SCRIPTMODELO(){
 #cd $diretorioInstall
 #./nomearquivo"
 
-    criaAtalho "$installName" "Description" "bash run.sh" "$diretorioInstall" "false" "$installName" "$dBashMenu/Icons/default.svg"
+    criaAtalho "$installName" "Description" "bash run.sh" "$diretorioInstall" "false" "$installName" "application-default-icon"
     criaAtalhoBin "$diretorioInstall/run.sh" "$installName"
 
 }   

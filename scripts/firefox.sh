@@ -5,7 +5,7 @@ installFirefox(){
         diretorioFirefox="$dBashMenu/FirefoxJRS"
 	criaPastaBaixaExtrai "$dBashMenu/FirefoxJRS" "$varFirefox" "firefox.tar.bz2"
         cd $diretorioFirefox
-        criaAtalho "FirefoxJRS" "Mozilla Browser" "bash runFirefox.sh" "$diretorioFirefox" "false" "FirefoxJRS" "$dBashMenu/Icons/icon-firefox.svg"
+        criaAtalho "FirefoxJRS" "Mozilla Browser" "bash runFirefox.sh" "$diretorioFirefox" "false" "FirefoxJRS" "firefox"
 	criaAtalhoBin "$diretorioFirefox/firefox/firefox" "FirefoxJRS"
         criarArq "#!/usr/bin/env bash
 cd $diretorioFirefox/firefox

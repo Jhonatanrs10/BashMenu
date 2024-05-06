@@ -12,7 +12,7 @@ installMinecraft(){
     criarArq "#!/usr/bin/env sh
 	cd $diretorioMine
 	java -jar $tlauncher" "$diretorioMine/tlauncher.sh"
-    criaAtalho "MinecraftTlauncher" "Create your own world" "bash tlauncher.sh" "$diretorioMine" "false" "MinecraftTlauncher" "$dBashMenu/Icons/icon-minecraft.svg"
+    criaAtalho "MinecraftTlauncher" "Create your own world" "bash tlauncher.sh" "$diretorioMine" "false" "MinecraftTlauncher" "minecraft"
 	criaAtalhoBin "$diretorioMine/tlauncher.sh" "MinecraftTlauncher"
 	echo -e "[INFO] - SCRIPT FINALIZADO - [INFO]"
 }

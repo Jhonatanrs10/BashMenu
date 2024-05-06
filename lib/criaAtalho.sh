@@ -33,6 +33,20 @@ criaAtalhoDesktop(){
     criaAtalho "$atalhoName" "$atalhoDescricao" "$atalhoComando" "$atalhoDiretorio" "$atalhoTerminalTrueOuFalse" "$atalhoName" "$atalhoIcone"
 }
 
+criaAtalhoDesktopRetroarchArch(){
+    RetroArchCores="/usr/lib/libretro"
+    echo "Escolha um Core"
+    ls $RetroArchCores
+    read RetroArchCore
+    echo "Diretorio/Game.zip"
+    read RetroArchDiretorioGame
+    echo "NomedoGame (tudo junto)"
+    read RetroArchGameName
+    criaAtalho "$RetroArchGameName" "Retroarch Game" "retroarch -f -L $RetroArchCores/$RetroArchCore $RetroArchDiretorioGame" "" "false" "$RetroArchGameName" "retroarch"
+
+
+}
+
 #remove quebra de linha (arquivos SVG)
 #https://miniwebtool.com/br/remove-line-breaks/
 # cria um atalho .desktop

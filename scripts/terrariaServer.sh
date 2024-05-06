@@ -11,7 +11,7 @@ terrariaServer(){
     criaArqRunDiretorioInstall "#!/usr/bin/env sh
 cd $diretorioInstall/*/Linux
 ./TerrariaServer.bin.x86_64"
-    criaAtalho "$installName" "Terraria Server PC" "bash run.sh" "$diretorioInstall" "true" "$installName" "$dBashMenu/Icons/default.svg"
+    criaAtalho "$installName" "Terraria Server PC" "bash run.sh" "$diretorioInstall" "true" "$installName" "application-default-icon"
     criaAtalhoBin "$diretorioInstall/run.sh" "$installName"
 
 }   

@@ -16,8 +16,7 @@ dependencias(){
 cd $PWD
 bash $nomeRun.sh" "$dBashMenu/Bins/runBashMenu.sh"
         AtalhoBinExec "$dBashMenu/Bins/runBashMenu.sh"
-        criaAtalho "BashMenu" "My BashMenu " "jrs" "$dBashMenu" "true" "BashMenu" "$dBashMenu/Icons/logojrs.svg"
-        packIcons
+        criaAtalho "BashMenu" "My BashMenu " "jrs" "$dBashMenu" "true" "BashMenu" "bash"
         installPacotes "$fullPackages"
         installPacotes "$javaPackages"
     fi

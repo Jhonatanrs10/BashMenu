@@ -63,10 +63,6 @@ end)' "$diretorioServer/server-data/resources/[gamemodes]/basic-gamemode/basic_c
     }
 </style>" "$diretorioServer/server-data/resources/[test]/example-loadscreen/index.html"
 
-	convert $dBashMenu/Icons/logojr.svg -resize 800x800 $diretorioServer/server-data/resources/[test]/example-loadscreen/loadscreen2.jpg
-    convert $dBashMenu/Icons/logojr.svg -resize 96x96 $diretorioServer/server-data/myLogo.png
-	convert $dBashMenu/Icons/logojr.svg -resize 96x96 $diretorioServer/myLogo.png
-
     addNoArq '# Only change the IP if youre using a server with multiple network interfaces, otherwise change the port only.
 endpoint_add_tcp 0.0.0.0:30120
 endpoint_add_udp 0.0.0.0:30120
