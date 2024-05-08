@@ -5,89 +5,62 @@ resp="vazio"
 while [ "$resp" != "exit" ];
 do
 menu12345 "
-[1] GIT CONFIG
-[2] GIT PUSH
-[3] ASSISTIR PELO MPV
-[4] I3WM CONFIG
-" "gitconfig
+[1] GIT PUSH
+[2] ASSISTIR PELO MPV
+[3] I3WM CONFIG
+[4] CRIA ATALHO DESKTOP
+[5] CRIA ATALHO RETROARCH GAME
+[6] CRIA ATALHO PASTA/ARQUIVO
+[7] CRIA ATALHO BIN PARA COMANDOS DE TERMINAL
 " "gitAutoPush
 " "assistirMpv
 " "i3wmConfig
-" "return"
+" "CriaAtalhoDesktop
+" "CriaAtalhoDesktopRetroarchArch
+" "criaArqRunDiretorioInstall
+" "AtalhoTerminalBin"
 
 menu12345 "
-[1] INSTALAR MINECRAFT TLAUNCHER
-[2] INSTALAR MINECRAFT SERVER
-[3] INSTALAR MINECRAFT SERVER VERSION
-[4] INSTALAR MINECRAFT SERVER FORGE 1.7.10 ESCADONA LUCKY BLOCK
-[5] MUDAR JAVA VERSION
-" "installMinecraft
-" "installMinecraftServer
-" "installMinecraftServerVersion
-" "installMinecraftServerForge
-" "javaVersion"
-
-menu12345 "
-[1] INSTALAR HAMACHI E HAGUICHI (APT)
-[2] INSTALAR ZEROTIER
-[3] INSTALAR NGROK
-[4] INSTALAR DOCKER (APT)
-[5] INSTALAR DOCKERZEROTIER
-" "hamachi
-" "zerotier
-" "installNgrok
-" "docker
-" "dockerZeroTier"
-
-menu12345 "
-[1] INSTALAR BONGOCAT
-[2] INSTALAR POKEXGAMES
-[3] INSTALAR FIREFOX
+[1] BASHMENU CONFIG
+[2] INSTALAR POSINSTALL
+[3] GIT CONFIG
+[4] CRIAR PASTA COMPARTILHADA (USER)
+[5] CRIAR PASTA COMPARTILHADA (GUEST)
+[6] INSTALAR BONGOCAT
+[7] INSTALAR POKEXGAMES
+[8] INSTALAR MINECRAFT TLAUNCHER
+" "dependenciasAtalho
+" "posInstall
+" "gitconfig
+" "criaPastaShareUser
+" "criaPastaShareGuest
 " "bongo
 " "installPokexgames
-" "installFirefox
-" "return
-" "return"
+" "installMinecraft"
 
 menu12345 "
-[1] INSTALAR FIVEM SERVER
-[2] INSTALAR UNTURNED SERVER
-[3] INSTALAR SAMP SERVER
-[4] INSTALAR TERRARIA SERVER
+[1] INSTALAR MINECRAFT SERVER VERSION
+[2] INSTALAR FIVEM SERVER
+[3] INSTALAR UNTURNED SERVER
+[4] INSTALAR SAMP SERVER
+[5] INSTALAR TERRARIA SERVER
+[6] INSTALAR HAMACHI E HAGUICHI (APT)
+[7] INSTALAR ZEROTIER
+[8] INSTALAR NGROK
+" "installMinecraftServer
 " "installFivem
 " "installUnturnedServer
 " "sampServer
 " "terrariaServer
-" "return"
+" "hamachi
+" "zerotier
+" "installNgrok"
+
 menu12345 "
 [1] INSTALAR NODEJS LTS
-[2] INSTALAR VIRTUAL GAMEPADS
+[2] MUDAR JAVA VERSION
+[3] INSTALAR VIRTUAL GAMEPADS
 " "nodejslts
-" "virtualGamepads
-" "return
-" "return
-" "return"
-
-menu12345 "
-[1] CRIAR PASTA COMPARTILHADA (SHARE)
-[2] CRIAR PASTA COMPARTILHADA (GUEST)
-[3] CRIA ATALHO RETROARCH GAME
-" "criaPastaShareUser
-" "criaPastaShareGuest
-" "criaAtalhoDesktopRetroarchArch
-" "return
-" "return"
-
-menu12345 "
-[1] CRIA ATALHO BIN PARA COMANDOS DE TERMINAL
-[2] REPARAR APT
-[3] INSTALAR POSINSTALL
-[4] CRIA ATALHO DESKTOP
-[5] CRIA ATALHO PASTA/ARQUIVO
-" "AtalhoTerminalBin
-" "repararApt
-" "posInstall
-" "criaAtalhoDesktop
-" "criaArqRunDiretorioInstall"
-
+" "javaVersion
+" "virtualGamepads"
 done

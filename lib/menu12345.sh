@@ -27,6 +27,18 @@ menu12345(){
             clear
             $6
             return 
+        elif [ "$resp" = 6 ]; then
+            clear
+            $7
+            return 
+        elif [ "$resp" = 7 ]; then
+            clear
+            $8
+            return 
+        elif [ "$resp" = 8 ]; then
+            clear
+            $9
+            return 
         elif [ "$resp" = "exit" ]; then
             clear
             exit 1
@@ -43,6 +55,16 @@ menu12345(){
 #[3] opcao 3
 #[4] opcao 4
 #[5] opcao 5
+#[6] opcao 6
+#[7] opcao 7
+#[8] opcao 8
+#[9] opcao 9
+#[0] opcao 0
+#" "return
+#" "return
+#" "return
+#" "return
+#" "return
 #" "return
 #" "return
 #" "return

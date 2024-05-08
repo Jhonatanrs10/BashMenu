@@ -8,7 +8,13 @@ dependencias(){
     source ./lib/sourceFolder.sh
     sourceFolder "LIBs" "./lib"
     sourceFolder "Scripts" "./scripts"
-    echo "INSTALAR DEPENDENCIAS? TECLE s PARA ACEITAR"
+    #sleep 10
+}
+dependenciasAtalho(){
+    echo "INSTALAR ATALHO BASHMENU 
+Diretorio atual:
+$PWD
+Este e o diretorio do $nomeRun.sh (s/n)"
     read resp
     if [ "$resp" = "s" ]; then
         mkdir -p $dBashMenu/Bins
@@ -17,6 +23,10 @@ cd $PWD
 bash $nomeRun.sh" "$dBashMenu/Bins/runBashMenu.sh"
         AtalhoBinExec "$dBashMenu/Bins/runBashMenu.sh"
         criaAtalho "BashMenu" "My BashMenu " "jrs" "$dBashMenu" "true" "BashMenu" "bash"
+    fi
+    echo "Instalar Dependencias e Java? (s/n)"
+    read resp
+    if [ "$resp" = "s" ]; then
         installPacotes "$fullPackages"
         installPacotes "$javaPackages"
     fi
