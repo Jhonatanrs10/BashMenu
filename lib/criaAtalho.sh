@@ -43,8 +43,6 @@ criaAtalhoDesktopRetroarchArch(){
     echo "NomedoGame (tudo junto)"
     read RetroArchGameName
     criaAtalho "$RetroArchGameName" "Retroarch Game" "retroarch -f -L $RetroArchCores/$RetroArchCore $RetroArchDiretorioGame" "" "false" "$RetroArchGameName" "retroarch"
-
-
 }
 
 #remove quebra de linha (arquivos SVG)

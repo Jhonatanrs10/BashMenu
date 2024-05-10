@@ -15,8 +15,8 @@ menu12345 "
 " "gitAutoPush
 " "assistirMpv
 " "i3wmConfig
-" "CriaAtalhoDesktop
-" "CriaAtalhoDesktopRetroarchArch
+" "criaAtalhoDesktop
+" "criaAtalhoDesktopRetroarchArch
 " "criaArqRunDiretorioInstall
 " "AtalhoTerminalBin"
 
@@ -63,4 +63,5 @@ menu12345 "
 " "nodejslts
 " "javaVersion
 " "virtualGamepads"
+
 done
