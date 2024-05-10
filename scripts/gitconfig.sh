@@ -23,11 +23,9 @@ gitconfig(){
 }
 
 gitAutoPush(){
-    cd $HOME/*/GitHub
-    echo "[GITs]"
-    ls
-    read selection
-    cd $selection
+    myGitsFolder="$HOME/*/GitHub"
+    listaOptions "$myGitsFolder" "myGits"
+    cd $myGitsFolder/$myGits
     git status
     yesorno "PULL" "git pull"
     echo "COMMIT:"

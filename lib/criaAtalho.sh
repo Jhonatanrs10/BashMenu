@@ -35,16 +35,16 @@ criaAtalhoDesktop(){
 
 criaAtalhoDesktopRetroarchArch(){
     RetroArchCores="/usr/lib/libretro"
-    echo "Escolha um Core"
-    ls $RetroArchCores
-    read RetroArchCore
-    echo "Diretorio/Game.zip"
-    read RetroArchDiretorioGame
-    echo "NomedoGame (tudo junto)"
-    read RetroArchGameName
-    criaAtalho "$RetroArchGameName" "Retroarch Game" "retroarch -f -L $RetroArchCores/$RetroArchCore $RetroArchDiretorioGame" "" "false" "$RetroArchGameName" "retroarch"
+    echo "ESCOLHA A BIOS/CORE PRA A ROM:"
+    listaOptions "$RetroArchCores" "RetroArchCore"
+    echoRead "DIGITE O DIRETORIO ONDE ESTAO OS RETROGAMES" "RetroArchDiretorioGames"
+    listaOptions "$RetroArchDiretorioGames" "RetroArchGameName"
+    criaAtalho "${RetroArchGameName%.*}" "Retroarch Game" "retroarch -f -L $RetroArchCores/$RetroArchCore $RetroArchDiretorioGames/$RetroArchGameName" "" "false" "Retroarch-${RetroArchGameName%.*}" "retroarch"
 }
 
+removeAllDesktopRetroarchArch(){
+    sudo rm /usr/share/applications/jrs-Retroarch-*
+}
 #remove quebra de linha (arquivos SVG)
 #https://miniwebtool.com/br/remove-line-breaks/
 # cria um atalho .desktop

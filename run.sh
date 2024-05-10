@@ -60,8 +60,10 @@ menu12345 "
 [1] INSTALAR NODEJS LTS
 [2] MUDAR JAVA VERSION
 [3] INSTALAR VIRTUAL GAMEPADS
+[4] REMOVER TODOS ATALHOS RETROARCH
 " "nodejslts
 " "javaVersion
-" "virtualGamepads"
+" "virtualGamepads
+" "removeAllDesktopRetroarchArch"
 
 done
