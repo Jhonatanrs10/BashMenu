@@ -34,6 +34,7 @@ criaAtalhoDesktop(){
 }
 
 criaAtalhoDesktopRetroarchArch(){
+    removeAllDesktop "Retroarch"
     RetroArchCores="/usr/lib/libretro"
     echo "ESCOLHA A BIOS/CORE PRA A ROM:"
     listaOptions "$RetroArchCores" "RetroArchCore"
@@ -42,9 +43,30 @@ criaAtalhoDesktopRetroarchArch(){
     criaAtalho "${RetroArchGameName%.*}" "Retroarch Game" "retroarch -f -L $RetroArchCores/$RetroArchCore $RetroArchDiretorioGames/$RetroArchGameName" "" "false" "Retroarch-${RetroArchGameName%.*}" "retroarch"
 }
 
-removeAllDesktopRetroarchArch(){
-    sudo rm /usr/share/applications/jrs-Retroarch-*
+removeAllDesktop(){
+    echo "DESEJA APAGAR OS ATALHOS $1 (s/n)"
+    read resp
+    if [ "$resp" = "s" ]; then
+        sudo rm /usr/share/applications/jrs-$1-*
+    fi
+    clear
 }
+
+#removeAllDesktop "palavrachave ex retroarch"
+
+criaAtalhoDesktopAppimage(){
+    removeAllDesktop "Appimage"
+    appimageFolder="$dBashMenu/Appimage"
+    mkdir -p $appimageFolder
+    for vApp in `ls $appimageFolder`
+        do
+            chmod 777 $appimageFolder/$vApp
+            criaAtalho "${vApp%.*}" "An Appimage" "./$vApp" "$appimageFolder" "false" "Appimage-${vApp%.*}" "application-default-icon"
+        done
+
+
+}
+
 #remove quebra de linha (arquivos SVG)
 #https://miniwebtool.com/br/remove-line-breaks/
 # cria um atalho .desktop
