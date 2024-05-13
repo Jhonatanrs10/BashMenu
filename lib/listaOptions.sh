@@ -2,7 +2,7 @@
 listaOptions(){
     zListaOptions="/tmp/zListaOptions.txt"
     cd $1
-    ls .> $zListaOptions
+    ls $3 .> $zListaOptions
     cd $OLDPWD
     echo "[ListaOptions] DIGITE O NUMERO DA SUA ESCOLHA:"
     cat -n $zListaOptions
@@ -17,4 +17,4 @@ echoRead(){
     read $2
 }
 #echoRead "MSG" "VAR RETORNO"
-#listaOptions "/home/user/diretorio" "nome-variavel-retorno"
+#listaOptions "/home/user/diretorio" "nome-variavel-retorno" "criterio do ls ex ls jrs-*"

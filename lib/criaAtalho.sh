@@ -36,20 +36,27 @@ criaAtalhoDesktop(){
 criaAtalhoDesktopRetroarchArch(){
     removeAllDesktop "Retroarch"
     RetroArchCores="/usr/lib/libretro"
+    RetroArchDiretorioGames="$HOME/Roms"
     echo "ESCOLHA A BIOS/CORE PRA A ROM:"
     listaOptions "$RetroArchCores" "RetroArchCore"
-    echoRead "DIGITE O DIRETORIO ONDE ESTAO OS RETROGAMES" "RetroArchDiretorioGames"
     listaOptions "$RetroArchDiretorioGames" "RetroArchGameName"
     criaAtalho "${RetroArchGameName%.*}" "Retroarch Game" "retroarch -f -L $RetroArchCores/$RetroArchCore $RetroArchDiretorioGames/$RetroArchGameName" "" "false" "Retroarch-${RetroArchGameName%.*}" "retroarch"
 }
 
 removeAllDesktop(){
-    echo "DESEJA APAGAR OS ATALHOS $1 (s/n)"
-    read resp
+    echoRead "DESEJA APAGAR OS ATALHOS $1 (s/n)" "resp"
     if [ "$resp" = "s" ]; then
         sudo rm /usr/share/applications/jrs-$1-*
     fi
     clear
+}
+
+removeDesktopJRS(){
+    listaOptions "/usr/share/applications" "ptDesktop" "-d jrs-*"
+    echoRead "DESEJA APAGAR O ATALHO $ptDesktop (s/n)" "resp"
+    if [ "$resp" = "s" ]; then
+        sudo rm /usr/share/applications/$ptDesktop
+    fi
 }
 
 #removeAllDesktop "palavrachave ex retroarch"
