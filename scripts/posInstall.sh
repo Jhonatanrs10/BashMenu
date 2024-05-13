@@ -53,7 +53,9 @@ posInstall(){
                         installPacotes "qbittorrent"
                         echo "[ARCH] VirtManager (Criar Maquina Virtual) Recomendado reiniciar"
                         installPacotes "qemu libvirt ebtables dnsmasq bridge-utils openbsd-netcat virt-manager"
-                        enableSystemctl "libvirtd"               
+                        enableSystemctl "libvirtd"  
+                        sudo virsh net-autostart default
+                        #sudo virsh net-start default             
                         echo "[ARCH] Retroarch"
                         installPacotes "retroarch retroarch-assets-xmb retroarch-assets-ozone libretro-snes9x libretro-mgba libretro-beetle-psx"
                         echo "[ARCH] FireWall"
