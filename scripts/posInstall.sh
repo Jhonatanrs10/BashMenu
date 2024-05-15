@@ -46,7 +46,7 @@ appPosMix(){
 }
 
 appPosMixMy(){
-    installPacotes "gimp inkscape shotcut code qbittorrent" "myAppsUtils [pacman]"
+    installPacotes "discord gimp inkscape shotcut code qbittorrent" "myAppsUtils [pacman]"
     installPacotes "steam mangohud lib32-mangohud gamemode lib32-gamemode" "Steam e Game Utils"
     installPacotes "app/com.obsproject.Studio/x86_64/stable runtime/com.obsproject.Studio.Plugin.MoveTransition/x86_64/stable" "Obs e Plugins"
     installPacotes "retroarch retroarch-assets-xmb retroarch-assets-ozone libretro-snes9x libretro-mgba libretro-beetle-psx" "Retroarch"
