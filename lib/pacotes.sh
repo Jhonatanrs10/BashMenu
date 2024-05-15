@@ -1,9 +1,7 @@
 #!/usr/bin/env sh
 installPacotes(){
-	echo -e "[INFO] - INSTALANDO PROGRAMAS - [INFO]"
 	resp="vazio"
-	clear
-	echo "[INSTALAR PACOTES] 
+	echo "[INSTALAR PACOTES] $2
 Pacotes: $1	
 Usar: [1]apt, [2]pacman [3]pamac [4]flatpak"
 	read resp

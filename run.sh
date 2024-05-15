@@ -8,38 +8,53 @@ menu12345 "
 [1] GIT PUSH
 [2] ASSISTIR PELO MPV
 [3] I3WM CONFIG
-[4] CRIA ATALHO DESKTOP
-[5] REMOVE ATALHO DESKTOP
-[6] CRIA ATALHO RETROARCH GAME
-[7] CRIA ATALHO PASTA/ARQUIVO
-[8] CRIA ATALHO BIN PARA COMANDOS DE TERMINAL
+[4] LIGHTDM CONFIG
+[5] BASHMENU CONFIG
 " "gitAutoPush
 " "assistirMpv
 " "i3wmConfig
-" "criaAtalhoDesktop
-" "removeDesktopJRS
-" "criaAtalhoDesktopRetroarchArch
-" "criaArqRunDiretorioInstall
-" "AtalhoTerminalBin"
-
+" "appPosLightdmConfig
+" "dependenciasAtalho"
 
 menu12345 "
-[1] BASHMENU CONFIG
-[2] INSTALAR POSINSTALL
-[3] GIT CONFIG
-[4] CRIAR PASTA COMPARTILHADA (USER)
-[5] CRIAR PASTA COMPARTILHADA (GUEST)
-[6] INSTALAR BONGOCAT
-[7] INSTALAR POKEXGAMES
-[8] INSTALAR MINECRAFT TLAUNCHER
-" "dependenciasAtalho
-" "posInstall
+[1] MYBASE CONFIG
+[2] I3WM UTILS
+[3] MyApps
+[4] NVIDIA PROPRIETARIO
+" "appPosMyBase
+" "appPosMyUtils
+" "appPosMixMy
+" "appPosNvidiaDriverProp"
+
+menu12345 "
+[1] CRIA ATALHO DESKTOP
+[2] CRIA ATALHO RETROARCH GAME
+[3] CRIA ATALHO PASTA/ARQUIVO
+[4] CRIA ATALHO BIN PARA COMANDOS DE TERMINAL
+[5] CRIA ATALHO APPIMAGE
+[6] REMOVE ATALHO DESKTOP
+" "criaAtalhoDesktop
+" "criaAtalhoDesktopRetroarchArch
+" "criaArqRunDiretorioInstall
+" "AtalhoTerminalBin
+" "criaAtalhoDesktopAppimage
+" "removeDesktopJRS"
+
+menu12345 "
+[1] GIT CONFIG
+[2] CRIAR PASTA COMPARTILHADA (USER)
+[3] CRIAR PASTA COMPARTILHADA (GUEST)
+[4] INSTALAR BONGOCAT
+[5] INSTALAR POKEXGAMES
+[6] INSTALAR MINECRAFT TLAUNCHER
+[7] INSTALAR POSMIX APPS
 " "gitconfig
 " "criaPastaShareUser
 " "criaPastaShareGuest
 " "bongo
 " "installPokexgames
-" "installMinecraft"
+" "installMinecraft
+" "appPosMix"
 
 menu12345 "
 [1] INSTALAR MINECRAFT SERVER VERSION
@@ -63,10 +78,24 @@ menu12345 "
 [1] INSTALAR NODEJS LTS
 [2] MUDAR JAVA VERSION
 [3] INSTALAR VIRTUAL GAMEPADS
-[4] CRIAR ATALHO APPIMAGE
+[4] INSTALAR VIRTMANAGER (MAQUINA VIRTUAL)
 " "nodejslts
 " "javaVersion
 " "virtualGamepads
-" "criaAtalhoDesktopAppimage"
+" "appPosVirtManager"
+
+menu12345 "
+[1] NETWORK CONFIG
+[2] POS MANUAL CONFIG
+[3] BLUETOOTH FIX
+[4] TECLADO CONFIG
+[5] DATA E HORA CONFIG NTP
+[6] TOUCHPAD CONFIG
+" "appPosNetwork
+" "appPosManualConfig
+" "appPosBluetoothFix
+" "appPosTecladoConfig
+" "appPosTimeNTP
+" "appPosI3Touchpad"
 
 done

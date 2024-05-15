@@ -58,10 +58,6 @@ menu12345(){
 #[6] opcao 6
 #[7] opcao 7
 #[8] opcao 8
-#[9] opcao 9
-#[0] opcao 0
-#" "return
-#" "return
 #" "return
 #" "return
 #" "return
