@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-myBase="pulseaudio pulseaudio-bluetooth samba xarchiver bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget papirus-icon-theme breeze-gtk breeze-icons ntfs-3g dosfstools os-prober nano vim git neofetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji cmatrix htop leafpad"
+myBase="pulseaudio pulseaudio-bluetooth samba xarchiver bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget papirus-icon-theme breeze-gtk capitaine-cursors ntfs-3g dosfstools os-prober nano vim git neofetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji cmatrix htop leafpad"
 myI3wm="i3 picom lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings font-manager dmenu rofi i3lock i3status feh imagemagick nitrogen acpilight volumeicon pcmanfm scrot xsel terminology lxrandr lxappearance xfce4-taskmanager xfce4-power-manager xfce4-appfinder galculator system-config-printer blueman pavucontrol network-manager-applet wireless_tools xreader mpv gparted chromium gnome-keyring seahorse code qbittorrent"
 myXfce="xfce4 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings font-manager xfce4-screenshooter xfce4-pulseaudio-plugin blueman pavucontrol thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman network-manager-applet xreader mpv galculator system-config-printer"
 myGnome="gnome gdm"
@@ -11,7 +11,7 @@ posInstall(){
                 clear
                 echo "[PosInstall]
 [1]Configurar I3WM
-[2]Configurar Pos-Install [ARCH]
+[2]Configurar myBase I3WM [ARCH]
 [3]Configurar NVIDIA [ARCH]
 [4]Configurar Teclado PT-BR
 [5]Configurar Touchpad
@@ -108,6 +108,14 @@ Caso de erro com thema no i3 é so apagar as pastas gtk-* em .config na HOME
 [NVIDIA]
 configurar no Xorg com
 sudo nvidia-xconfig
+---------------------
+[GRUB]
+sudo nano /etc/default/grub
+remover # da opcao 
+#GRUB_DISABLE_OS_PROBER=false
+apos isso executar
+#GRUB_DISABLE_OS_PROBER=false
+grub-mkconfig -o /boot/grub/grub.cfg
 "
                         read enterprasair
                 elif [ "$resp" = "5" ]; then
@@ -161,7 +169,7 @@ sudo chmod 777 /usr/share/backgrounds
 sudo tee /etc/lightdm/lightdm-gtk-greeter.conf <<< '[greeter]
 theme-name = Breeze-Dark
 icon-theme-name = Papirus-Dark
-cursor-theme-name = ComixCursors-Black
+cursor-theme-name = capitaine-cursors
 indicators = ~session;~spacer;~clock;~spacer;~power
 background = /usr/share/backgrounds/main.png
 font-name = FreeMono 10'
@@ -323,11 +331,11 @@ hide_edge_borders none
 default_border pixel $tamanhodasbordas
 for_window [all] title_window_icon padding 5px
 default_floating_border pixel $tamanhodasbordas
-gaps inner $espacoentrejanelas
-gaps outer 0px
-smart_gaps off
+#gaps inner $espacoentrejanelas
+#gaps outer 0px
+#smart_gaps off
 workspace_layout default
-for_window [class=$appTerminal] floating enable
+for_window [class=$appTerminal] floating disable
 for_window [title=$appF2] floating enable
 for_window [instance=nvidia-settings] floating enable
 #for_window [instance=$appMenu] floating enable resize set 600 300

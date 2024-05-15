@@ -23,7 +23,7 @@ gitconfig(){
 }
 
 gitAutoPush(){
-    myGitsFolder="$HOME/*/GitHub"
+    myGitsFolder="$HOME/GitHub"
     listaOptions "$myGitsFolder" "myGits"
     cd $myGitsFolder/$myGits
     git status
