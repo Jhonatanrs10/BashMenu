@@ -34,7 +34,7 @@ gitAutoPush(){
     git status
     yesorno "COMMIT ($textCommit)" "git commit -m "$textCommit""
     git status
-    yesorno "PUSH" "git push"
+    yesorno "PUSH" "git push --verbose"
     git status
     sleep 5
 }
