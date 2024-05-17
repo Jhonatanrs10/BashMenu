@@ -17,7 +17,7 @@ appPosMyUtils(){
 }
                         
 appPosNetwork(){
-     echo "[ARCH] Network"
+    echo "[ARCH] Network"
     echo "INSTALAR NETWORKMANAGER"
     installPacotes "networkmanager nm-connection-editor network-manager-applet"
     #sudo systemctl enable NetworkManager.service
@@ -212,7 +212,8 @@ bindsym $mod+d exec --no-startup-id $appMenu
 bindsym $mod+Return exec --no-startup-id $appTerminal
 bindsym $mod+Shift+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Shift+q kill
-bindsym --whole-window $mod+button2 kill
+#bindsym $mod+button2 floating toggle
+#bindsym --whole-window $mod+button2 kill
 bindsym $mod+x exec --no-startup-id $appFiles
 bindsym $mod+c exec --no-startup-id $appBrowser
 
@@ -296,9 +297,9 @@ default_floating_border pixel $tamanhodasbordas
 #gaps outer 0px
 #smart_gaps off
 workspace_layout default
-for_window [class=$appTerminal] floating disable
-for_window [title=$appF2] floating enable
-for_window [instance=nvidia-settings] floating enable
+#for_window [class=$appTerminal] floating disable
+#for_window [title=$appF2] floating enable
+#for_window [instance=nvidia-settings] floating enable
 #for_window [instance=$appMenu] floating enable resize set 600 300
 
 ###I3BARS###
@@ -432,12 +433,12 @@ order += "tztime local"
 read_file BRIGHTNESS {
 	format = "[☼/%content]"
 	#path = "'$HOME'/.config/i3/brightness"
-        path = "/sys/class/backlight/intel_backlight/brightness"
+    path = "/sys/class/backlight/intel_backlight/brightness"
 	max_characters = 5
 	separator = false
 	separator_block_width = 1
 	align = "center"
-        min_width = 1
+    min_width = 1
 }
 
 cpu_usage {
@@ -446,7 +447,7 @@ cpu_usage {
 	separator = false
 	separator_block_width = 1
 	align = "center"
-        min_width = 1
+    min_width = 1
 }
 
 volume master {
@@ -455,95 +456,95 @@ volume master {
 	separator = false
 	separator_block_width = 1
 	align = "center"
-        min_width = 1
+    min_width = 1
 }
 
 wireless _first_ {
-        format_up = "[W/%ip]"
+    format_up = "[W/%ip]"
 	format_down = ""
 	separator = false
 	separator_block_width = 1
 	align = "center"
-        min_width = 1
+    min_width = 1
 }
 
 ethernet _first_ {
-        format_up = "[E/%ip]"
-        format_down = ""
+    format_up = "[E/%ip]"
+    format_down = ""
 	separator = false
 	separator_block_width = 1
 	align = "center"
-        min_width = 1
+    min_width = 1
 }
 
 ethernet '$zerotierAdapter' {
-        format_up = "[Z/%ip]"
-        format_down = ""
+    format_up = "[Z/%ip]"
+    format_down = ""
 	separator = false
 	separator_block_width = 1
 	align = "center"
-        min_width = 1
-        #diretorio com as redes /proc/sys/net/ipv4/conf/
+    min_width = 1
+    #diretorio com as redes /proc/sys/net/ipv4/conf/
 }
 
 battery all {
-        format = "[%status/%percentage]"
-        format_percentage = "%.00f%s"
-        format_down = ""
+    format = "[%status/%percentage]"
+    format_percentage = "%.00f%s"
+    format_down = ""
 	status_chr = "CHR"
-        status_bat = "BAT"
-        status_unk = "?"
+    status_bat = "BAT"
+    status_unk = "?"
 	status_full = "FULL"
 	separator = false
 	separator_block_width = 1
 	align = "center"
-        min_width = 1
+    min_width = 1
 }
 
 disk "/" {
-        format = "[SSD/%used]"
+    format = "[SSD/%used]"
 	separator = false
 	separator_block_width = 1
 	align = "center"
-        min_width = 1
+    min_width = 1
 }
 
 disk "/home" {
-        format = "[HDD/%used]"
+    format = "[HDD/%used]"
 	separator = false
 	separator_block_width = 1
 	align = "center"
-        min_width = 1
+    min_width = 1
 }
 
 load {
-        format = "%1min"
+    format = "%1min"
 }
 
 memory {
-        format = "[RAM/%used]"
-        threshold_degraded = "1G"
-        format_degraded = "[RAM/%used]"
+    format = "[RAM/%used]"
+    threshold_degraded = "1G"
+    format_degraded = "[RAM/%used]"
 	separator = false
 	separator_block_width = 1
 	align = "center"
-        min_width = 1
+    min_width = 1
 }
 
 tztime local {
-        format = "[%a.%d %b %H:%M]"
-        align = "right"
-        min_width = 1
-        separator = false
-        separator_block_width = 1
+    format = "[%a.%d %b %H:%M]"
+    align = "right"
+    min_width = 1
+    separator = false
+    separator_block_width = 1
 }
 
 tztime local1 {
-        format = "[%d-%m-%Y %H:%M:%S]"
-        align = "right"
-        min_width = 1
-        separator = false
-        separator_block_width = 1
+    format = "[%d-%m-%Y %H:%M:%S]"
+    align = "right"
+    min_width = 1
+    separator = false
+    separator_block_width = 1
 }
 
 
@@ -719,8 +720,8 @@ opacity-rule = [
 
 criarArq '#!/bin/sh
 getcol=$(rm /tmp/getcol.png
-        scrot -s /tmp/getcol.png
-        convert /tmp/getcol.png \
+    scrot -s /tmp/getcol.png
+    convert /tmp/getcol.png \
 	-define histogram:unique-colors=true \
 	-format %c histogram:info:- | \
 	sort -nr | \
