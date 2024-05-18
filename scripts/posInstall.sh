@@ -212,8 +212,7 @@ bindsym $mod+d exec --no-startup-id $appMenu
 bindsym $mod+Return exec --no-startup-id $appTerminal
 bindsym $mod+Shift+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Shift+q kill
-#bindsym $mod+button2 floating toggle
-#bindsym --whole-window $mod+button2 kill
+bindsym --whole-window$mod+button2 floating toggle
 bindsym $mod+x exec --no-startup-id $appFiles
 bindsym $mod+c exec --no-startup-id $appBrowser
 
