@@ -89,8 +89,10 @@ sudo nano /etc/default/grub
 remover # da opcao 
 #GRUB_DISABLE_OS_PROBER=false
 apos isso executar
-#GRUB_DISABLE_OS_PROBER=false
 grub-mkconfig -o /boot/grub/grub.cfg
+---------------------
+[Steam Linux & Windows]
+https://github.com/ValveSoftware/Proton/wiki/Using-a-NTFS-disk-with-Linux-and-Windows
 "
 read enterprasair
 }

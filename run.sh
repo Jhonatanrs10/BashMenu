@@ -4,6 +4,13 @@ dependencias
 resp="vazio"
 while [ "$resp" != "exit" ];
 do
+
+menu12345 "TESTES
+[1] Configurar MangoHud
+" "mangoHudConf"
+
+
+
 menu12345 "
 [1] GIT PUSH
 [2] ASSISTIR PELO MPV
@@ -42,19 +49,21 @@ menu12345 "
 
 menu12345 "
 [1] GIT CONFIG
-[2] CRIAR PASTA COMPARTILHADA (USER)
-[3] CRIAR PASTA COMPARTILHADA (GUEST)
+[2] CRIAR PASTA COMPARTILHADA [USER]
+[3] CRIAR PASTA COMPARTILHADA [GUEST]
 [4] INSTALAR BONGOCAT
 [5] INSTALAR POKEXGAMES
 [6] INSTALAR MINECRAFT TLAUNCHER
 [7] INSTALAR POSMIX APPS
+[8] INSTALAR YAY [ARCH][AUR]
 " "gitconfig
 " "criaPastaShareUser
 " "criaPastaShareGuest
 " "bongo
 " "installPokexgames
 " "installMinecraft
-" "appPosMix"
+" "appPosMix
+" "appPosYay"
 
 menu12345 "
 [1] INSTALAR MINECRAFT SERVER VERSION
@@ -62,7 +71,7 @@ menu12345 "
 [3] INSTALAR UNTURNED SERVER
 [4] INSTALAR SAMP SERVER
 [5] INSTALAR TERRARIA SERVER
-[6] INSTALAR HAMACHI E HAGUICHI (APT)
+[6] INSTALAR HAMACHI E HAGUICHI [APT]
 [7] INSTALAR ZEROTIER
 [8] INSTALAR NGROK
 " "installMinecraftServer
@@ -78,7 +87,7 @@ menu12345 "
 [1] INSTALAR NODEJS LTS
 [2] MUDAR JAVA VERSION
 [3] INSTALAR VIRTUAL GAMEPADS
-[4] INSTALAR VIRTMANAGER (MAQUINA VIRTUAL)
+[4] INSTALAR VIRTMANAGER [MAQUINA VIRTUAL]
 " "nodejslts
 " "javaVersion
 " "virtualGamepads
@@ -97,5 +106,6 @@ menu12345 "
 " "appPosTecladoConfig
 " "appPosTimeNTP
 " "appPosI3Touchpad"
+
 
 done
