@@ -165,7 +165,7 @@ i3wmConfig(){
         criarArq '######Jhonatanrs I3-WM config######
 set $mod Mod4
 set $textFont FreeMono 8
-#set $appMenu dmenu_run
+set $appMenu2 dmenu_run
 #set $appMenu xfce4-appfinder
 set $appMenu rofi -combi-modi drun#ssh#combi -show combi -window-title Rofi -scroll-method 1 -show-icons -combi-display-format "{text} ({mode})" -config $HOME/.config/i3/rofi.rasi 
 set $appTerminal terminology
@@ -211,6 +211,7 @@ exec --no-startup-id xset -b
 
 ###Binds###
 bindsym $mod+d exec --no-startup-id $appMenu
+bindsym $mod+Shift+d exec --no-startup-id $appMenu2
 bindsym $mod+Return exec --no-startup-id $appTerminal
 bindsym $mod+Shift+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Shift+q kill
@@ -294,9 +295,9 @@ hide_edge_borders none
 default_border pixel $tamanhodasbordas
 for_window [all] title_window_icon padding 5px
 default_floating_border pixel $tamanhodasbordas
-#gaps inner $espacoentrejanelas
-#gaps outer 0px
-#smart_gaps off
+gaps inner $espacoentrejanelas
+gaps outer 0px
+smart_gaps off
 workspace_layout default
 #for_window [class=$appTerminal] floating disable
 #for_window [title=$appF2] floating enable
@@ -309,7 +310,7 @@ bar {
 	position top
 	mode dock
 	#tray_output primary
-        #tray_output HDMI-0
+    #tray_output HDMI-0
 	tray_padding 2
 	workspace_buttons yes
 	workspace_min_width 25
@@ -327,7 +328,7 @@ bar {
 	    active_workspace   '$jrsbar' '$jrsbar' '$jrsbartexto'
 	    inactive_workspace '$jrsbar' '$jrsbar' '$jrsbartexto'
 	    urgent_workspace   '$jrsbar' #900000 '$jrsbartexto'
-       	    binding_mode       '$jrsbar' '$jrsbar' '$jrsbartexto'
+       	binding_mode       '$jrsbar' '$jrsbar' '$jrsbartexto'
     }
 }
 #class                  borda       background  texto         indicator   child_border
