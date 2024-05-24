@@ -1,5 +1,13 @@
 #!/usr/bin/env sh
+
+cpupowerConf(){
+    #sudo cpupower frequency-info
+    sudo cpupower frequency-set --governor $1
+}
+
 mangoHudConf(){
+    echo "LIGANDO MODO GAMER"
+    cpupowerConf "performance"
     v_fps_limit=0
     v_vsync=1
     v_gl_vsync=0
@@ -7,7 +15,7 @@ mangoHudConf(){
     echoRead "FPS Limit:" "v_fps_limit"
     echoRead "Vulkan Sync [On=3][Off=1]" "v_vsync"
     echoRead "OpenGL Sync [On=1][Off=0]" "v_gl_vsync"
-    echoRead "Preset [Padrao=3][Detalhado=4]" "v_preset"
+    echoRead "MangoHUD Preset [Padrao=3][Detalhado=4]" "v_preset"
     sleep 1
     mangohConf=$HOME/.config/MangoHud
     mkdir -p $mangohConf
@@ -65,7 +73,7 @@ gl_vsync=$v_gl_vsync
 #  4 = high detailed information
 preset=$v_preset
 
-### Enable most of the toggleable parameters (currently excludes `histogram`)
+### Enable most of the toggleable parameters (currently excludes histogram)
 # full
 
 ### Show FPS only. ***Not meant to be used with other display params***
@@ -176,13 +184,13 @@ frame_timing
 # histogram
 
 ### Display GameMode / vkBasalt running status
-# gamemode
-# vkbasalt
+#gamemode
+#vkbasalt
 
 ### Gamescope related options
 ## Display the status of FSR (only works in gamescope)
 # fsr
-## Hides the sharpness info for the `fsr` option (only available in gamescope)
+## Hides the sharpness info for the fsr option (only available in gamescope)
 # hide_fsr_sharpness
 ## Shows the graph of gamescope app frametimes and latency (only on gamescope obviously)
 # debug
@@ -369,4 +377,7 @@ text_outline
 # log_versioning
 ## Enable automatic uploads of logs to flightlessmango.com
 # upload_logs" "$mangohConf/MangoHud.conf"
+clear
+echoRead "DESLIGAR MODO GAMER [enter]" "vdesligando"
+cpupowerConf "powersave"
 }

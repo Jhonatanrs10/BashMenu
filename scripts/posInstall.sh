@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-myBase="pulseaudio pulseaudio-bluetooth xarchiver bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget papirus-icon-theme breeze-gtk capitaine-cursors ntfs-3g dosfstools os-prober nano vim git fastfetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd flatpak gvfs gvfs-mtp gvfs-smb samba udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji wireless_tools imagemagick cmatrix htop alacritty"
+myBase="pulseaudio pulseaudio-bluetooth cpupower xarchiver bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget papirus-icon-theme breeze-gtk capitaine-cursors ntfs-3g dosfstools os-prober nano vim git fastfetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd flatpak gvfs gvfs-mtp gvfs-smb samba udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji wireless_tools imagemagick cmatrix htop alacritty"
 myLightdm="lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings"
 myGlobalApps="lxrandr lxappearance xfce4-taskmanager xfce4-power-manager font-manager pcmanfm galculator system-config-printer blueman pavucontrol volumeicon network-manager-applet xreader mpv gparted chromium gnome-keyring seahorse leafpad"
 myI3wm="i3 i3lock i3status dmenu rofi picom feh nitrogen acpilight scrot xsel"
@@ -52,7 +52,7 @@ appPosMix(){
 
 appPosMixMy(){
     installPacotes "discord gimp inkscape shotcut code qbittorrent" "myAppsUtils [pacman]"
-    installPacotes "steam mangohud lib32-mangohud gamemode lib32-gamemode" "Steam e Game Utils"
+    installPacotes "steam mangohud lib32-mangohud gamemode lib32-gamemode cpupower" "Steam e Game Utils"
     installPacotes "app/com.obsproject.Studio/x86_64/stable runtime/com.obsproject.Studio.Plugin.MoveTransition/x86_64/stable" "Obs e Plugins"
     installPacotes "retroarch retroarch-assets-xmb retroarch-assets-ozone libretro-snes9x libretro-mgba libretro-beetle-psx" "Retroarch"
 }

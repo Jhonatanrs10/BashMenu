@@ -6,7 +6,7 @@ while [ "$resp" != "exit" ];
 do
 
 menu12345 "TESTES
-[1] Configurar MangoHud
+[1] Configurar MangoHud [MODO GAMER]
 [2] MYXFCE4
 " "mangoHudConf
 " "xfce4Config"
