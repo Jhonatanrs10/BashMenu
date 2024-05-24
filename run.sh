@@ -7,9 +7,9 @@ do
 
 menu12345 "TESTES
 [1] Configurar MangoHud
-" "mangoHudConf"
-
-
+[2] MYXFCE4
+" "mangoHudConf
+" "xfce4Config"
 
 menu12345 "
 [1] GIT PUSH
@@ -25,8 +25,8 @@ menu12345 "
 
 menu12345 "
 [1] MYBASE CONFIG
-[2] I3WM UTILS
-[3] MyApps
+[2] DESKTOP ENVIRONMENT
+[3] SOME APPS
 [4] NVIDIA PROPRIETARIO
 " "appPosMyBase
 " "appPosMyUtils

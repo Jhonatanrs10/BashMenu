@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
-myBase="pulseaudio pulseaudio-bluetooth samba xarchiver bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget papirus-icon-theme breeze-gtk capitaine-cursors ntfs-3g dosfstools os-prober nano vim git fastfetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd samba gvfs-smb flatpak gvfs gvfs-mtp gvfs-smb udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji cmatrix htop"
-myI3wm="i3 picom lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings font-manager dmenu rofi i3lock i3status feh imagemagick nitrogen acpilight volumeicon pcmanfm scrot xsel terminology lxrandr lxappearance xfce4-taskmanager xfce4-power-manager xfce4-appfinder galculator system-config-printer blueman pavucontrol network-manager-applet wireless_tools xreader mpv gparted chromium gnome-keyring seahorse leafpad"
-myXfce="xfce4 lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings font-manager xfce4-screenshooter xfce4-pulseaudio-plugin blueman pavucontrol thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman network-manager-applet xreader mpv galculator system-config-printer"
+myBase="pulseaudio pulseaudio-bluetooth xarchiver bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget papirus-icon-theme breeze-gtk capitaine-cursors ntfs-3g dosfstools os-prober nano vim git fastfetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd flatpak gvfs gvfs-mtp gvfs-smb samba udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji wireless_tools imagemagick cmatrix htop alacritty"
+myLightdm="lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings"
+myGlobalApps="lxrandr lxappearance xfce4-taskmanager xfce4-power-manager font-manager pcmanfm galculator system-config-printer blueman pavucontrol volumeicon network-manager-applet xreader mpv gparted chromium gnome-keyring seahorse leafpad"
+myI3wm="i3 i3lock i3status dmenu rofi picom feh nitrogen acpilight scrot xsel"
+myXfce="exo garcon xfce4-appfinder xfce4-panel xfce4-session xfce4-settings xfconf xfdesktop xfwm4 xfce4-screenshooter xfce4-pulseaudio-plugin"
 myGnome="gnome gdm"
 myNvidia="nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"
 
@@ -10,7 +12,10 @@ appPosMyBase(){
 }
 
 appPosMyUtils(){
-    sudo pacman -S "$myI3wm"
+    sudo pacman -S $myLightdm
+    sudo pacman -S $myI3wm
+    sudo pacman -S $myXfce
+    sudo pacman -S $myGlobalApps
     enableSystemctl "lightdm"
     enableSystemctl "bluetooth"
     enableSystemctl "NetworkManager"
@@ -150,6 +155,7 @@ font-name = FreeMono 10'
 }
 
 i3wmConfig(){
+        jrswindowcomfoco="#C42428"
         #MAIN COLOR 005577, bfbfbf
         cp $HOME/.config/i3/config $HOME/.config/i3/config-bkp
         echo "[COLORS] Black:#000000, Gray:#808080, White:#FFFFFF"
@@ -159,16 +165,15 @@ i3wmConfig(){
         forLength "[COLOR] Text" "7" "#ffffff"
         jrsbartexto=$txtForLength
         jrswindowtextocomfoco=$jrsbartexto
-        forLength "[COLOR] Window" "7" "#005577"
+        forLength "[COLOR] Window" "7" "$jrswindowcomfoco"
         jrswindowcomfoco=$txtForLength
         jrswindowsemfoco="#7d7d7d"
         criarArq '######Jhonatanrs I3-WM config######
 set $mod Mod4
 set $textFont FreeMono 8
 set $appMenu2 dmenu_run
-#set $appMenu xfce4-appfinder
 set $appMenu rofi -combi-modi drun#ssh#combi -show combi -window-title Rofi -scroll-method 1 -show-icons -combi-display-format "{text} ({mode})" -config $HOME/.config/i3/rofi.rasi 
-set $appTerminal terminology
+set $appTerminal alacritty
 set $appFiles pcmanfm
 set $appBrowser chromium
 set $appF1 pavucontrol
@@ -357,13 +362,15 @@ mode "$mode_programs" {
 }
 bindsym $mod+p mode "$mode_programs"
 
-set $mode_sound [1/SoundUp][2/SoundDown][3/SoundMute][4/LightUp][5/LightDown]
+set $mode_sound [Sound and Light]
 mode "$mode_sound" {
-    bindsym 1 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-    bindsym 2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-    bindsym 3 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-    bindsym 4 exec --no-startup-id xbacklight -dec 5 &&  $refresh_i3status
-    bindsym 5 exec --no-startup-id xbacklight -inc 5 &&  $refresh_i3status
+    bindsym Ctrl+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 100% && $refresh_i3status
+    bindsym Ctrl+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 50% && $refresh_i3status
+    bindsym Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+    bindsym Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+    bindsym m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+    bindsym Right exec --no-startup-id xbacklight -dec 5 &&  $refresh_i3status
+    bindsym Left exec --no-startup-id xbacklight -inc 5 &&  $refresh_i3status
     #bindsym 4 exec --no-startup-id light -A 5 && echo `light` > $HOME/.config/i3/brightness &&  $refresh_i3status
     #bindsym 5 exec --no-startup-id light -U 5 && echo `light` > $HOME/.config/i3/brightness  &&  $refresh_i3status
     bindsym Return mode "default"
@@ -716,7 +723,7 @@ vsync = false;
 unredir-if-possible = false;
 backend = "xrender";
 opacity-rule = [
-        "90:class_g = '"'terminology'"'"
+        "90:class_g = '"'Alacritty'"'"
 ];
 ' "$HOME/.config/i3/picom.conf"
 
@@ -741,3 +748,90 @@ echo $getcol | xsel -bi
         sleep 0
 }
 
+xfce4Config(){
+    xfce4-panel --quit
+    pkill xfconfd
+    rm -rf ~/.config/xfce4/panel
+    rm -rf ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+    criarArqv2 '<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-panel" version="1.0">
+  <property name="configver" type="int" value="2"/>
+  <property name="panels" type="array">
+    <value type="int" value="1"/>
+    <property name="dark-mode" type="bool" value="true"/>
+    <property name="panel-1" type="empty">
+      <property name="position" type="string" value="p=8;x=683;y=754"/>
+      <property name="length" type="uint" value="100"/>
+      <property name="position-locked" type="bool" value="true"/>
+      <property name="icon-size" type="uint" value="16"/>
+      <property name="size" type="uint" value="26"/>
+      <property name="plugin-ids" type="array">
+        <value type="int" value="1"/>
+        <value type="int" value="4"/>
+        <value type="int" value="2"/>
+        <value type="int" value="3"/>
+        <value type="int" value="5"/>
+        <value type="int" value="6"/>
+        <value type="int" value="8"/>
+        <value type="int" value="9"/>
+        <value type="int" value="10"/>
+        <value type="int" value="11"/>
+        <value type="int" value="12"/>
+        <value type="int" value="13"/>
+        <value type="int" value="7"/>
+      </property>
+    </property>
+  </property>
+  <property name="plugins" type="empty">
+    <property name="plugin-2" type="string" value="tasklist">
+      <property name="grouping" type="uint" value="1"/>
+    </property>
+    <property name="plugin-3" type="string" value="separator">
+      <property name="expand" type="bool" value="true"/>
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-4" type="string" value="pager"/>
+    <property name="plugin-5" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-6" type="string" value="systray">
+      <property name="square-icons" type="bool" value="true"/>
+      <property name="known-legacy-items" type="array">
+        <value type="string" value="wi-fi network connection “casa 01” active: casa 01 (80%)"/>
+        <value type="string" value="wi-fi network connection “casa 01” active: casa 01 (89%)"/>
+        <value type="string" value="wi-fi network connection “casa 01” active: casa 01 (79%)"/>
+      </property>
+      <property name="known-items" type="array">
+        <value type="string" value="blueman"/>
+      </property>
+    </property>
+    <property name="plugin-8" type="string" value="pulseaudio">
+      <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
+      <property name="show-notifications" type="bool" value="true"/>
+    </property>
+    <property name="plugin-9" type="string" value="power-manager-plugin"/>
+    <property name="plugin-10" type="string" value="notification-plugin"/>
+    <property name="plugin-11" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-12" type="string" value="clock">
+      <property name="timezone" type="string" value="America/Sao_Paulo"/>
+      <property name="command" type="string" value=""/>
+    </property>
+    <property name="plugin-13" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-7" type="string" value="showdesktop"/>
+    <property name="plugin-1" type="string" value="applicationsmenu">
+      <property name="button-icon" type="string" value="desktop-environment-xfce"/>
+      <property name="button-title" type="string" value=""/>
+      <property name="show-tooltips" type="bool" value="false"/>
+      <property name="show-generic-names" type="bool" value="false"/>
+      <property name="small" type="bool" value="false"/>
+    </property>
+  </property>
+</channel>
+' "$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml"
+    xfce4-panel &
+}
