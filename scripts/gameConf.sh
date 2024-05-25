@@ -5,6 +5,11 @@ cpupowerConf(){
     sudo cpupower frequency-set --governor $1
 }
 
+gamescopePriorityConf(){
+    sudo setcap 'CAP_SYS_NICE=eip' $(which gamescope)
+    sudo tee /etc/modprobe.d/nvidia-modeset.conf <<< 'options nvidia_drm modeset=1 fbdev=1'
+}
+
 mangoHudConf(){
     echo "LIGANDO MODO GAMER"
     cpupowerConf "performance"

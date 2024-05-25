@@ -5,23 +5,23 @@ resp="vazio"
 while [ "$resp" != "exit" ];
 do
 
-menu12345 "TESTES
-[1] Configurar MangoHud [MODO GAMER]
-[2] MYXFCE4
-" "mangoHudConf
-" "xfce4Config"
-
 menu12345 "
 [1] GIT PUSH
 [2] ASSISTIR PELO MPV
 [3] I3WM CONFIG
-[4] LIGHTDM CONFIG
-[5] BASHMENU CONFIG
+[4] XFCE4 CONFIG
+[5] LIGHTDM CONFIG
+[6] BASHMENU CONFIG
+[7] Configurar MangoHud [MODO GAMER]
+[8] GAMESCOPE and NVIDIA MODSET CONFIG
 " "gitAutoPush
 " "assistirMpv
 " "i3wmConfig
+" "xfce4Config
 " "appPosLightdmConfig
-" "dependenciasAtalho"
+" "dependenciasAtalho
+" "mangoHudConf
+" "gamescopePriorityConf"
 
 menu12345 "
 [1] MYBASE CONFIG
