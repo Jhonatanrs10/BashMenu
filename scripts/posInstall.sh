@@ -16,9 +16,9 @@ appPosMyUtils(){
     sudo pacman -S $myI3wm
     sudo pacman -S $myXfce
     sudo pacman -S $myGlobalApps
-    enableSystemctl "lightdm"
     enableSystemctl "bluetooth"
     enableSystemctl "NetworkManager"
+    enableSystemctl "lightdm"
 }
                         
 appPosNetwork(){

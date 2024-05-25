@@ -64,7 +64,7 @@ removeDesktopJRS(){
 
 criaAtalhoDesktopAppimage(){
     removeAllDesktop "Appimage"
-    appimageFolder="$dBashMenu/Appimage"
+    echoRead "COLE O DIRETORIO DOS APPIMAGES: " "appimageFolder"
     mkdir -p $appimageFolder
     for vApp in `ls $appimageFolder`
         do
