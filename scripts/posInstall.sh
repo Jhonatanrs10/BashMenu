@@ -8,7 +8,7 @@ myGnome="gnome gdm"
 myNvidia="nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"
 
 appPosMyBase(){
-    sudo pacman -S "$myBase"
+    sudo pacman -S $myBase
 }
 
 appPosMyUtils(){
@@ -52,7 +52,7 @@ appPosMix(){
 
 appPosMixMy(){
     installPacotes "discord gimp inkscape shotcut code qbittorrent" "myAppsUtils [pacman]"
-    installPacotes "steam mangohud lib32-mangohud gamemode lib32-gamemode cpupower" "Steam e Game Utils"
+    installPacotes "steam mangohud lib32-mangohud gamemode lib32-gamemode cpupower gamescope" "Steam e Game Utils"
     installPacotes "app/com.obsproject.Studio/x86_64/stable runtime/com.obsproject.Studio.Plugin.MoveTransition/x86_64/stable" "Obs e Plugins"
     installPacotes "retroarch retroarch-assets-xmb retroarch-assets-ozone libretro-snes9x libretro-mgba libretro-beetle-psx" "Retroarch"
 }

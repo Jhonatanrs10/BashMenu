@@ -6,4 +6,4 @@ criaArqRunDiretorioInstall(){
     echo 'DIGITE UM NOME PARA O ATALHO'
     read nomeDir
     criaLinkSym "$nesseDir" "$shortcuts/$nomeDir"
-}   
+} 
