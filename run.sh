@@ -88,10 +88,12 @@ menu12345 "
 [2] MUDAR JAVA VERSION
 [3] INSTALAR VIRTUAL GAMEPADS
 [4] INSTALAR VIRTMANAGER [MAQUINA VIRTUAL]
+[5] VIRTUAL PULSEAUDIO CONFIG
 " "nodejslts
 " "javaVersion
 " "virtualGamepads
-" "appPosVirtManager"
+" "appPosVirtManager
+" "virtualPulseAudioExec"
 
 menu12345 "
 [1] NETWORK CONFIG

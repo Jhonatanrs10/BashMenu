@@ -364,8 +364,8 @@ bindsym $mod+p mode "$mode_programs"
 
 set $mode_sound [Sound and Light]
 mode "$mode_sound" {
-    bindsym Ctrl+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 100% && $refresh_i3status
-    bindsym Ctrl+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 50% && $refresh_i3status
+    bindsym $mod+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 100% && $refresh_i3status
+    bindsym $mod+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 50% && $refresh_i3status
     bindsym Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
     bindsym Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
     bindsym m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
@@ -761,7 +761,7 @@ xfce4Config(){
     <value type="int" value="1"/>
     <property name="dark-mode" type="bool" value="true"/>
     <property name="panel-1" type="empty">
-      <property name="position" type="string" value="p=8;x=683;y=754"/>
+      <property name="position" type="string" value="p=6;x=683;y=14"/>
       <property name="length" type="uint" value="100"/>
       <property name="position-locked" type="bool" value="true"/>
       <property name="icon-size" type="uint" value="16"/>
@@ -781,6 +781,13 @@ xfce4Config(){
         <value type="int" value="13"/>
         <value type="int" value="7"/>
       </property>
+      <property name="background-style" type="uint" value="1"/>
+      <property name="background-rgba" type="array">
+        <value type="double" value="0"/>
+        <value type="double" value="0"/>
+        <value type="double" value="0"/>
+        <value type="double" value="1"/>
+      </property>
     </property>
   </property>
   <property name="plugins" type="empty">
@@ -798,6 +805,9 @@ xfce4Config(){
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="wi-fi network connection “casa 01” active: casa 01 (61%)"/>
+        <value type="string" value="wi-fi network connection “casa 01” active: casa 01 (100%)"/>
+        <value type="string" value="wi-fi network connection “casa 01” active: casa 01 (76%)"/>
         <value type="string" value="wi-fi network connection “casa 01” active: casa 01 (80%)"/>
         <value type="string" value="wi-fi network connection “casa 01” active: casa 01 (89%)"/>
         <value type="string" value="wi-fi network connection “casa 01” active: casa 01 (79%)"/>
@@ -822,7 +832,6 @@ xfce4Config(){
     <property name="plugin-13" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
     </property>
-    <property name="plugin-7" type="string" value="showdesktop"/>
     <property name="plugin-1" type="string" value="applicationsmenu">
       <property name="button-icon" type="string" value="desktop-environment-xfce"/>
       <property name="button-title" type="string" value=""/>
@@ -830,8 +839,8 @@ xfce4Config(){
       <property name="show-generic-names" type="bool" value="false"/>
       <property name="small" type="bool" value="false"/>
     </property>
+    <property name="plugin-7" type="string" value="showdesktop"/>
   </property>
-</channel>
-' "$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml"
+</channel>' "$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml"
     xfce4-panel &
 }
