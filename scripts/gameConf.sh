@@ -1,4 +1,8 @@
 #!/usr/bin/env sh
+myGameMode(){
+    cpupowerConf "$1"
+    mangoHudConf "$2" "$3" "$4" "$5"
+}
 
 cpupowerConf(){
     #sudo cpupower frequency-info
@@ -11,17 +15,15 @@ gamescopePriorityConf(){
 }
 
 mangoHudConf(){
-    echo "LIGANDO MODO GAMER"
-    cpupowerConf "performance"
-    v_fps_limit=0
-    v_vsync=1
-    v_gl_vsync=0
-    v_preset=3
-    echoRead "FPS Limit:" "v_fps_limit"
-    echoRead "Vulkan Sync [On=3][Off=1]" "v_vsync"
-    echoRead "OpenGL Sync [On=1][Off=0]" "v_gl_vsync"
-    echoRead "MangoHUD Preset [Padrao=3][Detalhado=4]" "v_preset"
-    sleep 1
+    v_fps_limit=$1
+    v_vsync=$2
+    v_gl_vsync=$3
+    if [ "$v_vsync" == "3" ]; then
+        mudaTexto "vsync = false;" "vsync = true;" "$HOME/.config/i3/picom.conf"
+    elif [ "$v_vsync" == "1" ]; then
+        mudaTexto "vsync = true;" "vsync = false;" "$HOME/.config/i3/picom.conf"
+    fi
+    v_preset=$4
     mangohConf=$HOME/.config/MangoHud
     mkdir -p $mangohConf
     criarArq "
@@ -382,7 +384,4 @@ text_outline
 # log_versioning
 ## Enable automatic uploads of logs to flightlessmango.com
 # upload_logs" "$mangohConf/MangoHud.conf"
-clear
-echoRead "DESLIGAR MODO GAMER [enter]" "vdesligando"
-cpupowerConf "powersave"
 }

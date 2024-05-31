@@ -12,16 +12,16 @@ menu12345 "
 [4] XFCE4 CONFIG
 [5] LIGHTDM CONFIG
 [6] BASHMENU CONFIG
-[7] Configurar MangoHud [MODO GAMER]
-[8] GAMESCOPE and NVIDIA MODSET CONFIG
+[7] Configurar MangoHud [MODO PERFORMANCE]
+[8] Configurar MangoHud [MODO POWERSAVE]
 " "gitAutoPush
 " "assistirMpv
 " "i3wmConfig
 " "xfce4Config
 " "appPosLightdmConfig
 " "dependenciasAtalho
-" "mangoHudConf
-" "gamescopePriorityConf"
+" "myGameMode performance 144 1 0 3
+" "myGameMode powersave 60 3 1 4"
 
 menu12345 "
 [1] MYBASE CONFIG
