@@ -12,16 +12,24 @@ menu12345 "
 [4] XFCE4 CONFIG
 [5] LIGHTDM CONFIG
 [6] BASHMENU CONFIG
-[7] Configurar MangoHud [MODO PERFORMANCE]
-[8] Configurar MangoHud [MODO POWERSAVE]
 " "gitAutoPush
 " "assistirMpv
 " "i3wmConfig
 " "xfce4Config
 " "appPosLightdmConfig
-" "dependenciasAtalho
+" "dependenciasAtalho"
+
+menu12345 "
+[1] Configurar MangoHud [MODO POWERSAVE]
+[2] Configurar MangoHud [MODO PERFORMANCE]
+[3] Configurar MangoHud [MODO PERFORMANCE 144]
+[4] Configurar MangoHud [MODO CONSOLE 60]
+[5] Configurar MangoHud [MODO CONSOLE 30]
+" "myGameMode powersave 60 3 1 3
+" "myGameMode performance 0 1 0 3
 " "myGameMode performance 144 1 0 3
-" "myGameMode powersave 60 3 1 4"
+" "myGameMode performance 60 3 1 3
+" "myGameMode performance 30 3 1 3"
 
 menu12345 "
 [1] MYBASE CONFIG
