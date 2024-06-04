@@ -51,6 +51,11 @@ repararApt(){
 	sudo dpkg --configure -a
 	sudo apt --fix-broken install -y
 }
+
+repararPacman(){
+	sudo rm /var/lib/pacman/db.lck
+}
 #installPacotes"apt1 apt2 apt3"
 #removePacotes "apt1 apt2 apt3"
 #repararApt
+#repararPacman

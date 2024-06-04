@@ -110,12 +110,14 @@ menu12345 "
 [4] TECLADO CONFIG
 [5] DATA E HORA CONFIG NTP
 [6] TOUCHPAD CONFIG
+[7] REPARAR PACMAN
 " "appPosNetwork
 " "appPosManualConfig
 " "appPosBluetoothFix
 " "appPosTecladoConfig
 " "appPosTimeNTP
-" "appPosI3Touchpad"
+" "appPosI3Touchpad
+" "repararPacman"
 
 
 done
