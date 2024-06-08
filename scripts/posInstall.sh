@@ -172,7 +172,7 @@ i3wmConfig(){
 set $mod Mod4
 set $textFont FreeMono 8
 set $appMenu2 dmenu_run
-set $appMenu rofi -combi-modi drun#ssh#combi -show combi -window-title Rofi -scroll-method 1 -show-icons -combi-display-format "{text} ({mode})" -config $HOME/.config/i3/rofi.rasi 
+set $appMenu rofi -show combi -config $HOME/.config/i3/rofi.rasi 
 set $appTerminal alacritty
 set $appFiles pcmanfm
 set $appBrowser chromium
@@ -220,7 +220,7 @@ bindsym $mod+Shift+d exec --no-startup-id $appMenu2
 bindsym $mod+Return exec --no-startup-id $appTerminal
 bindsym $mod+Shift+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Shift+q kill
-bindsym --whole-window$mod+button2 floating toggle
+bindsym --whole-window $mod+button2 kill
 bindsym $mod+x exec --no-startup-id $appFiles
 bindsym $mod+c exec --no-startup-id $appBrowser
 
@@ -587,6 +587,12 @@ configuration {
     combi {
         display-name: " Search";
     }
+
+    combi-modi: "drun,ssh,combi";
+    window-title: "Rofi";
+    scroll-method: 1; 
+    show-icons: true;
+    combi-display-format: "{text} ({mode})";
 }
 
 window {
