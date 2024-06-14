@@ -33,11 +33,11 @@ menu12345 "
 
 menu12345 "
 [1] MYBASE CONFIG
-[2] DESKTOP ENVIRONMENT
+[2] MYBASE PARTS
 [3] SOME APPS
 [4] NVIDIA PROPRIETARIO
 " "appPosMyBase
-" "appPosMyUtils
+" "appPosMyBaseUtils
 " "appPosMixMy
 " "appPosNvidiaDriverProp"
 

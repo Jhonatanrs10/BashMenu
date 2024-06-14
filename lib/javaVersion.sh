@@ -1,4 +1,10 @@
 #!/usr/bin/env sh
 javaVersion(){
-    sudo update-alternatives --config java
+    echo "DEBIAN BASE
+sudo update-alternatives --config java
+
+ARCH 
+archlinux-java --help
+    "
+    read finalizado
 }

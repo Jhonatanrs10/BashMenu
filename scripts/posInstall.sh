@@ -8,17 +8,24 @@ myGnome="gnome gdm"
 myNvidia="nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"
 
 appPosMyBase(){
-    sudo pacman -S $myBase
-}
-
-appPosMyUtils(){
-    sudo pacman -S $myLightdm
-    sudo pacman -S $myI3wm
-    sudo pacman -S $myXfce
-    sudo pacman -S $myGlobalApps
+    sudo pacman -S $myBase $myLightdm $myI3wm $myGlobalApps
     enableSystemctl "bluetooth"
     enableSystemctl "NetworkManager"
     enableSystemctl "lightdm"
+}
+
+appPosMyBaseUtils(){
+    menu12345 "[1] MYBASE
+[2] LIGHTDM
+[3] I3WM
+[4] XFCE
+[5] GLOBAL APPS
+" "sudo pacman -S $myBase
+" "sudo pacman -S $myLightdm
+" "sudo pacman -S $myI3wm
+" "sudo pacman -S $myXfce
+" "sudo pacman -S $myGlobalApps"
+    
 }
                         
 appPosNetwork(){
@@ -559,8 +566,7 @@ tztime local1 {
 
 ' "$HOME/.config/i3/i3status-jrsbkp.conf"
 
-criarArq '
-* {
+criarArq '* {
 
     corcomfoco: '$jrswindowcomfoco';
     textocomfoco: '$jrswindowtextocomfoco';
