@@ -36,7 +36,7 @@ criaAtalhoDesktop(){
 criaAtalhoDesktopRetroarchArch(){
     removeAllDesktop "Retroarch"
     RetroArchCores="/usr/lib/libretro"
-    RetroArchDiretorioGames="$HOME/Roms"
+    RetroArchDiretorioGames="$HOME/Documents/Roms"
     echoRead "Colar Diretorio das Roms:" "RetroArchDiretorioGames"
     echo "ESCOLHA A BIOS/CORE PRA A ROM:"
     listaOptions "$RetroArchCores" "RetroArchCore"

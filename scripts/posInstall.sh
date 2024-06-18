@@ -232,8 +232,8 @@ bindsym $mod+x exec --no-startup-id $appFiles
 bindsym $mod+c exec --no-startup-id $appBrowser
 
 ###Print###
-bindsym --release $mod+Print exec mkdir -p ~/PrtSc | scrot ~/PrtSc/Screenshot_%Y-%m-%d_%H-%M-%S.png
-bindsym --release Print exec mkdir -p ~/PrtSc | scrot -f -s ~/PrtSc/Cutshot_%Y-%m-%d_%H-%M-%S.png
+bindsym --release $mod+Print exec mkdir -p ~/Pictures/PrtSc | scrot ~/Pictures/PrtSc/Screenshot_%Y-%m-%d_%H-%M-%S.png
+bindsym --release Print exec mkdir -p ~/Pictures/PrtSc | scrot -f -s ~/Pictures/PrtSc/Cutshot_%Y-%m-%d_%H-%M-%S.png
 bindsym --release $mod+z exec $HOME/.config/i3/getcol.sh
 
 ###Window###
