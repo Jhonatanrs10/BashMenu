@@ -1,4 +1,17 @@
 #!/usr/bin/env sh
+my-dotfiles(){
+    i3-config
+    xfce-config
+    i3status-config
+    rofi-config
+    picom-config
+    getcol-file
+    polybar-launch
+    polybar-config
+    power-profiles
+    mangohud-config
+}
+
 i3-config(){
     criarArq '######Jhonatanrs I3-WM config######
 set $mod Mod4
@@ -35,6 +48,7 @@ set $espacoentrejanelas 5px
 font pango:$textFont
 
 ###AutoStart###
+exec --no-startup-id picom --config ~/.config/i3/picom.conf
 exec_always --no-startup-id $HOME/.config/i3/polybar.sh
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
@@ -56,23 +70,27 @@ bindsym $mod+Shift+q kill
 bindsym --whole-window $mod+button2 kill
 bindsym $mod+x exec --no-startup-id $appFiles
 bindsym $mod+c exec --no-startup-id $appBrowser
-bindsym $mod+p exec --no-startup-id $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') /usr/share/backgrounds/main.png, mode "default"
+bindsym $mod+n exec --no-startup-id $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') /usr/share/backgrounds/main.png, mode "default"
 #bindsym 7 exec --no-startup-id $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') $HOME/.config/i3/wallpaperI3Lock.png, mode "default"
-bindsym $mod+Shift+p exec --no-startup-id picom --config ~/.config/i3/picom.conf, mode "default"
+bindsym $mod+Ctrl+p exec --no-startup-id picom --config ~/.config/i3/picom.conf, mode "default"
+bindsym $mod+Shift+p exec --no-startup-id killall picom
+bindsym $mod+b bar mode toggle
+bindsym $mod+Ctrl+b exec --no-startup-id polybar-msg cmd toggle
+bindsym $mod+p exec --no-startup-id $HOME/.config/i3/powerProfiles.sh
 
 ###Power###
 bindsym $mod+l exec --no-startup-id $Locker
-bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
-bindsym $mod+Ctrl+7 exec --no-startup-id $Locker && systemctl suspend
-bindsym $mod+Ctrl+l exec --no-startup-id dm-tool lock
-bindsym $mod+Ctrl+8 exec --no-startup-id $Locker && systemctl hibernate
-bindsym $mod+Ctrl+9 exec --no-startup-id systemctl reboot
-bindsym $mod+Ctrl+0 exec --no-startup-id systemctl poweroff -i
+#bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
+#bindsym $mod+Ctrl+7 exec --no-startup-id $Locker && systemctl suspend
+#bindsym $mod+Ctrl+l exec --no-startup-id dm-tool lock
+#bindsym $mod+Ctrl+8 exec --no-startup-id $Locker && systemctl hibernate
+#bindsym $mod+Ctrl+9 exec --no-startup-id systemctl reboot
+#bindsym $mod+Ctrl+0 exec --no-startup-id systemctl poweroff -i
 
 ###Print###
-bindsym --release $mod+Print exec mkdir -p ~/Pictures/PrtSc | scrot ~/Pictures/PrtSc/Screenshot_%Y-%m-%d_%H-%M-%S.png
-bindsym --release Print exec mkdir -p ~/Pictures/PrtSc | scrot -f -s ~/Pictures/PrtSc/Cutshot_%Y-%m-%d_%H-%M-%S.png
-bindsym --release $mod+z exec $HOME/.config/i3/getcol.sh
+bindsym --release $mod+Print exec --no-startup-id mkdir -p ~/Pictures/PrtSc | scrot ~/Pictures/PrtSc/Screenshot_%Y-%m-%d_%H-%M-%S.png
+bindsym --release Print exec --no-startup-id mkdir -p ~/Pictures/PrtSc | scrot -f -s ~/Pictures/PrtSc/Cutshot_%Y-%m-%d_%H-%M-%S.png
+bindsym --release $mod+z exec --no-startup-id $HOME/.config/i3/getcol.sh
 
 ###Window###
 bindsym $mod+g focus left
@@ -101,10 +119,8 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+Shift+w sticky toggle
-bindsym $mod+b bar mode toggle
 
 ###Brightness and Sound###
-
 #bindsym $mod+Ctrl+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 100%
 #bindsym $mod+Ctrl+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 50% 
 bindsym $mod+Ctrl+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -114,7 +130,6 @@ bindsym $mod+Ctrl+Right exec --no-startup-id xbacklight -dec 5
 bindsym $mod+Ctrl+Left exec --no-startup-id xbacklight -inc 5
 #bindsym 4 exec --no-startup-id light -A 5 && echo `light` > $HOME/.config/i3/brightness
 #bindsym 5 exec --no-startup-id light -U 5 && echo `light` > $HOME/.config/i3/brightness
-
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
@@ -188,8 +203,8 @@ workspace_layout default
 #	    focused_workspace  '$jrswindowcomfoco' '$jrsbar' '$jrsbartexto'
 #	    active_workspace   '$jrsbar' '$jrsbar' '$jrsbartexto'
 #	    inactive_workspace '$jrsbar' '$jrsbar' '$jrsbartexto'
-#	    urgent_workspace   '$jrsbar' #900000 '$jrsbartexto'
-#       	binding_mode       '$jrsbar' '$jrsbar' '$jrsbartexto'
+#	    urgent_workspace   '$jrsbar'  #900000  '$jrsbartexto'
+#       binding_mode       '$jrsbar' '$jrsbar' '$jrsbartexto'
 #    }
 #}
 #class                  borda       background  texto         indicator   child_border
@@ -215,6 +230,19 @@ mode "$mode_resize" {
         bindsym Escape mode "default"
 }
 bindsym $mod+r mode "$mode_resize"
+
+set $mode_system [Power]
+mode "$mode_system" {
+        bindsym l exec --no-startup-id i3-msg exit
+        bindsym $mod+l exec --no-startup-id $Locker && systemctl suspend
+        bindsym 7 exec --no-startup-id dm-tool lock
+        bindsym 8 exec --no-startup-id $Locker && systemctl hibernate
+        bindsym 9 exec --no-startup-id systemctl reboot
+        bindsym 0 exec --no-startup-id systemctl poweroff -i
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode "$mode_system"
 ' "$HOME/.config/i3/config"
 }
 xfce-config(){
@@ -490,18 +518,20 @@ configuration {
     scroll-method: 1; 
     show-icons: true;
     combi-display-format: "{text} ({mode})";
+    font: "FreeMono 12";
 }
 
 window {
     background-color: @corbar;
     border-color: @corcomfoco;
-    border:           3;
-    padding:          0;
+    border: 3;
+    border-radius: 0;
+    padding: 0;
     width: 50%;
     height: 40%;
 }
 mainbox {
-    border:  0;
+    border: 0;
     padding: 0;
 }
 message {
@@ -627,8 +657,10 @@ vsync = false;
 unredir-if-possible = false;
 backend = "xrender";
 opacity-rule = [
-        "90:class_g = '"'i3bar'"'",
-        "90:class_g = '"'Alacritty'"'"
+        "95:class_g = '"'i3bar'"'",
+        "95:class_g = '"'Alacritty'"'",
+        "95:class_g = '"'Rofi'"'",
+        "95:class_g = '"'Pcmanfm'"'"
 ];
 ' "$HOME/.config/i3/picom.conf"
 }
@@ -847,8 +879,8 @@ label-connected = [E/%local_ip%]
 type = internal/date
 interval = 5
 
-date-alt = [%H:%M:%S]
-date = [%a.%d %b %H:%M]
+date-alt = %H:%M:%S
+date = %a.%d %b %H:%M
 
 label = %date%
 label-foreground = ${colors.color_text}
@@ -857,4 +889,61 @@ label-foreground = ${colors.color_text}
 screenchange-reload = true
 pseudo-transparency = true
 ' "$HOME/.config/i3/polybar.ini"
+}
+
+power-profiles(){
+    criarArqv2 '#!/bin/bash
+notifyValueNow=$(powerprofilesctl get)
+case $notifyValueNow in
+  performance)
+    powerprofilesctl set power-saver
+    sed -i 's/'"vsync = false;"'/'"vsync = true;"'/g' "$HOME/.config/i3/picom.conf" 
+    notify-send --hint int:transient:1 "Power Profile" "Power Saver" --icon=org.xfce.powermanager
+    ;;
+  power-saver)
+    powerprofilesctl set balanced
+    sed -i 's/'"vsync = false;"'/'"vsync = true;"'/g' "$HOME/.config/i3/picom.conf" 
+    notify-send --hint int:transient:1 "Power Profile" "Balanced" --icon=org.xfce.powermanager
+    ;;
+  balanced)
+    powerprofilesctl set performance
+    sed -i 's/'"vsync = true;"'/'"vsync = false;"'/g' "$HOME/.config/i3/picom.conf" 
+    notify-send --hint int:transient:1 "Power Profile" "Performance" --icon=org.xfce.powermanager
+    ;;
+  *)
+    ;;
+esac' "$HOME/.config/i3/powerProfiles.sh"
+sudo chmod +x $HOME/.config/i3/powerProfiles.sh
+}
+
+mangohud-config(){
+    criarArqv2 '### pre defined presets
+# -1 = default
+#  0 = no display
+#  1 = fps only
+#  2 = horizontal view
+#  3 = extended
+#  4 = high detailed information
+preset=3
+### VSync [0-3] 0 = adaptive; 1 = off; 2 = mailbox; 3 = on
+vsync=1
+### OpenGL VSync [0-N] 0 = off; >=1 = wait for N v-blanks, N > 1 acts as a FPS limiter (FPS = display refresh rate / N)
+gl_vsync=0
+### Change toggle keybinds for the hud & logging
+# toggle_hud=Shift_R+F12
+# toggle_hud_position=Shift_R+F11
+# toggle_fps_limit=Shift_L+F1
+# toggle_logging=Shift_L+F2
+# reload_cfg=Shift_L+F4
+# upload_log=Shift_L+F3
+###
+fps_limit=0+24+30+48+60+75+120
+fps_limit_method=early
+gpu_stats
+cpu_stats
+fps
+frametime
+throttling_status
+frame_timing
+text_outline' "$HOME/.config/MangoHud/MangoHud.conf"
 }

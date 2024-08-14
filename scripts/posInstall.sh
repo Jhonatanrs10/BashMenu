@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
-myBase="pulseaudio pulseaudio-bluetooth cpupower xarchiver bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget curl bash bash-completion papirus-icon-theme breeze-gtk capitaine-cursors ntfs-3g dosfstools os-prober nano vim git fastfetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd flatpak gvfs gvfs-mtp gvfs-smb samba udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji wireless_tools imagemagick cmatrix htop alacritty"
+myBase="pacman-contrib pulseaudio pulseaudio-bluetooth cpupower power-profiles-daemon notification-daemon libnotify bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget curl bash bash-completion papirus-icon-theme breeze-gtk capitaine-cursors ntfs-3g dosfstools os-prober nano vim git fastfetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd flatpak gvfs gvfs-mtp gvfs-smb samba udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji wireless_tools imagemagick cmatrix htop alacritty"
 myLightdm="lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings"
-myGlobalApps="lxrandr lxappearance xfce4-taskmanager xfce4-power-manager font-manager pcmanfm galculator system-config-printer blueman pavucontrol volumeicon network-manager-applet xreader mpv gparted chromium gnome-keyring seahorse leafpad"
-myI3wm="i3 i3lock i3status dmenu rofi picom feh nitrogen acpilight scrot xsel"
+myGlobalApps="lxrandr lxappearance xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer blueman pavucontrol volumeicon network-manager-applet ark xreader mpv lxmusic gparted chromium gnome-keyring seahorse leafpad"
+myI3wm="i3 i3lock i3status dmenu rofi picom nitrogen acpilight scrot xsel"
 myXfce="exo garcon xfce4-appfinder xfce4-panel xfce4-session xfce4-settings xfconf xfdesktop xfwm4 xfce4-screenshooter xfce4-pulseaudio-plugin"
 myGnome="gnome gdm"
 myNvidia="nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"
@@ -14,6 +14,10 @@ appPosMyBase(){
     enableSystemctl "bluetooth"
     enableSystemctl "NetworkManager"
     enableSystemctl "lightdm"
+    enableSystemctl "power-profiles-daemon"
+    sudo tee /usr/share/dbus-1/services/org.freedesktop.Notifications.service <<< '[D-BUS Service]
+Name=org.freedesktop.Notifications
+Exec=/usr/lib/notification-daemon-1.0/notification-daemon'
 }
 
 appPosMyBaseUtils(){
@@ -60,7 +64,7 @@ appPosMix(){
 
 appPosMixMy(){
     installPacotes "discord gimp inkscape shotcut code qbittorrent" "myAppsUtils [pacman]"
-    installPacotes "steam mangohud lib32-mangohud gamemode lib32-gamemode cpupower gamescope" "Steam e Game Utils"
+    installPacotes "steam mangohud lib32-mangohud gamemode lib32-gamemode gamescope" "Steam e Game Utils"
     installPacotes "app/com.obsproject.Studio/x86_64/stable runtime/com.obsproject.Studio.Plugin.MoveTransition/x86_64/stable" "Obs e Plugins"
     installPacotes "retroarch retroarch-assets-xmb retroarch-assets-ozone libretro-snes9x libretro-mgba libretro-beetle-psx" "Retroarch"
 }
@@ -177,13 +181,7 @@ i3wmConfig(){
     jrswindowsemfoco="#7d7d7d"
     cd /proc/sys/net/ipv4/conf/
     zerotierAdapter=$(echo zt*)
-    i3-config
-    i3status-config
-    picom-config
-    rofi-config
-    getcol-file
-    polybar-launch
-    polybar-config
+    my-dotfiles
     #sudo chmod +s /usr/bin/light
     echo 'ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chgrp wheel $sys$devpath/brightness", RUN+="/bin/chmod g+w $sys$devpath/brightness"' | sudo tee /etc/udev/rules.d/backlight.rules
     #criarArq 'light' "$HOME/.config/i3/brightness"

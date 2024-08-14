@@ -20,19 +20,7 @@ menu12345 "
 " "dependenciasAtalho"
 
 menu12345 "
-[1] Configurar MangoHud [MODO POWERSAVE]
-[2] Configurar MangoHud [MODO PERFORMANCE]
-[3] Configurar MangoHud [MODO PERFORMANCE 144]
-[4] Configurar MangoHud [MODO CONSOLE 60]
-[5] Configurar MangoHud [MODO CONSOLE 30]
-" "myGameMode powersave 60 3 1 3
-" "myGameMode performance 0 1 0 3
-" "myGameMode performance 144 1 0 3
-" "myGameMode performance 60 3 1 3
-" "myGameMode performance 30 3 1 3"
-
-menu12345 "
-[1] MYBASE CONFIG
+[1] MYARCH CONFIG
 [2] MYBASE PARTS
 [3] SOME APPS
 [4] NVIDIA PROPRIETARIO
