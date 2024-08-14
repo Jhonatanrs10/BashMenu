@@ -2,7 +2,7 @@
 myBase="pacman-contrib pulseaudio pulseaudio-bluetooth cpupower power-profiles-daemon notification-daemon libnotify bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget curl bash bash-completion papirus-icon-theme breeze-gtk capitaine-cursors ntfs-3g dosfstools os-prober nano vim git fastfetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd flatpak gvfs gvfs-mtp gvfs-smb samba udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji wireless_tools imagemagick cmatrix htop alacritty"
 myLightdm="lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings"
 myGlobalApps="lxrandr lxappearance xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer blueman pavucontrol volumeicon network-manager-applet ark xreader mpv lxmusic gparted chromium gnome-keyring seahorse leafpad"
-myI3wm="i3 i3lock i3status dmenu rofi picom nitrogen acpilight scrot xsel"
+myI3wm="i3 polybar i3lock i3status dmenu rofi picom nitrogen acpilight scrot xsel"
 myXfce="exo garcon xfce4-appfinder xfce4-panel xfce4-session xfce4-settings xfconf xfdesktop xfwm4 xfce4-screenshooter xfce4-pulseaudio-plugin"
 myGnome="gnome gdm"
 myNvidia="nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"

@@ -80,12 +80,12 @@ bindsym $mod+p exec --no-startup-id $HOME/.config/i3/powerProfiles.sh
 
 ###Power###
 bindsym $mod+l exec --no-startup-id $Locker
-#bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
-#bindsym $mod+Ctrl+7 exec --no-startup-id $Locker && systemctl suspend
-#bindsym $mod+Ctrl+l exec --no-startup-id dm-tool lock
-#bindsym $mod+Ctrl+8 exec --no-startup-id $Locker && systemctl hibernate
-#bindsym $mod+Ctrl+9 exec --no-startup-id systemctl reboot
-#bindsym $mod+Ctrl+0 exec --no-startup-id systemctl poweroff -i
+bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
+bindsym $mod+Ctrl+7 exec --no-startup-id $Locker && systemctl suspend
+bindsym $mod+Ctrl+l exec --no-startup-id dm-tool lock
+bindsym $mod+Ctrl+8 exec --no-startup-id $Locker && systemctl hibernate
+bindsym $mod+Ctrl+9 exec --no-startup-id systemctl reboot
+bindsym $mod+Ctrl+0 exec --no-startup-id systemctl poweroff -i
 
 ###Print###
 bindsym --release $mod+Print exec --no-startup-id mkdir -p ~/Pictures/PrtSc | scrot ~/Pictures/PrtSc/Screenshot_%Y-%m-%d_%H-%M-%S.png
@@ -230,19 +230,6 @@ mode "$mode_resize" {
         bindsym Escape mode "default"
 }
 bindsym $mod+r mode "$mode_resize"
-
-set $mode_system [Power]
-mode "$mode_system" {
-        bindsym l exec --no-startup-id i3-msg exit
-        bindsym $mod+l exec --no-startup-id $Locker && systemctl suspend
-        bindsym 7 exec --no-startup-id dm-tool lock
-        bindsym 8 exec --no-startup-id $Locker && systemctl hibernate
-        bindsym 9 exec --no-startup-id systemctl reboot
-        bindsym 0 exec --no-startup-id systemctl poweroff -i
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-bindsym $mod+Shift+e mode "$mode_system"
 ' "$HOME/.config/i3/config"
 }
 xfce-config(){
