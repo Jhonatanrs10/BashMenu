@@ -10,6 +10,7 @@ my-dotfiles(){
     polybar-config
     power-profiles
     mangohud-config
+    set-wallpaper-to-lock
 }
 
 i3-config(){
@@ -67,6 +68,7 @@ bindsym $mod+Shift+d exec --no-startup-id $appMenu2
 bindsym $mod+Return exec --no-startup-id $appTerminal
 bindsym $mod+Shift+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Shift+q kill
+bindsym Mod1+F4 kill
 bindsym --whole-window $mod+button2 kill
 bindsym $mod+x exec --no-startup-id $appFiles
 bindsym $mod+c exec --no-startup-id $appBrowser
@@ -93,6 +95,7 @@ bindsym --release Print exec --no-startup-id mkdir -p ~/Pictures/PrtSc | scrot -
 bindsym --release $mod+z exec --no-startup-id $HOME/.config/i3/getcol.sh
 
 ###Window###
+bindsym Mod1+Tab focus right
 bindsym $mod+g focus left
 bindsym $mod+h focus down
 bindsym $mod+j focus up
@@ -232,6 +235,7 @@ mode "$mode_resize" {
 bindsym $mod+r mode "$mode_resize"
 ' "$HOME/.config/i3/config"
 }
+
 xfce-config(){
     criarArqv2 '<?xml version="1.0" encoding="UTF-8"?>
 
@@ -323,6 +327,7 @@ xfce-config(){
   </property>
 </channel>' "$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml"
 }
+
 i3status-config(){
     criarArq '# i3status configuration file.
 # see "man i3status" for documentation.
@@ -630,6 +635,7 @@ textbox-prompt-colon {
 
 ' "$HOME/.config/i3/rofi.rasi"
 }
+
 picom-config(){
     criarArq 'shadow = false;
 fading = false;
@@ -651,6 +657,7 @@ opacity-rule = [
 ];
 ' "$HOME/.config/i3/picom.conf"
 }
+
 getcol-file(){
     criarArq '#!/bin/sh
 getcol=$(rm /tmp/getcol.png
@@ -901,6 +908,12 @@ case $notifyValueNow in
     ;;
 esac' "$HOME/.config/i3/powerProfiles.sh"
 sudo chmod +x $HOME/.config/i3/powerProfiles.sh
+}
+
+set-wallpaper-to-lock(){
+    criarArq '#!/bin/bash
+convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat '$HOME'/.config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') /usr/share/backgrounds/main.png
+' "$HOME/.config/i3/setWL.sh"
 }
 
 mangohud-config(){
