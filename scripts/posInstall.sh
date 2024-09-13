@@ -1,16 +1,19 @@
 #!/usr/bin/env sh
-myBase="pacman-contrib pulseaudio pulseaudio-bluetooth cpupower power-profiles-daemon notification-daemon libnotify bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget curl bash bash-completion papirus-icon-theme breeze-gtk capitaine-cursors ntfs-3g dosfstools os-prober nano vim git fastfetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd flatpak gvfs gvfs-mtp gvfs-smb samba udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji wireless_tools imagemagick cmatrix htop alacritty"
+myBase="pacman-contrib bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget curl bash bash-completion papirus-icon-theme breeze-gtk capitaine-cursors ntfs-3g dosfstools os-prober nano vim git fastfetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd flatpak gvfs gvfs-mtp gvfs-smb samba udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji wireless_tools imagemagick cmatrix htop"
 myLightdm="lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings"
-myGlobalApps="lxrandr lxappearance xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer blueman pavucontrol volumeicon network-manager-applet ark xreader mpv lxmusic gparted chromium gnome-keyring seahorse leafpad"
-myI3wm="i3 polybar i3lock i3status dmenu rofi picom nitrogen acpilight scrot xsel"
-myXfce="exo garcon xfce4-appfinder xfce4-panel xfce4-session xfce4-settings xfconf xfdesktop xfwm4 xfce4-screenshooter xfce4-pulseaudio-plugin"
-myGnome="gnome gdm"
+myI3wmApps="lxrandr lxappearance xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer blueman pavucontrol volumeicon network-manager-applet ark xreader lxmusic gnome-keyring seahorse leafpad"
+myI3wm="i3 polybar i3lock i3status dmenu rofi picom nitrogen acpilight scrot xsel alacritty cpupower power-profiles-daemon notification-daemon pulseaudio pulseaudio-bluetooth libnotify"
+myXfceToI3="exo garcon xfce4-appfinder xfce4-panel xfce4-session xfce4-settings xfconf xfdesktop xfwm4 xfce4-screenshooter xfce4-pulseaudio-plugin"
+myXfce4="xfce4 xfce4-goodies xfce4-dockline-plugin ark"
+myKde="plasma kde-applications sddm"
+myGnome="gnome gnome-extra gdm"
 myNvidia="nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"
+myGlobalApps="gimp inkscape shotcut code qbittorrent mpv gparted chromium alacritty"
 
 source dotfiles.sh
 
-appPosMyBase(){
-    sudo pacman -S $myBase $myLightdm $myI3wm $myGlobalApps
+myBaseI3wm(){
+    sudo pacman -S $myBase $myLightdm $myI3wm $myI3wmApps $myGlobalApps
     enableSystemctl "bluetooth"
     enableSystemctl "NetworkManager"
     enableSystemctl "lightdm"
@@ -20,17 +23,11 @@ Name=org.freedesktop.Notifications
 Exec=/usr/lib/notification-daemon-1.0/notification-daemon'
 }
 
-appPosMyBaseUtils(){
-    menu12345 "[1] MYBASE
-[2] LIGHTDM
-[3] I3WM
-[4] XFCE
-[5] GLOBAL APPS
-" "sudo pacman -S $myBase
-" "sudo pacman -S $myLightdm
-" "sudo pacman -S $myI3wm
-" "sudo pacman -S $myXfce
-" "sudo pacman -S $myGlobalApps"
+myBaseXfce4(){
+    yay -S $myBase $myLightdm $myXfce4 $myGlobalApps
+    enableSystemctl "bluetooth"
+    enableSystemctl "NetworkManager"
+    enableSystemctl "lightdm"
 }
                         
 appPosNetwork(){
@@ -194,7 +191,7 @@ xfce4Config(){
     pkill xfconfd
     rm -rf ~/.config/xfce4/panel
     rm -rf ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
-    xfce-config
+    xfce4-config
     xfce4-panel &
 }
 

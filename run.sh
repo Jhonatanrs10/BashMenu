@@ -20,14 +20,17 @@ menu12345 "
 " "dependenciasAtalho"
 
 menu12345 "
-[1] MYARCH CONFIG
-[2] MYBASE PARTS
-[3] SOME APPS
+[1] INSTALL YAY [ARCH][AUR]
+[2] INSTALL MYARCH I3WM 
+[3] INSTALL MYARCH XFCE4 
 [4] NVIDIA PROPRIETARIO
-" "appPosMyBase
-" "appPosMyBaseUtils
-" "appPosMixMy
-" "appPosNvidiaDriverProp"
+[5] SOME APPS
+" "appPosYay
+" "myBaseI3wm
+" "myBaseXfce4
+" "appPosNvidiaDriverProp
+" "appPosMixMy"
+
 
 menu12345 "
 [1] CRIA ATALHO DESKTOP
@@ -51,15 +54,13 @@ menu12345 "
 [5] INSTALAR POKEXGAMES
 [6] INSTALAR MINECRAFT TLAUNCHER
 [7] INSTALAR POSMIX APPS
-[8] INSTALAR YAY [ARCH][AUR]
 " "gitconfig
 " "criaPastaShareUser
 " "criaPastaShareGuest
 " "bongo
 " "installPokexgames
 " "installMinecraft
-" "appPosMix
-" "appPosYay"
+" "appPosMix"
 
 menu12345 "
 [1] INSTALAR MINECRAFT SERVER VERSION

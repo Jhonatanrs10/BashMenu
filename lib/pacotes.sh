@@ -1,22 +1,24 @@
 #!/usr/bin/env sh
 installPacotes(){
 	resp="vazio"
-	echo "[INSTALAR PACOTES] $2
+	echo "[INSTALAR PACOTES]
 Pacotes: $1	
-Usar: [1]apt, [2]pacman [3]pamac [4]flatpak"
+Usar: [1]Pacman, [2]Yay, [3]pamac, [4]Flatpak, [5]Apt"
 	read resp
 	PROGRAMAS_PARA_INSTALAR=($1)
 	for nome_do_programa in ${PROGRAMAS_PARA_INSTALAR[@]}; 
 	do
-		if [ "$resp" = 1 ]; then
+		if [ "$resp" = 5 ]; then
 			sudo apt --fix-broken install -y
 	    	sudo apt install "$nome_do_programa" -y
-		elif [ "$resp" = 2 ]; then
+		elif [ "$resp" = 1 ]; then
 			sudo pacman -S "$nome_do_programa" --noconfirm
 		elif [ "$resp" = 3 ]; then
 			sudo pamac install "$nome_do_programa" --no-confirm
 		elif [ "$resp" = 4 ]; then
 			flatpak install "$nome_do_programa"
+		elif [ "$resp" = 2 ]; then
+			yay -S "$nome_do_programa" --noconfirm
 		fi
 	done 
 }
@@ -32,17 +34,19 @@ Usar: [1]apt, [2]pacman [3]pamac [4]flatpak"
 	PROGRAMAS_PARA_INSTALAR=($1)
 	for nome_do_programa in ${PROGRAMAS_PARA_INSTALAR[@]}; 
 	do
-		if [ "$resp" = 1 ]; then
+		if [ "$resp" = 5 ]; then
 			#sudo apt --fix-broken install -y
 	    	sudo apt remove "$nome_do_programa" -y
         	#sudo apt autoremove "$nome_do_programa" -y
         	#sudo apt purge "$nome_do_programa" -y
-		elif [ "$resp" = 2 ]; then
+		elif [ "$resp" = 1 ]; then
 			sudo pacman -R "$nome_do_programa" --noconfirm
 		elif [ "$resp" = 3 ]; then
 			sudo pamac remove "$nome_do_programa" --no-confirm
 		elif [ "$resp" = 4 ]; then
 			flatpak uninstall "$nome_do_programa"
+		elif [ "$resp" = 2 ]; then
+			yay -R "$nome_do_programa" --noconfirm
 		fi
 	done 
 }
