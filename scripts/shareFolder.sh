@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 criaPastaShareUser(){
         criaSmbDefault
-	installPacotes "samba"
+	packagesManager "samba"
         enableSystemctl "smb"
         enableSystemctl "nmb"
         criaSeuUsuarioSamba
@@ -12,7 +12,7 @@ criaPastaShareUser(){
 
 criaPastaShareGuest(){
         criaSmbDefault
-	installPacotes "samba"
+	packagesManager "samba"
         enableSystemctl "smb"
         enableSystemctl "nmb"
         criaSeuUsuarioSamba

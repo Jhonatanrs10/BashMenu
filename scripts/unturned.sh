@@ -31,11 +31,11 @@ installUnturnedServer(){
     }
     
     manuallySteamCMD(){
-        installPacotes "lib32gcc-s1"
+        packagesManager "lib32gcc-s1"
         criaPastaBaixaExtrai "$diretorioInstall" "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" "steamcmd.tar.gz"
         #baixando dependencias
         bash ./steamcmd.sh +login anonymous +app_update 1110390 +quit
-        installPacotes "tmux screen"
+        packagesManager "tmux screen"
     }
     
     criarArq "Map Ex.(PEI - Germany - Russia - Washington) 

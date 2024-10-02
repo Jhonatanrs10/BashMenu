@@ -47,7 +47,7 @@ myBaseKde(){
 appPosNetwork(){
     echo "[ARCH] Network"
     echo "INSTALAR NETWORKMANAGER"
-    installPacotes "networkmanager nm-connection-editor network-manager-applet"
+    packagesManager "networkmanager nm-connection-editor network-manager-applet"
     #sudo systemctl enable NetworkManager.service
     #sudo systemctl start NetworkManager.service --now
     enableSystemctl "NetworkManager"
@@ -56,35 +56,36 @@ appPosNetwork(){
 }
                        
 appPosVirtManager(){
-    installPacotes "qemu libvirt ebtables dnsmasq bridge-utils openbsd-netcat virt-manager" "VirtManager"
+    packagesManager "qemu libvirt ebtables dnsmasq bridge-utils openbsd-netcat virt-manager" "VirtManager"
     enableSystemctl "libvirtd"  
     sudo virsh net-autostart default
     #sudo virsh net-start default  
 }
 
 appPosMix(){
-    installPacotes "gufw" "FireWall"
-    installPacotes "gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd" "Plugins Multimedia"
-    installPacotes "samba gvfs-smb" "Rede Share"
-    installPacotes "flatpak"
-    installPacotes "ntfs-3g dosfstools" "Suporte a NTFS e FAT"
-    installPacotes "mtpfs" "Default MTP device"
-    installPacotes "gvfs gvfs-mtp gvfs-smb" "MTP device"
-    installPacotes "udisks2" "Manipular Discos Terminal"
+    packagesManager "gufw" "FireWall"
+    packagesManager "gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd" "Plugins Multimedia"
+    packagesManager "samba gvfs-smb" "Rede Share"
+    packagesManager "flatpak"
+    packagesManager "ntfs-3g dosfstools" "Suporte a NTFS e FAT"
+    packagesManager "mtpfs" "Default MTP device"
+    packagesManager "gvfs gvfs-mtp gvfs-smb" "MTP device"
+    packagesManager "udisks2" "Manipular Discos Terminal"
 }
 
 appPosMixMy(){
-    installPacotes "discord gimp inkscape shotcut code qbittorrent" "myAppsUtils [pacman]"
-    installPacotes "steam mangohud lib32-mangohud gamemode lib32-gamemode gamescope" "Steam e Game Utils"
-    installPacotes "app/com.obsproject.Studio/x86_64/stable runtime/com.obsproject.Studio.Plugin.MoveTransition/x86_64/stable" "Obs e Plugins"
-    installPacotes "retroarch retroarch-assets-xmb retroarch-assets-ozone libretro-snes9x libretro-mgba libretro-beetle-psx" "Retroarch"
+    packagesManager "$javaPackages"
+    packagesManager "discord gimp inkscape shotcut code qbittorrent"
+    packagesManager "steam mangohud lib32-mangohud gamemode lib32-gamemode gamescope"
+    packagesManager "app/com.obsproject.Studio/x86_64/stable runtime/com.obsproject.Studio.Plugin.MoveTransition/x86_64/stable"
+    packagesManager "retroarch retroarch-assets-xmb retroarch-assets-ozone libretro-snes9x libretro-mgba libretro-beetle-psx"
 }
  
 appPosNvidiaDriverProp(){
         #https://github.com/lutris/docs/blob/master/InstallingDrivers.md#arch--manjaro--other-arch-linux-derivatives
         #causa crash no gdm o pacote: nvidia-dkms
         #https://codigocristo.github.io/driver_nvidia.html
-        installPacotes "$myNvidia" "Driver NVIDIA Proprietario"
+        packagesManager "$myNvidia" "Driver NVIDIA Proprietario"
 }    
 
 appPosManualConfig(){ 
@@ -109,6 +110,7 @@ sudo systemctl restart gdm3
 Caso de erro com thema no i3 é so apagar as pastas gtk-* em .config na HOME
 ---------------------
 [NVIDIA]
+https://github.com/korvahannu/arch-nvidia-drivers-installation-guide
 configurar no Xorg com
 sudo nvidia-xconfig
 ---------------------

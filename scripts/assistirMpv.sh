@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 assistirMpv(){
         #streamlink,  youtube-dl e mpv WORKING IN 2023
-        installPacotes "yt-dlp mpv"
+        packagesManager "yt-dlp mpv"
         resp="vazio"
         clear
         while [ "$resp" != "" ];

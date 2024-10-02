@@ -10,6 +10,6 @@ nodejslts() {
         export PATH=/usr/node*/bin:$PATH
         rm -r $diretorioInstall
     elif [ "$escolha" = "2" ]; then
-        installPacotes "nodejs-lts-iron"
+        packagesManager "nodejs-lts-iron"
     fi
 }

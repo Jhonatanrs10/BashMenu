@@ -11,7 +11,7 @@ zerotier(){
         sudo zerotier-cli join $roomZerotier
     elif [ "$escolha" = "2" ]; then
         echo "PAMAC ou PACMAN"
-        installPacotes "zerotier-one"
+        packagesManager "zerotier-one"
         enableSystemctl "zerotier-one"
         sudo zerotier-cli join $roomZerotier
     fi 

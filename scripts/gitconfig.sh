@@ -2,7 +2,7 @@
 
 gitconfig(){
     #https://docs.github.com/pt/get-started/getting-started-with-git/caching-your-github-credentials-in-git
-    installPacotes "git gh github-cli"
+    packagesManager "git gh github-cli"
     gh auth login
     #vars
     echo "DIGITE SEU NOME:"

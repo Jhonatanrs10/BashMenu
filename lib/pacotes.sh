@@ -1,65 +1,42 @@
 #!/usr/bin/env sh
-installPacotes(){
-	resp="vazio"
-	echo "[INSTALAR PACOTES]
-Pacotes: $1	
-Usar: [1]Pacman, [2]Yay, [3]pamac, [4]Flatpak, [5]Apt"
-	read resp
-	PROGRAMAS_PARA_INSTALAR=($1)
-	for nome_do_programa in ${PROGRAMAS_PARA_INSTALAR[@]}; 
-	do
-		if [ "$resp" = 5 ]; then
-			sudo apt --fix-broken install -y
-	    	sudo apt install "$nome_do_programa" -y
-		elif [ "$resp" = 1 ]; then
-			sudo pacman -S "$nome_do_programa" --noconfirm
-		elif [ "$resp" = 3 ]; then
-			sudo pamac install "$nome_do_programa" --no-confirm
-		elif [ "$resp" = 4 ]; then
-			flatpak install "$nome_do_programa"
-		elif [ "$resp" = 2 ]; then
-			yay -S "$nome_do_programa" --noconfirm
-		fi
-	done 
-}
-
-removePacotes(){
-	echo -e "[INFO] - INSTALANDO PROGRAMAS - [INFO]"
-	resp="vazio"
+packagesManager(){
 	clear
-	echo "[REMOVER PACOTES] 
-Pacotes: $1	
-Usar: [1]apt, [2]pacman [3]pamac [4]flatpak"
+	echo "[PACKAGES]
+[$1]	
+Options: [1]Pacman, [2]Yay, [3]pamac, [4]Flatpak, [5]Apt
+to uninstall for example a Pacman Package put [0] before option. Ex: [01]"
 	read resp
-	PROGRAMAS_PARA_INSTALAR=($1)
-	for nome_do_programa in ${PROGRAMAS_PARA_INSTALAR[@]}; 
-	do
-		if [ "$resp" = 5 ]; then
-			#sudo apt --fix-broken install -y
-	    	sudo apt remove "$nome_do_programa" -y
-        	#sudo apt autoremove "$nome_do_programa" -y
-        	#sudo apt purge "$nome_do_programa" -y
-		elif [ "$resp" = 1 ]; then
-			sudo pacman -R "$nome_do_programa" --noconfirm
-		elif [ "$resp" = 3 ]; then
-			sudo pamac remove "$nome_do_programa" --no-confirm
-		elif [ "$resp" = 4 ]; then
-			flatpak uninstall "$nome_do_programa"
-		elif [ "$resp" = 2 ]; then
-			yay -R "$nome_do_programa" --noconfirm
-		fi
-	done 
+
+	case $resp in
+		1)sudo pacman -S $1 --noconfirm;;
+		2)yay -S $1 --noconfirm;;
+		3)sudo pamac install $1 --no-confirm;;
+		4)flatpak install $1;;
+		5)sudo apt install $1 -y;;
+		01)sudo pacman -R $1 --noconfirm;;
+		02)yay -R "$1" --noconfirm;;
+		03)sudo pamac remove $1 --no-confirm;;
+		04)flatpak remove $1;;
+		05)sudo apt remove $1 -y;;
+		*)
+	esac
+
 }
 
-repararApt(){
-	sudo dpkg --configure -a
-	sudo apt --fix-broken install -y
+repairPM(){
+	echo "[REPAIR PACKAGES MANAGER]
+Options: [1]Apt [2]Pacman"
+	read resp
+	case $resp in
+		1)
+			sudo dpkg --configure -a
+			sudo apt --fix-broken install -y
+			;;
+		2)
+			sudo rm /var/lib/pacman/db.lck
+			;;
+		*)
+	esac
 }
-
-repararPacman(){
-	sudo rm /var/lib/pacman/db.lck
-}
-#installPacotes"apt1 apt2 apt3"
-#removePacotes "apt1 apt2 apt3"
-#repararApt
-#repararPacman
+#packagesManager "apt1 apt2 apt3"
+#repairPM

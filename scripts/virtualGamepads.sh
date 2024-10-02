@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 virtualGamepads(){
     echo "Dependencias"
-    installPacotes "nodejs-lts-hydrogen npm"
+    packagesManager "nodejs-lts-hydrogen npm"
     installName="VirtualGamepads"
     uninstallPastaAtalhoBinMesmoNome "$installName"
     criaDiretorioInstall "$dBashMenu/$installName"

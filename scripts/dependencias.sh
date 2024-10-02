@@ -24,11 +24,11 @@ bash $nomeRun.sh" "$dBashMenu/Bins/runBashMenu.sh"
         AtalhoBinExec "$dBashMenu/Bins/runBashMenu.sh"
         criaAtalho "BashMenu" "My BashMenu " "jrs" "$dBashMenu" "true" "BashMenu" "bash"
     fi
-    echo "Instalar Dependencias e Java? (s/n)"
+    echo "Instalar Dependencias? (s/n)
+[$fullPackages]"
     read resp
     if [ "$resp" = "s" ]; then
-        installPacotes "$fullPackages"
-        installPacotes "$javaPackages"
+        packagesManager "$fullPackages"
     fi
 }
 

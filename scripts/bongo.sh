@@ -2,7 +2,7 @@
 bongo(){
     bongocat="https://github.com/kuroni/bongocat-osu/archive/refs/heads/master.zip"
     uninstallPastaAtalhoBinMesmoNome "winBongo"
-    installPacotes "g++ gcc libxdo xdotool libxdo-dev libsdl2-dev libsfml-dev sdl2 sfml x11 xrandr make"
+    packagesManager "g++ gcc libxdo xdotool libxdo-dev libsdl2-dev libsfml-dev sdl2 sfml x11 xrandr make"
     echo -e "[INFO] - INSTALANDO BONGOCAT - [INFO]"
     criaDiretorio "diretorioBongo" "$dBashMenu/winBongo"
     cd $diretorioBongo
