@@ -1,14 +1,14 @@
 #!/usr/bin/env sh
-myBase="pacman-contrib bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget curl bash bash-completion papirus-icon-theme breeze-gtk capitaine-cursors ntfs-3g dosfstools os-prober nano vim git fastfetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd flatpak gvfs gvfs-mtp gvfs-smb samba udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji wireless_tools imagemagick cmatrix htop"
+myBase="pacman-contrib bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget curl bash bash-completion power-profiles-daemon notification-daemon papirus-icon-theme breeze-gtk capitaine-cursors ntfs-3g dosfstools os-prober nano vim git fastfetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd flatpak gvfs gvfs-mtp gvfs-smb samba udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji wireless_tools imagemagick cmatrix htop "
 myLightdm="lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings"
 myI3wmApps="lxrandr lxappearance xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer blueman pavucontrol volumeicon network-manager-applet ark xreader lxmusic gnome-keyring seahorse leafpad"
-myI3wm="i3 polybar i3lock i3status dmenu rofi picom nitrogen acpilight scrot xsel alacritty cpupower power-profiles-daemon notification-daemon pulseaudio pulseaudio-bluetooth libnotify"
+myI3wm="i3 polybar i3lock i3status dmenu rofi picom nitrogen acpilight scrot xsel alacritty cpupower pulseaudio pulseaudio-bluetooth libnotify"
 myXfceToI3="exo garcon xfce4-appfinder xfce4-panel xfce4-session xfce4-settings xfconf xfdesktop xfwm4 xfce4-screenshooter xfce4-pulseaudio-plugin"
 myXfce4="xfce4 xfce4-goodies xfce4-dockline-plugin ark"
-myKde="plasma kde-applications sddm"
-myGnome="gnome gnome-extra gdm"
+myKde="plasma sddm dolphin dolphin-plugins dragon elisa kdeconnect ark filelight gwenview kate"
+myGnome="gnome gnome-tweaks gnome-shell-extension-gsconnect"
 myNvidia="nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"
-myGlobalApps="gimp inkscape shotcut code qbittorrent mpv gparted chromium alacritty"
+myGlobalApps="gimp inkscape shotcut code qbittorrent mpv gparted chromium alacritty bitwarden"
 
 source dotfiles.sh
 
@@ -28,6 +28,20 @@ myBaseXfce4(){
     enableSystemctl "bluetooth"
     enableSystemctl "NetworkManager"
     enableSystemctl "lightdm"
+}
+
+myBaseGnome(){
+    yay -S $myBase $myGnome $myGlobalApps
+    enableSystemctl "bluetooth"
+    enableSystemctl "NetworkManager"
+    enableSystemctl "gdm"
+}
+
+myBaseKde(){
+    yay -S $myBase $myKde $myGlobalApps
+    enableSystemctl "bluetooth"
+    enableSystemctl "NetworkManager"
+    enableSystemctl "sddm"
 }
                         
 appPosNetwork(){

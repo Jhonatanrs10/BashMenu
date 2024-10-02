@@ -8,7 +8,7 @@ uninstallPastaAtalhoBin(){
             echo "NAO COLOQUE UM VALOR VAZIO RISCO DE QUEBRAR O SISTEMA"
         else
             sudo rm -r $1 
-            sudo rm /usr/share/applications/jrs-$2
+            sudo rm $HOME/.local/share/applications/jrs-$2
             sudo rm /usr/bin/jrs-$3
         fi
         exit 1
