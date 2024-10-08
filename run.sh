@@ -5,68 +5,63 @@ resp="vazio"
 while [ "$resp" != "exit" ];
 do
 
-menu12345 "
-[1] GIT PUSH
-[2] ASSISTIR PELO MPV
-[3] I3WM CONFIG
-[4] XFCE4 CONFIG
-[5] LIGHTDM CONFIG
-[6] BASHMENU CONFIG
-" "gitAutoPush
-" "assistirMpv
+subMenuPosInstall(){
+    while [ "$resp" != "exit" ];
+    do
+        menu12345 "
+[1] I3WM CONFIG
+[2] XFCE4 CONFIG
+[3] LIGHTDM CONFIG
 " "i3wmConfig
 " "xfce4Config
-" "appPosLightdmConfig
-" "dependenciasAtalho"
+" "appPosLightdmConfig"
 
-menu12345 "
+        menu12345 "
 [1] INSTALL YAY [ARCH][AUR]
 [2] INSTALL MYARCH I3WM [PACMAN][YAY]
 [3] INSTALL MYARCH XFCE4 [YAY]
 [4] INSTALL MYARCH KDE [YAY]
 [5] INSTALL MYARCH GNOME [YAY]
 [6] NVIDIA PROPRIETARIO
-[7] SOME APPS
 " "appPosYay
 " "myBaseI3wm
 " "myBaseXfce4
 " "myBaseKde
 " "myBaseGnome
-" "appPosNvidiaDriverProp
-" "appPosMixMy"
+" "appPosNvidiaDriverProp"
 
+    done
+}
 
-menu12345 "
-[1] CRIA ATALHO DESKTOP
-[2] CRIA ATALHO RETROARCH GAME
-[3] CRIA ATALHO PASTA/ARQUIVO
-[4] CRIA ATALHO BIN PARA COMANDOS DE TERMINAL
-[5] CRIA ATALHO APPIMAGE
-[6] REMOVE ATALHO DESKTOP
-" "criaAtalhoDesktop
-" "criaAtalhoDesktopRetroarchArch
-" "criaArqRunDiretorioInstall
-" "AtalhoTerminalBin
-" "criaAtalhoDesktopAppimage
-" "removeDesktopJRS"
-
-menu12345 "
-[1] GIT CONFIG
-[2] CRIAR PASTA COMPARTILHADA [USER]
-[3] CRIAR PASTA COMPARTILHADA [GUEST]
-[4] INSTALAR BONGOCAT
-[5] INSTALAR POKEXGAMES
-[6] INSTALAR MINECRAFT TLAUNCHER
-[7] INSTALAR POSMIX APPS
+subMenuGit(){
+    while [ "$resp" != "exit" ];
+    do
+        menu12345 "
+[1] GIT PUSH
+[2] GIT CONFIG
+[3] BASHMENU CONFIG
+" "gitAutoPush
 " "gitconfig
-" "criaPastaShareUser
-" "criaPastaShareGuest
+" "dependenciasAtalho" 
+    done
+}
+
+subMenuInstallApps(){
+    while [ "$resp" != "exit" ];
+    do
+        menu12345 "
+[1] INSTALAR BONGOCAT
+[2] INSTALAR POKEXGAMES
+[3] INSTALAR MINECRAFT TLAUNCHER
+[4] INSTALAR POSMIX APPS
+[5] INSTALAR SOME APPS
 " "bongo
 " "installPokexgames
 " "installMinecraft
-" "appPosMix"
+" "appPosMix
+" "appPosMixMy"
 
-menu12345 "
+        menu12345 "
 [1] INSTALAR MINECRAFT SERVER VERSION
 [2] INSTALAR FIVEM SERVER
 [3] INSTALAR UNTURNED SERVER
@@ -84,19 +79,54 @@ menu12345 "
 " "zerotier
 " "installNgrok"
 
-menu12345 "
+        menu12345 "
 [1] INSTALAR NODEJS LTS
-[2] MUDAR JAVA VERSION
-[3] INSTALAR VIRTUAL GAMEPADS
-[4] INSTALAR VIRTMANAGER [MAQUINA VIRTUAL]
-[5] VIRTUAL PULSEAUDIO CONFIG
+[2] INSTALAR VIRTUAL GAMEPADS
+[3] INSTALAR VIRTMANAGER [MAQUINA VIRTUAL]
+" "nodejslts
+" "virtualGamepads
+" "appPosVirtManager"
+    done
+}
+
+subMenuPastasAtalhos(){
+    while [ "$resp" != "exit" ];
+    do
+        menu12345 "
+[1] CRIA ATALHO DESKTOP
+[2] CRIA ATALHO RETROARCH GAME
+[3] CRIA ATALHO PASTA/ARQUIVO
+[4] CRIA ATALHO BIN PARA COMANDOS DE TERMINAL
+[5] CRIA ATALHO APPIMAGE
+[6] REMOVE ATALHO DESKTOP
+" "criaAtalhoDesktop
+" "criaAtalhoDesktopRetroarchArch
+" "criaArqRunDiretorioInstall
+" "AtalhoTerminalBin
+" "criaAtalhoDesktopAppimage
+" "removeDesktopJRS"
+
+        menu12345 "
+[1] CRIAR PASTA COMPARTILHADA [USER]
+[2] CRIAR PASTA COMPARTILHADA [GUEST]
+" "criaPastaShareUser
+" "criaPastaShareGuest"
+    done
+}
+
+subMenuOutros(){
+    while [ "$resp" != "exit" ];
+    do
+        menu12345 "
+[1] MUDAR JAVA VERSION
+[2] VIRTUAL PULSEAUDIO CONFIG
 " "nodejslts
 " "javaVersion
 " "virtualGamepads
 " "appPosVirtManager
 " "virtualPulseAudioExec"
 
-menu12345 "
+        menu12345 "
 [1] NETWORK CONFIG
 [2] POS MANUAL CONFIG
 [3] BLUETOOTH FIX
@@ -112,5 +142,22 @@ menu12345 "
 " "appPosI3Touchpad
 " "repairPM"
 
-
+        menu12345 "
+[1] ASSISTIR PELO MPV
+" "assistirMpv"
+    done
+}
+##
+menu12345 "
+[1]POSINSTALL
+[2]GIT
+[3]INSTALL APPS
+[4]PASTAS E ATALHOS
+[5]OUTROS
+" "subMenuPosInstall
+" "subMenuGit
+" "subMenuInstallApps
+" "subMenuPastasAtalhos
+" "subMenuOutros"
+##
 done
