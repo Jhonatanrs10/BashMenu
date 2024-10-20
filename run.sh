@@ -31,7 +31,9 @@ subMenuPosInstall(){
 " "myBaseKde
 " "myBaseGnome
 " "appPosNvidiaDriverProp"
-
+        menu12345 "
+[1] REMOVE ALL FORGET ONLY myBase
+" "myBaseOnly"
     done
 }
 
