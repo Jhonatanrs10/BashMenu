@@ -1,24 +1,32 @@
 #!/usr/bin/env sh
+  dotFont="Freemono"
+  dotFontSize="10"
 my-dotfiles(){
     i3-config
     xfce4-config
     i3status-config
     rofi-config
     picom-config
-    getcol-file
     polybar-launch
     polybar-config
     power-profiles
     mangohud-config
     set-wallpaper-to-lock
+    alacrittyConfig
+    fastfetchConfig
+    hyprlandConfig
+    hyprpaperConfig
+    waybarConfig
+    wofiConfig
 }
 
 i3-config(){
+    mkdir -p $HOME/.config/i3
     criarArq '######Jhonatanrs I3-WM config######
 set $mod Mod4
-set $textFont FreeMono 8
+set $textFont '$dotFont' 8
 set $appMenu2 dmenu_run
-set $appMenu rofi -show combi -config $HOME/.config/i3/rofi.rasi 
+set $appMenu rofi -show drun
 set $appTerminal alacritty
 set $appFiles pcmanfm
 set $appBrowser chromium
@@ -49,8 +57,8 @@ set $espacoentrejanelas 5px
 font pango:$textFont
 
 ###AutoStart###
-exec --no-startup-id picom --config ~/.config/i3/picom.conf
-exec_always --no-startup-id $HOME/.config/i3/polybar.sh
+exec --no-startup-id picom
+exec_always --no-startup-id $HOME/.config/polybar/polybar.sh
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
@@ -61,6 +69,7 @@ exec --no-startup-id nitrogen --restore
 #exec --no-startup-id feh --bg-scale ~/.config/i3/wallpaperI3.png
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id xset -b
+exec --no-startup-id kdeconnect-indicator
 
 ###Binds###
 bindsym $mod+d exec --no-startup-id $appMenu
@@ -74,11 +83,11 @@ bindsym $mod+x exec --no-startup-id $appFiles
 bindsym $mod+c exec --no-startup-id $appBrowser
 bindsym $mod+n exec --no-startup-id $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') /usr/share/backgrounds/main.png, mode "default"
 #bindsym 7 exec --no-startup-id $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') $HOME/.config/i3/wallpaperI3Lock.png, mode "default"
-bindsym $mod+Ctrl+p exec --no-startup-id picom --config ~/.config/i3/picom.conf, mode "default"
+bindsym $mod+Ctrl+p exec --no-startup-id picom, mode "default"
 bindsym $mod+Shift+p exec --no-startup-id killall picom
 bindsym $mod+Ctrl+b bar mode toggle
 bindsym $mod+b exec --no-startup-id polybar-msg cmd toggle
-bindsym $mod+p exec --no-startup-id $HOME/.config/i3/powerProfiles.sh
+bindsym $mod+p exec --no-startup-id $HOME/.config/jrs/powerProfiles.sh
 
 ###Power###
 bindsym $mod+l exec --no-startup-id $Locker
@@ -92,7 +101,8 @@ bindsym $mod+Ctrl+0 exec --no-startup-id systemctl poweroff -i
 ###Print###
 bindsym --release $mod+Print exec --no-startup-id mkdir -p ~/Pictures/PrtSc | scrot ~/Pictures/PrtSc/Screenshot_%Y-%m-%d_%H-%M-%S.png
 bindsym --release Print exec --no-startup-id mkdir -p ~/Pictures/PrtSc | scrot -f -s ~/Pictures/PrtSc/Cutshot_%Y-%m-%d_%H-%M-%S.png
-bindsym --release $mod+z exec --no-startup-id $HOME/.config/i3/getcol.sh
+bindsym --release $mod+z exec --no-startup-id xcolor -c %{02hr}%{02hg}%{02hb} -s
+#bindsym --release $mod+z exec --no-startup-id $HOME/.config/jrs/getcol.sh
 
 ###Window###
 bindsym Mod1+Tab focus right
@@ -185,7 +195,7 @@ workspace_layout default
 
 ###I3BARS###
 #bar {
-#	status_command i3status --config ~/.config/i3/i3status.conf
+#	status_command i3status --config ~/.config/i3status/config
 #	position top
 #	mode dock
 #	#tray_output primary
@@ -200,20 +210,20 @@ workspace_layout default
 #	padding 0 0 5 0
 #	colors {
 #	    #i3bar
-#	    background '$jrsbar'
-#	    statusline '$jrsbartexto'
-#	    separator '$jrsbartexto'
-#	    focused_workspace  '$jrswindowcomfoco' '$jrsbar' '$jrsbartexto'
-#	    active_workspace   '$jrsbar' '$jrsbar' '$jrsbartexto'
-#	    inactive_workspace '$jrsbar' '$jrsbar' '$jrsbartexto'
-#	    urgent_workspace   '$jrsbar'  #900000  '$jrsbartexto'
-#       binding_mode       '$jrsbar' '$jrsbar' '$jrsbartexto'
+#	    background '#$jrsbar'
+#	    statusline '#$jrsbartexto'
+#	    separator '#$jrsbartexto'
+#	    focused_workspace  '#$jrswindowcomfoco' '#$jrsbar' '#$jrsbartexto'
+#	    active_workspace   '#$jrsbar' '#$jrsbar' '#$jrsbartexto'
+#	    inactive_workspace '#$jrsbar' '#$jrsbar' '#$jrsbartexto'
+#	    urgent_workspace   '#$jrsbar'  #900000  '#$jrsbartexto'
+#       binding_mode       '#$jrsbar' '#$jrsbar' '#$jrsbartexto'
 #    }
 #}
 #class                  borda       background  texto         indicator   child_border
-client.focused          '$jrswindowcomfoco' '$jrswindowcomfoco' '$jrswindowtextocomfoco' '$jrswindowcomfoco' '$jrswindowcomfoco'
-client.focused_inactive '$jrswindowsemfoco' '$jrswindowsemfoco' '$jrswindowtextosemfoco' '$jrswindowsemfoco' '$jrswindowsemfoco'
-client.unfocused        '$jrswindowsemfoco' '$jrswindowsemfoco' '$jrswindowtextosemfoco' '$jrswindowsemfoco' '$jrswindowsemfoco'
+client.focused          '#$jrswindowcomfoco' '#$jrswindowcomfoco' '#$jrswindowtextocomfoco' '#$jrswindowcomfoco' '#$jrswindowcomfoco'
+client.focused_inactive '#$jrswindowsemfoco' '#$jrswindowsemfoco' '#$jrswindowtextosemfoco' '#$jrswindowsemfoco' '#$jrswindowsemfoco'
+client.unfocused        '#$jrswindowsemfoco' '#$jrswindowsemfoco' '#$jrswindowtextosemfoco' '#$jrswindowsemfoco' '#$jrswindowsemfoco'
 client.urgent           #2f343a #900000 #ffffff #900000 #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
 client.background       #ffffff
@@ -432,6 +442,7 @@ xfce-config(){
 }
 
 i3status-config(){
+    mkdir -p $HOME/.config/i3status
     criarArq '# i3status configuration file.
 # see "man i3status" for documentation.
 
@@ -442,7 +453,7 @@ i3status-config(){
 general {
 	colors = true
         interval = 5
-	color_good = "'$jrsbartexto'"
+	color_good = "'#$jrsbartexto'"
 	color_bad = "#FF0000"
 	color_degraded = "#FFFF00"
 }
@@ -576,24 +587,25 @@ tztime local1 {
     separator = false
     separator_block_width = 1
 }
-' "$HOME/.config/i3/i3status.conf"
+' "$HOME/.config/i3status/config"
 }
 
 rofi-config(){
+    mkdir -p $HOME/.config/rofi
     criarArq '* {
 
-    corcomfoco: '$jrswindowcomfoco';
-    textocomfoco: '$jrswindowtextocomfoco';
-    corsemfoco: '$jrswindowsemfoco';
-    textosemfoco: '$jrswindowtextosemfoco';
-    corbar: '$jrsbar';
-    cortexto: '$jrsbartexto';
+    corcomfoco: '#$jrswindowcomfoco';
+    textocomfoco: '#$jrswindowtextocomfoco';
+    corsemfoco: '#$jrswindowsemfoco';
+    textosemfoco: '#$jrswindowtextosemfoco';
+    corbar: '#$jrsbar';
+    cortexto: '#$jrsbartexto';
   
 }
 
 configuration {
     drun {
-        display-name: "Desktop";
+        display-name: " Search";
     }
     run {
         display-name: "Terminal";
@@ -613,7 +625,7 @@ configuration {
     scroll-method: 1; 
     show-icons: true;
     combi-display-format: "{text} ({mode})";
-    font: "FreeMono 12";
+    font: "'$dotFont' 12";
 }
 
 window {
@@ -736,10 +748,11 @@ textbox-prompt-colon {
     text-color: @textocomfoco;
 }
 
-' "$HOME/.config/i3/rofi.rasi"
+' "$HOME/.config/rofi/config.rasi"
 }
 
 picom-config(){
+    mkdir -p $HOME/.config/picom
     criarArq 'shadow = false;
 fading = false;
 fade-in-step = 0.1;
@@ -754,14 +767,26 @@ unredir-if-possible = false;
 backend = "xrender";
 opacity-rule = [
         "95:class_g = '"'i3bar'"'",
-        "95:class_g = '"'Alacritty'"'",
-        "95:class_g = '"'Rofi'"'",
-        "95:class_g = '"'Pcmanfm'"'"
+        "95:class_g = '"'Rofi'"'"
 ];
-' "$HOME/.config/i3/picom.conf"
+' "$HOME/.config/picom/picom.conf"
+}
+
+lightdmConfig(){
+    sudo mkdir -p /usr/share/backgrounds
+    sudo chmod 777 /usr/share/backgrounds
+    sudo tee /etc/lightdm/lightdm-gtk-greeter.conf <<< '[greeter]
+theme-name = Breeze-Dark
+icon-theme-name = Papirus-Dark
+cursor-theme-name = capitaine-cursors
+indicators = ~session;~spacer;~clock;~spacer;~power
+background = /usr/share/backgrounds/main.png
+font-name = '$dotFont' 10'
 }
 
 getcol-file(){
+  #xsel package requerid
+    mkdir -p $HOME/.config/jrs
     criarArq '#!/bin/sh
 getcol=$(rm /tmp/getcol.png
 scrot -s /tmp/getcol.png
@@ -771,11 +796,12 @@ convert /tmp/getcol.png \
 sort -nr | \
 sed -n '"'""1s/[^#]*\([^ ]*\).*/\1/p""'"')
 echo $getcol | xsel -bi
-' "$HOME/.config/i3/getcol.sh"
-    sudo chmod +x $HOME/.config/i3/getcol.sh
+' "$HOME/.config/jrs/getcol.sh"
+    sudo chmod +x $HOME/.config/jrs/getcol.sh
 }
 
 polybar-launch(){
+    mkdir -p $HOME/.config/polybar
     criarArqv2 '#!/usr/bin/env bash
 # Terminate already running bar instances
 # If all your bars have ipc enabled, you can use 
@@ -784,18 +810,19 @@ polybar-msg cmd quit
 # killall -q polybar
 # Launch bar1 and bar2
 echo "---" | tee -a /tmp/polybar1.log
-polybar -c $HOME/.config/i3/polybar.ini 2>&1 | tee -a /tmp/polybar1.log & disown
-echo "Bars launched..."' "$HOME/.config/i3/polybar.sh"
-    sudo chmod +x $HOME/.config/i3/polybar.sh
+polybar -c $HOME/.config/polybar/config.ini 2>&1 | tee -a /tmp/polybar1.log & disown
+echo "Bars launched..."' "$HOME/.config/polybar/polybar.sh"
+    sudo chmod +x $HOME/.config/polybar/polybar.sh
 }
 
 polybar-config(){
+    mkdir -p $HOME/.config/polybar
     criarArq '[colors]
 color_bad = #FF0000
 color_degraded = #FFFF00
-color_bar = '$jrsbar'
-color_text = '$jrsbartexto'
-color_main = '$jrswindowcomfoco'
+color_bar = '#99$jrsbar'
+color_text = '#$jrsbartexto'
+color_main = '#$jrswindowcomfoco'
 
 [bar/jrs]
 width = 100%
@@ -817,7 +844,7 @@ padding-right = 0
 separator =
 separator-foreground = ${colors.color_main}
 
-font-0 = FreeMono:style=Regular:size=8;2
+font-0 = '$dotFont':style=Regular:size=8;2
 
 modules-left = xworkspaces xwindow
 modules-center = date
@@ -985,41 +1012,44 @@ label-foreground = ${colors.color_text}
 [settings]
 screenchange-reload = true
 pseudo-transparency = true
-' "$HOME/.config/i3/polybar.ini"
+' "$HOME/.config/polybar/config.ini"
 }
 
 power-profiles(){
+    mkdir -p $HOME/.config/jrs
     criarArqv2 '#!/bin/bash
 notifyValueNow=$(powerprofilesctl get)
 case $notifyValueNow in
   performance)
     powerprofilesctl set power-saver
-    sed -i 's/'"vsync = false;"'/'"vsync = true;"'/g' "$HOME/.config/i3/picom.conf" 
+    sed -i 's/'"vsync = false;"'/'"vsync = true;"'/g' "$HOME/.config/picom/picom.conf" 
     notify-send --hint int:transient:1 "Power Profile" "Power Saver" --icon=org.xfce.powermanager
     ;;
   power-saver)
     powerprofilesctl set balanced
-    sed -i 's/'"vsync = false;"'/'"vsync = true;"'/g' "$HOME/.config/i3/picom.conf" 
+    sed -i 's/'"vsync = false;"'/'"vsync = true;"'/g' "$HOME/.config/picom/picom.conf" 
     notify-send --hint int:transient:1 "Power Profile" "Balanced" --icon=org.xfce.powermanager
     ;;
   balanced)
     powerprofilesctl set performance
-    sed -i 's/'"vsync = true;"'/'"vsync = false;"'/g' "$HOME/.config/i3/picom.conf" 
+    sed -i 's/'"vsync = true;"'/'"vsync = false;"'/g' "$HOME/.config/picom/picom.conf" 
     notify-send --hint int:transient:1 "Power Profile" "Performance" --icon=org.xfce.powermanager
     ;;
   *)
     ;;
-esac' "$HOME/.config/i3/powerProfiles.sh"
-sudo chmod +x $HOME/.config/i3/powerProfiles.sh
+esac' "$HOME/.config/jrs/powerProfiles.sh"
+sudo chmod +x $HOME/.config/jrs/powerProfiles.sh
 }
 
 set-wallpaper-to-lock(){
+    mkdir -p $HOME/.config/jrs
     criarArq '#!/bin/bash
 convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat '$HOME'/.config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') /usr/share/backgrounds/main.png
-' "$HOME/.config/i3/setWL.sh"
+' "$HOME/.config/jrs/setWL.sh"
 }
 
 mangohud-config(){
+    mkdir -p $HOME/.config/MangoHud
     criarArqv2 '### pre defined presets
 # -1 = default
 #  0 = no display
@@ -1049,4 +1079,363 @@ frametime
 throttling_status
 frame_timing
 text_outline' "$HOME/.config/MangoHud/MangoHud.conf"
+}
+
+alacrittyConfig(){
+  mkdir -p $HOME/.config/alacritty
+  criarArqv2 '
+[font]
+size = 10.0
+
+[font.bold]
+family = "'$dotFont'"
+style = "Bold"
+
+[font.bold_italic]
+family = "'$dotFont'"
+style = "Bold Italic"
+
+[font.italic]
+family = "'$dotFont'"
+style = "Italic"
+
+[font.normal]
+family = "'$dotFont'"
+style = "Regular"
+
+[colors.primary]
+foreground = "#'$jrsbartexto'"
+background = "#'$jrsbar'"
+
+[window]
+dimensions = { columns = 60, lines = 20}
+blur = true
+opacity = 0.90
+' "$HOME/.config/alacritty/alacritty.toml"
+}
+
+hyprlandConfig(){
+  mkdir -p $HOME/.config/hypr
+  criarArqv2 'monitor=,preferred,auto,auto
+env = XCURSOR_SIZE,24
+env = HYPRCURSOR_SIZE,24
+env = ELECTRON_OZONE_PLATFORM_HINT,wayland
+general { 
+    gaps_in = 5
+    gaps_out = 20
+    border_size = 2
+    col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
+    col.inactive_border = rgba(595959aa)
+    resize_on_border = false 
+    allow_tearing = false
+    layout = dwindle
+}
+decoration {
+    rounding = 10
+    active_opacity = 1.0
+    inactive_opacity = 1.0
+    drop_shadow = true
+    shadow_range = 4
+    shadow_render_power = 3
+    col.shadow = rgba(1a1a1aee)
+    blur {
+        enabled = true
+        size = 3
+        passes = 1
+        vibrancy = 0.1696
+    }
+}
+animations {
+    enabled = true
+    bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+    animation = windows, 1, 7, myBezier
+    animation = windowsOut, 1, 7, default, popin 80%
+    animation = border, 1, 10, default
+    animation = borderangle, 1, 8, default
+    animation = fade, 1, 7, default
+    animation = workspaces, 1, 6, default
+}
+dwindle {
+    pseudotile = true
+    preserve_split = true
+}
+master {
+    #new_is_master = true
+}
+misc { 
+    force_default_wallpaper = 0
+    disable_hyprland_logo = true 
+    }
+input {
+    kb_layout = br
+    kb_variant =
+    kb_model =
+    kb_options =
+    kb_rules =
+    follow_mouse = 1
+    sensitivity = 0
+    touchpad {
+        natural_scroll = false
+    }
+}
+gestures {
+    workspace_swipe = false
+}
+device {
+    name = epic-mouse-v1
+    sensitivity = -0.5
+}
+# Variables
+$terminal = alacritty
+$browser = chromium
+$fileManager = pcmanfm
+$menu = wofi
+# Autostart
+exec-once = hyprpaper
+exec-once = waybar
+# Binds
+$mainMod = SUPER
+bind = $mainMod, RETURN, exec, $terminal
+bind = $mainMod SHIFT, Q, killactive,
+bind = $mainMod, X, exec, $fileManager
+bind = $mainMod, C, exec, $browser
+bind = $mainMod SHIFT, SPACE, togglefloating,
+bind = $mainMod, D, exec, $menu
+bind = $mainMod, P, pseudo, 
+bind = $mainMod, J, togglesplit, 
+bind = $mainMod, left, movefocus, l
+bind = $mainMod, right, movefocus, r
+bind = $mainMod, up, movefocus, u
+bind = $mainMod, down, movefocus, d
+bind = $mainMod, 1, workspace, 1
+bind = $mainMod, 2, workspace, 2
+bind = $mainMod, 3, workspace, 3
+bind = $mainMod, 4, workspace, 4
+bind = $mainMod, 5, workspace, 5
+bind = $mainMod, 6, workspace, 6
+bind = $mainMod, 7, workspace, 7
+bind = $mainMod, 8, workspace, 8
+bind = $mainMod, 9, workspace, 9
+bind = $mainMod, 0, workspace, 10
+bind = $mainMod SHIFT, 1, movetoworkspace, 1
+bind = $mainMod SHIFT, 2, movetoworkspace, 2
+bind = $mainMod SHIFT, 3, movetoworkspace, 3
+bind = $mainMod SHIFT, 4, movetoworkspace, 4
+bind = $mainMod SHIFT, 5, movetoworkspace, 5
+bind = $mainMod SHIFT, 6, movetoworkspace, 6
+bind = $mainMod SHIFT, 7, movetoworkspace, 7
+bind = $mainMod SHIFT, 8, movetoworkspace, 8
+bind = $mainMod SHIFT, 9, movetoworkspace, 9
+bind = $mainMod SHIFT, 0, movetoworkspace, 10
+bind = $mainMod, S, togglespecialworkspace, magic
+bind = $mainMod SHIFT, S, movetoworkspace, special:magic
+bind = $mainMod, mouse_down, workspace, e+1
+bind = $mainMod, mouse_up, workspace, e-1
+bindm = $mainMod, mouse:272, movewindow
+bindm = $mainMod, mouse:273, resizewindow
+# Window Config
+windowrulev2 = suppressevent maximize, class:.*
+windowrulev2 = stayfocused,class:(Rofi)
+# Media Control
+bind = , XF86AudioPlay, exec, playerctl play-pause
+bind = , XF86AudioPause, exec, playerctl play-pause
+bind = , XF86AudioNext, exec, playerctl next
+bind = , XF86AudioPrev, exec, playerctl previous
+# Sound
+bind = $mainMod CTRL, up, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%
+bind = $mainMod CTRL, down, exec, pactl set-sink-volume @DEFAULT_SINK@ -5% 
+bind = $mainMod CTRL, M, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle 
+bind = , XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%
+bind = , XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%
+bind = , XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle
+bind = , XF86AudioMicMute, exec, pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# Brightness
+bind = $mainMod CTRL, left, exec, xbacklight -dec 5 
+bind = $mainMod CTRL, right, exec, xbacklight -inc 5
+bind = , XF86MonBrightnessDown, exec, xbacklight -dec 5 
+bind = , XF86MonBrightnessUp, exec, xbacklight -inc 5
+# Power
+bind = $mainMod SHIFT, E, exit,
+bind = $mainMod CTRL, 7, exec, systemctl suspend
+bind = $mainMod, L, exec, dm-tool lock
+bind = $mainMod CTRL, 8, exec, ystemctl hibernate
+bind = $mainMod CTRL, 9, exec, systemctl reboot
+bind = $mainMod CTRL, 0, exec, systemctl poweroff -i
+' "$HOME/.config/hypr/hyprland.conf"
+}
+
+hyprpaperConfig(){
+  mkdir -p $HOME/.config/hypr
+  criarArqv2 'preload = /home/jhonatanrs/Pictures/Wallpapers/arvore-rosa.png
+wallpaper = , /home/jhonatanrs/Pictures/Wallpapers/arvore-rosa.png
+' "$HOME/.config/hypr/hyprpaper.conf"
+}
+
+waybarConfig(){
+  mkdir -p $HOME/.config/waybar
+  criarArqv2 '{
+	"height": 30,
+	"spacing": 4,
+	"modules-left": [
+		"hyprland/workspaces",
+    "hyprland/window"
+	],
+	"modules-center": [
+		"clock"
+	],
+	"modules-right": [
+    "tray"
+	],
+  	"tray": {
+      "icon-size": 21,
+      "spacing": 10,
+    },
+    "hyprland/workspaces": {
+     "format": "{icon}",
+     "on-scroll-up": "hyprctl dispatch workspace e+1",
+     "on-scroll-down": "hyprctl dispatch workspace e-1"
+}
+    
+  
+}' "$HOME/.config/waybar/config"
+}
+
+wofiConfig(){
+  mkdir -p $HOME/.config/wofi
+  criarArqv2 'width=50%
+height=40%
+mode=run
+border-color=#000000
+bonder=3
+border-radius=6' "$HOME/.config/wofi/config"
+}
+
+fastfetchConfig(){
+  mkdir -p $HOME/.config/fastfetch
+  criarArqv2 '// Inspired by Catnap
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "type": "none",
+        "padding": {
+        "top": 4,
+	      "left": 4
+        }
+    },
+    "display": {
+        "separator": " "
+    },
+    "modules": [
+        {
+            "key": "╭────────╮",
+            "type": "custom"
+        },
+         {
+            "key": "│{#31}host    {#keys}│",
+            "type": "host",
+            "format": "{name}{?vendor} ({vendor}){?}"
+        },
+        {
+            "key": "│{#32}user    {#keys}│",
+            "type": "title",
+            "format": "{host-name}@{user-name}"
+        },
+        {
+            "key": "│{#33}distro  {#keys}│",
+            "type": "os"
+        },
+        {
+            "key": "│{#34}kernel  {#keys}│",
+            "type": "kernel"
+        },
+        {
+            "key": "│{#35}packages{#keys}│",
+            "type": "packages"
+        },
+        {
+            "key": "│{#36}uptime  {#keys}│",
+            "type": "uptime"
+        },
+        {
+            "key": "│{#31}term    {#keys}│",
+            "type": "terminal"
+        },
+        {
+            "key": "│{#32}shell   {#keys}│",
+            "type": "shell"
+        },
+        {
+            "key": "│{#33}display {#keys}│",
+            "type": "display"
+        },
+        {
+            "key": "│{#34}de      {#keys}│",
+            "type": "de"
+        },
+        {
+            "key": "│{#35}wm      {#keys}│",
+            "type": "wm"
+        },
+        {
+            "key": "│{#36}wmtheme {#keys}│",
+            "type": "wmtheme"
+        },
+        {
+            "key": "│{#31}theme   {#keys}│",
+            "type": "theme"
+        },
+        {
+            "key": "│{#32}icons   {#keys}│",
+            "type": "icons"
+        },
+        {
+            "key": "│{#33}font    {#keys}│",
+            "type": "font"
+        },
+        {
+            "key": "│{#34}cursor  {#keys}│",
+            "type": "cursor"
+        },
+        {
+            "key": "│{#35}cpu     {#keys}│",
+            "type": "cpu",
+            "showPeCoreCount": true
+        },
+	      {
+            "key": "│{#36}gpu     {#keys}│",
+            "type": "gpu",
+            "showPeCoreCount": true
+        },
+        {
+            "key": "│{#31}memory  {#keys}│",
+            "type": "memory"
+        },
+        {
+            "key": "│{#32}swap    {#keys}│",
+            "type": "swap"
+        },
+        {
+            "key": "│{#33}disk    {#keys}│",
+            "type": "disk",
+            "folders": "/"
+        },
+        {
+            "key": "│{#34}battery {#keys}│",
+            "type": "battery"
+        },
+        {
+            "key": "│{#35}power   {#keys}│",
+            "type": "poweradapter"
+        },
+        {
+            "key": "│{#36}network {#keys}│",
+            "type": "localip",
+            "format": "{ipv4} ({ifname})"
+        },
+        {
+            "key": "╰────────╯",
+            "type": "custom"
+        }
+    ]
+}' "$HOME/.config/fastfetch/config.jsonc"
 }

@@ -12,9 +12,11 @@ subMenuPosInstall(){
 [1] I3WM CONFIG
 [2] XFCE4 CONFIG
 [3] LIGHTDM CONFIG
+[4] BACKLIGHT CONFIG
 " "i3wmConfig
 " "xfce4Config
-" "appPosLightdmConfig"
+" "lightdmConfig
+" "backlightConfig"
 
         menu12345 "
 [1] INSTALL YAY [ARCH][AUR]
@@ -154,10 +156,12 @@ menu12345 "
 [3]INSTALL APPS
 [4]PASTAS E ATALHOS
 [5]OUTROS
+[6]TESTE FASTFETCH
 " "subMenuPosInstall
 " "subMenuGit
 " "subMenuInstallApps
 " "subMenuPastasAtalhos
-" "subMenuOutros"
+" "subMenuOutros
+" "fastfetchConfig"
 ##
 done
