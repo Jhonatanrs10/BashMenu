@@ -13,10 +13,14 @@ subMenuPosInstall(){
 [2] XFCE4 CONFIG
 [3] LIGHTDM CONFIG
 [4] BACKLIGHT CONFIG
+[5] GRUB CONFIG
+[6] PACMAN CONFIG
 " "i3wmConfig
 " "xfce4Config
 " "lightdmConfig
-" "backlightConfig"
+" "backlightConfig
+" "attGrubWithWindows
+" "editPacmanConfig"
 
         menu12345 "
 [1] INSTALL YAY [ARCH][AUR]
@@ -31,9 +35,6 @@ subMenuPosInstall(){
 " "myBaseKde
 " "myBaseGnome
 " "appPosNvidiaDriverProp"
-        menu12345 "
-[1] REMOVE ALL FORGET ONLY myBase
-" "myBaseOnly"
     done
 }
 

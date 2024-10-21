@@ -254,9 +254,22 @@ cursor-theme-name = capitaine-cursors'
   esac
 }
 
-myBaseOnly(){
-    sudo pacman -D --asdeps $(pacman -Qe)
-    sudo pacman -S --asexplicit --needed "$myBase"
-    sudo pacman -Rsunc $(pacman -Qtdq)
+attGrubWithWindows(){
+    sudo cp /etc/default/grub /etc/default/grub$DATANOW.bkp
+    sudo cp /boot/grub/grub.cfg /boot/grub/grub$DATANOW.cfg.bkp
+    sudo pacman -S os-prober
+    sudo grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+    sudo sed -i "/GRUB_DISABLE_OS_PROBER=false/"'s/^#//' /etc/default/grub
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+}
+
+editPacmanConfig(){
+    sudo cp /etc/pacman.conf /etc/pacman$DATANOW.conf.bkp
+    sudo sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 10\nILoveCandy\nColor/g' /etc/pacman.conf
+    sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+}
+
+autoMountNtfs(){
+    sudo mkdir -p /media/gamedisk
 }
 
