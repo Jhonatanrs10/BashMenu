@@ -15,12 +15,14 @@ subMenuPosInstall(){
 [4] BACKLIGHT CONFIG
 [5] GRUB CONFIG
 [6] PACMAN CONFIG
+[7] MOUNT-NTFS CONFIG
 " "i3wmConfig
 " "xfce4Config
 " "lightdmConfig
 " "backlightConfig
 " "attGrubWithWindows
-" "editPacmanConfig"
+" "editPacmanConfig
+" "autoMountNtfs"
 
         menu12345 "
 [1] INSTALL YAY [ARCH][AUR]

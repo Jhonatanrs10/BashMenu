@@ -267,9 +267,23 @@ editPacmanConfig(){
     sudo cp /etc/pacman.conf /etc/pacman$DATANOW.conf.bkp
     sudo sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 10\nILoveCandy\nColor/g' /etc/pacman.conf
     sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+    sudo pacman -Syyu
 }
 
 autoMountNtfs(){
-    sudo mkdir -p /media/gamedisk
+    sudo fdisk -l
+    echo "Digite o caminho do disco Ex.: /dev/sdb"
+    read DEVSD
+    sudo cp /etc/fstab /etc/fstab$DATANOW.bkp
+    sudo mkdir -p /media/homec
+    #id -u
+    #id -g
+    sudo tee -a /etc/fstab <<< '# '$DEVSD'
+    UUID='$(sudo blkid -s UUID -o value $DEVSD)' /media/homec ntfs uid='$(id -u)',gid='$(id -g)',rw,user,exec,umask=000 0 0'
+    cat /etc/fstab
+    sleep 5
+    #rm -r ~/.steam/steam/steamapps/compatdata
+    #mkdir -p ~/.steam/steam/steamapps/compatdata
+    #ln -s ~/.steam/steam/steamapps/compatdata /media/gamedisk/Steam/steamapps/
 }
 
