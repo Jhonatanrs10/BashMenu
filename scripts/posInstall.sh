@@ -220,23 +220,29 @@ modeDarkLight(){
     sed -i '/gtk-theme-name/d' $dirSettings3
     sed -i '/gtk-icon-theme-name/d' $dirSettings3
     sed -i '/gtk-cursor-theme-name/d' $dirSettings3
+    sed -i '/gtk-font-name/d' $dirSettings3
     sed -i '/gtk-theme-name/d' $dirSettings1
     sed -i '/gtk-icon-theme-name/d' $dirSettings1
     sed -i '/gtk-cursor-theme-name/d' $dirSettings1
+    sed -i '/gtk-font-name/d' $dirSettings1
     sudo sed -i '/theme-name =/d' $dirSettings0
     sudo sed -i '/icon-theme-name =/d' $dirSettings0
     sudo sed -i '/cursor-theme-name =/d' $dirSettings0
+    sudo sed -i '/font-name/d' $dirSettings0
     case $notifyValueNow in
     000000)
         echo "gtk-theme-name=Breeze
 gtk-icon-theme-name=Papirus-Light
-gtk-cursor-theme-name=capitaine-cursors-light" >> $dirSettings3
+gtk-cursor-theme-name=capitaine-cursors-light
+gtk-font-name=$dotFont 10" >> $dirSettings3
         echo 'gtk-theme-name="Breeze"
 gtk-icon-theme-name="Papirus-Light"
-gtk-cursor-theme-name="capitaine-cursors-light"' >> $dirSettings1
+gtk-cursor-theme-name="capitaine-cursors-light"
+gtk-font-name="'$dotFont' 10"' >> $dirSettings1
         sudo tee -a $dirSettings0 <<< 'theme-name = Breeze
 icon-theme-name = Papirus-Light
-cursor-theme-name = capitaine-cursors-light'
+cursor-theme-name = capitaine-cursors-light
+font-name = '$dotFont' 10'
         cp $dirSettings3 $dirSettings2
         cp $dirSettings3 $dirSettings4
       #notify-send --hint int:transient:1 "Theme Mode" "Light" --icon=org.xfce.powermanager

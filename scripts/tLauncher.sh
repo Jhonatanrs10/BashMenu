@@ -7,7 +7,7 @@ installMinecraft(){
 	echo -e "[INFO] - BAIXANDO ARQUIVOS... - [INFO]"
 	baixaArq "diretorioNome" "$verMine" "$diretorioMine/tlauncher.zip"
     extrairArq "$diretorioMine"
-	cd $diretorioMine
+	cd $diretorioMine/*
     tlauncher=`ls *.jar`
     criarArq "#!/usr/bin/env sh
 	cd $diretorioMine
