@@ -2,8 +2,8 @@
   dotFont="Freemono"
   dotFontSize="10"
 my-dotfiles(){
+    lightdmConfig
     i3-config
-    xfce4-config
     i3status-config
     rofi-config
     picom-config

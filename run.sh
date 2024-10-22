@@ -11,14 +11,12 @@ subMenuPosInstall(){
         menu12345 "
 [1] I3WM CONFIG
 [2] XFCE4 CONFIG
-[3] LIGHTDM CONFIG
-[4] BACKLIGHT CONFIG
-[5] GRUB CONFIG
-[6] PACMAN CONFIG
-[7] MOUNT-NTFS CONFIG
+[3] BACKLIGHT CONFIG
+[4] GRUB CONFIG
+[5] PACMAN CONFIG
+[6] MOUNT-NTFS CONFIG
 " "i3wmConfig
 " "xfce4Config
-" "lightdmConfig
 " "backlightConfig
 " "attGrubWithWindows
 " "editPacmanConfig
@@ -31,12 +29,14 @@ subMenuPosInstall(){
 [4] INSTALL MYARCH KDE [YAY]
 [5] INSTALL MYARCH GNOME [YAY]
 [6] NVIDIA PROPRIETARIO
+[7] SOME APPS TO INSTALL
 " "appPosYay
 " "myBaseI3wm
 " "myBaseXfce4
 " "myBaseKde
 " "myBaseGnome
-" "appPosNvidiaDriverProp"
+" "appPosNvidiaDriverProp
+" "appPosInstall"
     done
 }
 

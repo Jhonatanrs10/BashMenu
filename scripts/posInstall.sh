@@ -8,7 +8,7 @@ myXfce4="xfce4 xfce4-goodies xfce4-docklike-plugin ark"
 myKde="plasma sddm dolphin dolphin-plugins dragon elisa kdeconnect ark filelight gwenview kate okular"
 myGnome="gnome gnome-tweaks"
 myNvidia="nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"
-myGlobalApps="gimp inkscape shotcut code qbittorrent mpv gparted chromium alacritty bitwarden"
+myGlobalApps="gimp inkscape shotcut code qbittorrent mpv gparted chromium alacritty bitwarden discord"
 myHyprland="hyprland hyprpaper wofi waybar hyprlock"
 
 source dotfiles.sh
@@ -74,10 +74,11 @@ appPosMix(){
     packagesManager "udisks2" "Manipular Discos Terminal"
 }
 
-appPosMixMy(){
-    packagesManager "$javaPackages"
-    packagesManager "discord gimp inkscape shotcut code qbittorrent"
-    packagesManager "steam mangohud lib32-mangohud gamemode lib32-gamemode gamescope"
+appPosInstall(){
+    packagesManager ""
+    packagesManager "steam"
+    packagesManager "mangohud lib32-mangohud"
+    packagesManager "gamemode lib32-gamemode gamescope"
     packagesManager "app/com.obsproject.Studio/x86_64/stable runtime/com.obsproject.Studio.Plugin.MoveTransition/x86_64/stable"
     packagesManager "retroarch retroarch-assets-xmb retroarch-assets-ozone libretro-snes9x libretro-mgba libretro-beetle-psx"
 }
@@ -185,6 +186,8 @@ i3wmConfig(){
     zerotierAdapter=$(echo zt*)
     modeDarkLight
     my-dotfiles
+    sudo rm /usr/share/applications/rofi*
+    sudo sed -i 's/OnlyShowIn=XFCE;//g' /usr/share/applications/xfce4-power-manager-settings.desktop
     i3 restart
     sleep 0
 }
@@ -205,6 +208,9 @@ xfce4Config(){
 }
 
 modeDarkLight(){
+    mkdir -p $HOME/.config/gtk-2.0/
+    mkdir -p $HOME/.config/gtk-3.0/
+    mkdir -p $HOME/.config/gtk-4.0/
     dirSettings0="/etc/lightdm/lightdm-gtk-greeter.conf"
     dirSettings1="$HOME/.gtkrc-2.0"
     dirSettings2="$HOME/.config/gtk-2.0/settings.ini"
@@ -272,18 +278,28 @@ editPacmanConfig(){
 
 autoMountNtfs(){
     sudo fdisk -l
-    echo "Digite o caminho do disco Ex.: /dev/sdb"
+    echo "Digite o caminho do disco Ex.: /dev/sdb1"
     read DEVSD
     sudo cp /etc/fstab /etc/fstab$DATANOW.bkp
     sudo mkdir -p /media/homec
     #id -u
     #id -g
     sudo tee -a /etc/fstab <<< '# '$DEVSD'
-    UUID='$(sudo blkid -s UUID -o value $DEVSD)' /media/homec ntfs uid='$(id -u)',gid='$(id -g)',rw,user,exec,umask=000 0 0'
+UUID='$(sudo blkid -s UUID -o value $DEVSD)' /media/homec ntfs uid='$(id -u)',gid='$(id -g)',rw,user,exec,umask=000 0 0'
     cat /etc/fstab
     sleep 5
     #rm -r ~/.steam/steam/steamapps/compatdata
     #mkdir -p ~/.steam/steam/steamapps/compatdata
     #ln -s ~/.steam/steam/steamapps/compatdata /media/gamedisk/Steam/steamapps/
+}
+
+lnHome(){
+    ln -s /media/homec/Desktop $HOME
+    ln -s /media/homec/Documents $HOME
+    ln -s /media/homec/Downloads $HOME
+    ln -s /media/homec/Pictures $HOME
+    ln -s /media/homec/Video $HOME
+    ln -s /media/homec/Music $HOME
+    ln -s /media/homec/Heroic $HOME
 }
 
