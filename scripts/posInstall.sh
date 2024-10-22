@@ -250,13 +250,16 @@ font-name = '$dotFont' 10'
     ffffff)
         echo "gtk-theme-name=Breeze-Dark
 gtk-icon-theme-name=Papirus-Dark
-gtk-cursor-theme-name=capitaine-cursors" >> $dirSettings3
+gtk-cursor-theme-name=capitaine-cursors
+gtk-font-name=$dotFont 10" >> $dirSettings3
         echo 'gtk-theme-name="Breeze-Dark"
 gtk-icon-theme-name="Papirus-Dark"
-gtk-cursor-theme-name="capitaine-cursors"' >> $dirSettings1
+gtk-cursor-theme-name="capitaine-cursors"
+gtk-font-name="'$dotFont' 10"' >> $dirSettings1
         sudo tee -a $dirSettings0 <<< 'theme-name = Breeze-Dark
 icon-theme-name = Papirus-Dark
-cursor-theme-name = capitaine-cursors'
+cursor-theme-name = capitaine-cursors
+font-name = '$dotFont' 10'
         cp $dirSettings3 $dirSettings2
         cp $dirSettings3 $dirSettings4
       #notify-send --hint int:transient:1 "Theme Mode" "Dark" --icon=org.xfce.powermanager

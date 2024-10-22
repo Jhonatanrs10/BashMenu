@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
   dotFont="Freemono"
-  dotFontSize="10"
 my-dotfiles(){
     lightdmConfig
     i3-config
@@ -29,7 +28,7 @@ set $appMenu2 dmenu_run
 set $appMenu rofi -show drun
 set $appTerminal alacritty
 set $appFiles pcmanfm
-set $appBrowser chromium
+set $appBrowser "xdg-open https:"
 set $appF1 pavucontrol
 set $appF2 galculator
 set $appF3 xfce4-taskmanager
