@@ -9,6 +9,7 @@ my-dotfiles(){
     polybar-launch
     polybar-config
     power-profiles
+    picomSync
     mangohud-config
     set-wallpaper-to-lock
     alacrittyConfig
@@ -82,11 +83,12 @@ bindsym $mod+x exec --no-startup-id $appFiles
 bindsym $mod+c exec --no-startup-id $appBrowser
 bindsym $mod+n exec --no-startup-id $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') /usr/share/backgrounds/main.png, mode "default"
 #bindsym 7 exec --no-startup-id $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') $HOME/.config/i3/wallpaperI3Lock.png, mode "default"
-bindsym $mod+Ctrl+p exec --no-startup-id picom, mode "default"
-bindsym $mod+Shift+p exec --no-startup-id killall picom
+bindsym $mod+Ctrl+p exec --no-startup-id picom & notify-send -t 1000 --hint int:transient:1 "Picom" "Started" --icon=picom, mode "default"
+bindsym $mod+Shift+p exec --no-startup-id killall picom & notify-send -t 1000 --hint int:transient:1 "Picom" "Stopped" --icon=picom
 bindsym $mod+Ctrl+b bar mode toggle
 bindsym $mod+b exec --no-startup-id polybar-msg cmd toggle
 bindsym $mod+p exec --no-startup-id $HOME/.config/jrs/powerProfiles.sh
+bindsym $mod+s exec --no-startup-id $HOME/.config/jrs/picomSync.sh
 
 ###Power###
 bindsym $mod+l exec --no-startup-id $Locker
@@ -124,7 +126,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 bindsym $mod+v split toggle
 bindsym $mod+f fullscreen toggle
-bindsym $mod+s layout stacking
+bindsym $mod+q layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
@@ -1021,23 +1023,37 @@ notifyValueNow=$(powerprofilesctl get)
 case $notifyValueNow in
   performance)
     powerprofilesctl set power-saver
-    sed -i 's/'"vsync = false;"'/'"vsync = true;"'/g' "$HOME/.config/picom/picom.conf" 
-    notify-send --hint int:transient:1 "Power Profile" "Power Saver" --icon=org.xfce.powermanager
+    notify-send -t 1000 --hint int:transient:1 "Power Profile" "Power Saver" --icon=org.xfce.powermanager
     ;;
   power-saver)
-    powerprofilesctl set balanced
-    sed -i 's/'"vsync = false;"'/'"vsync = true;"'/g' "$HOME/.config/picom/picom.conf" 
-    notify-send --hint int:transient:1 "Power Profile" "Balanced" --icon=org.xfce.powermanager
+    powerprofilesctl set performance
+    notify-send -t 1000 --hint int:transient:1 "Power Profile" "Performance" --icon=org.xfce.powermanager
     ;;
   balanced)
     powerprofilesctl set performance
-    sed -i 's/'"vsync = true;"'/'"vsync = false;"'/g' "$HOME/.config/picom/picom.conf" 
-    notify-send --hint int:transient:1 "Power Profile" "Performance" --icon=org.xfce.powermanager
+    notify-send -t 1000 --hint int:transient:1 "Power Profile" "Performance" --icon=org.xfce.powermanager
     ;;
   *)
     ;;
 esac' "$HOME/.config/jrs/powerProfiles.sh"
 sudo chmod +x $HOME/.config/jrs/powerProfiles.sh
+}
+
+picomSync(){
+    mkdir -p $HOME/.config/jrs
+    criarArqv2 '#!/bin/bash
+notifyValueNow=$(grep "vsync = true;" $HOME/.config/picom/picom.conf)
+case $notifyValueNow in
+  "vsync = true;")
+    sed -i 's/'"vsync = true;"'/'"vsync = false;"'/g' "$HOME/.config/picom/picom.conf" 
+    notify-send -t 1000 --hint int:transient:1 "Picom" "VSync: Off" --icon=picom
+    ;;
+  *)
+    sed -i 's/'"vsync = false;"'/'"vsync = true;"'/g' "$HOME/.config/picom/picom.conf" 
+    notify-send -t 1000 --hint int:transient:1 "Picom" "VSync: On" --icon=picom
+    ;;
+esac' "$HOME/.config/jrs/picomSync.sh"
+sudo chmod +x $HOME/.config/jrs/picomSync.sh
 }
 
 set-wallpaper-to-lock(){
@@ -1107,7 +1123,7 @@ foreground = "#'$jrsbartexto'"
 background = "#'$jrsbar'"
 
 [window]
-dimensions = { columns = 60, lines = 20}
+dimensions = { columns = 60, lines = 25}
 blur = true
 opacity = 0.90
 ' "$HOME/.config/alacritty/alacritty.toml"
