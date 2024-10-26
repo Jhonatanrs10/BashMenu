@@ -217,20 +217,23 @@ modeDarkLight(){
     dirSettings3="$HOME/.config/gtk-3.0/settings.ini"
     dirSettings4="$HOME/.config/gtk-4.0/settings.ini"
     notifyValueNow=$jrsbartexto
-    sed -i '/gtk-theme-name/d' $dirSettings3
-    sed -i '/gtk-icon-theme-name/d' $dirSettings3
-    sed -i '/gtk-cursor-theme-name/d' $dirSettings3
-    sed -i '/gtk-font-name/d' $dirSettings3
-    sed -i '/gtk-theme-name/d' $dirSettings1
-    sed -i '/gtk-icon-theme-name/d' $dirSettings1
-    sed -i '/gtk-cursor-theme-name/d' $dirSettings1
-    sed -i '/gtk-font-name/d' $dirSettings1
-    sudo sed -i '/theme-name =/d' $dirSettings0
-    sudo sed -i '/icon-theme-name =/d' $dirSettings0
-    sudo sed -i '/cursor-theme-name =/d' $dirSettings0
-    sudo sed -i '/font-name/d' $dirSettings0
+    modeErase(){
+        sed -i '/gtk-theme-name/d' $dirSettings3
+        sed -i '/gtk-icon-theme-name/d' $dirSettings3
+        sed -i '/gtk-cursor-theme-name/d' $dirSettings3
+        sed -i '/gtk-font-name/d' $dirSettings3
+        sed -i '/gtk-theme-name/d' $dirSettings1
+        sed -i '/gtk-icon-theme-name/d' $dirSettings1
+        sed -i '/gtk-cursor-theme-name/d' $dirSettings1
+        sed -i '/gtk-font-name/d' $dirSettings1
+        sudo sed -i '/theme-name =/d' $dirSettings0
+        sudo sed -i '/icon-theme-name =/d' $dirSettings0
+        sudo sed -i '/cursor-theme-name =/d' $dirSettings0
+        sudo sed -i '/font-name/d' $dirSettings0
+    }
     case $notifyValueNow in
     000000)
+        modeErase
         echo "gtk-theme-name=Breeze
 gtk-icon-theme-name=Papirus-Light
 gtk-cursor-theme-name=capitaine-cursors-light
@@ -248,6 +251,7 @@ font-name = '$dotFont' 10'
       #notify-send --hint int:transient:1 "Theme Mode" "Light" --icon=org.xfce.powermanager
       ;;
     ffffff)
+        modeErase
         echo "gtk-theme-name=Breeze-Dark
 gtk-icon-theme-name=Papirus-Dark
 gtk-cursor-theme-name=capitaine-cursors
