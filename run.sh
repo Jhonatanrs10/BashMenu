@@ -1,6 +1,15 @@
 #!/usr/bin/env sh
-source ./scripts/dependencias.sh
-dependencias
+source ./lib/sourceFolder.sh
+sourceFolder "LIBs" "./lib"
+sourceFolder "Scripts" "./scripts"
+
+#BashMenu Vars
+############################
+dBashMenu="$HOME/.bashmenu"
+nomeRun="run"
+DATANOW=$(date "+[%d-%m-%Y][%H-%M]")
+############################
+
 resp="vazio"
 while [ "$resp" != "exit" ];
 do

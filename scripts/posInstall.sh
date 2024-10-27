@@ -11,7 +11,9 @@ myNvidia="nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-dr
 myGlobalApps="gimp inkscape shotcut code qbittorrent mpv gparted chromium alacritty bitwarden discord"
 myHyprland="hyprland hyprpaper wofi waybar hyprlock"
 
-source dotfiles.sh
+dotFont="Freemono" 
+
+sourceFolder "DotFiles" "./dotfiles"
 
 myBaseI3wm(){
     sudo pacman -S $myBase $myLightdm $myI3wm $myI3wmApps $myGlobalApps
@@ -185,7 +187,22 @@ i3wmConfig(){
     cd /proc/sys/net/ipv4/conf/
     zerotierAdapter=$(echo zt*)
     modeDarkLight
-    my-dotfiles
+    lightdmConfig
+    i3Config
+    i3statusConfig
+    rofiConfig
+    picomConfig
+    polybarsh
+    polybarConfig
+    powerprofiles
+    picomsync
+    #mangohudConfig
+    alacrittyConfig
+    fastfetchConfig
+    #hyprlandConfig
+    #hyprpaperConfig
+    #waybarConfig
+    #wofiConfig
     sudo rm /usr/share/applications/rofi*
     sudo sed -i 's/OnlyShowIn=XFCE;//g' /usr/share/applications/xfce4-power-manager-settings.desktop
     i3 restart

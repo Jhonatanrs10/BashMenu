@@ -1,13 +1,4 @@
 #!/usr/bin/env sh
-dBashMenu="$HOME/.bashmenu"
-nomeRun="run"
-DATANOW=$(date "+[%d-%m-%Y][%H-%M]")
-dependencias(){
-    source ./lib/sourceFolder.sh
-    sourceFolder "LIBs" "./lib"
-    sourceFolder "Scripts" "./scripts"
-    #sleep 10
-}
 dependenciasAtalho(){
     echo "INSTALAR ATALHO BASHMENU 
 Diretorio atual:

@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 sourceFolder(){
-    echo "=====$1====="
+    #recho "=====$1====="
     for src in `ls $2`; do
         source $2/$src
-        echo "source $src"
+        #echo "source $src"
     done
 }
 # . representa a pasta raiz atual
