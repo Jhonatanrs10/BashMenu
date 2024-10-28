@@ -15,8 +15,20 @@ dotFont="Freemono"
 
 sourceFolder "DotFiles" "./dotfiles"
 
+myBaseHyprland(){
+    packagesManager "$myBase"
+    packagesManager "$myGlobalApps"
+    packagesManager "sddm"
+    packagesManager "$myHyprland"
+    enableSystemctl "bluetooth"
+    enableSystemctl "NetworkManager"
+    enableSystemctl "sddm"
+}
+
 myBaseI3wm(){
-    sudo pacman -S $myBase $myLightdm $myI3wm $myI3wmApps $myGlobalApps
+    packagesManager "$myBase"
+    packagesManager "$myGlobalApps"
+    packagesManager "$myLightdm $myI3wm $myI3wmApps"
     enableSystemctl "bluetooth"
     enableSystemctl "NetworkManager"
     enableSystemctl "lightdm"
@@ -27,21 +39,27 @@ Exec=/usr/lib/notification-daemon-1.0/notification-daemon'
 }
 
 myBaseXfce4(){
-    yay -S $myBase $myLightdm $myXfce4 $myGlobalApps
+    packagesManager "$myBase"
+    packagesManager "$myGlobalApps"
+    packagesManager "$myLightdm $myXfce4"
     enableSystemctl "bluetooth"
     enableSystemctl "NetworkManager"
     enableSystemctl "lightdm"
 }
 
 myBaseGnome(){
-    yay -S $myBase $myGnome $myGlobalApps
+    packagesManager "$myBase"
+    packagesManager "$myGlobalApps"
+    packagesManager "$myGnome"
     enableSystemctl "bluetooth"
     enableSystemctl "NetworkManager"
     enableSystemctl "gdm"
 }
 
 myBaseKde(){
-    yay -S $myBase $myKde $myGlobalApps
+    packagesManager "$myBase"
+    packagesManager "$myGlobalApps"
+    packagesManager "$myKde"
     enableSystemctl "bluetooth"
     enableSystemctl "NetworkManager"
     enableSystemctl "sddm"
