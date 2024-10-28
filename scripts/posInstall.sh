@@ -171,6 +171,12 @@ EndSection
 EOF
 }
 
+hyprconfigs(){
+    hyprlandConfig
+    wofiConfig
+    hyprpaperConfig
+    waybarConfig
+}
 i3wmConfig(){
     jrswindowcomfoco="1693CF"
     #MAIN COLOR 005577, bfbfbf

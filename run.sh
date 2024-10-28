@@ -170,12 +170,12 @@ menu12345 "
 [3]INSTALL APPS
 [4]PASTAS E ATALHOS
 [5]OUTROS
-[6]TESTE FASTFETCH
+[6]RESET HYPR CONFIGS
 " "subMenuPosInstall
 " "subMenuGit
 " "subMenuInstallApps
 " "subMenuPastasAtalhos
 " "subMenuOutros
-" "fastfetchConfig"
+" "hyprconfigs"
 ##
 done
