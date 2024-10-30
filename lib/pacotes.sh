@@ -20,7 +20,7 @@ to uninstall for example a Pacman Package put [0] before option. Ex: [01]"
 		05)sudo apt remove $1 -y;;
 		*)
 	esac
-
+	sleep 5
 }
 
 repairPM(){
