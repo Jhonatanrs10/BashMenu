@@ -23,8 +23,8 @@ line-size = 2.5pt
 background = ${colors.color_bar}
 foreground = ${colors.color_text}
 bottom = false
-padding-left = 0
-padding-right = 0
+padding-left = 1
+padding-right = 1
 separator =
 separator-foreground = ${colors.color_main}
 

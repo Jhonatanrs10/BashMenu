@@ -1,15 +1,18 @@
 #!/usr/bin/env sh
-myBase="base linux linux-firmware base-devel pacman-contrib bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget curl bash bash-completion power-profiles-daemon notification-daemon papirus-icon-theme breeze-gtk capitaine-cursors networkmanager intel-ucode git sof-firmware grub efibootmgr ntfs-3g dosfstools os-prober nano vim fastfetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd flatpak gvfs gvfs-mtp gvfs-smb samba udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji wireless_tools imagemagick cmatrix htop libnotify"
+myBase="base linux linux-firmware base-devel pacman-contrib bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget curl bash bash-completion power-profiles-daemon notification-daemon papirus-icon-theme breeze-gtk capitaine-cursors networkmanager intel-ucode git sof-firmware grub efibootmgr ntfs-3g dosfstools os-prober nano vim fastfetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd flatpak gvfs gvfs-mtp gvfs-smb samba udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji wireless_tools imagemagick cmatrix htop libnotify dunst pulseaudio pulseaudio-bluetooth"
 myLightdm="lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings"
-myI3wmApps="lxrandr lxappearance xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer blueman pavucontrol volumeicon network-manager-applet ark xreader rhythmbox dragon kdeconnect gnome-keyring seahorse leafpad"
-myI3wm="i3 polybar i3lock i3status dmenu rofi picom nitrogen acpilight scrot xcolor alacritty pulseaudio pulseaudio-bluetooth"
+mySddm="sddm"
+myI3wmApps="lxrandr lxappearance xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer ark xreader rhythmbox dragon kdeconnect gnome-keyring seahorse leafpad"
+myI3wm="i3 polybar i3lock i3status dmenu rofi picom nitrogen acpilight scrot xcolor blueman pavucontrol volumeicon network-manager-applet gnome-keyring seahorse"
 myXfceToI3="exo garcon xfce4-appfinder xfce4-panel xfce4-session xfce4-settings xfconf xfdesktop xfwm4 xfce4-screenshooter xfce4-pulseaudio-plugin"
 myXfce4="xfce4 xfce4-goodies xfce4-docklike-plugin ark"
-myKde="plasma sddm dolphin dolphin-plugins dragon elisa kdeconnect ark filelight gwenview kate okular"
+myKde="plasma"
+myKdeApps="dolphin dolphin-plugins dragon elisa kdeconnect ark filelight gwenview kate okular"
 myGnome="gnome gnome-tweaks"
 myNvidia="nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"
 myGlobalApps="gimp inkscape shotcut code qbittorrent mpv gparted chromium alacritty bitwarden discord"
-myHyprland="hyprland hyprpaper wofi waybar hyprlock"
+myHyprland="sddm hyprland wofi waybar hyprlock hyprpicker xorg-xhost egl-wayland azote swaybg blueman pavucontrol volumeicon network-manager-applet gnome-keyring seahorse"
+myHyprlandApps="lxappearance xfce4-taskmanager gpicview font-manager pcmanfm galculator system-config-printer ark xreader rhythmbox dragon kdeconnect leafpad"
 
 dotFont="Freemono" 
 
@@ -18,17 +21,24 @@ sourceFolder "DotFiles" "./dotfiles"
 myBaseHyprland(){
     packagesManager "$myBase"
     packagesManager "$myGlobalApps"
-    packagesManager "sddm"
     packagesManager "$myHyprland"
+    packagesManager "$myHyprlandApps"
+    packagesManager "$mySddm"
     enableSystemctl "bluetooth"
     enableSystemctl "NetworkManager"
     enableSystemctl "sddm"
+    enableSystemctl "power-profiles-daemon"
+    sudo tee /usr/share/dbus-1/services/org.freedesktop.Notifications.service <<< '[D-BUS Service]
+Name=org.freedesktop.Notifications
+Exec=/usr/lib/notification-daemon-1.0/notification-daemon'
 }
 
 myBaseI3wm(){
     packagesManager "$myBase"
     packagesManager "$myGlobalApps"
-    packagesManager "$myLightdm $myI3wm $myI3wmApps"
+    packagesManager "$myI3wm"
+    packagesManager "$myI3wmApps"
+    packagesManager "$myLightdm"
     enableSystemctl "bluetooth"
     enableSystemctl "NetworkManager"
     enableSystemctl "lightdm"
@@ -41,7 +51,8 @@ Exec=/usr/lib/notification-daemon-1.0/notification-daemon'
 myBaseXfce4(){
     packagesManager "$myBase"
     packagesManager "$myGlobalApps"
-    packagesManager "$myLightdm $myXfce4"
+    packagesManager "$myXfce4"
+    packagesManager "$myLightdm"
     enableSystemctl "bluetooth"
     enableSystemctl "NetworkManager"
     enableSystemctl "lightdm"
@@ -60,6 +71,8 @@ myBaseKde(){
     packagesManager "$myBase"
     packagesManager "$myGlobalApps"
     packagesManager "$myKde"
+    packagesManager "$myKdeApps"
+    packagesManager "$mySddm"
     enableSystemctl "bluetooth"
     enableSystemctl "NetworkManager"
     enableSystemctl "sddm"
@@ -192,22 +205,23 @@ EOF
 hyprconfigs(){
     hyprlandConfig
     wofiConfig
-    hyprpaperConfig
     waybarConfig
+    hypranim
+    killall -SIGUSR2 waybar
 }
 i3wmConfig(){
     jrswindowcomfoco="1693CF"
+    jrswindowsemfoco="7d7d7d"
     #MAIN COLOR 005577, bfbfbf
     echo "[COLORS] Black:000000, Gray:808080, White:FFFFFF (not use #)"
-    forLength "[COLOR] Bar" "6" "212320"
-    jrsbar=$txtForLength
+    pickColor "[COLOR] Bar" "212320"
+    jrsbar=$pickedColor
+    pickColor "[COLOR] Text" "ffffff"
+    jrsbartexto=$pickedColor
+    pickColor "[COLOR] Window" "$jrswindowcomfoco"
+    jrswindowcomfoco=$pickedColor
     jrswindowtextosemfoco=$jrsbar
-    forLength "[COLOR] Text" "6" "ffffff"
-    jrsbartexto=$txtForLength
     jrswindowtextocomfoco=$jrsbartexto
-    forLength "[COLOR] Window" "6" "$jrswindowcomfoco"
-    jrswindowcomfoco=$txtForLength
-    jrswindowsemfoco="7d7d7d"
     cd /proc/sys/net/ipv4/conf/
     zerotierAdapter=$(echo zt*)
     modeDarkLight
@@ -220,17 +234,14 @@ i3wmConfig(){
     polybarConfig
     powerprofiles
     picomsync
-    #mangohudConfig
+    mangohudConfig
     alacrittyConfig
     fastfetchConfig
-    #hyprlandConfig
-    #hyprpaperConfig
-    #waybarConfig
-    #wofiConfig
+    hyprconfigs
     sudo rm /usr/share/applications/rofi*
     sudo sed -i 's/OnlyShowIn=XFCE;//g' /usr/share/applications/xfce4-power-manager-settings.desktop
     i3 restart
-    sleep 0
+    sleep 10
 }
 
 backlightConfig(){
@@ -289,7 +300,7 @@ cursor-theme-name = capitaine-cursors-light
 font-name = '$dotFont' 10'
         cp $dirSettings3 $dirSettings2
         cp $dirSettings3 $dirSettings4
-      #notify-send --hint int:transient:1 "Theme Mode" "Light" --icon=org.xfce.powermanager
+      #dunstify --hints int:transient:1 "Theme Mode" "Light" --icon=org.xfce.powermanager
       ;;
     ffffff)
         modeErase
@@ -307,7 +318,7 @@ cursor-theme-name = capitaine-cursors
 font-name = '$dotFont' 10'
         cp $dirSettings3 $dirSettings2
         cp $dirSettings3 $dirSettings4
-      #notify-send --hint int:transient:1 "Theme Mode" "Dark" --icon=org.xfce.powermanager
+      #dunstify --hints int:transient:1 "Theme Mode" "Dark" --icon=org.xfce.powermanager
       ;;
     *)
       ;;

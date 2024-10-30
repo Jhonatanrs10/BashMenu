@@ -47,6 +47,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id nitrogen --restore
 #exec --no-startup-id feh --bg-scale ~/.config/i3/wallpaperI3.png
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /usr/bin/dunst
 exec --no-startup-id xset -b
 exec --no-startup-id kdeconnect-indicator
 
@@ -62,8 +63,8 @@ bindsym $mod+x exec --no-startup-id $appFiles
 bindsym $mod+c exec --no-startup-id $appBrowser
 bindsym $mod+n exec --no-startup-id $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') /usr/share/backgrounds/main.png, mode "default"
 #bindsym 7 exec --no-startup-id $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') $HOME/.config/i3/wallpaperI3Lock.png, mode "default"
-bindsym $mod+Ctrl+p exec --no-startup-id picom & notify-send -t 1000 --hint int:transient:1 "Picom" "Started" --icon=picom, mode "default"
-bindsym $mod+Shift+p exec --no-startup-id killall picom & notify-send -t 1000 --hint int:transient:1 "Picom" "Stopped" --icon=picom
+bindsym $mod+Ctrl+p exec --no-startup-id picom & dunstify -t 1000 --hints int:transient:1 "Picom" "Started" --icon=picom, mode "default"
+bindsym $mod+Shift+p exec --no-startup-id killall picom & dunstify -t 1000 --hints int:transient:1 "Picom" "Stopped" --icon=picom
 bindsym $mod+Ctrl+b bar mode toggle
 bindsym $mod+b exec --no-startup-id polybar-msg cmd toggle
 bindsym $mod+p exec --no-startup-id $HOME/.config/jrs/powerprofiles.sh
