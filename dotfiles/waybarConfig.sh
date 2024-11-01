@@ -7,7 +7,7 @@ waybarConfig(){
 	"spacing": 4,
 	"modules-left": ["hyprland/workspaces","hyprland/window"],
 	"modules-center": ["clock"],
-	"modules-right": ["power-profiles-daemon","pulseaudio","tray"],
+	"modules-right": ["pulseaudio","battery","tray"],
 	"hyprland/workspaces": {
      "format": "{icon}",
      "on-scroll-up": "hyprctl dispatch workspace e+1",
@@ -26,12 +26,7 @@ waybarConfig(){
       "spacing": 5
     },	
 	"pulseaudio": {
-    "format": "{volume}% {icon}",
-    "format-bluetooth": "{volume}% {icon}",
-    "format-muted": "",
-    "format-icons": {
-        "default": ["", ""]
-    },
+    "format": "[Vol/{volume}%]",
     "scroll-step": 1,
     "on-click": "pavucontrol",
     "ignored-sinks": ["Easy Effects Sink"]
@@ -50,6 +45,16 @@ waybarConfig(){
     "performance": "",
     "power-saver": ""
   }
+},
+"battery": {
+    "bat": "BAT1",
+    "interval": 60,
+    "states": {
+        "warning": 30,
+        "critical": 15
+    },
+    "format": "[Bat/{capacity}%]",
+    "max-length": 25
 }
 }' "$HOME/.config/waybar/config"
 
@@ -105,4 +110,5 @@ window#waybar:first-child > box {
     border-radius: 5px;
     background-color: green;
 }' "$HOME/.config/waybar/style.css"
+killall -SIGUSR2 waybar
 }

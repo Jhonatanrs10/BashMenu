@@ -69,6 +69,7 @@ bindsym $mod+Ctrl+b bar mode toggle
 bindsym $mod+b exec --no-startup-id polybar-msg cmd toggle
 bindsym $mod+p exec --no-startup-id $HOME/.config/jrs/powerprofiles.sh
 bindsym $mod+s exec --no-startup-id $HOME/.config/jrs/picomsync.sh
+bindsym $mod+t exec --no-startup-id $HOME/.config/jrs/themeMode.sh
 
 ###Power###
 bindsym $mod+l exec --no-startup-id $Locker

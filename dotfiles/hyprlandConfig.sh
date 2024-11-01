@@ -84,7 +84,7 @@ $fileManager = pcmanfm
 $menu = wofi
 $ppc = $HOME/.config/jrs/powerprofiles.sh
 $pvc = $HOME/.config/jrs/hypranim.sh
-$waybarReset = killall -SIGUSR2 waybar
+$themeMode = $HOME/.config/jrs/themeMode.sh
 $waybarHide = killall -SIGUSR1 waybar
 $nitrogenWayland = azote
 # Autostart
@@ -97,20 +97,23 @@ exec-once = /usr/bin/dunst
 exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # Binds
 $mainMod = SUPER
+bind = $mainMod, W, togglegroup
 bind = $mainMod, RETURN, exec, $terminal
 bind = $mainMod SHIFT, Q, killactive,
+bind = ALT, F4, killactive,
 bind = $mainMod, X, exec, $fileManager
 bind = $mainMod, C, exec, $browser
-bind = $mainMod SHIFT, R, exec, $waybarReset
 bind = $mainMod, B, exec, $waybarHide
 bind = $mainMod SHIFT, SPACE, togglefloating,
 bind = $mainMod, F, fullscreen 
 bind = $mainMod, D, exec, $menu
 bind = $mainMod, P, exec, $ppc
 bind = $mainMod, N, exec, $nitrogenWayland
+bind = $mainMod, T, exec, $themeMode
 bind = $mainMod, V, togglesplit, 
 bind = $mainMod, left, movefocus, l
 bind = $mainMod, right, movefocus, r
+bind = ALT, TAB, movefocus, r
 bind = $mainMod, up, movefocus, u
 bind = $mainMod, down, movefocus, d
 bind = $mainMod SHIFT, left, movewindow, l
@@ -173,5 +176,15 @@ bind = $mainMod CTRL, 9, exec, systemctl reboot
 bind = $mainMod CTRL, 0, exec, systemctl poweroff -i
 # ColorPicker
 bind = $mainMod, Z, exec, hyprpicker -a -f hex
+# Resizing with submap    
+bind = $mainMod, R, submap,resize    
+submap = resize    
+binde=,right,resizeactive,  40 0    
+binde=,left,resizeactive, -40 0    
+binde=,up,resizeactive,   0 -40    
+binde=,down,resizeactive,   0 40    
+bind = ,escape, submap, reset    
+bind = ,return,  submap, reset    
+submap = reset
 ' "$HOME/.config/hypr/hyprland.conf"
 }
