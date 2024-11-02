@@ -81,7 +81,7 @@ device {
 $terminal = alacritty
 $browser = xdg-open https:
 $fileManager = pcmanfm
-$menu = wofi
+$menu = pkill wofi || wofi
 $ppc = $HOME/.config/jrs/powerprofiles.sh
 $pvc = $HOME/.config/jrs/hypranim.sh
 $themeMode = $HOME/.config/jrs/themeMode.sh
@@ -140,7 +140,7 @@ bind = $mainMod SHIFT, 7, movetoworkspacesilent, 7
 bind = $mainMod SHIFT, 8, movetoworkspacesilent, 8
 bind = $mainMod SHIFT, 9, movetoworkspacesilent, 9
 bind = $mainMod SHIFT, 0, movetoworkspacesilent, 10
-bind = $mainMod, S, exec, $pvc
+bind = $mainMod, A, exec, $pvc
 bind = $mainMod SHIFT, S, movetoworkspace, special:magic
 bind = $mainMod, mouse_down, workspace, e+1
 bind = $mainMod, mouse_up, workspace, e-1

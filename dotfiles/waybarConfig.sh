@@ -7,7 +7,7 @@ waybarConfig(){
 	"spacing": 4,
 	"modules-left": ["hyprland/workspaces","hyprland/window"],
 	"modules-center": ["clock"],
-	"modules-right": ["pulseaudio","battery","tray"],
+	"modules-right": ["temperature","pulseaudio","battery","tray"],
 	"hyprland/workspaces": {
      "format": "{icon}",
      "on-scroll-up": "hyprctl dispatch workspace e+1",
@@ -25,18 +25,27 @@ waybarConfig(){
       "icon-size": 21,
       "spacing": 5
     },	
-	"pulseaudio": {
-    "format": "[Vol/{volume}%]",
+"pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": "",
+    "format-icons": {
+        "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+        "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "phone-muted": "",
+        "portable": "",
+        "car": "",
+        "default": ["", ""]
+    },
     "scroll-step": 1,
     "on-click": "pavucontrol",
     "ignored-sinks": ["Easy Effects Sink"]
 },
-"pulseaudio/slider": {
-    "min": 0,
-    "max": 100,
-    "orientation": "vertical"
-},
-"power-profiles-daemon": {
+    "power-profiles-daemon": {
   "format": "{icon}",
   "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
   "tooltip": true,
@@ -53,8 +62,28 @@ waybarConfig(){
         "warning": 30,
         "critical": 15
     },
-    "format": "[Bat/{capacity}%]",
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""],
     "max-length": 25
+},
+"network": {
+    "interface": "wlp2s0",
+    "format": "{ifname}",
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "{ipaddr}/{cidr} 󰊗",
+    "format-disconnected": "", //An empty format will hide the module.
+    "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+},
+ "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    // "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C ",
+    "format": "{temperatureC}°C "
 }
 }' "$HOME/.config/waybar/config"
 
@@ -64,6 +93,11 @@ criarArqv2 '* {
     font-family: FreeMono;
     font-size: 11px;
     min-height: 0;
+}
+
+.modules-right {
+    color: #DFDFDF;
+    /*color: #444444;*/
 }
 
 window#waybar {
