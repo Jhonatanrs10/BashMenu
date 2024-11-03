@@ -29,10 +29,11 @@ separator =
 separator-foreground = ${colors.color_main}
 
 font-0 = '$dotFont':style=Regular:size=8;2
+font-1 = Fontawesome:style=Regular:size=8;2
 
 modules-left = xworkspaces xwindow
 modules-center = date
-modules-right = xkeyboard systray
+modules-right = xkeyboard temperature pulseaudio battery systray
 #modules-right = xkeyboard cpu memory filesystem zerotier wlan eth pulseaudio battery date systray
 
 cursor-click = pointer
@@ -108,7 +109,7 @@ label-mounted = [SSD/%percentage_used%%]
 label-unmounted = 
 label-unmounted-foreground = ${colors.color_degraded}
 
-[module/battery]
+[module/battery2]
 type = internal/battery
 full-at = 99
 low-at = 5
@@ -119,7 +120,7 @@ label-charging = [CHR/%percentage%%]
 label-discharging = [BAT/%percentage%%]
 label-full = [FULL/%percentage%%]
 
-[module/pulseaudio]
+[module/pulseaudio2]
 type = internal/pulseaudio
 
 format-volume-prefix = [♪/
@@ -193,8 +194,64 @@ date = %a.%d %b %H:%M
 label = %date%
 label-foreground = ${colors.color_text}
 
+[module/battery]
+type = internal/battery
+full-at = 99
+low-at = 5
+battery = BAT0
+adapter = ADP1
+poll-interval = 5
+time-format = %H:%M
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+label-charging = Charging %percentage%%
+label-discharging = Discharging %percentage%%
+label-full = Fully charged
+label-low = BATTERY LOW
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+bar-capacity-width = 10
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+animation-discharging-framerate = 500
+animation-low-0 = !
+animation-low-1 = 
+animation-low-framerate = 200
+[module/pulseaudio]
+type = internal/pulseaudio
+use-ui-max = true
+interval = 5
+reverse-scroll = false
+format-volume = <ramp-volume> <label-volume>
+label-muted = 🔇 muted
+label-muted-foreground = #666
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
+click-right = pavucontrol
 [settings]
 screenchange-reload = true
 pseudo-transparency = true
+[module/temperature]
+type = internal/temperature
+interval = 0.5
+thermal-zone = 0
+zone-type = x86_pkg_temp
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
+base-temperature = 20
+warn-temperature = 60 
+label =   %temperature-c%
 ' "$HOME/.config/polybar/config.ini"
 }
