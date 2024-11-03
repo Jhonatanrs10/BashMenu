@@ -89,7 +89,7 @@ label-urgent = %name%
 label-urgent-background = ${colors.color_bad}
 label-urgent-padding = 1
 
-label-empty = %name%
+label-empty =
 label-empty-foreground = ${colors.color_degraded}
 label-empty-padding = 1
 

@@ -230,6 +230,7 @@ i3wmConfig(){
     picomConfig
     polybarsh
     polybarConfig
+    bspwmConfig
     powerprofiles
     picomsync
     mangohudConfig
