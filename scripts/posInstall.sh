@@ -2,8 +2,8 @@
 myBase="base linux linux-firmware base-devel pacman-contrib bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget curl bash bash-completion power-profiles-daemon notification-daemon papirus-icon-theme breeze-gtk capitaine-cursors networkmanager intel-ucode git sof-firmware grub efibootmgr ntfs-3g dosfstools os-prober nano vim fastfetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd flatpak gvfs gvfs-mtp gvfs-smb samba udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-font-awesome wireless_tools imagemagick cmatrix htop libnotify dunst pulseaudio pulseaudio-bluetooth xsel"
 myLightdm="lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings"
 mySddm="sddm"
-myI3wmApps="lxrandr nwg-look xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer ark xreader rhythmbox dragon kdeconnect gnome-keyring seahorse leafpad"
-myI3wm="i3 polybar i3lock i3status dmenu rofi picom nitrogen acpilight scrot xcolor blueman pavucontrol volumeicon network-manager-applet gnome-keyring seahorse"
+myI3wmApps="lxrandr xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer ark xreader rhythmbox dragon kdeconnect gnome-keyring seahorse leafpad"
+myI3wm="i3 polybar i3lock i3status dmenu rofi picom nitrogen acpilight scrot xcolor blueman pavucontrol volumeicon network-manager-applet gnome-keyring seahorse nwg-look"
 myXfceToI3="exo garcon xfce4-appfinder xfce4-panel xfce4-session xfce4-settings xfconf xfdesktop xfwm4 xfce4-screenshooter xfce4-pulseaudio-plugin"
 myXfce4="xfce4 xfce4-goodies xfce4-docklike-plugin ark"
 myKde="plasma"
@@ -11,8 +11,8 @@ myKdeApps="dolphin dolphin-plugins dragon elisa kdeconnect ark filelight gwenvie
 myGnome="gnome gnome-tweaks"
 myNvidia="nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo gl-wayland"
 myGlobalApps="gimp inkscape shotcut code qbittorrent mpv gparted chromium alacritty bitwarden discord"
-myHyprland="hyprland wofi waybar hyprlock hyprpicker wl-clipboard xorg-xhost azote swaybg blueman pavucontrol network-manager-applet gnome-keyring seahorse"
-myHyprlandApps="nwg-look xfce4-taskmanager gpicview font-manager pcmanfm galculator system-config-printer ark xreader rhythmbox dragon kdeconnect leafpad"
+myHyprland="hyprland wofi waybar hyprlock hyprpicker wl-clipboard xorg-xhost azote swaybg blueman pavucontrol network-manager-applet gnome-keyring seahorse nwg-look"
+myHyprlandApps="xfce4-taskmanager gpicview font-manager pcmanfm galculator system-config-printer ark xreader rhythmbox dragon kdeconnect leafpad"
 
 dotFont="Freemono" 
 
