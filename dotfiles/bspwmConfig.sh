@@ -35,8 +35,9 @@ bspc config normal_border_color "#'$jrswindowsemfoco'"
 #bspc rule -a Screenkey manage=off
 
 #AutoStart
+xsetroot -cursor_name left_ptr &
 nitrogen --restore &
-xfce4-power-manager &
+#xfce4-power-manager &
 #killall volumeicon && volumeicon &
 blueman-applet &
 nm-applet &
@@ -65,6 +66,10 @@ super + c
 super + b 
 	polybar-msg cmd toggle
 
+# Picom Stop
+super + ctrl + p
+	killall picom & dunstify -t 1000 --hints int:transient:1 "Picom" "Stopped" --icon=picom
+
 # power profiles
 super + p 
 	$HOME/.config/jrs/powerprofiles.sh
@@ -72,6 +77,10 @@ super + p
 # picom sync
 super + s 
 	$HOME/.config/jrs/picomsync.sh
+
+# xcolor
+super + z
+	xcolor -s
 
 # theme mode
 super + t 
@@ -87,8 +96,16 @@ super + shift + e
 	bspc quit
 
 # close and kill
-super + {_,shift + }q
-	bspc node -{c,k}
+super + shift + q
+	bspc node -c
+
+# close and kill
+alt + F4
+	bspc node -c
+
+# nitrogen
+super + n
+	nitrogen && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') /usr/share/backgrounds/main.png
 
 # alternate between the tiled and monocle layout
 super + w
@@ -96,7 +113,7 @@ super + w
 
 # set the window state
 super + {e,space,f}
-	bspc node -t {tiled,floating,fullscreen}
+	bspc node -t {\~tiled,\~floating,\~fullscreen}
 
 # focus the node in the given direction
 super + {_,shift + }{Left,Down,Up,Right}
@@ -129,8 +146,8 @@ super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '"'"'^{1-9,10}'"'"'
 
 # preselect the direction
-super + ctrl + {Left,Down,Up,Right}
-	bspc node -p {west,south,north,east}
+#super + ctrl + {Left,Down,Up,Right}
+#bspc node -p {west,south,north,east}
 
 # preselect the ratio
 super + ctrl + {1-9}
@@ -149,6 +166,41 @@ super + alt + {Left,Down,Up,Right}
 
 # move a floating window
 super + {_,shift + }{Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}' "$HOME/.config/sxhkd/sxhkdrc"
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+	
+###Brightness and Sound###
+super+ctrl+Up 
+	pactl set-sink-volume @DEFAULT_SINK@ +5%
+super+ctrl+Down
+	pactl set-sink-volume @DEFAULT_SINK@ -5% 
+super+ctrl+m
+	pactl set-sink-mute @DEFAULT_SINK@ toggle 
+super+ctrl+Right
+	xbacklight -dec 5
+super+ctrl+Left
+	xbacklight -inc 5
+XF86AudioRaiseVolume
+	pactl set-sink-volume @DEFAULT_SINK@ +5%
+XF86AudioLowerVolume
+	pactl set-sink-volume @DEFAULT_SINK@ -5%
+XF86AudioMute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
+XF86AudioMicMute
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle
+XF86MonBrightnessUp
+	xbacklight -dec 5
+XF86MonBrightnessDown
+	xbacklight -inc 5
+
+###Print###
+super + Print
+	mkdir -p ~/Pictures/PrtSc | scrot ~/Pictures/PrtSc/Screenshot_%Y-%m-%d_%H-%M-%S.png
+Print
+	mkdir -p ~/Pictures/PrtSc | scrot -f -s ~/Pictures/PrtSc/Cutshot_%Y-%m-%d_%H-%M-%S.png
+
+' "$HOME/.config/sxhkd/sxhkdrc"
+
+pkill -USR1 -x sxhkd
+bspc wm -r
 
 }

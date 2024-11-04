@@ -11,8 +11,9 @@ myKdeApps="dolphin dolphin-plugins dragon elisa kdeconnect ark filelight gwenvie
 myGnome="gnome gnome-tweaks"
 myNvidia="nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo gl-wayland"
 myGlobalApps="gimp inkscape shotcut code qbittorrent mpv gparted chromium alacritty bitwarden discord"
-myHyprland="hyprland wofi waybar hyprlock hyprpicker wl-clipboard xorg-xhost azote swaybg blueman pavucontrol network-manager-applet gnome-keyring seahorse nwg-look"
+myHyprland="hyprland wofi waybar hyprlock hyprpicker wl-clipboard xorg-xhost grim slurp azote swaybg blueman pavucontrol network-manager-applet gnome-keyring seahorse nwg-look"
 myHyprlandApps="xfce4-taskmanager gpicview font-manager pcmanfm galculator system-config-printer ark xreader rhythmbox dragon kdeconnect leafpad"
+myBspwm="bspwm sxhkd xorg-xsetroot scrot polybar rofi picom nitrogen acpilight xcolor clueman pavucontrol network-managerapplet gnome-keyring seahorse nwg-look"
 
 dotFont="Freemono" 
 

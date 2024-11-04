@@ -27,9 +27,12 @@ padding-left = 1
 padding-right = 1
 separator =
 separator-foreground = ${colors.color_main}
+wm-restack = bspwm
 
 font-0 = '$dotFont':style=Regular:size=8;2
-font-1 = Fontawesome:style=Regular:size=8;2
+font-1= FontAwesome6Free:style=Solid:size=8;2
+font-2= FontAwesome6Free:style=Regular:size=8;2
+font-3= FontAwesome6Brands:style=Regular:size=8;2
 
 modules-left = xworkspaces xwindow
 modules-center = date
@@ -198,33 +201,33 @@ label-foreground = ${colors.color_text}
 type = internal/battery
 full-at = 99
 low-at = 5
-battery = BAT0
+battery = BAT1
 adapter = ADP1
 poll-interval = 5
 time-format = %H:%M
 format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
-label-charging = Charging %percentage%%
-label-discharging = Discharging %percentage%%
-label-full = Fully charged
-label-low = BATTERY LOW
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = "  100%"
+label-low = "  0%"
+ramp-capacity-0 = " "
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
+ramp-capacity-3 = " "
+ramp-capacity-4 = " "
 bar-capacity-width = 10
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
+animation-charging-3 = " "
+animation-charging-4 = " "
 animation-charging-framerate = 750
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-3 = 
-animation-discharging-4 = 
+animation-discharging-0 = " "
+animation-discharging-1 = " "
+animation-discharging-2 = " "
+animation-discharging-3 = " "
+animation-discharging-4 = " "
 animation-discharging-framerate = 500
 animation-low-0 = !
 animation-low-1 = 
@@ -235,11 +238,11 @@ use-ui-max = true
 interval = 5
 reverse-scroll = false
 format-volume = <ramp-volume> <label-volume>
-label-muted = 🔇 muted
+label-muted = 
 label-muted-foreground = #666
-ramp-volume-0 = 🔈
-ramp-volume-1 = 🔉
-ramp-volume-2 = 🔊
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 click-right = pavucontrol
 [settings]
 screenchange-reload = true

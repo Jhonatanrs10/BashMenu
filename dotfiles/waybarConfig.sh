@@ -26,20 +26,21 @@ waybarConfig(){
       "spacing": 5
     },	
 "pulseaudio": {
-    "format": "{volume}% {icon}",
-    "format-bluetooth": "{volume}% {icon}",
-    "format-muted": "",
+    "format": " {icon} {volume}%",
+    "format-bluetooth": "  {volume}%",
+    "format-muted": " ",
     "format-icons": {
         "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
         "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
-        "headphone": "",
-        "hands-free": "",
-        "headset": "",
-        "phone": "",
-        "phone-muted": "",
-        "portable": "",
-        "car": "",
-        "default": ["", ""]
+        "headphone": " ",
+        "hands-free": " ",
+        "headset": " ",
+        "phone": " ",
+        "phone-muted": " ",
+        "portable": " ",
+        "car": " ",
+        "default": ["","",""]
+
     },
     "scroll-step": 1,
     "on-click": "pavucontrol",
@@ -62,7 +63,7 @@ waybarConfig(){
         "warning": 30,
         "critical": 15
     },
-    "format": "{capacity}% {icon}",
+    "format": " {icon} {capacity}%",
     "format-icons": ["", "", "", "", ""],
     "max-length": 25
 },
@@ -83,7 +84,7 @@ waybarConfig(){
     // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
     // "critical-threshold": 80,
     // "format-critical": "{temperatureC}°C ",
-    "format": "{temperatureC}°C "
+    "format": "  {temperatureC}°C"
 }
 }' "$HOME/.config/waybar/config"
 

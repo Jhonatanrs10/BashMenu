@@ -176,6 +176,11 @@ bind = $mainMod CTRL, 9, exec, systemctl reboot
 bind = $mainMod CTRL, 0, exec, systemctl poweroff -i
 # ColorPicker
 bind = $mainMod, Z, exec, hyprpicker -a -f hex
+# Print
+# screenshot 
+bind =, Print, exec, grim -g "$(slurp)" - | wl-copy && wl-paste > ~/Pictures/PrtSc/Cutshot-$(date +%F_%T).png 
+bind = $mainMod, Print, exec, grim - | wl-copy && wl-paste > ~/Pictures/PrtSc/Screenshot-$(date +%F_%T).png
+
 # Resizing with submap    
 bind = $mainMod, R, submap,resize    
 submap = resize    
