@@ -238,11 +238,11 @@ use-ui-max = true
 interval = 5
 reverse-scroll = false
 format-volume = <ramp-volume> <label-volume>
-label-muted =  Muted
+label-muted = "  Muted"
 label-muted-foreground = #666
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
+ramp-volume-0 = " "
+ramp-volume-1 = " "
+ramp-volume-2 = " "
 click-right = pavucontrol
 [settings]
 screenchange-reload = true
@@ -255,6 +255,6 @@ zone-type = x86_pkg_temp
 hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
 base-temperature = 20
 warn-temperature = 60 
-label =   %temperature-c%
+label = "  %temperature-c%"
 ' "$HOME/.config/polybar/config.ini"
 }

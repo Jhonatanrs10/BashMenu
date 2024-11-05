@@ -30,8 +30,6 @@ waybarConfig(){
     "format-bluetooth": "  {volume}%",
     "format-muted": "  Muted",
     "format-icons": {
-        "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
-        "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
         "headphone": " ",
         "hands-free": " ",
         "headset": " ",
@@ -83,7 +81,7 @@ waybarConfig(){
     // "thermal-zone": 2,
     // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
     // "critical-threshold": 80,
-    // "format-critical": "{temperatureC}°C ",
+    // "format-critical": "  {temperatureC}°C",
     "format": "  {temperatureC}°C"
 }
 }' "$HOME/.config/waybar/config"
