@@ -18,36 +18,39 @@ subMenuPosInstall(){
     while [ "$resp" != "exit" ];
     do
         menu12345 "
-[1] WM CONFIG
-[2] XFCE4 CONFIG
-[3] BACKLIGHT CONFIG
-[4] GRUB CONFIG
-[5] PACMAN CONFIG
-[6] MOUNT-NTFS CONFIG
-" "i3wmConfig
-" "xfce4Config
-" "backlightConfig
-" "attGrubWithWindows
-" "editPacmanConfig
-" "autoMountNtfs"
+[1] DOTFILES CONFIG
+[2] INSTALL YAY [ARCH][AUR]
+" "dotfilesConfig
+" "appPosYay"
 
         menu12345 "
-[1] INSTALL YAY [ARCH][AUR]
-[2] INSTALL MYARCH I3WM 
+[1] INSTALL MYARCH I3WM 
+[2] INSTALL MYARCH BSPWM
 [3] INSTALL MYARCH HYPRLAND
 [4] INSTALL MYARCH XFCE4
 [5] INSTALL MYARCH KDE
 [6] INSTALL MYARCH GNOME 
 [7] NVIDIA PROPRIETARIO
 [8] SOME APPS TO INSTALL
-" "appPosYay
 " "myBaseI3wm
+" "myBaseBspwm
 " "myBaseHyprland
 " "myBaseXfce4
 " "myBaseKde
 " "myBaseGnome
 " "appPosNvidiaDriverProp
 " "appPosInstall"
+
+        menu12345 "
+[1] BACKLIGHT CONFIG
+[2] GRUB CONFIG
+[3] PACMAN CONFIG
+[4] MOUNT-NTFS CONFIG
+" "backlightConfig
+" "attGrubWithWindows
+" "editPacmanConfig
+" "autoMountNtfs"
+
     done
 }
 

@@ -112,7 +112,7 @@ super + w
 	bspc desktop -l next
 
 # set the window state
-super + {e,space,f}
+super + {e,shift + space,f}
 	bspc node -t {\~tiled,\~floating,\~fullscreen}
 
 # focus the node in the given direction
@@ -200,7 +200,13 @@ Print
 
 ' "$HOME/.config/sxhkd/sxhkdrc"
 
-pkill -USR1 -x sxhkd
-bspc wm -r
+
+case $DESKTOP_SESSION in
+	"bspwm")
+		pkill -USR1 -x sxhkd
+		bspc wm -r
+	;;
+	*)
+esac
 
 }

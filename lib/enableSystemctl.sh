@@ -4,7 +4,9 @@ enableSystemctl(){
     read resp
     if [ "$resp" = "s" ]; then
         sudo systemctl enable $1 --now
-    fi 
+    elif [ "$resp" = "n" ]; then
+        sudo systemctl disable $1
+    fi
 }
 #enableSystemctl "processo"
 #exemplo smbd bluetooth

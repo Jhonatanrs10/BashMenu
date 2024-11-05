@@ -81,6 +81,6 @@ dunstConfig(){
     timeout = 0
     override_pause_level = 60
 ' "$HOME/.config/dunst/dunstrc"
-sleep 2
+sleep 0
 #killall dunst && dunst & disown 
 }

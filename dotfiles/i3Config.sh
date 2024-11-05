@@ -215,4 +215,12 @@ bindsym Mod1+Down resize grow height 10 px or 10 ppt
 bindsym Mod1+Up resize shrink height 10 px or 10 ppt
 bindsym Mod1+Right resize grow width 10 px or 10 ppt
 ' "$HOME/.config/i3/config"
+
+case $DESKTOP_SESSION in
+	"i3")
+		i3 restart
+	;;
+	*)
+esac
+
 }

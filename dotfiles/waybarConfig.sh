@@ -28,7 +28,7 @@ waybarConfig(){
 "pulseaudio": {
     "format": " {icon} {volume}%",
     "format-bluetooth": "  {volume}%",
-    "format-muted": " ",
+    "format-muted": "  Muted",
     "format-icons": {
         "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
         "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
@@ -36,7 +36,7 @@ waybarConfig(){
         "hands-free": " ",
         "headset": " ",
         "phone": " ",
-        "phone-muted": " ",
+        "phone-muted": "  Muted",
         "portable": " ",
         "car": " ",
         "default": ["","",""]

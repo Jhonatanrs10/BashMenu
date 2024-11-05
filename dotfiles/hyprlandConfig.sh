@@ -86,7 +86,7 @@ $ppc = $HOME/.config/jrs/powerprofiles.sh
 $pvc = $HOME/.config/jrs/hypranim.sh
 $themeMode = $HOME/.config/jrs/themeMode.sh
 $waybarHide = killall -SIGUSR1 waybar
-$nitrogenWayland = azote
+$nitrogenWayland = azote && convert -blur 0x10 $(cat ~/.azotebg-hyprland | sed -n '"'"'3 p'"'"' | sed '"'"'s/swaybg -o '"'"'"'"'"'eDP-1'"'"'"'"'"' -i "//'"'"' | sed '"'"'s/" -m fill &//'"'"') /usr/share/backgrounds/main.png
 # Autostart
 exec-once = ~/.azotebg-hyprland
 exec-once = waybar
@@ -163,10 +163,10 @@ bind = , XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%
 bind = , XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle
 bind = , XF86AudioMicMute, exec, pactl set-source-mute @DEFAULT_SOURCE@ toggle
 # Brightness
-bind = $mainMod CTRL, left, exec, xbacklight -dec 5 
-bind = $mainMod CTRL, right, exec, xbacklight -inc 5
-bind = , XF86MonBrightnessDown, exec, xbacklight -dec 5 
-bind = , XF86MonBrightnessUp, exec, xbacklight -inc 5
+bind = $mainMod CTRL, right, exec, xbacklight -dec 5 
+bind = $mainMod CTRL, left, exec, xbacklight -inc 5
+bind = , XF86MonBrightnessUp, exec, xbacklight -dec 5 
+bind = , XF86MonBrightnessDown, exec, xbacklight -inc 5
 # Power
 bind = $mainMod SHIFT, E, exit,
 bind = $mainMod CTRL, 7, exec, systemctl suspend
@@ -178,8 +178,8 @@ bind = $mainMod CTRL, 0, exec, systemctl poweroff -i
 bind = $mainMod, Z, exec, hyprpicker -a -f hex
 # Print
 # screenshot 
-bind =, Print, exec, grim -g "$(slurp)" - | wl-copy && wl-paste > ~/Pictures/PrtSc/Cutshot-$(date +%F_%T).png 
-bind = $mainMod, Print, exec, grim - | wl-copy && wl-paste > ~/Pictures/PrtSc/Screenshot-$(date +%F_%T).png
+bind =, Print, exec, mkdir -p ~/Pictures/PrtSc | grim -g "$(slurp)" - | wl-copy && wl-paste > ~/Pictures/PrtSc/Cutshot-$(date +%F_%T).png 
+bind = $mainMod, Print, exec, mkdir -p ~/Pictures/PrtSc | grim - | wl-copy && wl-paste > ~/Pictures/PrtSc/Screenshot-$(date +%F_%T).png
 
 # Resizing with submap    
 bind = $mainMod, R, submap,resize    

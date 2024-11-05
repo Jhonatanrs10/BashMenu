@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 themeModev1(){
-    sudo chmod 777 /etc/lightdm/lightdm-gtk-greeter.conf
+    if [[ -e "/etc/lightdm/lightdm-gtk-greeter.conf" ]]; then
+        sudo chmod 777 /etc/lightdm/lightdm-gtk-greeter.conf
+    fi
     mkdir -p $HOME/.config/jrs
     criarArqv2 'mkdir -p $HOME/.config/gtk-2.0/
     mkdir -p $HOME/.config/gtk-3.0/
@@ -42,7 +44,7 @@ cursor-theme-name = capitaine-cursors-light
 font-name = '"'"'$dotFont'"'"' 10'"'"'
         cp $dirSettings3 $dirSettings2
         cp $dirSettings3 $dirSettings4
-      dunstify --hints int:transient:1 "Theme Mode" "Light" --icon=preferences-desktop-theme
+      dunstify -t 1000 --hints int:transient:1 "Theme Mode" "Light" --icon=preferences-desktop-theme
       ;;
     "gtk-icon-theme-name=Papirus-Light")
         modeErase
@@ -60,7 +62,7 @@ cursor-theme-name = capitaine-cursors
 font-name = '"'"'$dotFont'"'"' 10'"'"'
         cp $dirSettings3 $dirSettings2
         cp $dirSettings3 $dirSettings4
-      dunstify --hints int:transient:1 "Theme Mode" "Dark" --icon=preferences-desktop-theme
+      dunstify -t 1000 --hints int:transient:1 "Theme Mode" "Dark" --icon=preferences-desktop-theme
       ;;
     *)
       ;;
