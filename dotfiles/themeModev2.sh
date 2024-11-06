@@ -102,6 +102,6 @@ esac
 sudo chmod +x $HOME/.config/jrs/themeMode.sh
 # criarArqv2 fica entre ' ' e dentro os a sinais de ' devem ser mudados para '"'"'
 
-
+criaAtalho "Theme Mode" "Dark or Light" "bash themeMode.sh" "$HOME/.config/jrs" "false" "ThemeMode" "preferences-desktop-theme"
 
 }

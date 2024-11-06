@@ -14,4 +14,7 @@ case $notifyValueNow in
     ;;
 esac' "$HOME/.config/jrs/picomsync.sh"
 sudo chmod +x $HOME/.config/jrs/picomsync.sh
+
+criaAtalho "Picom VSync" "Picom settings for VSync" "bash picomsync.sh" "$HOME/.config/jrs" "false" "PicomSync" "picom"
+
 }

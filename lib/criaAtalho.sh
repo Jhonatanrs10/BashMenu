@@ -1,21 +1,16 @@
 #!/usr/bin/env sh
 criaAtalho(){
-    mkdir -p $HOME/.local/share/applications
-	varCriaAtalho="n"
-    echo "Criar Atalho? ($6) [s/n]"
-    read varCriaAtalho
-    if [ "$varCriaAtalho" = "s" ]; then
-        echo -e "[Desktop Entry]
+    mkdir -p $HOME/.local/share/applications/jrs
+    echo -e "[Desktop Entry]
 Version=1.0
 Type=Application
 Name=$1
+GenericName=jrs
 Comment=$2
 Exec=$3
 Icon=$7
 Path=$4
-Terminal=$5" > jrs-$6.desktop
-		sudo mv jrs-$6.desktop $HOME/.local/share/applications
-    fi
+Terminal=$5" > $HOME/.local/share/applications/jrs/jrs-$6.desktop
 }
 
 criaAtalhoDesktop(){
@@ -48,7 +43,7 @@ criaAtalhoDesktopRetroarchArch(){
 removeAllDesktop(){
     echoRead "DESEJA APAGAR OS ATALHOS $1 (s/n)" "resp"
     if [ "$resp" = "s" ]; then
-        sudo rm $HOME/.local/share/applications/jrs-$1-*
+        sudo rm $HOME/.local/share/applications/jrs/jrs-$1-*
     fi
     clear
 }
@@ -57,7 +52,7 @@ removeDesktopJRS(){
     listaOptions "$HOME/.local/share/applications" "ptDesktop" "-d jrs-*"
     echoRead "DESEJA APAGAR O ATALHO $ptDesktop (s/n)" "resp"
     if [ "$resp" = "s" ]; then
-        sudo rm $HOME/.local/share/applications/$ptDesktop
+        sudo rm $HOME/.local/share/applications/jrs/$ptDesktop
     fi
 }
 

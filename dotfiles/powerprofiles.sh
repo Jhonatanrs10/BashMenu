@@ -20,4 +20,7 @@ case $notifyValueNow in
     ;;
 esac' "$HOME/.config/jrs/powerprofiles.sh"
 sudo chmod +x $HOME/.config/jrs/powerprofiles.sh
+
+criaAtalho "Power Profile" "Energy Profiles" "bash powerprofiles.sh" "$HOME/.config/jrs" "false" "PowerProfile" "org.xfce.powermanager"
+
 }
