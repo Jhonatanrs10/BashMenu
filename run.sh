@@ -75,12 +75,10 @@ subMenuInstallApps(){
 [2] INSTALAR POKEXGAMES
 [3] INSTALAR MINECRAFT TLAUNCHER
 [4] INSTALAR POSMIX APPS
-[5] INSTALAR SOME APPS
 " "bongo
 " "installPokexgames
 " "installMinecraft
-" "appPosMix
-" "appPosMixMy"
+" "appPosMix"
 
         menu12345 "
 [1] INSTALAR MINECRAFT SERVER VERSION

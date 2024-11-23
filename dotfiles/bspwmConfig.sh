@@ -54,14 +54,6 @@ super + Return
 super + d
 	rofi -show drun
 
-# file manager
-super + x
-	pcmanfm
-
-# browser
-super + c
-	chromium
-
 # toggle polybar
 super + b 
 	polybar-msg cmd toggle
@@ -90,10 +82,6 @@ super + t
 super + shift + r
 	pkill -USR1 -x sxhkd; \
 	bspc wm -r;
-
-# quit/restart bspwm
-super + shift + e
-	bspc quit
 
 # close and kill
 super + shift + q
@@ -191,6 +179,21 @@ XF86MonBrightnessUp
 	xbacklight -dec 5
 XF86MonBrightnessDown
 	xbacklight -inc 5
+
+###Power###
+# quit/restart bspwm
+super + shift + e
+	bspc quit
+super + ctrl + 7
+	systemctl suspend
+super + l 
+	dm-tool lock
+super + ctrl + 8
+	systemctl hibernate
+super + ctrl + 9 
+	systemctl reboot
+super + Ctrl + 0 
+	systemctl poweroff -i
 
 ###Print###
 super + Print

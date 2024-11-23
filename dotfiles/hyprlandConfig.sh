@@ -23,10 +23,10 @@ decoration {
     rounding = 10
     active_opacity = 1.0
     inactive_opacity = 1.0
-    drop_shadow = true
-    shadow_range = 4
-    shadow_render_power = 3
-    col.shadow = rgba(1a1a1aee)
+    #drop_shadow = true
+    #shadow_range = 4
+    #shadow_render_power = 3
+    #col.shadow = rgba(1a1a1aee)
     blur {
         enabled = false
         size = 3
@@ -79,12 +79,7 @@ device {
 }
 # Variables
 $terminal = alacritty
-$browser = xdg-open https:
-$fileManager = pcmanfm
 $menu = pkill wofi || wofi
-$ppc = $HOME/.config/jrs/powerprofiles.sh
-$pvc = $HOME/.config/jrs/hypranim.sh
-$themeMode = $HOME/.config/jrs/themeMode.sh
 $waybarHide = killall -SIGUSR1 waybar
 $nitrogenWayland = azote && convert -blur 0x10 $(cat ~/.azotebg-hyprland | sed -n '"'"'3 p'"'"' | sed '"'"'s/swaybg -o '"'"'"'"'"'eDP-1'"'"'"'"'"' -i "//'"'"' | sed '"'"'s/" -m fill &//'"'"') /usr/share/backgrounds/main.png
 # Autostart
@@ -101,15 +96,11 @@ bind = $mainMod, W, togglegroup
 bind = $mainMod, RETURN, exec, $terminal
 bind = $mainMod SHIFT, Q, killactive,
 bind = ALT, F4, killactive,
-bind = $mainMod, X, exec, $fileManager
-bind = $mainMod, C, exec, $browser
 bind = $mainMod, B, exec, $waybarHide
 bind = $mainMod SHIFT, SPACE, togglefloating,
 bind = $mainMod, F, fullscreen 
 bind = $mainMod, D, exec, $menu
-bind = $mainMod, P, exec, $ppc
 bind = $mainMod, N, exec, $nitrogenWayland
-bind = $mainMod, T, exec, $themeMode
 bind = $mainMod, V, togglesplit, 
 bind = $mainMod, left, movefocus, l
 bind = $mainMod, right, movefocus, r
@@ -140,7 +131,6 @@ bind = $mainMod SHIFT, 7, movetoworkspacesilent, 7
 bind = $mainMod SHIFT, 8, movetoworkspacesilent, 8
 bind = $mainMod SHIFT, 9, movetoworkspacesilent, 9
 bind = $mainMod SHIFT, 0, movetoworkspacesilent, 10
-bind = $mainMod, A, exec, $pvc
 bind = $mainMod SHIFT, S, movetoworkspace, special:magic
 bind = $mainMod, mouse_down, workspace, e+1
 bind = $mainMod, mouse_up, workspace, e-1
@@ -171,7 +161,7 @@ bind = , XF86MonBrightnessDown, exec, xbacklight -inc 5
 bind = $mainMod SHIFT, E, exit,
 bind = $mainMod CTRL, 7, exec, systemctl suspend
 bind = $mainMod, L, exec, dm-tool lock
-bind = $mainMod CTRL, 8, exec, ystemctl hibernate
+bind = $mainMod CTRL, 8, exec, systemctl hibernate
 bind = $mainMod CTRL, 9, exec, systemctl reboot
 bind = $mainMod CTRL, 0, exec, systemctl poweroff -i
 # ColorPicker
