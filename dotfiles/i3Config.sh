@@ -7,14 +7,6 @@ set $textFont '$dotFont' 8
 set $appMenu2 dmenu_run
 set $appMenu rofi -show drun
 set $appTerminal alacritty
-set $appF1 pavucontrol
-set $appF2 galculator
-set $appF3 xfce4-taskmanager
-set $appF4 xfce4-power-manager-settings
-set $appF5 lxrandr
-set $appF6 lxappearance
-set $appF7 nitrogen
-set $appF8 system-config-printer
 #set $refresh_i3status killall -SIGUSR1 i3status
 set $Locker i3lock -c 000000 -i /usr/share/backgrounds/main.png && sleep 1
 set $ws1 "1"
@@ -51,14 +43,16 @@ exec --no-startup-id kdeconnect-indicator
 
 ###Binds###
 bindsym $mod+d exec --no-startup-id $appMenu
+bindsym $mod+x exec --no-startup-id pcmanfm
+bindsym $mod+c exec --no-startup-id xdg-open https://
 bindsym $mod+Shift+d exec --no-startup-id $appMenu2
 bindsym $mod+Return exec --no-startup-id $appTerminal
 bindsym $mod+Shift+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Shift+q kill
 bindsym Mod1+F4 kill
 bindsym --whole-window $mod+button2 floating toggle
-bindsym $mod+n exec --no-startup-id $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') /usr/share/backgrounds/main.png, mode "default"
-#bindsym 7 exec --no-startup-id $appF7 && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') $HOME/.config/i3/wallpaperI3Lock.png, mode "default"
+bindsym $mod+n exec --no-startup-id nitrogen && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') /usr/share/backgrounds/main.png, mode "default"
+#bindsym 7 exec --no-startup-id nitrogen && convert -resize "$(xrandr | grep "*" | awk '"'"'{ print $1 }'"'"')!" -blur 0x10 $(cat .config/nitrogen/bg-saved.cfg | sed -n '"'"'2 p'"'"' | sed '"'"'s/file=//'"'"') $HOME/.config/i3/wallpaperI3Lock.png, mode "default"
 bindsym $mod+Ctrl+p exec --no-startup-id killall picom & dunstify -t 1000 --hints int:transient:1 "Picom" "Stopped" --icon=picom
 bindsym $mod+Ctrl+b bar mode toggle
 bindsym $mod+b exec --no-startup-id polybar-msg cmd toggle
@@ -166,7 +160,7 @@ gaps outer 0px
 smart_gaps off
 workspace_layout default
 #for_window [class=$appTerminal] floating disable
-#for_window [title=$appF2] floating enable
+#for_window [title=galculator] floating enable
 #for_window [instance=nvidia-settings] floating enable
 #for_window [instance=$appMenu] floating enable resize set 600 300
 

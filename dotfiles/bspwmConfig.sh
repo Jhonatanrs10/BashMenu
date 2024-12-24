@@ -54,6 +54,12 @@ super + Return
 super + d
 	rofi -show drun
 
+super + x
+	pcmanfm
+
+super + c
+	xdg-open https://
+
 # toggle polybar
 super + b 
 	polybar-msg cmd toggle

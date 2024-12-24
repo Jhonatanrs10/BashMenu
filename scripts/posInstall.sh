@@ -1,110 +1,110 @@
-#!/usr/bin/env sh
-myBase="base linux linux-firmware base-devel pacman-contrib bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip wget curl bash bash-completion power-profiles-daemon notification-daemon papirus-icon-theme breeze-gtk capitaine-cursors networkmanager intel-ucode git sof-firmware grub efibootmgr ntfs-3g dosfstools os-prober nano vim fastfetch gufw gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd flatpak gvfs gvfs-mtp gvfs-smb samba udisks2 polkit polkit-gnome net-tools bluez bluez-tools bluez-utils joyutils man-db gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-font-awesome wireless_tools imagemagick cmatrix htop libnotify dunst pulseaudio pulseaudio-bluetooth xsel xorg-xsetroot xorg-xhost"
-myLightdm="lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings"
-mySddm="sddm"
-myXfceToI3="exo garcon xfce4-appfinder xfce4-panel xfce4-session xfce4-settings xfconf xfdesktop xfwm4 xfce4-screenshooter xfce4-pulseaudio-plugin"
-myXfce4="xfce4 xfce4-goodies xfce4-docklike-plugin"
-myKde="plasma"
-myKdeApps="dolphin dolphin-plugins dragon elisa kdeconnect filelight gwenview kate okular"
-myGnome="gnome gnome-tweaks"
-myNvidia="nvidia nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo gl-wayland"
-myGlobalApps="gimp inkscape shotcut code qbittorrent mpv gparted chromium alacritty bitwarden discord ark"
-myHyprland="hyprland wofi waybar hyprlock hyprpicker wl-clipboard grim slurp azote swaybg"
-myBspwm="bspwm sxhkd"
-myI3wm="i3 i3lock i3status dmenu"
-myWmApps="polybar rofi picom nitrogen acpilight scrot xcolor nwg-look lxrandr xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer xreader rhythmbox dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet volumeicon pavucontrol blueman"
-
-dotFont="Freemono" 
+#!/usr/bin/bash
+##myBases
+myBaseLightdm="lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm"
+myBaseSddm="sddm"
+myBaseXfce4="xfce4 xfce4-goodies xfce4-docklike-plugin"
+myBaseKde="dolphin dolphin-plugins dragon elisa kdeconnect filelight gwenview leafpad okular kcalc konsole plasma-meta"
+myBaseGnome="gnome gnome-tweaks"
+myBaseHyprland="hyprland wofi waybar hyprlock hyprpicker wl-clipboard grim slurp azote swaybg polkit-gnome acpilight nwg-look xfce4-taskmanager gpicview font-manager pcmanfm galculator system-config-printer xreader rhythmbox dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet pavucontrol blueman"
+myBaseBspwm="bspwm sxhkd polkit-gnome polybar rofi picom nitrogen acpilight scrot xcolor nwg-look lxrandr xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer xreader rhythmbox dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet pavucontrol blueman"
+myBaseI3wm="i3 i3lock i3status dmenu polkit-gnome polybar rofi picom nitrogen acpilight scrot xcolor nwg-look lxrandr xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer xreader rhythmbox dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet pavucontrol blueman"
+myBaseGlobalApps="gimp inkscape shotcut code neovim qbittorrent mpv gparted chromium alacritty bitwarden discord ark"
+##
+myBaseKernel="base linux linux-firmware intel-ucode sof-firmware"
+myBaseBootloader="grub efibootmgr os-prober"
+myBaseFileSystem="ntfs-3g exfat-utils dosfstools"
+myBaseNetwork="networkmanager"
+myBaseFirewall="gufw"
+myBaseUtilitys="nano fastfetch wget curl jq imagemagick cmatrix htop xsel pacman-contrib base-devel git ffmpeg fwupd samba udisks2 gvfs gvfs-mtp gvfs-smb polkit net-tools joyutils man-db wireless_tools"
+myBaseNvidia="nvidia-open nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"
+myBaseBluetooth="bluez bluez-tools bluez-utils"
+myBaseAudioPipeware="pipewire pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse"
+myBaseAudioPulse="pulseaudio pulseaudio-bluetooth"
+myBaseCodecs="gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer"
+myBaseXorg="xorg xorg-xsetroot xorg-xhost"
+myBaseWayland="wayland gl-wayland"
+myBaseIcons="papirus-icon-theme"
+myBaseThemes="breeze-gtk capitaine-cursors"
+myBaseFonts="gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-font-awesome"
+myBaseRar="bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip"
+myBaseNotify="libnotify dunst"
+myBaseDaemons="notification-daemon power-profiles-daemon"
+myBaseFlatpak="flatpak"
+myBaseShell="bash bash-completion"
+##
+myFullBase="$myBaseKernel $myBaseBootloader $myBaseFileSystem $myBaseNetwork $myBaseFirewall $myBaseUtilitys $myBaseBluetooth $myBaseAudioPipeware $myBaseCodecs $myBaseXorg $myBaseWayland $myBaseIcons $myBaseThemes $myBaseFonts $myBaseRar $myBaseNotify $myBaseDaemons $myBaseFlatpak $myBaseShell"
 
 sourceFolder "DotFiles" "./dotfiles"
 
+myBases(){
+    echo "INSTALL MYBASE ?
+Options: [1]Yes, [2]No"
+    read resp
+	case $resp in
+		1)
+            packagesManager "$myFullBase"
+            enableSystemctl "bluetooth"
+            enableSystemctl "NetworkManager"
+            enableSystemctl "power-profiles-daemon"
+            setupSamba 
+            backlightConfig
+            appPosI3Touchpad
+            ;;
+		*)
+	esac
+}
+
 myBaseHyprland(){
-    packagesManager "$myBase"
-    packagesManager "$myGlobalApps"
-    packagesManager "$myHyprland"
-    packagesManager "$myWmApps"
-    packagesManager "$mySddm"
-    enableSystemctl "bluetooth"
-    enableSystemctl "NetworkManager"
-    enableSystemctl "lightdm"
-    enableSystemctl "power-profiles-daemon"
-    sudo tee /usr/share/dbus-1/services/org.freedesktop.Notifications.service <<< '[D-BUS Service]
-Name=org.freedesktop.Notifications
-Exec=/usr/lib/notification-daemon-1.0/notification-daemon'
-    setupSamba
-    backlightConfig
+    myBases
+    packagesManager "$myBaseGlobalApps"
+    packagesManager "$myBaseHyprland"
+    packagesManager "$myBaseLightdm"
+    enableSystemctlDM
     dotfilesConfig
 }
 
 myBaseBspwm(){
-    packagesManager "$myBase"
-    packagesManager "$myGlobalApps"
-    packagesManager "$myBspwm"
-    packagesManager "$myWmApps"
-    packagesManager "$myLightdm"
-    enableSystemctl "bluetooth"
-    enableSystemctl "NetworkManager"
-    enableSystemctl "lightdm"
-    enableSystemctl "power-profiles-daemon"
-    sudo tee /usr/share/dbus-1/services/org.freedesktop.Notifications.service <<< '[D-BUS Service]
-Name=org.freedesktop.Notifications
-Exec=/usr/lib/notification-daemon-1.0/notification-daemon'
-    setupSamba
-    backlightConfig
-    appPosI3Touchpad
+    myBases
+    packagesManager "$myBaseGlobalApps"
+    packagesManager "$myBaseBspwm"
+    packagesManager "$myBaseLightdm"
+    enableSystemctlDM
     dotfilesConfig
 }
 
 myBaseI3wm(){
-    packagesManager "$myBase"
-    packagesManager "$myGlobalApps"
-    packagesManager "$myI3wm"
-    packagesManager "$myWmApps"
-    packagesManager "$myLightdm"
-    enableSystemctl "bluetooth"
-    enableSystemctl "NetworkManager"
-    enableSystemctl "lightdm"
-    enableSystemctl "power-profiles-daemon"
-    sudo tee /usr/share/dbus-1/services/org.freedesktop.Notifications.service <<< '[D-BUS Service]
-Name=org.freedesktop.Notifications
-Exec=/usr/lib/notification-daemon-1.0/notification-daemon'
-    setupSamba
-    backlightConfig
-    appPosI3Touchpad
+    myBases
+    packagesManager "$myBaseGlobalApps"
+    packagesManager "$myBaseI3wm"
+    packagesManager "$myBaseLightdm"
+    enableSystemctlDM
+    #sudo tee /usr/share/dbus-1/services/org.freedesktop.Notifications.service <<< '[D-BUS Service]
+    #Name=org.freedesktop.Notifications
+    #Exec=/usr/lib/notification-daemon-1.0/notification-daemon'
     dotfilesConfig
 }
 
 myBaseXfce4(){
-    packagesManager "$myBase"
-    packagesManager "$myGlobalApps"
-    packagesManager "$myXfce4"
-    packagesManager "$myLightdm"
-    enableSystemctl "bluetooth"
-    enableSystemctl "NetworkManager"
-    enableSystemctl "lightdm"
-    setupSamba
+    myBases
+    packagesManager "$myBaseGlobalApps"
+    packagesManager "$myBaseXfce4"
+    packagesManager "$myBaseLightdm"
+    enableSystemctlDM
 }
 
 myBaseGnome(){
-    packagesManager "$myBase"
-    packagesManager "$myGlobalApps"
-    packagesManager "$myGnome"
-    enableSystemctl "bluetooth"
-    enableSystemctl "NetworkManager"
-    enableSystemctl "gdm"
-    setupSamba
+    myBases
+    packagesManager "$myBaseGlobalApps"
+    packagesManager "$myBaseGnome"
+    enableSystemctlDM
 }
 
 myBaseKde(){
-    packagesManager "$myBase"
-    packagesManager "$myGlobalApps"
-    packagesManager "$myKde"
-    packagesManager "$myKdeApps"
-    packagesManager "$mySddm"
-    enableSystemctl "bluetooth"
-    enableSystemctl "NetworkManager"
-    enableSystemctl "sddm"
-    setupSamba
+    myBases
+    packagesManager "$myBaseGlobalApps"
+    packagesManager "$myBaseKde"
+    packagesManager "$myBaseSddm"
+    enableSystemctlDM
 }
                         
 appPosNetwork(){
@@ -125,19 +125,7 @@ appPosVirtManager(){
     #sudo virsh net-start default  
 }
 
-appPosMix(){
-    packagesManager "gufw" "FireWall"
-    packagesManager "gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer ffmpeg fwupd" "Plugins Multimedia"
-    packagesManager "samba gvfs-smb" "Rede Share"
-    packagesManager "flatpak"
-    packagesManager "ntfs-3g dosfstools" "Suporte a NTFS e FAT"
-    packagesManager "mtpfs" "Default MTP device"
-    packagesManager "gvfs gvfs-mtp gvfs-smb" "MTP device"
-    packagesManager "udisks2" "Manipular Discos Terminal"
-}
-
 appPosInstall(){
-    packagesManager ""
     packagesManager "steam"
     packagesManager "mangohud lib32-mangohud"
     packagesManager "gamemode lib32-gamemode gamescope"
@@ -149,7 +137,7 @@ appPosNvidiaDriverProp(){
         #https://github.com/lutris/docs/blob/master/InstallingDrivers.md#arch--manjaro--other-arch-linux-derivatives
         #causa crash no gdm o pacote: nvidia-dkms
         #https://codigocristo.github.io/driver_nvidia.html
-        packagesManager "$myNvidia" "Driver NVIDIA Proprietario"
+        packagesManager "$myBaseNvidia"
 }    
 
 appPosManualConfig(){ 
@@ -231,12 +219,6 @@ EndSection
 EOF
 }
 
-hyprconfigs(){
-    hyprlandConfig
-    wofiConfig
-    waybarConfig
-    hypranim
-}
 dotfilesConfig(){
     jrswindowcomfoco="1693CF"
     jrswindowsemfoco="7d7d7d"
@@ -252,6 +234,7 @@ dotfilesConfig(){
     jrswindowtextocomfoco=$jrsbartexto
     cd /proc/sys/net/ipv4/conf/
     zerotierAdapter=$(echo zt*)
+    dotFont="Freemono" 
     i3Config
     i3statusConfig
     rofiConfig
@@ -260,37 +243,24 @@ dotfilesConfig(){
     polybarConfig
     bspwmConfig
     powerprofiles
+    powerWm
     picomsync
     mangohudConfig
     alacrittyConfig
     fastfetchConfig
     dunstConfig
-    hyprconfigs
+    hyprlandConfig
+    wofiConfig
+    waybarConfig
+    hypranim
     themeMode
-     case $DESKTOP_SESSION in
-		Hyprland)
-            lightdmConfig
-            ;;
-        i3)
-            lightdmConfig
-            ;;
-        bspwm)
-            lightdmConfig
-        ;;
-		*)
-	esac
+    lightdmConfig
     sudo rm -f /usr/share/applications/rofi*
     if [[ -e "/usr/share/applications/xfce4-power-manager-settings.desktop" ]]; then
         sudo sed -i 's/OnlyShowIn=XFCE;//g' /usr/share/applications/xfce4-power-manager-settings.desktop
     fi
     echo "sleep 10"
     #sleep 10
-}
-
-backlightConfig(){
-    #sudo chmod +s /usr/bin/light
-    echo 'ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chgrp wheel $sys$devpath/brightness", RUN+="/bin/chmod g+w $sys$devpath/brightness"' | sudo tee /etc/udev/rules.d/backlight.rules
-    #criarArq 'light' "$HOME/.config/i3/brightness"
 }
 
 xfce4Config(){
@@ -300,6 +270,12 @@ xfce4Config(){
     rm -rf ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
     xfce4-config
     xfce4-panel &
+}
+
+backlightConfig(){
+    #sudo chmod +s /usr/bin/light
+    echo 'ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chgrp wheel $sys$devpath/brightness", RUN+="/bin/chmod g+w $sys$devpath/brightness"' | sudo tee /etc/udev/rules.d/backlight.rules
+    #criarArq 'light' "$HOME/.config/i3/brightness"
 }
 
 attGrubWithWindows(){
@@ -333,6 +309,18 @@ UUID='$(sudo blkid -s UUID -o value $DEVSD)' /media/homec ntfs uid='$(id -u)',gi
     #rm -r ~/.steam/steam/steamapps/compatdata
     #mkdir -p ~/.steam/steam/steamapps/compatdata
     #ln -s ~/.steam/steam/steamapps/compatdata /media/gamedisk/Steam/steamapps/
+}
+
+defaultInodeDirectory(){
+    echo "Default Applications   
+[1]Nautilus for FileManager
+[2]PCManFM for FileManager"
+    read resp
+    case $resp in
+        1)xdg-mime default org.gnome.Nautilus.desktop inode/directory;;
+        2)xdg-mime default pcmanfm.desktop inode/directory;;
+        *)
+    esac
 }
 
 lnHome(){

@@ -46,10 +46,12 @@ subMenuPosInstall(){
 [2] GRUB CONFIG
 [3] PACMAN CONFIG
 [4] MOUNT-NTFS CONFIG
+[5] DEFAULT FILEMANAGER
 " "backlightConfig
 " "attGrubWithWindows
 " "editPacmanConfig
-" "autoMountNtfs"
+" "autoMountNtfs
+" "defaultInodeDirectory"
 
     done
 }
@@ -74,11 +76,9 @@ subMenuInstallApps(){
 [1] INSTALAR BONGOCAT
 [2] INSTALAR POKEXGAMES
 [3] INSTALAR MINECRAFT TLAUNCHER
-[4] INSTALAR POSMIX APPS
 " "bongo
 " "installPokexgames
-" "installMinecraft
-" "appPosMix"
+" "installMinecraft"
 
         menu12345 "
 [1] INSTALAR MINECRAFT SERVER VERSION

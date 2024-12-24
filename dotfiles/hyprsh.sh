@@ -15,6 +15,6 @@ case $notifyValueNow in
 esac' "$HOME/.config/jrs/hypranim.sh"
 sudo chmod +x $HOME/.config/jrs/hypranim.sh
 
-criaAtalho "HyprAnimations" "Hyprland animations" "bash hypranim.sh" "$HOME/.config/jrs" "false" "HyprAnim" "wmtweaks"
+#criaAtalho "HyprAnimations" "Hyprland animations" "bash hypranim.sh" "$HOME/.config/jrs" "false" "HyprAnim" "wmtweaks"
 
 }

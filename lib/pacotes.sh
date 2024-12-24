@@ -13,15 +13,13 @@ to uninstall for example a Pacman Package put [0] before option. Ex: [01]"
 		3)sudo pamac install $1;;
 		4)flatpak install $1;;
 		5)sudo apt install $1;;
-		01)sudo pacman -R $1;;
-		02)yay -R $1;;
-		03)sudo pamac remove $1;;
-		04)flatpak remove $1;;
-		05)sudo apt remove $1;;
+		01)for pacote in $1; do sudo pacman -R --noconfirm $pacote; done ;;
+		02)for pacote in $1; do yay -R --noconfirm $pacote; done ;;
+		03)for pacote in $1; do sudo pamac remove --no-confirm $pacote; done ;;
+		04)for pacote in $1; do flatpak remove -y $pacote; done ;;
+		05)for pacote in $1; do sudo apt remove -y $pacote; done ;;
 		*)
 	esac
-	echo "PRESS ENTER"
-	read PRESSENTER
 	#sleep 5
 }
 

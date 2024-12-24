@@ -5,8 +5,7 @@ dunstConfig(){
 [global]
     monitor = 0
     follow = none
-    width = 300
-    height = 800
+    geometry = "300x0+10+10"
     origin = top-right
     offset = 10x50
     notification_limit = 20
