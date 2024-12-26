@@ -61,7 +61,7 @@ waybarConfig(){
         "warning": 30,
         "critical": 15
     },
-    "format": " {icon} {capacity}%",
+    "format": " {icon}  {capacity}%",
     "format-icons": ["", "", "", "", ""],
     "max-length": 25
 },
