@@ -194,6 +194,8 @@ super + ctrl + 7
 	systemctl suspend
 super + l 
 	dm-tool lock
+super + ctrl + l 
+	$HOME/.config/jrs/powerWm.sh
 super + ctrl + 8
 	systemctl hibernate
 super + ctrl + 9 

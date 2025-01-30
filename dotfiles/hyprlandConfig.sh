@@ -163,6 +163,7 @@ bind = , XF86MonBrightnessDown, exec, xbacklight -inc 5
 bind = $mainMod SHIFT, E, exit,
 bind = $mainMod CTRL, 7, exec, systemctl suspend
 bind = $mainMod, L, exec, dm-tool lock
+bind = $mainMod CTRL, L, exec, $HOME/.config/jrs/powerWm.sh
 bind = $mainMod CTRL, 8, exec, systemctl hibernate
 bind = $mainMod CTRL, 9, exec, systemctl reboot
 bind = $mainMod CTRL, 0, exec, systemctl poweroff -i

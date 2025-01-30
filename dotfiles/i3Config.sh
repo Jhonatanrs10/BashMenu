@@ -56,15 +56,16 @@ bindsym $mod+n exec --no-startup-id nitrogen && convert -resize "$(xrandr | grep
 bindsym $mod+Ctrl+p exec --no-startup-id killall picom & dunstify -t 1000 --hints int:transient:1 "Picom" "Stopped" --icon=picom
 bindsym $mod+Ctrl+b bar mode toggle
 bindsym $mod+b exec --no-startup-id polybar-msg cmd toggle
-bindsym $mod+p exec --no-startup-id $HOME/.config/jrs/powerprofiles.sh
-bindsym $mod+s exec --no-startup-id $HOME/.config/jrs/picomsync.sh
-bindsym $mod+t exec --no-startup-id $HOME/.config/jrs/themeMode.sh
+#bindsym $mod+p exec --no-startup-id $HOME/.config/jrs/powerprofiles.sh
+#bindsym $mod+s exec --no-startup-id $HOME/.config/jrs/picomsync.sh
+#bindsym $mod+t exec --no-startup-id $HOME/.config/jrs/themeMode.sh
 
 ###Power###
 #bindsym $mod+l exec --no-startup-id $Locker
 bindsym $mod+Shift+e exec --no-startup-id i3-msg exit
 bindsym $mod+Ctrl+7 exec --no-startup-id $Locker && systemctl suspend
 bindsym $mod+l exec --no-startup-id dm-tool lock
+bindsym $mod+Ctrl+l exec --no-startup-id $HOME/.config/jrs/powerWm.sh
 bindsym $mod+Ctrl+8 exec --no-startup-id $Locker && systemctl hibernate
 bindsym $mod+Ctrl+9 exec --no-startup-id systemctl reboot
 bindsym $mod+Ctrl+0 exec --no-startup-id systemctl poweroff -i

@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 installFivem(){
-    verFivem="https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/6136-97e3790629f188c887ee11d119d7a705c8a9f9f0/fx.tar.xz"
+    verFivem0="https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/6136-97e3790629f188c887ee11d119d7a705c8a9f9f0/fx.tar.xz"
+    verFivem="https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/7290-a654bcc2adfa27c4e020fc915a1a6343c3b4f921/fx.tar.xz"
     cfxData="https://github.com/citizenfx/cfx-server-data/archive/refs/heads/master.zip"
     modMenu="https://github.com/TomGrobbe/vMenu/releases/download/v3.5.0/vMenu-v3.5.0.zip"
     pvpMode="https://github.com/fcarvalho-bruno/enablepvp/archive/refs/heads/master.zip"
@@ -29,12 +30,12 @@ installFivem(){
 	criaPastaBaixaExtrai "$diretorioResource/" "$streetRace" "streetRace.zip"
     #criaPastaBaixaExtrai "$diretorioResource/" "$modCars" "modCars.zip"
     criaPastaBaixaExtrai "$diretorioResource/" "$fixHoles" "fixHoles.zip"
-    criaPastaBaixaExtrai "$diretorioResource/" "$carCmd" "carCmd.zip"
+    #criaPastaBaixaExtrai "$diretorioResource/" "$carCmd" "carCmd.zip"
 
 
     mv $diretorioResource/FiveM-StreetRaces-master/StreetRaces $diretorioResource/StreetRaces
     rm -r $diretorioResource/FiveM-StreetRaces-master
-	cp $diretorioResource/vMenu/config/permissions.cfg $diretorioServer/server-data/permissions.cfg
+	# cp $diretorioResource/vMenu/config/permissions.cfg $diretorioServer/server-data/permissions.cfg
 	
     echo -e "License key for your server (https://keymaster.fivem.net)"
     read lk
