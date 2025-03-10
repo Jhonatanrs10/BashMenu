@@ -220,41 +220,7 @@ EOF
 }
 
 dotfilesConfig(){
-    jrswindowcomfoco="1693CF"
-    jrswindowsemfoco="7d7d7d"
-    #MAIN COLOR 005577, bfbfbf
-    echo "[COLORS] Black:000000, Gray:808080, White:FFFFFF (not use #)"
-    pickColor "[COLOR] Bar" "212320"
-    jrsbar=$pickedColor
-    pickColor "[COLOR] Text" "ffffff"
-    jrsbartexto=$pickedColor
-    pickColor "[COLOR] Window" "$jrswindowcomfoco"
-    jrswindowcomfoco=$pickedColor
-    jrswindowtextosemfoco=$jrsbar
-    jrswindowtextocomfoco=$jrsbartexto
-    cd /proc/sys/net/ipv4/conf/
-    zerotierAdapter=$(echo zt*)
-    dotFont="Freemono" 
-    i3Config
-    i3statusConfig
-    rofiConfig
-    picomConfig
-    polybarsh
-    polybarConfig
-    bspwmConfig
-    powerprofiles
-    powerWm
-    picomsync
-    mangohudConfig
-    alacrittyConfig
-    fastfetchConfig
-    dunstConfig
-    hyprlandConfig
-    wofiConfig
-    waybarConfig
-    hypranim
-    themeMode
-    lightdmConfig
+
     sudo rm -f /usr/share/applications/rofi*
     if [[ -e "/usr/share/applications/xfce4-power-manager-settings.desktop" ]]; then
         sudo sed -i 's/OnlyShowIn=XFCE;//g' /usr/share/applications/xfce4-power-manager-settings.desktop
