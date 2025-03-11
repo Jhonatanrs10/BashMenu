@@ -10,175 +10,122 @@ nomeRun="run"
 DATANOW=$(date "+[%d-%m-%Y][%H-%M]")
 ############################
 
-resp="vazio"
-while [ "$resp" != "exit" ];
+option="vazio"
+while [ "$option" != "exit" ];
 do
-
-subMenuPosInstall(){
-    while [ "$resp" != "exit" ];
-    do
-        menu12345 "
-[1] DOTFILES CONFIG
-[2] INSTALL YAY [ARCH][AUR]
-" "dotfilesConfig
-" "appPosYay"
-
-        menu12345 "
-[1] INSTALL MYARCH I3WM 
-[2] INSTALL MYARCH BSPWM
-[3] INSTALL MYARCH HYPRLAND
-[4] INSTALL MYARCH XFCE4
-[5] INSTALL MYARCH KDE
-[6] INSTALL MYARCH GNOME 
-[7] NVIDIA PROPRIETARIO
-[8] SOME APPS TO INSTALL
-" "myBaseI3wm
-" "myBaseBspwm
-" "myBaseHyprland
-" "myBaseXfce4
-" "myBaseKde
-" "myBaseGnome
-" "appPosNvidiaDriverProp
-" "appPosInstall"
-
-        menu12345 "
-[1] BACKLIGHT CONFIG
-[2] GRUB CONFIG
-[3] PACMAN CONFIG
-[4] MOUNT-NTFS CONFIG
-[5] DEFAULT FILEMANAGER
-" "backlightConfig
-" "attGrubWithWindows
-" "editPacmanConfig
-" "autoMountNtfs
-" "defaultInodeDirectory"
-
-    done
-}
-
-subMenuGit(){
-    while [ "$resp" != "exit" ];
-    do
-        menu12345 "
-[1] GIT PUSH
-[2] GIT CONFIG
-[3] BASHMENU CONFIG
-" "gitAutoPush
-" "gitconfig
-" "dependenciasAtalho" 
-    done
-}
-
-subMenuInstallApps(){
-    while [ "$resp" != "exit" ];
-    do
-        menu12345 "
-[1] INSTALAR BONGOCAT
-[2] INSTALAR POKEXGAMES
-[3] INSTALAR MINECRAFT TLAUNCHER
-" "bongo
-" "installPokexgames
-" "installMinecraft"
-
-        menu12345 "
-[1] INSTALAR MINECRAFT SERVER VERSION
-[2] INSTALAR FIVEM SERVER
-[3] INSTALAR UNTURNED SERVER
-[4] INSTALAR SAMP SERVER
-[5] INSTALAR TERRARIA SERVER
-[6] INSTALAR HAMACHI E HAGUICHI [APT]
-[7] INSTALAR ZEROTIER
-[8] INSTALAR NGROK
-" "installMinecraftServer
-" "installFivem
-" "installUnturnedServer
-" "sampServer
-" "terrariaServer
-" "hamachi
-" "zerotier
-" "installNgrok"
-
-        menu12345 "
-[1] INSTALAR NODEJS LTS
-[2] INSTALAR VIRTUAL GAMEPADS
-[3] INSTALAR VIRTMANAGER [MAQUINA VIRTUAL]
-" "nodejslts
-" "virtualGamepads
-" "appPosVirtManager"
-    done
-}
-
-subMenuPastasAtalhos(){
-    while [ "$resp" != "exit" ];
-    do
-        menu12345 "
-[1] CRIA ATALHO DESKTOP
-[2] CRIA ATALHO RETROARCH GAME
-[3] CRIA ATALHO PASTA/ARQUIVO
-[4] CRIA ATALHO BIN PARA COMANDOS DE TERMINAL
-[5] CRIA ATALHO APPIMAGE
-[6] REMOVE ATALHO DESKTOP
-" "criaAtalhoDesktop
-" "criaAtalhoDesktopRetroarchArch
-" "criaArqRunDiretorioInstall
-" "AtalhoTerminalBin
-" "criaAtalhoDesktopAppimage
-" "removeDesktopJRS"
-
-        menu12345 "
-[1] CRIAR PASTA COMPARTILHADA [USER]
-[2] CRIAR PASTA COMPARTILHADA [GUEST]
-" "criaPastaShareUser
-" "criaPastaShareGuest"
-    done
-}
-
-subMenuOutros(){
-    while [ "$resp" != "exit" ];
-    do
-        menu12345 "
-[1] MUDAR JAVA VERSION
-[2] VIRTUAL PULSEAUDIO CONFIG
-" "nodejslts
-" "javaVersion
-" "virtualGamepads
-" "appPosVirtManager
-" "virtualPulseAudioExec"
-
-        menu12345 "
-[1] NETWORK CONFIG
-[2] POS MANUAL CONFIG
-[3] BLUETOOTH FIX
-[4] TECLADO CONFIG
-[5] DATA E HORA CONFIG NTP
-[6] TOUCHPAD CONFIG
-[7] REPARAR PACKAGE MANAGER
-" "appPosNetwork
-" "appPosManualConfig
-" "appPosBluetoothFix
-" "appPosTecladoConfig
-" "appPosTimeNTP
-" "appPosI3Touchpad
-" "repairPM"
-
-        menu12345 "
-[1] ASSISTIR PELO MPV
-" "assistirMpv"
-    done
-}
-##
-menu12345 "
-[1]POSINSTALL
-[2]GIT
-[3]INSTALL APPS
-[4]PASTAS E ATALHOS
-[5]OUTROS
-[6]RESET HYPR CONFIGS
-" "subMenuPosInstall
-" "subMenuGit
-" "subMenuInstallApps
-" "subMenuPastasAtalhos
-" "subMenuOutros
-" "hyprconfigs"
-##
+    echo "============================
+ [1]
+ [2]INSTALL YAY [ARCH][AUR]
+ [3]INSTALL MYARCH I3WM 
+ [4]INSTALL MYARCH BSPWM
+ [5]INSTALL MYARCH HYPRLAND
+ [6]INSTALL MYARCH XFCE4
+ [7]INSTALL MYARCH KDE
+ [8]CONFIGURAR SYMBLINK PRA HOME 
+ [9]NVIDIA PROPRIETARIO
+[10]SOME APPS TO INSTALL
+============================
+[11]BACKLIGHT CONFIG
+[12]GRUB CONFIG
+[13]PACMAN CONFIG
+[14]MOUNT-NTFS CONFIG
+[15]DEFAULT FILEMANAGER
+[16]GIT PUSH
+[17]GIT CONFIG
+[18]BASHMENU CONFIG
+============================
+[19]INSTALAR BONGOCAT
+[20]INSTALAR POKEXGAMES
+[21]INSTALAR MINECRAFT TLAUNCHER
+[22]INSTALAR MINECRAFT SERVER VERSION
+[23]INSTALAR FIVEM SERVER
+[24]INSTALAR UNTURNED SERVER
+[25]INSTALAR SAMP SERVER
+[26]INSTALAR TERRARIA SERVER
+[27]INSTALAR HAMACHI E HAGUICHI [APT]
+[28]INSTALAR ZEROTIER
+[29]INSTALAR NGROK
+============================
+[30]INSTALAR NODEJS LTS
+[31]MUDAR JAVA VERSION
+[32]INSTALAR VIRTUAL GAMEPADS
+[33]INSTALAR VIRTMANAGER [MAQUINA VIRTUAL]
+============================
+[34]CRIA ATALHO DESKTOP
+[35]CRIA ATALHO RETROARCH GAME
+[36]CRIA ATALHO PASTA/ARQUIVO
+[37]CRIA ATALHO BIN PARA COMANDOS DE TERMINAL
+[38]CRIA ATALHO APPIMAGE
+[39]REMOVE ATALHO DESKTOP
+============================
+[40]CRIAR PASTA COMPARTILHADA [USER]
+[41]CRIAR PASTA COMPARTILHADA [GUEST]
+============================
+[42]VIRTUAL PULSEAUDIO CONFIG
+============================
+[43]NETWORK CONFIG
+[44]POS MANUAL CONFIG
+[45]BLUETOOTH FIX
+[46]TECLADO CONFIG
+[47]DATA E HORA CONFIG NTP
+[48]TOUCHPAD CONFIG
+[49]REPARAR PACKAGE MANAGER
+============================
+[50]ASSISTIR PELO MPV
+============================
+"
+    read option
+    case $option in
+        1)dotfilesConfig;;
+        2)appPosYay;;
+        3)myBaseI3wm;;
+        4)myBaseBspwm;;
+        5)myBaseHyprland;;
+        6)myBaseXfce4;;
+        7)myBaseKde;;
+        8)lnHome;;
+        9)appPosNvidiaDriverProp;;
+        10)appPosInstall;;
+        11)backlightConfig;;
+        12)attGrubWithWindows;;
+        13)editPacmanConfig;;
+        14)autoMountNtfs;;
+        15)defaultInodeDirectory;;
+        16)gitAutoPush;;
+        17)gitconfig;;
+        18)dependenciasAtalho;;
+        19)bongo;;
+        20)installPokexgames;;
+        21)installMinecraft;;
+        22)installMinecraftServer;;
+        23)installFivem;;
+        24)installUnturnedServer;;
+        25)sampServer;;
+        26)terrariaServer;;
+        27)hamachi;;
+        28)zerotier;;
+        29)installNgrok;;
+        30)nodejslts;;
+        31)javaVersion;;
+        32)virtualGamepads;;
+        33)appPosVirtManager;;
+        34)criaAtalhoDesktop;;
+        35)criaAtalhoDesktopRetroarchArch;;
+        36)criaArqRunDiretorioInstall;;
+        37)AtalhoTerminalBin;;
+        38)criaAtalhoDesktopAppimage;;
+        39)removeDesktopJRS;;
+        40)criaPastaShareUser;;
+        41)criaPastaShareGuest;;
+        42)virtualPulseAudioExec;;
+        43)appPosNetwork;;
+        44)appPosManualConfig;;
+        45)appPosBluetoothFix;;
+        46)appPosTecladoConfig;;
+        47)appPosTimeNTP;;
+        48)appPosI3Touchpad;;
+        49)repairPM;;
+        50)assistirMpv;;
+        *);;
+    esac
 done

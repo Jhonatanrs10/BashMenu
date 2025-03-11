@@ -1,111 +1,4 @@
 #!/usr/bin/bash
-##myBases
-myBaseLightdm="lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm"
-myBaseSddm="sddm"
-myBaseXfce4="xfce4 xfce4-goodies xfce4-docklike-plugin"
-myBaseKde="dolphin dolphin-plugins dragon elisa kdeconnect filelight gwenview leafpad okular kcalc konsole plasma-meta"
-myBaseGnome="gnome gnome-tweaks"
-myBaseHyprland="hyprland wofi waybar hyprlock hyprpicker wl-clipboard grim slurp azote swaybg polkit-gnome acpilight nwg-look lxappearance xfce4-taskmanager gpicview font-manager pcmanfm galculator system-config-printer xreader rhythmbox dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet pavucontrol blueman"
-myBaseBspwm="bspwm sxhkd polkit-gnome polybar rofi picom nitrogen acpilight scrot xcolor nwg-look lxappearance lxrandr xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer xreader rhythmbox dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet pavucontrol blueman"
-myBaseI3wm="i3 i3lock i3status dmenu polkit-gnome polybar rofi picom nitrogen acpilight scrot xcolor nwg-look lxappearance lxrandr xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer xreader rhythmbox dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet pavucontrol blueman"
-myBaseGlobalApps="gimp inkscape shotcut code neovim qbittorrent mpv gparted chromium alacritty bitwarden discord ark"
-##
-myBaseKernel="base linux linux-firmware intel-ucode sof-firmware"
-myBaseBootloader="grub efibootmgr os-prober"
-myBaseFileSystem="ntfs-3g exfat-utils dosfstools"
-myBaseNetwork="networkmanager"
-myBaseFirewall="gufw"
-myBaseUtilitys="nano fastfetch stow curl jq imagemagick cmatrix htop xsel pacman-contrib base-devel git ffmpeg fwupd samba udisks2 gvfs gvfs-mtp gvfs-smb polkit net-tools joyutils man-db wireless_tools"
-myBaseNvidia="nvidia-open nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"
-myBaseBluetooth="bluez bluez-tools bluez-utils"
-myBaseAudioPipeware="pipewire pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse"
-myBaseAudioPulse="pulseaudio pulseaudio-bluetooth"
-myBaseCodecs="gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer"
-myBaseXorg="xorg xorg-xsetroot xorg-xhost"
-myBaseWayland="wayland gl-wayland"
-myBaseIcons="papirus-icon-theme"
-myBaseThemes="breeze-gtk capitaine-cursors"
-myBaseFonts="gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-font-awesome"
-myBaseRar="bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip"
-myBaseNotify="libnotify dunst"
-myBaseDaemons="notification-daemon power-profiles-daemon"
-myBaseFlatpak="flatpak"
-myBaseShell="bash bash-completion"
-##
-myFullBase="$myBaseKernel $myBaseBootloader $myBaseFileSystem $myBaseNetwork $myBaseFirewall $myBaseUtilitys $myBaseBluetooth $myBaseAudioPipeware $myBaseCodecs $myBaseXorg $myBaseWayland $myBaseIcons $myBaseThemes $myBaseFonts $myBaseRar $myBaseNotify $myBaseDaemons $myBaseFlatpak $myBaseShell"
-
-sourceFolder "DotFiles" "./dotfiles"
-
-myBases(){
-    echo "INSTALL MYBASE ?
-Options: [1]Yes, [2]No"
-    read resp
-	case $resp in
-		1)
-            packagesManager "$myFullBase"
-            enableSystemctl "bluetooth"
-            enableSystemctl "NetworkManager"
-            enableSystemctl "power-profiles-daemon"
-            setupSamba 
-            backlightConfig
-            appPosI3Touchpad
-            ;;
-		*)
-	esac
-}
-
-myBaseHyprland(){
-    myBases
-    packagesManager "$myBaseGlobalApps"
-    packagesManager "$myBaseHyprland"
-    packagesManager "$myBaseLightdm"
-    enableSystemctlDM
-    dotfilesConfig
-}
-
-myBaseBspwm(){
-    myBases
-    packagesManager "$myBaseGlobalApps"
-    packagesManager "$myBaseBspwm"
-    packagesManager "$myBaseLightdm"
-    enableSystemctlDM
-    dotfilesConfig
-}
-
-myBaseI3wm(){
-    myBases
-    packagesManager "$myBaseGlobalApps"
-    packagesManager "$myBaseI3wm"
-    packagesManager "$myBaseLightdm"
-    enableSystemctlDM
-    #sudo tee /usr/share/dbus-1/services/org.freedesktop.Notifications.service <<< '[D-BUS Service]
-    #Name=org.freedesktop.Notifications
-    #Exec=/usr/lib/notification-daemon-1.0/notification-daemon'
-    dotfilesConfig
-}
-
-myBaseXfce4(){
-    myBases
-    packagesManager "$myBaseGlobalApps"
-    packagesManager "$myBaseXfce4"
-    packagesManager "$myBaseLightdm"
-    enableSystemctlDM
-}
-
-myBaseGnome(){
-    myBases
-    packagesManager "$myBaseGlobalApps"
-    packagesManager "$myBaseGnome"
-    enableSystemctlDM
-}
-
-myBaseKde(){
-    myBases
-    packagesManager "$myBaseGlobalApps"
-    packagesManager "$myBaseKde"
-    packagesManager "$myBaseSddm"
-    enableSystemctlDM
-}
                         
 appPosNetwork(){
     echo "[ARCH] Network"
@@ -116,21 +9,6 @@ appPosNetwork(){
     enableSystemctl "NetworkManager"
     #echo "REMOVER IWD (wifi terminal archinstall)"
     #removePacotes "iwd"
-}
-                       
-appPosVirtManager(){
-    packagesManager "qemu libvirt ebtables dnsmasq bridge-utils openbsd-netcat virt-manager" "VirtManager"
-    enableSystemctl "libvirtd"  
-    sudo virsh net-autostart default
-    #sudo virsh net-start default  
-}
-
-appPosInstall(){
-    packagesManager "steam"
-    packagesManager "mangohud lib32-mangohud"
-    packagesManager "gamemode lib32-gamemode gamescope"
-    packagesManager "app/com.obsproject.Studio/x86_64/stable runtime/com.obsproject.Studio.Plugin.MoveTransition/x86_64/stable"
-    packagesManager "retroarch retroarch-assets-xmb retroarch-assets-ozone libretro-snes9x libretro-mgba libretro-beetle-psx"
 }
  
 appPosNvidiaDriverProp(){
@@ -219,16 +97,6 @@ EndSection
 EOF
 }
 
-dotfilesConfig(){
-
-    sudo rm -f /usr/share/applications/rofi*
-    if [[ -e "/usr/share/applications/xfce4-power-manager-settings.desktop" ]]; then
-        sudo sed -i 's/OnlyShowIn=XFCE;//g' /usr/share/applications/xfce4-power-manager-settings.desktop
-    fi
-    echo "sleep 10"
-    #sleep 10
-}
-
 xfce4Config(){
     xfce4-panel --quit
     pkill xfconfd
@@ -294,7 +162,7 @@ lnHome(){
     ln -s /media/homec/Documents $HOME
     ln -s /media/homec/Downloads $HOME
     ln -s /media/homec/Pictures $HOME
-    ln -s /media/homec/Video $HOME
+    ln -s /media/homec/Videos $HOME
     ln -s /media/homec/Music $HOME
     ln -s /media/homec/Heroic $HOME
 }
