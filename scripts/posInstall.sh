@@ -141,6 +141,7 @@ Options: [1]Yes, [2]No"
     read resp
 	case $resp in
 		1)
+            myBasePacman
             packagesManager "$myFullBase"
             packagesManager "$myBaseI3wm"
             packagesManager "$myBaseLightdm"
@@ -197,7 +198,7 @@ Options: [1]Yes, [2]No"
 	case $resp in
 		1)
             sudo cp /etc/pacman.conf /etc/pacman$DATANOW.conf.bkp
-            sudo sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 10\nILoveCandy\nColor/g' /etc/pacman.conf
+            sudo sed -i 's/ParallelDownloads = 5/ParallelDownloads = 10\nILoveCandy\nColor/g' /etc/pacman.conf
             sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
             sudo pacman -Syyu
         ;;

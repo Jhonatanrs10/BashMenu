@@ -82,7 +82,7 @@ do
         4)myBaseMountNTFS;;
         5)myBaselnHome;;
         6)myBaseYay;;
-        7)setupStow;;
+        7);;
         8);;
         9);;
         10);;
