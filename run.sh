@@ -14,13 +14,13 @@ option="vazio"
 while [ "$option" != "exit" ];
 do
     echo "============================
- [1]
- [2]INSTALL YAY [ARCH][AUR]
- [3]INSTALL MYARCH I3WM 
- [4]INSTALL MYARCH BSPWM
- [5]INSTALL MYARCH HYPRLAND
- [6]INSTALL MYARCH XFCE4
- [7]INSTALL MYARCH KDE
+ [1]Pos Install
+ [2]Configure Grub Config
+ [3]Configure Pacman Config
+ [4]Configure Mount NTFS Config
+ [5]Configure lnHome
+ [6]Install Yay
+ [7]Stow Setup
  [8]CONFIGURAR SYMBLINK PRA HOME 
  [9]NVIDIA PROPRIETARIO
 [10]SOME APPS TO INSTALL
@@ -76,17 +76,17 @@ do
 "
     read option
     case $option in
-        1)dotfilesConfig;;
-        2)appPosYay;;
-        3)myBaseI3wm;;
-        4)myBaseBspwm;;
-        5)myBaseHyprland;;
-        6)myBaseXfce4;;
-        7)myBaseKde;;
-        8)lnHome;;
-        9)appPosNvidiaDriverProp;;
-        10)appPosInstall;;
-        11)backlightConfig;;
+        1)myBasePosInstall;;
+        2)myBaseGrub;;
+        3)myBasePacman;;
+        4)myBaseMountNTFS;;
+        5)myBaselnHome;;
+        6)myBaseYay;;
+        7)setupStow;;
+        8);;
+        9);;
+        10);;
+        11)installVirtManager;;
         12)attGrubWithWindows;;
         13)editPacmanConfig;;
         14)autoMountNtfs;;
@@ -108,7 +108,7 @@ do
         30)nodejslts;;
         31)javaVersion;;
         32)virtualGamepads;;
-        33)appPosVirtManager;;
+        33)installVirtManager;;
         34)criaAtalhoDesktop;;
         35)criaAtalhoDesktopRetroarchArch;;
         36)criaArqRunDiretorioInstall;;
