@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-appPosYay(){
+myBaseYay(){
     #pacman -Sy --needed git base-devel
     cd $HOME
     git clone https://aur.archlinux.org/yay.git
