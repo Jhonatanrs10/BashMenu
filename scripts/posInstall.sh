@@ -208,6 +208,7 @@ Options: [1]Yes, [2]No"
 }
 
 myBaseMountNTFS(){
+    # somente leitura pode ser o modo de energia do windows em dualboot (modo de reinicialização rapida)
     echo "Mount /media/homec?
 Options: [1]Yes, [2]No"
     read resp
