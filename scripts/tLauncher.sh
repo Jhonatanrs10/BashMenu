@@ -7,10 +7,10 @@ installMinecraft(){
 	echo -e "[INFO] - BAIXANDO ARQUIVOS... - [INFO]"
 	baixaArq "diretorioNome" "$verMine" "$diretorioMine/tlauncher.zip"
     extrairArq "$diretorioMine"
-	cd $diretorioMine/*/
+	cd $diretorioMine
     tlauncher=`ls *.jar`
     criarArq "#!/usr/bin/env sh
-	cd $diretorioMine/*/
+	cd $diretorioMine
 	java -jar $tlauncher" "$diretorioMine/tlauncher.sh"
     criaAtalho "MinecraftTlauncher" "Create your own world on Xorg" "bash tlauncher.sh" "$diretorioMine" "false" "MinecraftTlauncher" "minecraft"
 	criaAtalhoBin "$diretorioMine/tlauncher.sh" "MinecraftTlauncher"

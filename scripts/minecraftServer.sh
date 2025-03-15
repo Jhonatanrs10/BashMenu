@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 installMinecraftServer(){
 	uninstallPastaAtalhoBinMesmoNome "MinecraftServer"
-	link="https://launcher.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar"
+	link="https://piston-data.mojang.com/v1/objects/4707d00eb834b446575d89a61a11b5d548d8c001/server.jar"
 
 	echo -e "[INFO] - CRIANDO DIRETORIOS... - [INFO]"
 	criaDiretorioInstall "$dBashMenu/MinecraftServer"
