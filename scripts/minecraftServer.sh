@@ -21,9 +21,9 @@ server-port=25565
 enable-command-block=true" "server.properties"
 
     criarArq "#!/usr/bin/env bash
-echo 'EM CASO DE ERRO VERIFIQUE A VERSAO DO JAVA
-Press ENTER'
-read caso
+#echo 'EM CASO DE ERRO VERIFIQUE A VERSAO DO JAVA
+#Press ENTER'
+#read caso
 cd $diretorioInstall
 java -jar server.jar nogui" "server.sh"
 
