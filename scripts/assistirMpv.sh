@@ -2,6 +2,7 @@
 assistirMpv(){
         #streamlink,  youtube-dl e mpv WORKING IN 2023
         packagesManager "yt-dlp mpv"
+        packagesManager "kid3"
         resp="vazio"
         clear
         while [ "$resp" != "" ];

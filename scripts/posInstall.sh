@@ -6,9 +6,9 @@ myBaseSddm="sddm"
 myBaseXfce4="xfce4 xfce4-goodies xfce4-docklike-plugin"
 myBaseKde="dolphin dolphin-plugins dragon elisa kdeconnect filelight gwenview leafpad okular kcalc konsole plasma-meta"
 myBaseGnome="gnome gnome-tweaks"
-myBaseHyprland="hyprland wofi waybar hyprlock hyprpicker wl-clipboard grim slurp azote swaybg polkit-gnome acpilight nwg-look lxappearance xfce4-taskmanager gpicview font-manager pcmanfm galculator system-config-printer xreader rhythmbox dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet pavucontrol blueman"
-myBaseBspwm="bspwm sxhkd polkit-gnome polybar rofi picom nitrogen acpilight scrot xcolor nwg-look lxappearance lxrandr xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer xreader rhythmbox dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet pavucontrol blueman"
-myBaseI3wm="i3 i3lock xss-lock i3status dmenu polkit-gnome polybar rofi picom nitrogen acpilight scrot xcolor nwg-look lxappearance lxrandr xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer xreader rhythmbox dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet pavucontrol blueman"
+myBaseHyprland="hyprland wofi waybar hyprlock hyprpaper hyprpicker wl-clipboard grim slurp azote swaybg polkit-gnome acpilight nwg-look lxappearance xfce4-taskmanager gpicview font-manager pcmanfm galculator system-config-printer xreader cmus dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet pavucontrol blueman"
+myBaseBspwm="bspwm sxhkd polkit-gnome polybar rofi picom nitrogen acpilight scrot xcolor nwg-look lxappearance lxrandr xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer xreader cmus dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet pavucontrol blueman"
+myBaseI3wm="i3 i3lock xss-lock i3status dmenu polkit-gnome polybar rofi picom nitrogen acpilight scrot xcolor nwg-look lxappearance lxrandr xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer xreader cmus dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet pavucontrol blueman"
 myBaseGlobalApps="gimp inkscape shotcut code neovim qbittorrent mpv gparted chromium alacritty bitwarden discord ark"
 myBaseSteam="steam"
 myBaseMangoHud="mangohud lib32-mangohud"
@@ -144,7 +144,8 @@ Options: [1]Yes, [2]No"
             myBasePacman
             packagesManager "$myFullBase"
             packagesManager "$myBaseI3wm"
-            packagesManager "$myBaseLightdm"
+            packagesManager "$myBaseHyprland"
+            packagesManager "$myBaseSddm"
             packagesManager "$myBaseGlobalApps"
             packagesManager "$myBaseOBS"
             packagesManager "$myBaseSteam"
@@ -163,11 +164,11 @@ Options: [1]Yes, [2]No"
             myBaseI3Touchpad
             enableSystemctl "smb"
             enableSystemctl "nmb"
+            sambaSetup
             enableSystemctl "bluetooth"
             enableSystemctl "NetworkManager"
             enableSystemctl "power-profiles-daemon"
-            enableSystemctl "lightdm"
-            sambaSetup 
+            enableSystemctl "sddm"
             ;;
 		*)
 	esac
