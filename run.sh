@@ -13,66 +13,69 @@ DATANOW=$(date "+[%d-%m-%Y][%H-%M]")
 option="vazio"
 while [ "$option" != "exit" ];
 do
-    echo "============================
- [1]Pos Install
- [2]Configure Grub Config
- [3]Configure Pacman Config
- [4]Configure Mount NTFS Config
- [5]Configure lnHome
- [6]Install Yay
- [7]Stow Setup
- [8]CONFIGURAR SYMBLINK PRA HOME 
- [9]NVIDIA PROPRIETARIO
-[10]SOME APPS TO INSTALL
-============================
-[11]BACKLIGHT CONFIG
-[12]GRUB CONFIG
-[13]PACMAN CONFIG
-[14]MOUNT-NTFS CONFIG
-[15]DEFAULT FILEMANAGER
-[16]GIT PUSH
-[17]GIT CONFIG
-[18]BASHMENU CONFIG
-============================
-[19]INSTALAR BONGOCAT
-[20]INSTALAR POKEXGAMES
-[21]INSTALAR MINECRAFT TLAUNCHER
-[22]INSTALAR MINECRAFT SERVER VERSION
-[23]INSTALAR FIVEM SERVER
-[24]INSTALAR UNTURNED SERVER
-[25]INSTALAR SAMP SERVER
-[26]INSTALAR TERRARIA SERVER
-[27]INSTALAR HAMACHI E HAGUICHI [APT]
-[28]INSTALAR ZEROTIER
-[29]INSTALAR NGROK
-============================
-[30]INSTALAR NODEJS LTS
-[31]MUDAR JAVA VERSION
-[32]INSTALAR VIRTUAL GAMEPADS
-[33]INSTALAR VIRTMANAGER [MAQUINA VIRTUAL]
-============================
-[34]CRIA ATALHO DESKTOP
-[35]CRIA ATALHO RETROARCH GAME
-[36]CRIA ATALHO PASTA/ARQUIVO
-[37]CRIA ATALHO BIN PARA COMANDOS DE TERMINAL
-[38]CRIA ATALHO APPIMAGE
-[39]REMOVE ATALHO DESKTOP
-============================
-[40]CRIAR PASTA COMPARTILHADA [USER]
-[41]CRIAR PASTA COMPARTILHADA [GUEST]
-============================
-[42]VIRTUAL PULSEAUDIO CONFIG
-============================
-[43]NETWORK CONFIG
-[44]POS MANUAL CONFIG
-[45]BLUETOOTH FIX
-[46]TECLADO CONFIG
-[47]DATA E HORA CONFIG NTP
-[48]TOUCHPAD CONFIG
-[49]REPARAR PACKAGE MANAGER
-============================
-[50]ASSISTIR PELO MPV
-============================
+   echo -e "
+==================================================
+                CONFIGURAÇÕES
+==================================================
+[ 1] Pós-Instalação          [ 2] Configurar GRUB
+[ 3] Configurar Pacman       [ 4] Configurar NTFS
+[ 5] Configurar lnHome       [ 6] Instalar Yay
+[ 7] Configurar Stow         [ 8] Symlink para Home
+[ 9] NVIDIA Proprietário     [10] Instalar Apps Essenciais
+
+==================================================
+                AJUSTES DO SISTEMA
+==================================================
+[11] Backlight Config        [12] GRUB Config
+[13] Pacman Config           [14] NTFS Config
+[15] File Manager Padrão     [16] Git Push
+[17] Git Config              [18] BashMenu Config
+
+==================================================
+                INSTALAÇÕES
+==================================================
+[19] BongoCat                [20] PokéXGames
+[21] Minecraft TLauncher     [22] Minecraft Server
+[23] FiveM Server            [24] Unturned Server
+[25] SAMP Server             [26] Terraria Server
+[27] Hamachi & Haguichi      [28] ZeroTier
+[29] Ngrok                  
+
+==================================================
+         AMBIENTE DE DESENVOLVIMENTO
+==================================================
+[30] Node.js LTS             [31] Alterar Java Versão
+[32] Virtual Gamepads        [33] Virt-Manager (VMs)
+
+==================================================
+                ATALHOS
+==================================================
+[34] Atalho Desktop          [35] Atalho RetroArch
+[36] Atalho Pasta/Arquivo    [37] Atalho Bin Terminal
+[38] Atalho AppImage         [39] Remover Atalho
+
+==================================================
+         PASTAS COMPARTILHADAS
+==================================================
+[40] Pasta Compartilhada [USER]   [41] Pasta Compartilhada [GUEST]
+
+==================================================
+             ÁUDIO & REDE
+==================================================
+[42] Virtual PulseAudio      [43] Configurar Rede
+
+==================================================
+             AJUSTES FINAIS
+==================================================
+[44] Pós-Config Manual       [45] Fix Bluetooth
+[46] Configurar Teclado      [47] Data & Hora (NTP)
+[48] Configurar Touchpad     [49] Reparar Pacotes
+
+==================================================
+               MULTIMÍDIA
+==================================================
+[50] Assistir pelo MPV
+==================================================
 "
     read option
     case $option in
