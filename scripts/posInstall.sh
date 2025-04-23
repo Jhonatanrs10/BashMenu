@@ -272,7 +272,10 @@ appPosNvidiaDriverProp(){
         #https://github.com/lutris/docs/blob/master/InstallingDrivers.md#arch--manjaro--other-arch-linux-derivatives
         #causa crash no gdm o pacote: nvidia-dkms
         #https://codigocristo.github.io/driver_nvidia.html
-        packagesManager "$myBaseNvidia"
+        #packagesManager "$myBaseNvidia"
+        packagesManager "nvidia-open nvidia-utils lib32-nvidia-utils nvidia-settings"
+        echo "https://github.com/korvahannu/arch-nvidia-drivers-installation-guide"
+        sleep 10
 }    
 
 appPosManualConfig(){ 

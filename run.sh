@@ -87,7 +87,7 @@ do
         6)myBaseYay;;
         7);;
         8);;
-        9);;
+        9)installDriverNvidiaByKorvahannu;;
         10);;
         11)installVirtManager;;
         12)attGrubWithWindows;;
