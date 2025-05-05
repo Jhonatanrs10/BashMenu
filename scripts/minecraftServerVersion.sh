@@ -39,8 +39,8 @@ echo 'level-name=world' >> server.properties
 echo 'EM CASO DE ERRO VERIFIQUE A VERSAO DO JAVA
 Press ENTER'
 read caso
-java -jar $serverJar*.jar nogui" "server.sh"
+java -jar $serverJar*.jar nogui" "run.sh"
     
-	criaAtalhoBin "$diretorioServer/server.sh" "$nomeMSV-MinecraftServer"
+	criaAtalhoBin "$diretorioServer/run.sh" "$nomeMSV-MinecraftServer"
 	echo -e "[INFO] - SCRIPT FINALIZADO - [INFO]"
 }

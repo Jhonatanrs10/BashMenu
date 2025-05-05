@@ -25,8 +25,8 @@ enable-command-block=true" "server.properties"
 #Press ENTER'
 #read caso
 cd $diretorioInstall
-java -jar server.jar nogui" "server.sh"
+java -jar server.jar nogui" "run.sh"
 
-    criaAtalhoBin "$diretorioInstall/server.sh" "MinecraftServer"
+    criaAtalhoBin "$diretorioInstall/run.sh" "MinecraftServer"
 	echo -e "[INFO] - SCRIPT FINALIZADO - [INFO]"
 }

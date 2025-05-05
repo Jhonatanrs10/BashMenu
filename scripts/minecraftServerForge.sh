@@ -34,7 +34,7 @@ echo 'level-name=world' >> server.properties
 echo 'EM CASO DE ERRO VERIFIQUE A VERSAO DO JAVA
 Press ENTER'
 read caso
-java -jar forge*.jar nogui" "server.sh"
+java -jar forge*.jar nogui" "run.sh"
 
    criarArq "#!/usr/bin/env bash
 cd $diretorioServer
@@ -45,7 +45,7 @@ java -jar forge*.jar nogui" "escadona.sh"
 
 	baixaArq "diretorioNome" "$mapEscadona" "$diretorioServer/escadona.rar"
 
-    criaAtalhoBin "$diretorioServer/server.sh" "MinecraftServerForge"
+    criaAtalhoBin "$diretorioServer/run.sh" "MinecraftServerForge"
 	criaAtalhoBin "$diretorioServer/escadona.sh" "EscadonaMinecraftServer"
 	echo -e "[INFO] - SCRIPT FINALIZADO - [INFO]"
 }
