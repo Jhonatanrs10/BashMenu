@@ -3,13 +3,6 @@ source ./lib/sourceFolder.sh
 sourceFolder "LIBs" "./lib"
 sourceFolder "Scripts" "./scripts"
 
-#BashMenu Vars
-############################
-dBashMenu="$HOME/.bashmenu"
-nomeRun="run"
-DATANOW=$(date "+[%d-%m-%Y][%H-%M]")
-############################
-
 option="vazio"
 while [ "$option" != "exit" ];
 do

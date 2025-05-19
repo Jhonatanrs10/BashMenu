@@ -1,45 +1,4 @@
 #!/usr/bin/bash
-
-## MY BASES ##
-myBaseLightdm="lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm"
-myBaseSddm="sddm"
-myBaseXfce4="xfce4 xfce4-goodies xfce4-docklike-plugin"
-myBaseKde="dolphin dolphin-plugins dragon elisa kdeconnect filelight gwenview leafpad okular kcalc konsole plasma-meta"
-myBaseGnome="gnome gnome-tweaks"
-myBaseHyprland="hyprland wofi waybar hyprlock hyprpaper hyprpicker wl-clipboard wlroots xdg-desktop-portal-hyprland grim slurp azote swaybg swaylock polkit-gnome acpilight nwg-look lxappearance xfce4-taskmanager gpicview font-manager pcmanfm galculator system-config-printer xreader cmus dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet pavucontrol blueman"
-myBaseBspwm="bspwm sxhkd polkit-gnome polybar rofi picom feh acpilight scrot xcolor nwg-look lxappearance lxrandr xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer xreader cmus dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet pavucontrol blueman"
-myBaseI3wm="i3 i3lock xss-lock i3status dmenu polkit-gnome polybar rofi picom feh acpilight scrot xcolor nwg-look lxappearance lxrandr xfce4-taskmanager gpicview xfce4-power-manager font-manager pcmanfm galculator system-config-printer xreader cmus dragon kdeconnect gnome-keyring seahorse leafpad network-manager-applet pavucontrol blueman"
-myBaseGlobalApps="gimp inkscape shotcut code neovim qbittorrent mpv gparted chromium alacritty bitwarden discord ark"
-myBaseSteam="steam"
-myBaseMangoHud="mangohud lib32-mangohud"
-myBaseGamescope="gamemode lib32-gamemode gamescope"
-myBaseOBS="app/com.obsproject.Studio/x86_64/stable runtime/com.obsproject.Studio.Plugin.MoveTransition/x86_64/stable"
-myBaseRetroarch="retroarch retroarch-assets-xmb retroarch-assets-ozone libretro-snes9x libretro-mgba libretro-beetle-psx"
-##
-myBaseKernel="base linux linux-firmware intel-ucode sof-firmware"
-myBaseBootloader="grub efibootmgr os-prober"
-myBaseFileSystem="ntfs-3g exfat-utils dosfstools"
-myBaseNetwork="networkmanager"
-myBaseFirewall="gufw"
-myBaseUtilitys="nano fastfetch stow curl jq imagemagick cmatrix htop xsel pacman-contrib base-devel git ffmpeg fwupd samba udisks2 gvfs gvfs-mtp gvfs-smb polkit net-tools joyutils man-db wireless_tools"
-myBaseNvidia="dkms nvidia-open nvidia-open-dkms xorg-server xorg-xinit nvidia-settings nvidia-utils lib32-nvidia-utils libva-nvidia-driver cuda opencl-nvidia lib32-opencl-nvidia vdpauinfo clinfo"
-myBaseBluetooth="bluez bluez-tools bluez-utils"
-myBaseAudioPipeware="pipewire pipewire-alsa pipewire-audio pipewire-jack pipewire-pulse"
-myBaseAudioPulse="pulseaudio pulseaudio-bluetooth"
-myBaseCodecs="gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer"
-myBaseXorg="xorg xorg-xsetroot xorg-xhost"
-myBaseWayland="wayland egl-wayland"
-myBaseIcons="papirus-icon-theme"
-myBaseThemes="breeze-gtk capitaine-cursors"
-myBaseFonts="gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-font-awesome"
-myBaseRar="bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip"
-myBaseNotify="libnotify dunst"
-myBaseDaemons="notification-daemon power-profiles-daemon"
-myBaseFlatpak="flatpak"
-myBaseShell="bash bash-completion"
-##
-myFullBase="$myBaseKernel $myBaseBootloader $myBaseFileSystem $myBaseNetwork $myBaseFirewall $myBaseUtilitys $myBaseBluetooth $myBaseAudioPipeware $myBaseCodecs $myBaseXorg $myBaseWayland $myBaseIcons $myBaseThemes $myBaseFonts $myBaseRar $myBaseNotify $myBaseDaemons $myBaseFlatpak $myBaseShell"
-
 ## LIB FUNCTIONS ##
 
 lightdmConfig(){
@@ -66,6 +25,9 @@ sambaSetup(){
         sudo chmod 777 /home/samba
         echo "[global]
     workgroup = WORKGROUP
+    preferred master = no
+    local master = no
+    domain master = no
     netbios name = Samba
     server string = Samba Server
     server role = standalone server
@@ -136,8 +98,8 @@ myBaseI3Backlight(){
 
 ## SCRIPT FUNCTIONS ##
 myBasePosInstall(){
-    echo "INSTALL MYBASE I3WM ?
-Options: [1]Yes, [2]No"
+    echo "MYBASE POSINSTALL
+Options: [1]WINDOW MANAGER, [2]GNOME [3]KDE"
     read resp
 	case $resp in
 		1)
@@ -152,14 +114,12 @@ Options: [1]Yes, [2]No"
             packagesManager "$myBaseMangoHud"
             packagesManager "$myBaseRetroarch"
             lightdmConfig
-            #https://github.com/lutris/docs/blob/master/InstallingDrivers.md#arch--manjaro--other-arch-linux-derivatives
-            #causa crash no gdm o pacote: nvidia-dkms
-            #https://codigocristo.github.io/driver_nvidia.html
             packagesManager "$myBaseNvidia"
             sudo rm -f /usr/share/applications/rofi*
             if [[ -e "/usr/share/applications/xfce4-power-manager-settings.desktop" ]]; then
                 sudo sed -i 's/OnlyShowIn=XFCE;//g' /usr/share/applications/xfce4-power-manager-settings.desktop
             fi  
+            flatpak override --user --filesystem=~/.icons:ro --filesystem=~/.local/share/icons:ro
             myBaseI3Backlight
             myBaseI3Touchpad
             enableSystemctl "smb"
@@ -169,6 +129,43 @@ Options: [1]Yes, [2]No"
             enableSystemctl "NetworkManager"
             enableSystemctl "power-profiles-daemon"
             enableSystemctl "ly"
+            ;;
+        2)  
+            myBasePacman
+            packagesManager "$myFullBase"
+            packagesManager "$myBaseGnome"
+            packagesManager "$myBaseGlobalApps"
+            packagesManager "$myBaseOBS"
+            packagesManager "$myBaseSteam"
+            packagesManager "$myBaseMangoHud"
+            packagesManager "$myBaseRetroarch"
+            flatpak override --user --filesystem=~/.icons:ro --filesystem=~/.local/share/icons:ro
+            enableSystemctl "smb"
+            enableSystemctl "nmb"
+            sambaSetup
+            enableSystemctl "bluetooth"
+            enableSystemctl "NetworkManager"
+            enableSystemctl "power-profiles-daemon"
+            enableSystemctl "gdm"
+            ;;
+        3)
+            myBasePacman
+            packagesManager "$myFullBase"
+            packagesManager "$myBaseKde"
+            packagesManager "$myBaseSddm"
+            packagesManager "$myBaseGlobalApps"
+            packagesManager "$myBaseOBS"
+            packagesManager "$myBaseSteam"
+            packagesManager "$myBaseMangoHud"
+            packagesManager "$myBaseRetroarch"
+            flatpak override --user --filesystem=~/.icons:ro --filesystem=~/.local/share/icons:ro
+            enableSystemctl "smb"
+            enableSystemctl "nmb"
+            sambaSetup
+            enableSystemctl "bluetooth"
+            enableSystemctl "NetworkManager"
+            enableSystemctl "power-profiles-daemon"
+            enableSystemctl "sddm"
             ;;
 		*)
 	esac

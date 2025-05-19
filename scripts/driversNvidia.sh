@@ -7,7 +7,7 @@ Instalar Drivers: sudo apt install nvidia-driver-X"
 }
 
 installDriverNvidiaByKorvahannu(){
-    echo "Esse script instala driver nvidia-open para (GTX 1660 + GRUB) atualizado 23/04/25
+    echo "Esse script instala driver nvidia para (GTX 1660 + GRUB) atualizado 14/05/25
 alterações com base no link abaixo
 https://github.com/korvahannu/arch-nvidia-drivers-installation-guide"
     #
@@ -15,8 +15,7 @@ https://github.com/korvahannu/arch-nvidia-drivers-installation-guide"
     sudo pacman -S base-devel linux-headers git nano --needed
     myBaseYay
     myBasePacman
-    yay -Syu
-    yay -S nvidia-open nvidia-utils lib32-nvidia-utils nvidia-settings
+    yay -S nvidia nvidia-utils lib32-nvidia-utils nvidia-settings
     # Detecta a versão principal e secundária do kernel
     KERNEL_VERSION=$(uname -r | cut -d. -f1,2)
 
@@ -54,7 +53,7 @@ https://github.com/korvahannu/arch-nvidia-drivers-installation-guide"
     #!/bin/bash
 
     # Nome do driver que você está usando (ajuste se necessário)
-    NVIDIA_DRIVER="nvidia-open"
+    NVIDIA_DRIVER="nvidia"
 
     echo "Editando /etc/mkinitcpio.conf..."
 

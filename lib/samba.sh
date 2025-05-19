@@ -48,6 +48,9 @@ criaSmbDefault(){
    sudo mv /etc/samba/smb.conf /etc/samba/smb-bkp$DATANOW.conf
    criarArq "[global]
    workgroup = WORKGROUP
+   preferred master = no
+   local master = no
+   domain master = no
    netbios name = Samba
    server string = Samba Server
    server role = standalone server
