@@ -7,68 +7,49 @@ option="vazio"
 while [ "$option" != "exit" ];
 do
    echo -e "
-==================================================
-                CONFIGURAÇÕES
-==================================================
-[ 1] Pós-Instalação          [ 2] Configurar GRUB
-[ 3] Configurar Pacman       [ 4] Configurar NTFS
-[ 5] Configurar lnHome       [ 6] Instalar Yay
-[ 7] Configurar Stow         [ 8] Symlink para Home
-[ 9] NVIDIA Proprietário     [10] Instalar Apps Essenciais
-
-==================================================
-                AJUSTES DO SISTEMA
-==================================================
-[11] Backlight Config        [12] GRUB Config
-[13] Pacman Config           [14] NTFS Config
-[15] File Manager Padrão     [16] Git Push
-[17] Git Config              [18] BashMenu Config
-
-==================================================
-                INSTALAÇÕES
-==================================================
-[19] BongoCat                [20] PokéXGames
-[21] Minecraft TLauncher     [22] Minecraft Server
-[23] FiveM Server            [24] Unturned Server
-[25] SAMP Server             [26] Terraria Server
-[27] Hamachi & Haguichi      [28] ZeroTier
-[29] Ngrok                  
-
-==================================================
-         AMBIENTE DE DESENVOLVIMENTO
-==================================================
-[30] Node.js LTS             [31] Alterar Java Versão
-[32] Virtual Gamepads        [33] Virt-Manager (VMs)
-
-==================================================
-                ATALHOS
-==================================================
-[34] Atalho Desktop          [35] Atalho RetroArch
-[36] Atalho Pasta/Arquivo    [37] Atalho Bin Terminal
-[38] Atalho AppImage         [39] Remover Atalho
-
-==================================================
-         PASTAS COMPARTILHADAS
-==================================================
-[40] Pasta Compartilhada [USER]   [41] Pasta Compartilhada [GUEST]
-
-==================================================
-             ÁUDIO & REDE
-==================================================
-[42] Virtual PulseAudio      [43] Configurar Rede
-
-==================================================
-             AJUSTES FINAIS
-==================================================
-[44] Pós-Config Manual       [45] Fix Bluetooth
-[46] Configurar Teclado      [47] Data & Hora (NTP)
-[48] Configurar Touchpad     [49] Reparar Pacotes
-
-==================================================
-               MULTIMÍDIA
-==================================================
-[50] Assistir pelo MPV
-==================================================
+[01] Pos Install
+[02] Grub
+[03] Pacman
+[04] Montar NTFS
+[05] Linkar Home
+[06] Yay
+[07] Driver Nvidia (Korvahannu)
+[08] VirtManager
+[09] Diretório Inode Padrão
+[10] Git Auto Push
+[11] Configuração Git
+[12] Dependências Atalho
+[13] Bongo
+[14] Pokexgames
+[15] Minecraft
+[16] Servidor Minecraft
+[17] FiveM
+[18] Servidor Unturned
+[19] Servidor SA-MP
+[20] Servidor Terraria
+[21] Hamachi
+[22] ZeroTier
+[23] Ngrok
+[24] Node LTS
+[25] Versão Java
+[26] Gamepads Virtuais
+[27] Atalho Desktop
+[28] Atalho Desktop Retroarch (Arch)
+[29] Criar Arquivo de Execução por Diretório
+[30] Atalho Terminal
+[31] Atalho Desktop AppImage
+[32] Remover Atalhos JRS
+[33] Pasta Compartilhada (User)
+[34] Pasta Compartilhada (Guest)
+[35] Execução PulseAudio Virtual
+[36] Pós-Rede
+[37] Pós-Configuração Manual
+[38] Pós-Fix Bluetooth
+[39] Pós-Teclado
+[40] Pós-Hora (NTP)
+[41] Pós-Touchpad (i3)
+[42] Reparar Pacman
+[43] Assistir com MPV
 "
     read option
     case $option in
@@ -78,50 +59,43 @@ do
         4)myBaseMountNTFS;;
         5)myBaselnHome;;
         6)myBaseYay;;
-        7);;
-        8);;
-        9)installDriverNvidiaByKorvahannu;;
-        10);;
-        11)installVirtManager;;
-        12)attGrubWithWindows;;
-        13)editPacmanConfig;;
-        14)autoMountNtfs;;
-        15)defaultInodeDirectory;;
-        16)gitAutoPush;;
-        17)gitconfig;;
-        18)dependenciasAtalho;;
-        19)bongo;;
-        20)installPokexgames;;
-        21)installMinecraft;;
-        22)installMinecraftServer;;
-        23)installFivem;;
-        24)installUnturnedServer;;
-        25)sampServer;;
-        26)terrariaServer;;
-        27)hamachi;;
-        28)zerotier;;
-        29)installNgrok;;
-        30)nodejslts;;
-        31)javaVersion;;
-        32)virtualGamepads;;
-        33)installVirtManager;;
-        34)criaAtalhoDesktop;;
-        35)criaAtalhoDesktopRetroarchArch;;
-        36)criaArqRunDiretorioInstall;;
-        37)AtalhoTerminalBin;;
-        38)criaAtalhoDesktopAppimage;;
-        39)removeDesktopJRS;;
-        40)criaPastaShareUser;;
-        41)criaPastaShareGuest;;
-        42)virtualPulseAudioExec;;
-        43)appPosNetwork;;
-        44)appPosManualConfig;;
-        45)appPosBluetoothFix;;
-        46)appPosTecladoConfig;;
-        47)appPosTimeNTP;;
-        48)appPosI3Touchpad;;
-        49)repairPM;;
-        50)assistirMpv;;
+        7)installDriverNvidiaByKorvahannu;;
+        8)installVirtManager;;
+        9)defaultInodeDirectory;;
+        10)gitAutoPush;;
+        11)gitconfig;;
+        12)dependenciasAtalho;;
+        13)bongo;;
+        14)installPokexgames;;
+        15)installMinecraft;;
+        16)installMinecraftServer;;
+        17)installFivem;;
+        18)installUnturnedServer;;
+        19)sampServer;;
+        20)terrariaServer;;
+        21)hamachi;;
+        22)zerotier;;
+        23)installNgrok;;
+        24)nodejslts;;
+        25)javaVersion;;
+        26)virtualGamepads;;
+        27)criaAtalhoDesktop;;
+        28)criaAtalhoDesktopRetroarchArch;;
+        29)criaArqRunDiretorioInstall;;
+        30)AtalhoTerminalBin;;
+        31)criaAtalhoDesktopAppimage;;
+        32)removeDesktopJRS;;
+        33)criaPastaShareUser;;
+        34)criaPastaShareGuest;;
+        35)virtualPulseAudioExec;;
+        36)appPosNetwork;;
+        37)appPosManualConfig;;
+        38)appPosBluetoothFix;;
+        39)appPosTecladoConfig;;
+        40)appPosTimeNTP;;
+        41)appPosI3Touchpad;;
+        42)repairPM;;
+        43)assistirMpv;;
         *);;
     esac
 done

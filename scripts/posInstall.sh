@@ -114,7 +114,6 @@ Options: [1]WINDOW MANAGER, [2]GNOME [3]KDE"
             packagesManager "$myBaseMangoHud"
             packagesManager "$myBaseRetroarch"
             lightdmConfig
-            packagesManager "$myBaseNvidia"
             sudo rm -f /usr/share/applications/rofi*
             if [[ -e "/usr/share/applications/xfce4-power-manager-settings.desktop" ]]; then
                 sudo sed -i 's/OnlyShowIn=XFCE;//g' /usr/share/applications/xfce4-power-manager-settings.desktop

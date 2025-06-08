@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 installMinecraft(){
+	packagesManager "jre-openjdk"
 	verMine="https://tlauncher.org/jar"
 	uninstallPastaAtalhoBinMesmoNome "MinecraftTlauncher"
 	echo -e "[INFO] - CRIANDO DIRETORIOS... - [INFO]"
@@ -12,7 +13,7 @@ installMinecraft(){
     criarArq "#!/usr/bin/env sh
 	cd $diretorioMine
 	java -jar $tlauncher" "$diretorioMine/tlauncher.sh"
-    criaAtalho "MinecraftTlauncher" "Create your own world on Xorg" "bash tlauncher.sh" "$diretorioMine" "false" "MinecraftTlauncher" "minecraft"
-	criaAtalhoBin "$diretorioMine/tlauncher.sh" "MinecraftTlauncher"
+    criaAtalho "MinecraftTlauncher" "Create your own world on Xorg" "bash tlauncher.sh" "$diretorioMine" "false" "TLauncher" "/usr/share/icons/Papirus-Dark/64x64/apps/minecraft.svg"
+	criaAtalhoBin "$diretorioMine/tlauncher.sh" "TLauncher"
 	echo -e "[INFO] - SCRIPT FINALIZADO - [INFO]"
 }

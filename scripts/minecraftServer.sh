@@ -27,6 +27,7 @@ enable-command-block=true" "server.properties"
 cd $diretorioInstall
 java -jar server.jar nogui" "run.sh"
 
+	criaAtalho "MinecraftServer" "Create your own Minecraft Server" "bash run.sh" "$diretorioInstall" "true" "Minecraft Server" "/usr/share/icons/Papirus-Dark/64x64/apps/mine-test.svg"
     criaAtalhoBin "$diretorioInstall/run.sh" "MinecraftServer"
 	echo -e "[INFO] - SCRIPT FINALIZADO - [INFO]"
 }
