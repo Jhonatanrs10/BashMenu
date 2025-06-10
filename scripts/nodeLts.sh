@@ -11,5 +11,6 @@ nodejslts() {
         rm -r $diretorioInstall
     elif [ "$escolha" = "2" ]; then
         packagesManager "nodejs-lts-iron"
+        packagesManager "npm"
     fi
 }
