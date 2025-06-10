@@ -7,7 +7,7 @@ while true; do
   echo "Escolha o driver que deseja instalar:"
   echo "1 - NVIDIA"
   echo "2 - Intel (moderno)"
-  echo "3 - Intel (antigo / modesetting)"
+  echo "3 - Intel (antigo / xf86-video-intel )"
   echo "4 - AMD (moderno)"
   echo "5 - AMD (antigo)"
   read -rp "Digite o número da opção desejada: " choice
