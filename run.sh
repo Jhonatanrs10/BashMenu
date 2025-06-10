@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Cores ANSI
 RED="\033[31m"
@@ -11,119 +11,123 @@ source ./lib/sourceFolder.sh
 sourceFolder "LIBs" "./lib"
 sourceFolder "Scripts" "./scripts"
 
-option=""
+# Lista de opções (texto e função correspondente)
+opcoes=(
+  "Pos Install::myBasePosInstall"
+  "Grub::myBaseGrub"
+  "Pacman::myBasePacman"
+  "Montar NTFS::myBaseMountNTFS"
+  "Linkar Home::myBaselnHome"
+  "Yay::myBaseYay"
+  "Video Driver::installVideoDriver"
+  "VirtManager::installVirtManager"
+  "Diretório Inode Padrão::defaultInodeDirectory"
+  "Git Auto Push::gitAutoPush"
+  "Configuração Git::gitconfig"
+  "Dependências Atalho::dependenciasAtalho"
+  "Bongo::bongo"
+  "Pokexgames::installPokexgames"
+  "Minecraft::installMinecraft"
+  "Servidor Minecraft::installMinecraftServer"
+  "FiveM::installFivem"
+  "Servidor Unturned::installUnturnedServer"
+  "Servidor SA-MP::sampServer"
+  "Servidor Terraria::terrariaServer"
+  "Hamachi::hamachi"
+  "ZeroTier::zerotier"
+  "Ngrok::installNgrok"
+  "Node LTS::nodejslts"
+  "Java Install/Version::installJava"
+  "Gamepads Virtuais::virtualGamepads"
+  "Atalho Desktop::criaAtalhoDesktop"
+  "Atalho Desktop Retroarch (Arch)::criaAtalhoDesktopRetroarchArch"
+  "Criar Arq Exec Dir::criaArqRunDiretorioInstall"
+  "Atalho Terminal::AtalhoTerminalBin"
+  "Setup AppImage::setupAppimage"
+  "Remover Atalhos JRS::removeDesktopJRS"
+  "Pasta Compartilhada (User)::criaPastaShareUser"
+  "Pasta Compartilhada (Guest)::criaPastaShareGuest"
+  "PulseAudio Virtual::virtualPulseAudioExec"
+  "Pós-Rede::appPosNetwork"
+  "Pós-Config Manual::appPosManualConfig"
+  "Pós-Fix Bluetooth::appPosBluetoothFix"
+  "Pós-Teclado::appPosTecladoConfig"
+  "Pós-Hora (NTP)::appPosTimeNTP"
+  "Pós-Touchpad (i3)::appPosI3Touchpad"
+  "Reparar Pacman::repairPM"
+  "Assistir com MPV::assistirMpv"
+  "Samba Setup::sambaSetup"
+)
 
-while [ "$option" != "0" ]; do
+linhas_terminal=$(tput lines)
+opcoes_por_pagina=$((linhas_terminal - 7))
+pagina=0
+total_opcoes=${#opcoes[@]}
+total_paginas=$(( (total_opcoes + opcoes_por_pagina - 1) / opcoes_por_pagina ))
+
+mostrar_menu() {
   clear
-  echo -e "${CYAN}==============================================${RESET}"
-  echo -e "${GREEN}          MENU DE SCRIPTS - SELECIONE           ${RESET}"
-  echo -e "${CYAN}==============================================${RESET}"
-  echo -e "${YELLOW}Digite o número da opção desejada ou '0' para sair.${RESET}\n"
+  echo -e "${CYAN}${RESET}"
+  echo -e "${GREEN}  BASHMENU - Página $((pagina + 1))/${total_paginas}${RESET}"
+  echo -e "${CYAN}${RESET}"
 
-  echo -e " ${GREEN}[01]${RESET} Pos Install"
-  echo -e " ${GREEN}[02]${RESET} Grub"
-  echo -e " ${GREEN}[03]${RESET} Pacman"
-  echo -e " ${GREEN}[04]${RESET} Montar NTFS"
-  echo -e " ${GREEN}[05]${RESET} Linkar Home"
-  echo -e " ${GREEN}[06]${RESET} Yay"
-  echo -e " ${GREEN}[07]${RESET} Video Driver"
-  echo -e " ${GREEN}[08]${RESET} VirtManager"
-  echo -e " ${GREEN}[09]${RESET} Diretório Inode Padrão"
-  echo -e " ${GREEN}[10]${RESET} Git Auto Push"
-  echo -e " ${GREEN}[11]${RESET} Configuração Git"
-  echo -e " ${GREEN}[12]${RESET} Dependências Atalho"
-  echo -e " ${GREEN}[13]${RESET} Bongo"
-  echo -e " ${GREEN}[14]${RESET} Pokexgames"
-  echo -e " ${GREEN}[15]${RESET} Minecraft"
-  echo -e " ${GREEN}[16]${RESET} Servidor Minecraft"
-  echo -e " ${GREEN}[17]${RESET} FiveM"
-  echo -e " ${GREEN}[18]${RESET} Servidor Unturned"
-  echo -e " ${GREEN}[19]${RESET} Servidor SA-MP"
-  echo -e " ${GREEN}[20]${RESET} Servidor Terraria"
-  echo -e " ${GREEN}[21]${RESET} Hamachi"
-  echo -e " ${GREEN}[22]${RESET} ZeroTier"
-  echo -e " ${GREEN}[23]${RESET} Ngrok"
-  echo -e " ${GREEN}[24]${RESET} Node LTS"
-  echo -e " ${GREEN}[25]${RESET} Java Install/Version"
-  echo -e " ${GREEN}[26]${RESET} Gamepads Virtuais"
-  echo -e " ${GREEN}[27]${RESET} Atalho Desktop"
-  echo -e " ${GREEN}[28]${RESET} Atalho Desktop Retroarch (Arch)"
-  echo -e " ${GREEN}[29]${RESET} Criar Arquivo de Execução por Diretório"
-  echo -e " ${GREEN}[30]${RESET} Atalho Terminal"
-  echo -e " ${GREEN}[31]${RESET} Setup AppImage"
-  echo -e " ${GREEN}[32]${RESET} Remover Atalhos JRS"
-  echo -e " ${GREEN}[33]${RESET} Pasta Compartilhada (User)"
-  echo -e " ${GREEN}[34]${RESET} Pasta Compartilhada (Guest)"
-  echo -e " ${GREEN}[35]${RESET} Execução PulseAudio Virtual"
-  echo -e " ${GREEN}[36]${RESET} Pós-Rede"
-  echo -e " ${GREEN}[37]${RESET} Pós-Configuração Manual"
-  echo -e " ${GREEN}[38]${RESET} Pós-Fix Bluetooth"
-  echo -e " ${GREEN}[39]${RESET} Pós-Teclado"
-  echo -e " ${GREEN}[40]${RESET} Pós-Hora (NTP)"
-  echo -e " ${GREEN}[41]${RESET} Pós-Touchpad (i3)"
-  echo -e " ${GREEN}[42]${RESET} Reparar Pacman"
-  echo -e " ${GREEN}[43]${RESET} Assistir com MPV"
-  echo -e " ${GREEN}[44]${RESET} Samba Setup"
-  echo -e " ${RED}[0]${RESET} Sair\n"
+  inicio=$((pagina * opcoes_por_pagina))
+  fim=$((inicio + opcoes_por_pagina))
+  if [ $fim -gt $total_opcoes ]; then fim=$total_opcoes; fi
 
-  printf "${CYAN}Opção:${RESET} "
-  read option
+  for ((i = inicio; i < fim; i++)); do
+    opcao_texto="${opcoes[i]%%::*}"
+    printf " ${GREEN}[%02d]${RESET} %s\n" $((i + 1)) "$opcao_texto"
+  done
+}
 
-  case $option in
-      1) myBasePosInstall ;;
-      2) myBaseGrub ;;
-      3) myBasePacman ;;
-      4) myBaseMountNTFS ;;
-      5) myBaselnHome ;;
-      6) myBaseYay ;;
-      7) installVideoDriver ;;
-      8) installVirtManager ;;
-      9) defaultInodeDirectory ;;
-      10) gitAutoPush ;;
-      11) gitconfig ;;
-      12) dependenciasAtalho ;;
-      13) bongo ;;
-      14) installPokexgames ;;
-      15) installMinecraft ;;
-      16) installMinecraftServer ;;
-      17) installFivem ;;
-      18) installUnturnedServer ;;
-      19) sampServer ;;
-      20) terrariaServer ;;
-      21) hamachi ;;
-      22) zerotier ;;
-      23) installNgrok ;;
-      24) nodejslts ;;
-      25) installJava ;;
-      26) virtualGamepads ;;
-      27) criaAtalhoDesktop ;;
-      28) criaAtalhoDesktopRetroarchArch ;;
-      29) criaArqRunDiretorioInstall ;;
-      30) AtalhoTerminalBin ;;
-      31) setupAppimage ;;
-      32) removeDesktopJRS ;;
-      33) criaPastaShareUser ;;
-      34) criaPastaShareGuest ;;
-      35) virtualPulseAudioExec ;;
-      36) appPosNetwork ;;
-      37) appPosManualConfig ;;
-      38) appPosBluetoothFix ;;
-      39) appPosTecladoConfig ;;
-      40) appPosTimeNTP ;;
-      41) appPosI3Touchpad ;;
-      42) repairPM ;;
-      43) assistirMpv ;;
-      44) sambaSetup ;;
-      0)
-        echo -e "${RED}Saindo do menu. Até logo!${RESET}"
-        exit 0
-        ;;
-      *)
-        echo -e "${RED}Opção inválida! Tente novamente.${RESET}"
-        sleep 1
-        ;;
-  esac
+executar_opcao() {
+  idx=$1
+  if [[ "$idx" =~ ^[0-9]+$ ]] && [ "$idx" -ge 1 ] && [ "$idx" -le "$total_opcoes" ]; then
+    funcao="${opcoes[idx-1]##*::}"
+    echo -e "\nExecutando: ${CYAN}$funcao${RESET}\n"
+    $funcao
+    echo -e "\n${YELLOW}Pressione Enter para voltar ao menu...${RESET}"
+    read
+  else
+    echo -e "${RED}Opção inválida!${RESET}"
+    sleep 1
+  fi
+}
 
-  echo -e "\nPressione Enter para continuar..."
-  read
+while true; do
+  mostrar_menu
+
+  echo -e "\n${YELLOW}Use ↑ ↓ para navegar${RESET}\n"
+  echo -ne "${CYAN}Digite o número da opção ou 'q' para sair:${RESET} "
+read -rsn1 input
+
+# Verifica se é seta
+if [[ $input == $'\x1b' ]]; then
+  read -rsn2 -t 0.1 input2
+  input+="$input2"
+fi
+
+case "$input" in
+  $'\x1b[A') # seta para cima
+    if [ $pagina -gt 0 ]; then ((pagina--)); fi
+    ;;
+  $'\x1b[B') # seta para baixo
+    if [ $pagina -lt $((total_paginas - 1)) ]; then ((pagina++)); fi
+    ;;
+  q)
+    clear
+    echo -e "${RED}Saindo do menu. Até logo!${RESET}"
+    exit 0
+    ;;
+  "")
+    continue
+    ;;
+  *)
+    # Permitir digitar número de opção (completando com o resto)
+    echo -n "$input"
+    read -r restante
+    executar_opcao "$input$restante"
+    ;;
+esac
 done

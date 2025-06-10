@@ -1,16 +1,26 @@
 #!/usr/bin/env sh
 dependenciasAtalho(){
     echo "INSTALAR ATALHO BASHMENU 
-Diretorio atual:
+Diretório atual:
 $PWD
-Este e o diretorio do $nomeRun.sh (s/n)"
+Este é o diretório do $nomeRun.sh (s/n)"
     read resp
     if [ "$resp" = "s" ]; then
-        mkdir -p $dBashMenu/Bins
-        criarArq "#!/usr/bin/env sh
-cd $PWD
-bash $nomeRun.sh" "$dBashMenu/Bins/runBashMenu.sh"
-        AtalhoBinExec "$dBashMenu/Bins/runBashMenu.sh"
+        wrapper="$dBashMenu/jrs_exec.sh"
+
+        echo "Criando wrapper em: $wrapper"
+
+        cat <<EOF > "$wrapper"
+#!/usr/bin/env bash
+cd "$PWD"
+bash "$nomeRun.sh"
+EOF
+
+        chmod +x "$wrapper"
+        sudo ln -sf "$wrapper" /usr/bin/jrs
+
+        echo "Atalho 'jrs' criado! Agora você pode rodar o script de qualquer lugar com:"
+        echo -e "  ${GREEN}jrs${RESET}"
     fi
 }
 
