@@ -73,6 +73,8 @@ criaAtalhoDesktopAppimage(){
 
 setupAppimage(){
     sudo rm $HOME/.local/share/applications/jrs/jrs-Appimage-*
+    echo "Criando diretorio ~/.bashmenu/AppImages"
+    sleep 2
     mkdir -p $dBashMenu/AppImages
     for vApp in `ls $dBashMenu/AppImages`
     do
