@@ -6,7 +6,7 @@ $PWD
 Este é o diretório do $nomeRun.sh (s/n)"
     read resp
     if [ "$resp" = "s" ]; then
-        wrapper="$dBashMenu/jrs_exec.sh"
+        wrapper="$dBashMenu/.jrs.sh"
 
         echo "Criando wrapper em: $wrapper"
 

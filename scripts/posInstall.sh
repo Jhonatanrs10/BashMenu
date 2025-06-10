@@ -35,6 +35,15 @@ myBaseI3Backlight(){
     #criarArq 'light' "$HOME/.config/i3/brightness"
 }
 
+myDotfiles(){
+    packagesManager "stow"
+    cd $HOME
+    git clone https://github.com/Jhonatanrs10/dotfiles
+    mv dotfiles/ .dotfiles/
+    cd .dotfiles/
+    stow */
+}
+
 ## SCRIPT FUNCTIONS ##
 myBasePosInstall(){
     echo "MYBASE POSINSTALL

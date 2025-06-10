@@ -57,6 +57,7 @@ opcoes=(
   "Reparar Pacman::repairPM"
   "Assistir com MPV::assistirMpv"
   "Samba Setup::sambaSetup"
+  "My Dotfiles (stow)::myDotfiles"
 )
 
 linhas_terminal=$(tput lines)
