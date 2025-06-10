@@ -13,7 +13,7 @@ do
 [04] Montar NTFS
 [05] Linkar Home
 [06] Yay
-[07] Driver Nvidia (Korvahannu)
+[07] Video Driver
 [08] VirtManager
 [09] Diretório Inode Padrão
 [10] Git Auto Push
@@ -31,13 +31,13 @@ do
 [22] ZeroTier
 [23] Ngrok
 [24] Node LTS
-[25] Versão Java
+[25] Java Install/Version
 [26] Gamepads Virtuais
 [27] Atalho Desktop
 [28] Atalho Desktop Retroarch (Arch)
 [29] Criar Arquivo de Execução por Diretório
 [30] Atalho Terminal
-[31] Atalho Desktop AppImage
+[31] Setup AppImage
 [32] Remover Atalhos JRS
 [33] Pasta Compartilhada (User)
 [34] Pasta Compartilhada (Guest)
@@ -50,6 +50,7 @@ do
 [41] Pós-Touchpad (i3)
 [42] Reparar Pacman
 [43] Assistir com MPV
+[44] Samba Setup
 "
     read option
     case $option in
@@ -59,7 +60,7 @@ do
         4)myBaseMountNTFS;;
         5)myBaselnHome;;
         6)myBaseYay;;
-        7)installDriverNvidiaByKorvahannu;;
+        7)installVideoDriver;;
         8)installVirtManager;;
         9)defaultInodeDirectory;;
         10)gitAutoPush;;
@@ -77,13 +78,13 @@ do
         22)zerotier;;
         23)installNgrok;;
         24)nodejslts;;
-        25)javaVersion;;
+        25)installJava;;
         26)virtualGamepads;;
         27)criaAtalhoDesktop;;
         28)criaAtalhoDesktopRetroarchArch;;
         29)criaArqRunDiretorioInstall;;
         30)AtalhoTerminalBin;;
-        31)criaAtalhoDesktopAppimage;;
+        31)setupAppimage;;
         32)removeDesktopJRS;;
         33)criaPastaShareUser;;
         34)criaPastaShareGuest;;
@@ -96,6 +97,7 @@ do
         41)appPosI3Touchpad;;
         42)repairPM;;
         43)assistirMpv;;
+        44)sambaSetup;;
         *);;
     esac
 done

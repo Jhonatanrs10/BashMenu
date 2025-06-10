@@ -11,67 +11,6 @@ background = /usr/share/backgrounds/main.png
 font-name = Freemono 10" | sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf
 }
 
-sambaSetup(){
-    echo "Samba Config
-[1]Yes [2]No"
-    read resp
-    case $resp in
-        1)
-        sudo mv /etc/samba/smb.conf /etc/samba/smb-bkp$DATANOW.conf
-        sudo smbpasswd -a $USER
-        mkdir -p $HOME/Samba/User
-        sudo chmod 777 $HOME/Samba
-        sudo mkdir -p /home/samba
-        sudo chmod 777 /home/samba
-        echo "[global]
-    workgroup = WORKGROUP
-    preferred master = no
-    local master = no
-    domain master = no
-    netbios name = Samba
-    server string = Samba Server
-    server role = standalone server
-    security = user
-    map to guest = bad user
-    guest account = nobody
-    log file = /var/log/samba/%m
-    log level = 1
-    dns proxy = no
-[printers]
-    comment = All Printers
-    path = /usr/spool/samba
-    browsable = no
-    guest ok = no
-    writable = no
-    printable = yes
-[User]
-    comment = Pasta Compartilhada na Rede
-    path = $HOME/Samba/User
-    browseable = yes
-    read only = yes
-    guest ok = no
-    write list = $USER
-    force directory mode = 0777
-    directory mode = 0777
-    create mode = 0777
-[Guest]
-    comment = Pasta Compartilhada na Rede
-    path = /home/samba
-    browseable = yes
-    read only = yes
-    guest ok = yes
-    write list = $USER
-    force directory mode = 0777
-    directory mode = 0777
-    create mode = 0777" | sudo tee -a /etc/samba/smb.conf
-        ln -s /home/samba $HOME/Samba/Guest
-        ;;
-        *)
-        ;;
-    esac
-}
-
-
 myBaseI3Touchpad(){
     sudo mkdir -p /etc/X11/xorg.conf.d && sudo tee <<'EOF' /etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
 Section "InputClass"

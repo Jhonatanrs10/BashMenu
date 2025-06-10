@@ -71,6 +71,16 @@ criaAtalhoDesktopAppimage(){
 
 }
 
+setupAppimage(){
+    sudo rm $HOME/.local/share/applications/jrs/jrs-Appimage-*
+    mkdir -p $dBashMenu/AppImages
+    for vApp in `ls $dBashMenu/AppImages`
+    do
+        chmod 777 $dBashMenu/AppImages/$vApp
+        criaAtalho "${vApp%.*}" "An Appimage" "./$vApp" "$dBashMenu/AppImages" "false" "Appimage-${vApp%.*}" "application-default-icon"
+    done
+}
+
 #remove quebra de linha (arquivos SVG)
 #https://miniwebtool.com/br/remove-line-breaks/
 # cria um atalho .desktop
