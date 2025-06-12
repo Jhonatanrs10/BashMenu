@@ -35,12 +35,22 @@ myBaseI3Backlight(){
     #criarArq 'light' "$HOME/.config/i3/brightness"
 }
 
-myDotfiles(){
+myDotfiles() {
     packagesManager "stow"
-    cd $HOME
-    git clone https://github.com/Jhonatanrs10/dotfiles
-    mv dotfiles/ .dotfiles/
-    cd .dotfiles/
+    cd "$HOME"
+
+    if [ -d "$HOME/.dotfiles" ]; then
+        echo "🔄 Diretório .dotfiles já existe. Limpando stow..."
+        cd "$HOME/.dotfiles" || return
+        stow -D */
+    else
+        echo "📥 Clonando repositório de dotfiles..."
+        git clone https://github.com/Jhonatanrs10/dotfiles
+        mv dotfiles/ .dotfiles/
+        cd "$HOME/.dotfiles" || return
+    fi
+
+    echo "✅ Aplicando stow..."
     stow */
 }
 
