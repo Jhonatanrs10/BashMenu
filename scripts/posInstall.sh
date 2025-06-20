@@ -64,6 +64,8 @@ Options: [1]WINDOW MANAGER, [2]GNOME [3]KDE"
             myBasePacman
             packagesManager "$myFullBase"
             packagesManager "$myBaseI3wm"
+            packagesManager "$myBaseBspwm"
+            packagesManager "$myBaseXorgWmApps"
             packagesManager "$myBaseHyprland"
             packagesManager "ly"
             packagesManager "$myBaseGlobalApps"
