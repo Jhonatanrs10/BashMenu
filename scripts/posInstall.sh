@@ -54,6 +54,14 @@ myDotfiles() {
     stow */
 }
 
+lidSwitchIgnore(){
+    sudo sed -i 's/^#HandleLidSwitch=suspend/HandleLidSwitch=ignore/' /etc/systemd/logind.conf
+    sudo sed -i 's/^HandleLidSwitch=suspend/HandleLidSwitch=ignore/' /etc/systemd/logind.conf
+    echo "Reinicie o dispositivo.
+    Press Enter to exit"
+    read resp
+}
+
 ## SCRIPT FUNCTIONS ##
 myBasePosInstall(){
     echo "MYBASE POSINSTALL
@@ -74,10 +82,7 @@ Options: [1]WINDOW MANAGER, [2]GNOME [3]KDE"
             packagesManager "$myBaseMangoHud"
             packagesManager "$myBaseRetroarch"
             lightdmConfig
-            sudo rm -f /usr/share/applications/rofi*
-            if [[ -e "/usr/share/applications/xfce4-power-manager-settings.desktop" ]]; then
-                sudo sed -i 's/OnlyShowIn=XFCE;//g' /usr/share/applications/xfce4-power-manager-settings.desktop
-            fi  
+            sudo rm -f /usr/share/applications/rofi* 
             flatpak override --user --filesystem=~/.icons:ro --filesystem=~/.local/share/icons:ro
             myBaseI3Backlight
             myBaseI3Touchpad

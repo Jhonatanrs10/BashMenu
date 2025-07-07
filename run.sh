@@ -54,6 +54,7 @@ opcoes=(
   "Pós-Teclado::appPosTecladoConfig"
   "Pós-Hora (NTP)::appPosTimeNTP"
   "Pós-Touchpad (i3)::appPosI3Touchpad"
+  "Ignorar Ação da Bandeja::lidSwitchIgnore"
   "Reparar Pacman::repairPM"
   "Assistir com MPV::assistirMpv"
   "Samba Setup::sambaSetup"
