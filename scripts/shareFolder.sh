@@ -109,20 +109,8 @@ sambaSetup(){
         1)
         DATANOW=$(date +%Y%m%d-%H%M%S)
 
-        # 🔸 Escolher método para netbios name:
-        echo "NetBIOS Name Mode:
-[1] Random [2] Use IP"
-        read -r netbios_mode
-
-        if [[ "$netbios_mode" == "2" ]]; then
-            # Usa o IP local para gerar nome
-            IP=$(hostname -I | awk '{print $1}' | tr -d '.')
-            NETBIOS_NAME="Samba$IP"
-        else
-            # Gera nome aleatório tipo SambaABCD1234
-            RAND=$(cat /dev/urandom | tr -dc 'A-Z0-9' | head -c 6)
-            NETBIOS_NAME="Samba$RAND"
-        fi
+        RAND=$(cat /dev/urandom | tr -dc 'A-Z0-9' | head -c 6)
+        NETBIOS_NAME="Samba$RAND"
 
         echo "Using NetBIOS name: $NETBIOS_NAME"
 

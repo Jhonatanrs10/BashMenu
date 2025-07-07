@@ -57,9 +57,6 @@ myDotfiles() {
 lidSwitchIgnore(){
     sudo sed -i 's/^#HandleLidSwitch=suspend/HandleLidSwitch=ignore/' /etc/systemd/logind.conf
     sudo sed -i 's/^HandleLidSwitch=suspend/HandleLidSwitch=ignore/' /etc/systemd/logind.conf
-    echo "Reinicie o dispositivo.
-    Press Enter to exit"
-    read resp
 }
 
 ## SCRIPT FUNCTIONS ##
@@ -92,6 +89,7 @@ Options: [1]WINDOW MANAGER, [2]GNOME [3]KDE"
             enableSystemctl "bluetooth"
             enableSystemctl "NetworkManager"
             enableSystemctl "power-profiles-daemon"
+            lidSwitchIgnore
             enableSystemctl "ly"
             ;;
         2)  
