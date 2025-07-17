@@ -326,3 +326,19 @@ defaultInodeDirectory(){
     esac
 }
 
+rsyncJhonatanrs(){
+	    echo "Sincronizar pastas rSync?
+Options: [1]Yes, [2]No"
+    read resp
+	case $resp in
+		1)
+			packagesManager "ssh rsync"
+			echo "Digite o IP da maquina de destino:"
+			read iprsync
+			rsync -avz $HOME/rSync/ $iprsync:$HOME/rSync/
+        	;;
+        	*)
+        	;;
+    	esac
+
+}
