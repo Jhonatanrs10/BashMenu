@@ -47,7 +47,7 @@ myBaseThemes="breeze-gtk capitaine-cursors"
 myBaseFonts="gnu-free-fonts ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-font-awesome"
 myBaseRar="bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip"
 myBaseNotify="libnotify dunst"
-myBaseDaemons="notification-daemon power-profiles-daemon"
+myBaseDaemons="notification-daemon power-profiles-daemon openssh"
 myBaseFlatpak="flatpak"
 myBaseShell="bash bash-completion"
 ##

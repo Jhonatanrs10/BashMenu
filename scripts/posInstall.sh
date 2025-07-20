@@ -62,17 +62,30 @@ lidSwitchIgnore(){
 ## SCRIPT FUNCTIONS ##
 myBasePosInstall(){
     echo "MYBASE POSINSTALL
-Options: [1]WINDOW MANAGER, [2]GNOME [3]KDE"
+Options: [1]MYBASE [2]WINDOW MANAGER, [3]GNOME [4]KDE"
     read resp
 	case $resp in
-		1)
+        1)
+            myBasePacman
+            packagesManager "$myFullBase"
+            flatpak override --user --filesystem=~/.icons:ro --filesystem=~/.local/share/icons:ro
+            enableSystemctl "smb"
+            enableSystemctl "nmb"
+            enableSystemctl "bluetooth"
+            enableSystemctl "NetworkManager"
+            enableSystemctl "power-profiles-daemon"
+            enableSystemctl "sshd"
+            lidSwitchIgnore
+            sambaSetup
+            ;;
+		2)
             myBasePacman
             packagesManager "$myFullBase"
             packagesManager "$myBaseI3wm"
             packagesManager "$myBaseBspwm"
             packagesManager "$myBaseHyprland"
             packagesManager "$myBaseWmApps"
-	    packagesManager "ly"
+	        packagesManager "ly"
             packagesManager "$myBaseGlobalApps"
             packagesManager "$myBaseOBS"
             packagesManager "$myBaseSteam"
@@ -89,10 +102,11 @@ Options: [1]WINDOW MANAGER, [2]GNOME [3]KDE"
             enableSystemctl "bluetooth"
             enableSystemctl "NetworkManager"
             enableSystemctl "power-profiles-daemon"
+            enableSystemctl "sshd"
             lidSwitchIgnore
             enableSystemctl "ly"
             ;;
-        2)  
+        3)  
             myBasePacman
             packagesManager "$myFullBase"
             packagesManager "$myBaseGnome"
@@ -108,9 +122,10 @@ Options: [1]WINDOW MANAGER, [2]GNOME [3]KDE"
             enableSystemctl "bluetooth"
             enableSystemctl "NetworkManager"
             enableSystemctl "power-profiles-daemon"
+            enableSystemctl "sshd"
             enableSystemctl "gdm"
             ;;
-        3)
+        4)
             myBasePacman
             packagesManager "$myFullBase"
             packagesManager "$myBaseKde"
@@ -127,6 +142,7 @@ Options: [1]WINDOW MANAGER, [2]GNOME [3]KDE"
             enableSystemctl "bluetooth"
             enableSystemctl "NetworkManager"
             enableSystemctl "power-profiles-daemon"
+            enableSystemctl "sshd"
             enableSystemctl "sddm"
             ;;
 		*)
