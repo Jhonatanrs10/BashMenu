@@ -78,14 +78,14 @@ Options: [1]MYBASE [2]WINDOW MANAGER, [3]GNOME [4]KDE"
             lidSwitchIgnore
             sambaSetup
             ;;
-		2)
+    	2)
             myBasePacman
             packagesManager "$myFullBase"
             packagesManager "$myBaseI3wm"
             packagesManager "$myBaseBspwm"
             packagesManager "$myBaseHyprland"
             packagesManager "$myBaseWmApps"
-	        packagesManager "ly"
+	    packagesManager "ly"
             packagesManager "$myBaseGlobalApps"
             packagesManager "$myBaseOBS"
             packagesManager "$myBaseSteam"
